@@ -336,7 +336,11 @@ public class IPhoneLockView extends FrameLayout implements OnClickListener, ILif
 		} else if (i == 3) {
 			a = 0xff;
 		}
-		return Color.argb(a, 0xff, 0xff, 0xff);
+		return Color.argb(0xff, 0xff, 0xff, 0xff);
+		
+		//return Color.argb(a, 0x00, 0xA2, 0xe8);
+		//return Color.argb(a, 0xfe, 0x45, 0x43);
+		
 	}
 
 	public void onClick(View v) {
