@@ -41,21 +41,22 @@ public final class R {
         public static final int default_wallpaper=0x7f020015;
         public static final int default_wallpaper1=0x7f020016;
         public static final int default_wallpaper2=0x7f020017;
-        public static final int detail01=0x7f020018;
-        public static final int detail02=0x7f020019;
-        public static final int empty=0x7f02001a;
-        public static final int jog_tab_left_normal=0x7f02001b;
-        public static final int jog_tab_left_normal1=0x7f02001c;
-        public static final int jog_tab_left_normal2=0x7f02001d;
-        public static final int jog_tab_left_normal3=0x7f02001e;
-        public static final int jog_tab_left_normal5=0x7f02001f;
-        public static final int lock_icon=0x7f020020;
-        public static final int lock_icon1=0x7f020021;
-        public static final int lock_icon2=0x7f020022;
-        public static final int lock_icon3=0x7f020023;
-        public static final int switcher_bg=0x7f020024;
-        public static final int switcher_bg1=0x7f020025;
-        public static final int switcher_bg2=0x7f020026;
+        public static final int default_wallpaper3=0x7f020018;
+        public static final int detail01=0x7f020019;
+        public static final int detail02=0x7f02001a;
+        public static final int empty=0x7f02001b;
+        public static final int jog_tab_left_normal=0x7f02001c;
+        public static final int jog_tab_left_normal1=0x7f02001d;
+        public static final int jog_tab_left_normal2=0x7f02001e;
+        public static final int jog_tab_left_normal3=0x7f02001f;
+        public static final int jog_tab_left_normal5=0x7f020020;
+        public static final int lock_icon=0x7f020021;
+        public static final int lock_icon1=0x7f020022;
+        public static final int lock_icon2=0x7f020023;
+        public static final int lock_icon3=0x7f020024;
+        public static final int switcher_bg=0x7f020025;
+        public static final int switcher_bg1=0x7f020026;
+        public static final int switcher_bg2=0x7f020027;
     }
     public static final class id {
         public static final int am_pm=0x7f070004;

@@ -3,7 +3,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_wallpaper2"
+    android:background="@drawable/default_wallpaper3"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -107,8 +107,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="30sp"
-                    android:paddingLeft="40dp"
-                    
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="20dp"
                     android:text="@string/slide_to_unlock"/>
             </RelativeLayout>
 			            
