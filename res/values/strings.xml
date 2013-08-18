@@ -1,5 +1,12 @@
 <resources>
 
     <string name="app_name">美言</string>
+    <string-array name="Spring">
+        <item >也无风雨也无晴</item>
+        <item >小雨淅沥沥下个不停</item>
+    </string-array>
+    <string-array name="Summer"></string-array>
+    <string-array name="Autumn"></string-array>
+    <string-array name="Winter"></string-array>
 
 </resources>

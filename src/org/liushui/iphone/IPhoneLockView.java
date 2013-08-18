@@ -276,32 +276,32 @@ public class IPhoneLockView extends FrameLayout implements OnClickListener, ILif
 
 		public void run() {
 			if (index == len) {
-				index = -4;
+				index = -1;
 			}
 			text = getResources().getString(R.string.slide_to_unlock);
 			len = text.length();
 			SpannableString spannable = new SpannableString(text);
 			CharacterStyle ss = null;
 			if (index >= 0 && index < len - 0) {
-				ss = new ForegroundColorSpan(getColor(1));
+				ss = new ForegroundColorSpan(Color.argb(0xff, 0xff, 0xff, 0xff));
 				spannable.setSpan(ss, index + 0, index + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
-			if (index >= -1 && index < len - 1) {
-				ss = new ForegroundColorSpan(getColor(2));
-				spannable.setSpan(ss, index + 1, index + 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			}
-			if (index >= -2 && index < len - 2) {
-				ss = new ForegroundColorSpan(getColor(3));
-				spannable.setSpan(ss, index + 2, index + 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			}
-			if (index >= -3 && index < len - 3) {
-				ss = new ForegroundColorSpan(getColor(4));
-				spannable.setSpan(ss, index + 3, index + 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			}
-			if (index >= -4 && index < len - 4) {
-				ss = new ForegroundColorSpan(getColor(5));
-				spannable.setSpan(ss, index + 4, index + 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			}
+//			if (index >= -1 && index < len - 1) {
+//				ss = new ForegroundColorSpan(getColor(2));
+//				spannable.setSpan(ss, index + 1, index + 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//			}
+//			if (index >= -2 && index < len - 2) {
+//				ss = new ForegroundColorSpan(getColor(3));
+//				spannable.setSpan(ss, index + 2, index + 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//			}
+//			if (index >= -3 && index < len - 3) {
+//				ss = new ForegroundColorSpan(getColor(4));
+//				spannable.setSpan(ss, index + 3, index + 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//			}
+//			if (index >= -4 && index < len - 4) {
+//				ss = new ForegroundColorSpan(getColor(5));
+//				spannable.setSpan(ss, index + 4, index + 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//			}
 			if (!isCalcuteTextSize) {
 				int size = 1;
 				int width = tvSlideUnlock.getWidth() - tvSlideUnlock.getPaddingLeft() - tvSlideUnlock.getPaddingRight();
@@ -320,7 +320,7 @@ public class IPhoneLockView extends FrameLayout implements OnClickListener, ILif
 			}
 			tvSlideUnlock.setText(spannable);
 			index++;
-			handler.postDelayed(this, 100);
+			handler.postDelayed(this, 200);
 		}
 	};
 
@@ -336,10 +336,12 @@ public class IPhoneLockView extends FrameLayout implements OnClickListener, ILif
 		} else if (i == 3) {
 			a = 0xff;
 		}
-		return Color.argb(0xff, 0xff, 0xff, 0xff);
+		//return Color.argb(0xff, 0xff, 0xff, 0xff);//°×
 		
-		//return Color.argb(a, 0x00, 0xA2, 0xe8);
-		//return Color.argb(a, 0xfe, 0x45, 0x43);
+		//return Color.argb(0xff, 0x26, 0xc9, 0xff);//À¶
+		return Color.argb(a, 0xfe, 0x45, 0x43);//ºì
+		//return Color.argb(a, 0xff, 0xbb, 0x32);//³È
+		//return Color.argb(a, 0x98, 0xcc, 0x00);//ÂÌ
 		
 	}
 

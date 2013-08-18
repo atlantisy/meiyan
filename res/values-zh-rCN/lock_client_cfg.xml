@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="lock_client_name">IPhone锁屏</string>
+    <string name="lock_client_name">锁屏</string>
 </resources>

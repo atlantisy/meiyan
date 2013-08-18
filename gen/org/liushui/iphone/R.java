@@ -8,6 +8,12 @@
 package org.liushui.iphone;
 
 public final class R {
+    public static final class array {
+        public static final int Autumn=0x7f050002;
+        public static final int Spring=0x7f050000;
+        public static final int Summer=0x7f050001;
+        public static final int Winter=0x7f050003;
+    }
     public static final class attr {
     }
     public static final class drawable {
@@ -42,26 +48,27 @@ public final class R {
         public static final int jog_tab_left_normal1=0x7f02001c;
         public static final int jog_tab_left_normal2=0x7f02001d;
         public static final int jog_tab_left_normal3=0x7f02001e;
-        public static final int lock_icon=0x7f02001f;
-        public static final int lock_icon1=0x7f020020;
-        public static final int lock_icon2=0x7f020021;
-        public static final int lock_icon3=0x7f020022;
-        public static final int switcher_bg=0x7f020023;
-        public static final int switcher_bg1=0x7f020024;
-        public static final int switcher_bg2=0x7f020025;
+        public static final int jog_tab_left_normal5=0x7f02001f;
+        public static final int lock_icon=0x7f020020;
+        public static final int lock_icon1=0x7f020021;
+        public static final int lock_icon2=0x7f020022;
+        public static final int lock_icon3=0x7f020023;
+        public static final int switcher_bg=0x7f020024;
+        public static final int switcher_bg1=0x7f020025;
+        public static final int switcher_bg2=0x7f020026;
     }
     public static final class id {
-        public static final int am_pm=0x7f060004;
-        public static final int battery_value=0x7f060007;
-        public static final int button1=0x7f060000;
-        public static final int date=0x7f060005;
-        public static final int energy_display=0x7f060006;
-        public static final int root=0x7f060001;
-        public static final int slidingTabLock=0x7f060008;
-        public static final int time=0x7f060002;
-        public static final int timeDisplay=0x7f060003;
-        public static final int tv_slide_unlock=0x7f06000a;
-        public static final int un_lock_block=0x7f060009;
+        public static final int am_pm=0x7f070004;
+        public static final int battery_value=0x7f070007;
+        public static final int button1=0x7f070000;
+        public static final int date=0x7f070005;
+        public static final int energy_display=0x7f070006;
+        public static final int root=0x7f070001;
+        public static final int slidingTabLock=0x7f070008;
+        public static final int time=0x7f070002;
+        public static final int timeDisplay=0x7f070003;
+        public static final int tv_slide_unlock=0x7f07000a;
+        public static final int un_lock_block=0x7f070009;
     }
     public static final class layout {
         public static final int lock_iphone_view=0x7f030000;
@@ -76,6 +83,6 @@ public final class R {
         public static final int slide_to_unlock=0x7f040004;
     }
     public static final class style {
-        public static final int AppTheme=0x7f050000;
+        public static final int AppTheme=0x7f060000;
     }
 }
