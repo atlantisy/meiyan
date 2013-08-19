@@ -80,39 +80,17 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/empty">
-						 
-            <org.liushui.iphone.SlidingTabLock
-                android:id="@+id/slidingTabLock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/empty"  >
-              
-                <ImageView
-                    android:id="@+id/un_lock_block"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/jog_tab_left_normal5" />
-            </org.liushui.iphone.SlidingTabLock>
-            
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/empty" >
+            android:background="@drawable/empty" >
 
-                <TextView
-                    android:id="@+id/tv_slide_unlock"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:paddingLeft="15dp"
-                    android:paddingBottom="20dp"
-                    android:text="@string/slide_to_unlock"/>
-            </RelativeLayout>
-			            
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:flipInterval="30"
+                android:persistentDrawingCache="animation" />
         </RelativeLayout>
+
     </LinearLayout>
 
 </org.liushui.iphone.IPhoneLockView>

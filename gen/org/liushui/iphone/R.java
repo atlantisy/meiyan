@@ -65,11 +65,12 @@ public final class R {
         public static final int date=0x7f070005;
         public static final int energy_display=0x7f070006;
         public static final int root=0x7f070001;
-        public static final int slidingTabLock=0x7f070008;
+        public static final int slidingTabLock=0x7f07000a;
         public static final int time=0x7f070002;
         public static final int timeDisplay=0x7f070003;
-        public static final int tv_slide_unlock=0x7f07000a;
-        public static final int un_lock_block=0x7f070009;
+        public static final int tv_slide_unlock=0x7f070009;
+        public static final int un_lock_block=0x7f07000b;
+        public static final int viewpager=0x7f070008;
     }
     public static final class layout {
         public static final int lock_iphone_view=0x7f030000;

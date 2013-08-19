@@ -1,7 +1,12 @@
 package org.liushui.iphone;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+
+//import com.aven.qqdemo.MyFragmentPagerAdapter;
+//import com.aven.qqdemo.TestFragment;
+//import com.demo.R;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +22,7 @@ import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -24,12 +30,27 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 public class IPhoneLockView extends FrameLayout implements OnClickListener, ILife {
 	private Context context;
 	private Button button;
 	private TextView tvDate;
-	private SlidingTabLock slidingTabLock;
+	//private SlidingTabLock slidingTabLock;
+	
+	private ViewPager mPager;
+    private ArrayList<Fragment> fragmentsList;
+    private ImageView ivBottomLine;
+    private TextView tvHome,tvLock,tvCamera;
+    //private ImageView lockImage,cameraImage;
+    private int currIndex = 0;
+    
 	private ImageView batteryImage;
 	private TextView batteryValue;
 	static final int ANIM_IMAGE_LEN = 17;
@@ -48,7 +69,7 @@ public class IPhoneLockView extends FrameLayout implements OnClickListener, ILif
 	private int index = -4;
 	private String text;
 	private int len;
-	private TextView tvSlideUnlock;
+	//private TextView tvSlideUnlock;
 
 	private int status = -1;
 	private int level = -1;
@@ -62,6 +83,7 @@ public class IPhoneLockView extends FrameLayout implements OnClickListener, ILif
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 		findViews();
+		//InitViewPager();
 		registerListener();
 		setValues();
 	}
@@ -72,10 +94,30 @@ public class IPhoneLockView extends FrameLayout implements OnClickListener, ILif
 		batteryImage = (ImageView) findViewById(R.id.energy_display);
 		batteryValue = (TextView) findViewById(R.id.battery_value);
 		clock = (DigitalClock) findViewById(R.id.time);
-		slidingTabLock = (SlidingTabLock) findViewById(R.id.slidingTabLock);
-		tvSlideUnlock = (TextView) findViewById(R.id.tv_slide_unlock);
-		slidingTabLock.setLockView(this);
+		//slidingTabLock = (SlidingTabLock) findViewById(R.id.slidingTabLock);
+		//tvSlideUnlock = (TextView) findViewById(R.id.tv_slide_unlock);
+		//slidingTabLock.setLockView(this);
+		
 	}
+
+//	private void InitViewPager() {
+//        mPager = (ViewPager) findViewById(R.id.viewpager);
+//        fragmentsList = new ArrayList<Fragment>();
+//        LayoutInflater mInflater = getLayoutInflater();
+//        View activityView = mInflater.inflate(R.layout.lay1, null);
+//
+//        Fragment lockFragment = TestFragment.newInstance("左拉解锁");
+//        Fragment homeFragment = TestFragment.newInstance("面朝大海 春暖花开");
+//        Fragment cameraFragment=TestFragment.newInstance("右拉相机");
+//
+//        fragmentsList.add(lockFragment);
+//        fragmentsList.add(homeFragment);
+//        fragmentsList.add(cameraFragment);
+//        
+//        mPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentsList));
+//        mPager.setCurrentItem(1);
+//        //mPager.setOnPageChangeListener(new MyOnPageChangeListener());
+//    }	
 
 	private void registerListener() {
 		button.setOnClickListener(this);
@@ -302,23 +344,23 @@ public class IPhoneLockView extends FrameLayout implements OnClickListener, ILif
 				ss = new ForegroundColorSpan(getColor(5));
 				spannable.setSpan(ss, index + 4, index + 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
-			if (!isCalcuteTextSize) {
-				int size = 1;
-				int width = tvSlideUnlock.getWidth() - tvSlideUnlock.getPaddingLeft() - tvSlideUnlock.getPaddingRight();
-				Paint paint = tvSlideUnlock.getPaint();
-				paint.setTextSize(size);
-				while (paint.measureText(text) <= width) {
-					size++;
-					paint.setTextSize(size);
-				}
-
-				WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-				DisplayMetrics dm = new DisplayMetrics();
-				windowManager.getDefaultDisplay().getMetrics(dm);
-				tvSlideUnlock.setTextSize((size - 1) / dm.density);
-				tvSlideUnlock.setText(text);
-			}
-			tvSlideUnlock.setText(spannable);
+//			if (!isCalcuteTextSize) {
+//				int size = 1;
+//				int width = tvSlideUnlock.getWidth() - tvSlideUnlock.getPaddingLeft() - tvSlideUnlock.getPaddingRight();
+//				Paint paint = tvSlideUnlock.getPaint();
+//				paint.setTextSize(size);
+//				while (paint.measureText(text) <= width) {
+//					size++;
+//					paint.setTextSize(size);
+//				}
+//
+//				WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+//				DisplayMetrics dm = new DisplayMetrics();
+//				windowManager.getDefaultDisplay().getMetrics(dm);
+//				tvSlideUnlock.setTextSize((size - 1) / dm.density);
+//				tvSlideUnlock.setText(text);
+//			}
+//			tvSlideUnlock.setText(spannable);
 			index++;
 			handler.postDelayed(this, 100);
 		}
