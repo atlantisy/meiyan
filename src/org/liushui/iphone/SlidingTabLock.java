@@ -76,7 +76,8 @@ public class SlidingTabLock extends RelativeLayout implements OnTouchListener {
 			case MotionEvent.ACTION_CANCEL:
 				// getScrollX()为负数，所以用加号
 				if (getWidth() - unLockBlock.getWidth() + getScrollX() < UNLOCK_DIST) {
-					lockView.unLock();
+					int i=0;
+					//lockView.unLock();
 				}
 				scrollTo(0, 0);
 				startX = nowX = 0;

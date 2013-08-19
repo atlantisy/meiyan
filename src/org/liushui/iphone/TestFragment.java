@@ -35,11 +35,11 @@ public class TestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         Log.d(TAG, "TestFragment-----onCreateView");
-        //View view = inflater.inflate(R.layout.lay1, container, false);
-        //TextView viewhello = (TextView) view.findViewById(R.id.tv_hello);
-        //viewhello.setText(hello);
-        //return view;
-		return null;
+        View view = inflater.inflate(R.layout.lay1, container, false);
+        TextView viewhello = (TextView) view.findViewById(R.id.tv_hello);
+        viewhello.setText(hello);
+        return view;
+		//return null;
 
     }
 

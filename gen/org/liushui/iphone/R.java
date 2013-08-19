@@ -59,23 +59,25 @@ public final class R {
         public static final int switcher_bg2=0x7f020027;
     }
     public static final class id {
-        public static final int am_pm=0x7f070004;
-        public static final int battery_value=0x7f070007;
-        public static final int button1=0x7f070000;
-        public static final int date=0x7f070005;
-        public static final int energy_display=0x7f070006;
-        public static final int root=0x7f070001;
-        public static final int slidingTabLock=0x7f07000a;
-        public static final int time=0x7f070002;
-        public static final int timeDisplay=0x7f070003;
-        public static final int tv_slide_unlock=0x7f070009;
-        public static final int un_lock_block=0x7f07000b;
-        public static final int viewpager=0x7f070008;
+        public static final int am_pm=0x7f070005;
+        public static final int battery_value=0x7f070008;
+        public static final int button1=0x7f070001;
+        public static final int date=0x7f070006;
+        public static final int energy_display=0x7f070007;
+        public static final int root=0x7f070002;
+        public static final int slidingTabLock=0x7f07000b;
+        public static final int time=0x7f070003;
+        public static final int timeDisplay=0x7f070004;
+        public static final int tv_hello=0x7f070000;
+        public static final int tv_slide_unlock=0x7f07000a;
+        public static final int un_lock_block=0x7f07000c;
+        public static final int viewpager=0x7f070009;
     }
     public static final class layout {
-        public static final int lock_iphone_view=0x7f030000;
-        public static final int lock_iphone_view2=0x7f030001;
-        public static final int view_test=0x7f030002;
+        public static final int lay1=0x7f030000;
+        public static final int lock_iphone_view=0x7f030001;
+        public static final int lock_iphone_view2=0x7f030002;
+        public static final int view_test=0x7f030003;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
