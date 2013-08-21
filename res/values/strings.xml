@@ -1,9 +1,10 @@
 <resources>
 
-    <string name="app_name">美言</string>
+    <string name="app_name">美言锁屏</string>
     <string-array name="Spring">
-        <item >也无风雨也无晴</item>
+        <item >面朝大海 春暖花开</item><item >也无风雨也无晴</item>
         <item >小雨淅沥沥下个不停</item>
+        
     </string-array>
     <string-array name="Summer"></string-array>
     <string-array name="Autumn"></string-array>

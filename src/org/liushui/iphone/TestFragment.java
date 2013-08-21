@@ -21,7 +21,6 @@ public class TestFragment extends Fragment {
         bundle.putString("hello", s);
         newFragment.setArguments(bundle);
         return newFragment;
-
     }
 
     @Override
@@ -39,8 +38,6 @@ public class TestFragment extends Fragment {
         TextView viewhello = (TextView) view.findViewById(R.id.tv_hello);
         viewhello.setText(hello);
         return view;
-		//return null;
-
     }
 
     @Override
