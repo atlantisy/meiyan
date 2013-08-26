@@ -2,12 +2,38 @@
 
     <string name="app_name">美言锁屏</string>
     <string-array name="Spring">
-        <item >面朝大海 春暖花开</item><item >也无风雨也无晴</item>
-        <item >小雨淅沥沥下个不停</item>
+        <item >面朝大海 春暖花开</item>
+        <item >春眠不觉晓</item>
+        <item >报得三春晖</item>
+        <item >春来发几枝</item>
+        <item >当春乃发生</item>
+        <item >春风吹又生</item>
+        <item >春种一粒粟</item>
+        <item >城春草木深</item>
+        <item >化作春泥更护花</item>
+        <item >春色满园关不住</item>
+        <item >春光懒困倚微风</item>
+        <item >最是一年春好处</item>
+        <item >春来江水绿如蓝</item>
+        <item >春城无处不飞花</item>
+        <item >随意春芳歇</item>
+        <item >春风不度玉门关</item>
         
     </string-array>
-    <string-array name="Summer"></string-array>
+    <string-array name="Summer">
+        <item >浅夏淡过花开时春眠不觉晓当春乃发生春光懒困倚微风</item>
+    </string-array>
     <string-array name="Autumn"></string-array>
     <string-array name="Winter"></string-array>
+    <string-array name="Shine"></string-array>
+    <string-array name="Overcast">
+        <item >也无风雨也无晴</item>
+    </string-array>
+    <string-array name="Rain">
+        <item >小雨淅沥沥下个不停</item>
+    </string-array>
+    <string-array name="Snow"></string-array>
+    <string-array name="Wind"></string-array>
+    
 
 </resources>

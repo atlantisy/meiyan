@@ -42,48 +42,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 
-public class IPhoneLockView extends FrameLayout{
-	private Context context;
-	private TextView tvDate;
-	
-	private ViewPager mPager;
-    private ArrayList<Fragment> fragmentsList;
-    private TextView tvHome,tvLock,tvCamera;
-    //private ImageView lockImage,cameraImage;
-    private int currIndex = 0;
-    private Resources resources;
-    
+public class IPhoneLockView extends FrameLayout{    
 	public IPhoneLockView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		this.context = context;
 	}
 
 	protected void onFinishInflate() {
-		super.onFinishInflate();
-		findViews();
-		//InitViewPager();
+		super.onFinishInflate();	
 	}
-    
-    private void findViews() {
-		tvDate = (TextView) findViewById(R.id.date);
-	}
-	//	private void InitViewPager() {
-	//        mPager = (ViewPager) findViewById(R.id.viewpager);
-	//        fragmentsList = new ArrayList<Fragment>();
-	//        LayoutInflater mInflater = getLayoutInflater();
-	//        View activityView = mInflater.inflate(R.layout.lay1, null);
-	//
-	//        Fragment lockFragment = TestFragment.newInstance("unlock");
-	//        Fragment homeFragment = TestFragment.newInstance("home");
-	//        Fragment cameraFragment=TestFragment.newInstance("camera");
-	//
-	//        fragmentsList.add(lockFragment);
-	//        fragmentsList.add(homeFragment);
-	//        fragmentsList.add(cameraFragment);
-	//        
-	//        mPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentsList));
-	//        mPager.setCurrentItem(1);
-	//        //mPager.setOnPageChangeListener(new MyOnPageChangeListener());
-	//    }	
-
 }
