@@ -3,6 +3,6 @@
     <string name="app_name">美言锁屏</string>
 	<string name="charging">正在充电</string>
 	<string name="charging_full">已经充满</string>
-	<string name="right_slide_unlock">右滑解锁</string>
+	<string name="right_slide_unlock">解 锁</string>
 	<string name="left_slide_camera">左滑相机</string>
 </resources>

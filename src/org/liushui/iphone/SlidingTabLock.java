@@ -31,7 +31,7 @@ public class SlidingTabLock extends RelativeLayout implements OnTouchListener {
 
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		unLockBlock = (ImageView) findViewById(R.id.un_lock_block);
+		//unLockBlock = (ImageView) findViewById(R.id.un_lock_block);
 		unLockBlock.setLongClickable(true);
 		unLockBlock.setOnTouchListener(this);
 		vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
