@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="lightwhite">#ddd</color>
-    <color name="white">#fff</color>
+    <color name="alpha0_white">#0fff</color><color name="alpha_white">#e8ffffff</color><color name="white">#fff</color><color name="alpha0_black">#0000</color><color name="alpha_black">#66000000</color><color name="black">#000</color><color name="gray_white">#ffaaaaaa</color>
+    
+    
+    <color name="orange">#80f37633</color>
+    <color name="blue">#8039b5f5</color>
+    <color name="orange1">#c6f37633</color>
+    <color name="blue1">#c639b5f5</color>
+    
+    
+    
+    
 
 </resources>

@@ -2,25 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#00FFFFFF"
-    android:gravity="bottom"
+    android:gravity="center"
+    android:background="@color/alpha_black"
     android:orientation="vertical" >
+
+<!--     <LinearLayout -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="fill_parent" -->
+<!--         android:layout_weight="1" > -->
+<!--     </LinearLayout> -->
+
+    <!-- <ImageView -->
+    <!-- android:id="@+id/iv_blank0" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:layout_weight="1" -->
+    <!-- android:scaleType="centerInside" -->
+    <!-- android:src="@drawable/empty"/> -->
 
     <ImageView
         android:id="@+id/iv_unlock"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_gravity="right"
-        android:paddingBottom="15dp"
+        android:background="@color/alpha0_black"
         android:src="@drawable/unlock" />
-
-<!--     <TextView -->
-<!--         android:id="@+id/tv_unlock" -->
-<!--         android:layout_width="fill_parent" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:gravity="right" -->
-<!--         android:text="@string/right_slide_unlock" -->
-<!--         android:textColor="@color/white" -->
-<!--         android:textSize="12sp" /> -->
 
 </LinearLayout>

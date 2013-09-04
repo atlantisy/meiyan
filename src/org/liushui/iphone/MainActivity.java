@@ -32,7 +32,7 @@ import android.widget.TextView;
 import android.text.style.ForegroundColorSpan;
 
 public class MainActivity extends FragmentActivity{	
-	private Handler handler = new Handler();
+
 	private ViewPager mPager;
     private ArrayList<Fragment> fragmentsList;
     private String sUnlock;//sCamera;
@@ -40,13 +40,7 @@ public class MainActivity extends FragmentActivity{
     private int length;
     private int currIndex = 1;
     private int homeIndex = 0;
-    private TextView tvSlideUnlock;
-    
-    boolean isRun = false;
-    boolean isCalcuteTextSize = false;
-    private int index = -1;
-    private String text;
-	private int len;
+
 	
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,32 +50,17 @@ public class MainActivity extends FragmentActivity{
         sUnlock=(String) this.getResources().getString(R.string.right_slide_unlock);
         
         InitViewPager();
-        //startIndicateAnimation();
-	}
-	
-   	
-//	public void onResume() {
-//		startIndicateAnimation();
-//	}
-//	
-//	public void onPause() {
-//		stopIndicateAnimation();
-//	}
-//	
-//	public void onUpdate() {
-//		startIndicateAnimation();
-//	}
-	
+	}	  		
 	
 	private void InitViewPager() {
-			tvSlideUnlock = (TextView) findViewById(R.id.tv_hello);
+			//tvSlideUnlock = (TextView) findViewById(R.id.tv_hello);
 	        mPager = (ViewPager) findViewById(R.id.viewpager);	        
 	        fragmentsList = new ArrayList<Fragment>();
 	
 	        length=sHome.length;
 	        homeIndex=(int)(Math.random()*length);
 	        UnlockFragment unlockFragment = new UnlockFragment();
-	        Fragment homeFragment = TestFragment.newInstance(sHome[homeIndex]);
+	        Fragment homeFragment = MainFragment.newString(sHome[homeIndex]);
 	
 	        fragmentsList.add(unlockFragment);
 	        fragmentsList.add(homeFragment);
@@ -112,58 +91,7 @@ public class MainActivity extends FragmentActivity{
         @Override
         public void onPageScrollStateChanged(int arg0) {
         }
-    }	
-	
-	private void startIndicateAnimation() {
-		if (!isRun) {
-			handler.postDelayed(task, 200);
-		}
-		isRun = true;
-	}
-	
-	private void stopIndicateAnimation() {
-		if (isRun) {
-			handler.removeCallbacks(task);
-		}
-		isRun = false;
-	}
-	
-	Runnable task = new Runnable() {
-
-		public void run() {
-			if (index == len) {
-				index = -1;
-			}
-			text = sHome[homeIndex];
-			len = text.length();
-			SpannableString spannable = new SpannableString(text);
-			CharacterStyle ss = null;
-			if (index >= 0 && index < len - 0) {
-				ss = new ForegroundColorSpan(Color.argb(0xff, 0xff, 0xff, 0xff));
-				spannable.setSpan(ss, index + 0, index + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			}
-
-			if (!isCalcuteTextSize) {
-				int size = 1;
-				int width = tvSlideUnlock.getWidth() - tvSlideUnlock.getPaddingLeft() - tvSlideUnlock.getPaddingRight();
-				Paint paint = tvSlideUnlock.getPaint();
-				paint.setTextSize(size);
-				while (paint.measureText(text) <= width) {
-					size++;
-					paint.setTextSize(size);
-				}
-
-//				WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-//				DisplayMetrics dm = new DisplayMetrics();
-//				windowManager.getDefaultDisplay().getMetrics(dm);
-//				tvSlideUnlock.setTextSize((size - 1) / dm.density);
-				tvSlideUnlock.setText(text);
-			}
-			tvSlideUnlock.setText(spannable);
-			index++;
-			handler.postDelayed(this, 100);
-		}
-	};
+    }		
 	
 	public void unLock(){
 		finish();
