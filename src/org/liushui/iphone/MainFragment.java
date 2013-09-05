@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,8 @@ public class MainFragment extends Fragment {
 	static private int len;
 	private Handler handler = new Handler();
 	private TextView viewhello;
+	private ImageView viewRightArrow;
+	private ImageView viewLeftArrow;
 
 	boolean isRun = false;
 	boolean isCalcuteTextSize = false;
@@ -54,12 +57,16 @@ public class MainFragment extends Fragment {
 			Bundle savedInstanceState) {
 		Log.d(TAG, "MainFragment-----onCreateView");
 		View view = inflater.inflate(R.layout.lay1, container, false);
-		viewhello = (TextView) view.findViewById(R.id.tv_hello);		
+		viewhello = (TextView) view.findViewById(R.id.tv_hello);
 		viewhello.setText(hello);
-		
-		//LinearLayout lay1 = (LinearLayout) view.findViewById(R.layout.lay1);
+
+		viewRightArrow = (ImageView) view.findViewById(R.id.iv_arrow_right);
+		viewLeftArrow = (ImageView) view.findViewById(R.id.iv_arrow_left);
+		viewRightArrow.setVisibility(4);// INVISIBILITY:4
+		viewLeftArrow.setVisibility(4);
+
 		viewhello.setOnTouchListener(textViewTouchListener);
-		
+
 		startIndicateAnimation();
 		return view;
 	}
@@ -132,27 +139,20 @@ public class MainFragment extends Fragment {
 			// TODO Auto-generated method stub
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN: {
-				// 按住事件发生后执行代码的区域
-				//v.setBackgroundColor(Color.argb(0xc6, 0x39, 0xb5, 0xf5));				
-				//v.setTextColor(Color.argb(0xff, 0xff, 0xff, 0xff));
-				break;
-			}
-			case MotionEvent.ACTION_MOVE: {
-				// 移动事件发生后执行代码的区域
-				//v.setBackgroundColor(Color.argb(0xc6, 0x39, 0xb5, 0xf5));
+				viewRightArrow.setVisibility(0);// VISIBILITY:0
+				viewLeftArrow.setVisibility(0);
 				break;
 			}
 			case MotionEvent.ACTION_UP: {
-				// 松开事件发生后执行代码的区域
-				//v.setBackgroundColor(Color.argb(0x00, 0x00, 0x00, 0x00));				
+				viewRightArrow.setVisibility(4);//INVISIBILITY:4
+				viewLeftArrow.setVisibility(4);
 				break;
 			}
 			default:
-				v.setBackgroundColor(Color.argb(0x00, 0x00, 0x00, 0x00));	
 				break;
 			}
-			
-			return false;
+
+			return true;
 		}
 	};
 }

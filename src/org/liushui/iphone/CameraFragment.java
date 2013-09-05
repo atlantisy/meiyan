@@ -21,25 +21,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class UnlockFragment extends Fragment {
-    private static final String TAG = "UnlockFragment";
-    private Bitmap unlockImage;    
+public class CameraFragment extends Fragment {
+    private static final String TAG = "CameraFragment";
+    private Bitmap cameraImage;    
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "UnlockFragment-----onCreate");
+        Log.d(TAG, "CameraFragment-----onCreate");
 
         Resources res = getResources();  
-        unlockImage = BitmapFactory.decodeResource(res, R.drawable.unlock);
+        cameraImage = BitmapFactory.decodeResource(res, R.drawable.camera);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        Log.d(TAG, "UnlockFragment-----onCreateView");
-        View view = inflater.inflate(R.layout.lay0, container, false);
-        ImageView viewUnlock = (ImageView) view.findViewById(R.id.iv_unlock);               
-        viewUnlock.setImageBitmap(unlockImage);
+        Log.d(TAG, "CameraFragment-----onCreateView");
+        View view = inflater.inflate(R.layout.lay2, container, false);
+        ImageView viewCamera = (ImageView) view.findViewById(R.id.iv_camera);               
+        viewCamera.setImageBitmap(cameraImage);
         //viewhello.setBackgroundColor(Color.argb(0xff, 0xff, 0xff, 0xff));
         return view;
     }
@@ -47,7 +47,7 @@ public class UnlockFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "UnlockFragment-----onDestroy");
+        Log.d(TAG, "CameraFragment-----onDestroy");
     }
     
 
