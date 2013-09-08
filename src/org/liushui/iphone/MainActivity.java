@@ -23,6 +23,7 @@ import android.text.SpannableString;
 import android.text.style.CharacterStyle;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -33,11 +34,13 @@ import android.widget.TextView;
 import android.text.style.ForegroundColorSpan;
 
 public class MainActivity extends FragmentActivity {
-
+	private static final String TAG = "MeiYan";
 	private ViewPager mPager;
 	private ArrayList<Fragment> fragmentsList;
 	private String[] sHome;
-	private int length;
+	private String sCustom;
+	private String sRandom;
+	private int len;
 	private int currIndex = 1;
 	private int homeIndex = 0;
 
@@ -46,10 +49,20 @@ public class MainActivity extends FragmentActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.lock_iphone_view2);
-		sHome = (String[]) this.getResources().getStringArray(R.array.Spring);
-
+		requestWindowFeature(Window.FEATURE_NO_TITLE);		
+		setContentView(R.layout.lock_iphone_view2);		
+		//获取默认随机诗词
+		sHome = (String[]) this.getResources().getStringArray(R.array.Summer);
+		len = sHome.length;
+		homeIndex = (int)(Math.random()*len);
+		sRandom=sHome[homeIndex];
+		//获取自定义诗词		
+		if(SettingActivity.customText.equals(""))
+			sCustom=sRandom;
+		else 
+			sCustom=SettingActivity.customText;
+		Log.d(TAG, sCustom);
+		//初始化Viewpager
 		InitViewPager();
 	}
 
@@ -57,19 +70,15 @@ public class MainActivity extends FragmentActivity {
 		mPager = (ViewPager) findViewById(R.id.viewpager);
 
 		fragmentsList = new ArrayList<Fragment>();
-
-		length = sHome.length;
-		homeIndex = (int) (Math.random() * length);
 		UnlockFragment unlockFragment = new UnlockFragment();
-		Fragment homeFragment = MainFragment.newString(sHome[homeIndex]);
+		Fragment homeFragment = MainFragment.newString(sCustom);
 		CameraFragment cameraFragment = new CameraFragment();
 
 		fragmentsList.add(unlockFragment);
 		fragmentsList.add(homeFragment);
 		fragmentsList.add(cameraFragment);
 
-		mPager.setAdapter(new MyFragmentPagerAdapter(
-				getSupportFragmentManager(), fragmentsList));
+		mPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentsList));
 		mPager.setCurrentItem(currIndex);
 		mPager.setOnPageChangeListener(new MyOnPageChangeListener());
 

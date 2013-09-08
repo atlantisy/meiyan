@@ -40,7 +40,7 @@ public class UnlockFragment extends Fragment {
         View view = inflater.inflate(R.layout.lay0, container, false);
         ImageView viewUnlock = (ImageView) view.findViewById(R.id.iv_unlock);               
         viewUnlock.setImageBitmap(unlockImage);
-        //viewhello.setBackgroundColor(Color.argb(0xff, 0xff, 0xff, 0xff));
+        
         return view;
     }
 

@@ -41,7 +41,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="60sp" />
+                    android:textSize="60sp"
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/am_pm"

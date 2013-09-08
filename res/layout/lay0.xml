@@ -6,20 +6,6 @@
     android:background="@color/alpha0_black"
     android:orientation="vertical" >
 
-<!--     <LinearLayout -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="fill_parent" -->
-<!--         android:layout_weight="1" > -->
-<!--     </LinearLayout> -->
-
-    <!-- <ImageView -->
-    <!-- android:id="@+id/iv_blank0" -->
-    <!-- android:layout_width="wrap_content" -->
-    <!-- android:layout_height="fill_parent" -->
-    <!-- android:layout_weight="1" -->
-    <!-- android:scaleType="centerInside" -->
-    <!-- android:src="@drawable/empty"/> -->
-
     <ImageView
         android:id="@+id/iv_unlock"
         android:layout_width="wrap_content"

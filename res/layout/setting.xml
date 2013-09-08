@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/alpha_white"
+    android:orientation="vertical" >
+
+    <CheckBox
+        android:id="@+id/checkBox_meiyan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/meiyan_check"
+        android:textColor="@color/black" />
+
+<!--     <CheckBox -->
+<!--         android:id="@+id/checkBox_customText" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:text="@string/custom_check" /> -->
+	
+    <EditText
+        android:id="@+id/editText_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="9"
+        android:hint="@string/custom_text"/>
+
+</LinearLayout>

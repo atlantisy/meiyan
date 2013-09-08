@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 public class MainFragment extends Fragment {
 	private static final String TAG = "MainFragment";
-	private String hello = "Hello,everyone!";
+	private String hello = "Hello,Everyone!";
 
 	private int index = -2;
 	// private String text;
@@ -84,7 +84,7 @@ public class MainFragment extends Fragment {
 		Log.d(TAG, "startIndicateAnimation");
 
 		if (!isRun) {
-			handler.postDelayed(task, 200);
+			handler.postDelayed(task, 300);
 		}
 		isRun = true;
 	}
@@ -129,8 +129,7 @@ public class MainFragment extends Fragment {
 				viewhello.setText(spannable);
 				handler.postDelayed(this, 800);
 			} else
-				handler.postDelayed(this, 250);
-			// handler.postDelayed(this, 250);
+				handler.postDelayed(this, 300);
 		}
 	};
 
