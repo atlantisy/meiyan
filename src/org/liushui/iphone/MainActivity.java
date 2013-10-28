@@ -49,7 +49,12 @@ public class MainActivity extends FragmentActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);		
+		
+		//Remove title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//Remove notification bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
 		setContentView(R.layout.lock_iphone_view2);		
 		//获取默认随机诗词
 		sHome = (String[]) this.getResources().getStringArray(R.array.Summer);
