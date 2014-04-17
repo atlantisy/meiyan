@@ -1,8 +1,10 @@
-package org.liushui.iphone;
+package com.meiyanlock.android;
 
 import java.util.ArrayList;
 
-import org.liushui.iphone.MyLockScreenService;
+import com.meiyanlock.android.R;
+
+import com.meiyanlock.android.MyLockScreenService;
 
 import android.R.string;
 import android.app.Activity;

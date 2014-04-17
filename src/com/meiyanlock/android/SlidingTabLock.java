@@ -1,4 +1,4 @@
-package org.liushui.iphone;
+package com.meiyanlock.android;
 
 import android.content.Context;
 import android.os.Vibrator;

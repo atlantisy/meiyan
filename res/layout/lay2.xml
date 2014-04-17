@@ -26,6 +26,6 @@
         android:layout_height="fill_parent"
         android:layout_gravity="left"
         android:background="@color/alpha0_black"
-        android:src="@drawable/camera" />
+        android:src="@drawable/blank" />
 
 </LinearLayout>

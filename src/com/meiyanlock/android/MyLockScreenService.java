@@ -1,4 +1,4 @@
-package org.liushui.iphone;
+package com.meiyanlock.android;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;

@@ -1,4 +1,6 @@
-package org.liushui.iphone;
+package com.meiyanlock.android;
+
+import com.meiyanlock.android.R;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -31,7 +33,7 @@ public class UnlockFragment extends Fragment {
         Log.d(TAG, "UnlockFragment-----onCreate");
 
         Resources res = getResources();  
-        unlockImage = BitmapFactory.decodeResource(res, R.drawable.unlock);
+        unlockImage = BitmapFactory.decodeResource(res, R.drawable.blank);
     }
 
     @Override

@@ -1,4 +1,6 @@
-package org.liushui.iphone;
+package com.meiyanlock.android;
+
+import com.meiyanlock.android.R;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -31,7 +33,7 @@ public class CameraFragment extends Fragment {
         Log.d(TAG, "CameraFragment-----onCreate");
 
         Resources res = getResources();  
-        cameraImage = BitmapFactory.decodeResource(res, R.drawable.camera);
+        cameraImage = BitmapFactory.decodeResource(res, R.drawable.blank);
     }
 
     @Override

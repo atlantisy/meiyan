@@ -1,8 +1,10 @@
-package org.liushui.iphone;
+package com.meiyanlock.android;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import com.meiyanlock.android.R;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

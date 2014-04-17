@@ -6,6 +6,6 @@
 	<string name="right_slide_unlock">解 锁</string>
 	<string name="left_slide_camera">左滑相机</string>
 	<string name="meiyan_check">开启美言锁屏</string>
-	<string name="custom_text">最多输入9个汉字</string>
+	<string name="custom_text">请发言</string>
 	<string name="custom_check">自定义诗词</string>
 </resources>

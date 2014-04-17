@@ -1,4 +1,4 @@
-package org.liushui.iphone;
+package com.meiyanlock.android;
 
 public interface IObserver {
 

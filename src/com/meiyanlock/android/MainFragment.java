@@ -1,4 +1,6 @@
-package org.liushui.iphone;
+package com.meiyanlock.android;
+
+import com.meiyanlock.android.R;
 
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -62,7 +64,7 @@ public class MainFragment extends Fragment {
 
 		viewRightArrow = (ImageView) view.findViewById(R.id.iv_arrow_right);
 		viewLeftArrow = (ImageView) view.findViewById(R.id.iv_arrow_left);
-		viewRightArrow.setVisibility(4);// INVISIBILITY:4
+		viewRightArrow.setVisibility(4);// 0:VISIBILITY 4:INVISIBILITY
 		viewLeftArrow.setVisibility(4);
 
 		viewhello.setOnTouchListener(textViewTouchListener);
@@ -138,12 +140,12 @@ public class MainFragment extends Fragment {
 			// TODO Auto-generated method stub
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN: {
-				viewRightArrow.setVisibility(0);// VISIBILITY:0
-				viewLeftArrow.setVisibility(0);
+				viewRightArrow.setVisibility(4);//0:VISIBILITY 4:INVISIBILITY
+				viewLeftArrow.setVisibility(4);
 				break;
 			}
 			case MotionEvent.ACTION_UP: {
-				viewRightArrow.setVisibility(4);//INVISIBILITY:4
+				viewRightArrow.setVisibility(4);//
 				viewLeftArrow.setVisibility(4);
 				break;
 			}

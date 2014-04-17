@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package org.liushui.iphone;
+package com.meiyanlock.android;
 
 public final class R {
     public static final class array {
@@ -26,6 +26,7 @@ public final class R {
         public static final int alpha0_white=0x7f040000;
         public static final int alpha_black=0x7f040004;
         public static final int alpha_white=0x7f040001;
+        public static final int app_color=0x7f04000b;
         public static final int black=0x7f040005;
         public static final int blue=0x7f040008;
         public static final int blue1=0x7f04000a;
@@ -69,25 +70,22 @@ public final class R {
         public static final int jog_tab_left_normal4=0x7f02001f;
         public static final int lock_icon=0x7f020020;
         public static final int lock_icon1=0x7f020021;
-        public static final int lock_icon2=0x7f020022;
-        public static final int lock_icon3=0x7f020023;
-        public static final int lock_icon4=0x7f020024;
-        public static final int lock_icon5=0x7f020025;
-        public static final int switcher_bg=0x7f020026;
-        public static final int switcher_bg1=0x7f020027;
-        public static final int switcher_bg2=0x7f020028;
-        public static final int unlock=0x7f020029;
+        public static final int switcher_bg=0x7f020022;
+        public static final int switcher_bg1=0x7f020023;
+        public static final int switcher_bg2=0x7f020024;
+        public static final int unlock=0x7f020025;
     }
     public static final class id {
         public static final int am_pm=0x7f08000a;
         public static final int button1=0x7f080005;
-        public static final int checkBox_meiyan=0x7f08000c;
-        public static final int editText_custom=0x7f08000d;
+        public static final int checkBox_meiyan=0x7f08000d;
+        public static final int editText_custom=0x7f08000e;
         public static final int iv_arrow_left=0x7f080003;
         public static final int iv_arrow_right=0x7f080001;
         public static final int iv_camera=0x7f080004;
         public static final int iv_unlock=0x7f080000;
         public static final int root=0x7f080006;
+        public static final int skinTitle=0x7f08000c;
         public static final int time=0x7f080008;
         public static final int timeDisplay=0x7f080009;
         public static final int tv_blank1=0x7f080007;

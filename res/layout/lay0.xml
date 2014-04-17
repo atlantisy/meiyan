@@ -12,6 +12,6 @@
         android:layout_height="fill_parent"
         android:layout_gravity="right"
         android:background="@color/alpha0_black"
-        android:src="@drawable/unlock" />
+        android:src="@drawable/blank" />
 
 </LinearLayout>

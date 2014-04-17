@@ -1,8 +1,10 @@
-package org.liushui.iphone;
+package com.meiyanlock.android;
 
 import java.util.ArrayList;
 
-import org.liushui.iphone.MainActivity.MyOnPageChangeListener;
+import com.meiyanlock.android.R;
+
+import com.meiyanlock.android.MainActivity.MyOnPageChangeListener;
 
 import android.R.string;
 import android.app.Activity;
@@ -53,7 +55,7 @@ public class MainActivity extends FragmentActivity {
 		//Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		//Remove notification bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
 		setContentView(R.layout.lock_iphone_view2);		
 		//获取默认随机诗词
@@ -98,9 +100,9 @@ public class MainActivity extends FragmentActivity {
 				unLock();
 				break;
 			default:
-				Intent cameraIntent = new Intent(
-						MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(cameraIntent, 1);
+//				Intent cameraIntent = new Intent(
+//						MediaStore.ACTION_IMAGE_CAPTURE);
+//				startActivityForResult(cameraIntent, 1);
 				unLock();
 				break;
 			}
@@ -112,11 +114,11 @@ public class MainActivity extends FragmentActivity {
 			viewRightArrow = (ImageView) findViewById(R.id.iv_arrow_right);
 			viewLeftArrow = (ImageView) findViewById(R.id.iv_arrow_left);
 			if (arg1>0.0 | arg2>0){
-				viewRightArrow.setVisibility(0);//VISIBLE:0
-				viewLeftArrow.setVisibility(0);
+				viewRightArrow.setVisibility(4);//0:VISIBILITY 4:INVISIBILITY
+				viewLeftArrow.setVisibility(4);
 			}
 			else{
-				viewRightArrow.setVisibility(4);//INVISIBLE:4
+				viewRightArrow.setVisibility(4);//
 				viewLeftArrow.setVisibility(4);
 			}
 		}
@@ -126,11 +128,11 @@ public class MainActivity extends FragmentActivity {
 			viewRightArrow = (ImageView) findViewById(R.id.iv_arrow_right);
 			viewLeftArrow = (ImageView) findViewById(R.id.iv_arrow_left);	
 			if (arg0==1){
-				viewRightArrow.setVisibility(0);//VISIBLE:0
-				viewLeftArrow.setVisibility(0);
+				viewRightArrow.setVisibility(4);//0:VISIBILITY 4:INVISIBILITY
+				viewLeftArrow.setVisibility(4);
 			}
 			else{
-				viewRightArrow.setVisibility(4);//INVISIBLE:4
+				viewRightArrow.setVisibility(4);//
 				viewLeftArrow.setVisibility(4);
 			}
 		}
