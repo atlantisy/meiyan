@@ -69,23 +69,27 @@ public final class R {
         public static final int jog_tab_left_normal3=0x7f02001e;
         public static final int jog_tab_left_normal4=0x7f02001f;
         public static final int lock_icon=0x7f020020;
-        public static final int lock_icon1=0x7f020021;
-        public static final int switcher_bg=0x7f020022;
-        public static final int switcher_bg1=0x7f020023;
-        public static final int switcher_bg2=0x7f020024;
-        public static final int unlock=0x7f020025;
+        public static final int lock_icon_s=0x7f020021;
+        public static final int setting=0x7f020022;
+        public static final int switcher_bg=0x7f020023;
+        public static final int switcher_bg1=0x7f020024;
+        public static final int switcher_bg2=0x7f020025;
+        public static final int unlock=0x7f020026;
     }
     public static final class id {
         public static final int am_pm=0x7f08000a;
         public static final int button1=0x7f080005;
-        public static final int checkBox_meiyan=0x7f08000d;
-        public static final int editText_custom=0x7f08000e;
+        public static final int checkBox_meiyan=0x7f080010;
+        public static final int editText_custom=0x7f080011;
+        public static final int imageButton1=0x7f08000f;
+        public static final int imageView1=0x7f08000c;
+        public static final int imageView2=0x7f08000e;
         public static final int iv_arrow_left=0x7f080003;
         public static final int iv_arrow_right=0x7f080001;
         public static final int iv_camera=0x7f080004;
         public static final int iv_unlock=0x7f080000;
         public static final int root=0x7f080006;
-        public static final int skinTitle=0x7f08000c;
+        public static final int skinTitle=0x7f08000d;
         public static final int time=0x7f080008;
         public static final int timeDisplay=0x7f080009;
         public static final int tv_blank1=0x7f080007;

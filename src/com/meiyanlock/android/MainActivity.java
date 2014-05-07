@@ -114,11 +114,11 @@ public class MainActivity extends FragmentActivity {
 			viewRightArrow = (ImageView) findViewById(R.id.iv_arrow_right);
 			viewLeftArrow = (ImageView) findViewById(R.id.iv_arrow_left);
 			if (arg1>0.0 | arg2>0){
-				viewRightArrow.setVisibility(4);//0:VISIBILITY 4:INVISIBILITY
+				viewRightArrow.setVisibility(0);//0:VISIBILITY 4:INVISIBILITY
 				viewLeftArrow.setVisibility(4);
 			}
 			else{
-				viewRightArrow.setVisibility(4);//
+				viewRightArrow.setVisibility(0);//
 				viewLeftArrow.setVisibility(4);
 			}
 		}
@@ -128,11 +128,11 @@ public class MainActivity extends FragmentActivity {
 			viewRightArrow = (ImageView) findViewById(R.id.iv_arrow_right);
 			viewLeftArrow = (ImageView) findViewById(R.id.iv_arrow_left);	
 			if (arg0==1){
-				viewRightArrow.setVisibility(4);//0:VISIBILITY 4:INVISIBILITY
+				viewRightArrow.setVisibility(0);//0:VISIBILITY 4:INVISIBILITY
 				viewLeftArrow.setVisibility(4);
 			}
 			else{
-				viewRightArrow.setVisibility(4);//
+				viewRightArrow.setVisibility(0);//
 				viewLeftArrow.setVisibility(4);
 			}
 		}
