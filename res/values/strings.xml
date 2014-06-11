@@ -1,60 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">美言锁屏</string>
+
     <string-array name="Spring">
-        <item >面朝大海 春暖花开</item>
-        <item >春眠不觉晓</item>
-        <item >报得三春晖</item>
-        <item >春来发几枝</item>
-        <item >当春乃发生</item>
-        <item >春风吹又生</item>
-        <item >春种一粒粟</item>
-        <item >城春草木深</item>
-        <item >化作春泥更护花</item>
-        <item >春色满园关不住</item>
-        <item >春光懒困倚微风</item>
-        <item >最是一年春好处</item>
-        <item >春来江水绿如蓝</item>
-        <item >春城无处不飞花</item>
-        <item >随意春芳歇</item>
-        <item >春风不度玉门关</item>
-        
+        <item>面朝大海 春暖花开</item>
+        <item>春眠不觉晓</item>
+        <item>报得三春晖</item>
+        <item>春来发几枝</item>
+        <item>当春乃发生</item>
+        <item>春风吹又生</item>
+        <item>春种一粒粟</item>
+        <item>城春草木深</item>
+        <item>化作春泥更护花</item>
+        <item>春色满园关不住</item>
+        <item>春光懒困倚微风</item>
+        <item>最是一年春好处</item>
+        <item>春来江水绿如蓝</item>
+        <item>春城无处不飞花</item>
+        <item>随意春芳歇</item>
+        <item>春风不度玉门关</item>
     </string-array>
     <string-array name="Summer">
-        <item >浅夏淡过花开时</item>
-        <item >路上皆熟人</item>
-        <item >夏木阳阴正可人</item>
-        <item >一晴方觉夏深</item>
-        <item >闲居初夏午睡起</item>
-        <item >夏条绿已密</item>
-        <item >仲夏苦夜短</item>
-        <item >炎炎夏日徂</item>
-        <item >清风半夜鸣蝉</item>
-        <item >懒摇白羽扇</item>
-        <item >垂藤引夏凉</item>
-        <item >叶阴迎夏已清和</item>
-        <item >赤日炎炎似火烧</item>
-        <item >绿阴生昼静</item>
-        <item >莲叶何田田</item>
-        <item >布谷声中夏令新</item>
-        <item >我爱夏日长</item>
+        <item>浅夏淡过花开时</item>
+        <item>路上皆熟人</item>
+        <item>夏木阳阴正可人</item>
+        <item>一晴方觉夏深</item>
+        <item>闲居初夏午睡起</item>
+        <item>夏条绿已密</item>
+        <item>仲夏苦夜短</item>
+        <item>炎炎夏日徂</item>
+        <item>清风半夜鸣蝉</item>
+        <item>懒摇白羽扇</item>
+        <item>垂藤引夏凉</item>
+        <item>叶阴迎夏已清和</item>
+        <item>赤日炎炎似火烧</item>
+        <item>绿阴生昼静</item>
+        <item>莲叶何田田</item>
+        <item>布谷声中夏令新</item>
+        <item>我爱夏日长</item>
     </string-array>
     <string-array name="Autumn"></string-array>
     <string-array name="Winter"></string-array>
     <string-array name="Shine">
-        <item >水光潋滟晴方好</item>
-        <item >满树嫩晴春雨歇</item>
-        <item >困人天气日初长</item>
-        <item >惟有葵花向日晴</item>
+        <item>水光潋滟晴方好</item>
+        <item>满树嫩晴春雨歇</item>
+        <item>困人天气日初长</item>
+        <item>惟有葵花向日晴</item>
     </string-array>
     <string-array name="Overcast">
-        <item >也无风雨也无晴</item>
+        <item>也无风雨也无晴</item>
     </string-array>
     <string-array name="Rain">
-        <item >小雨淅沥沥下个不停</item>
+        <item>小雨淅沥沥下个不停</item>
     </string-array>
     <string-array name="Snow"></string-array>
     <string-array name="Wind"></string-array>
-    
 
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_setting">SettingActivity</string>
+	<string name="lock_verse">what will your verse be?</string>
 </resources>
