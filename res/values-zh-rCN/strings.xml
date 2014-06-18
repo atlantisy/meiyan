@@ -9,11 +9,17 @@
     <string name="meiyan_check">是否开启美言锁屏</string>
     <string name="custom_text">写下喜欢的一句話...</string>
     <string name="custom_check">自定义诗词</string>
+    <string name="verse0">今日美言</string>
+    <string name="verse1">诗词成语</string>
+    <string name="verse2">名言名句</string>
+    <string name="verse3">影视台词</string>
+    <string name="verse4">流行歌词</string> 
+    <string name="verse5">网络流行语</string>               
     <string name="setting">设置</string>
     <string name="text_edit">编辑美言</string>
     <string name="wallpaper_edit">编辑锁屏壁纸</string>
     <string name="text_photograph">拍照</string>
     <string name="text_album">从相册中选取</string>
-    <string name="history">历史记录</string>
+    <string name="history">历史记录：</string>
 
 </resources>

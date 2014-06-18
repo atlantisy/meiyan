@@ -19,18 +19,33 @@ public class HomeActivity extends Activity {
 		
 		//设置按钮
 		ImageButton setting_button = (ImageButton)findViewById(R.id.home_setting);
-		setting_button.getBackground().setAlpha(0);
 		setting_button.setOnClickListener(settingOnClickListener);
 		
 		//编辑美言按钮
 		ImageButton text_button = (ImageButton)findViewById(R.id.home_text);
-//		text_button.getBackground().setAlpha(0);
 		text_button.setOnClickListener(textOnClickListener);
 		
-		//编辑壁纸按钮
-		ImageButton wallpaper_button = (ImageButton)findViewById(R.id.home_image);
-//		wallpaper_button.getBackground().setAlpha(0);
-		wallpaper_button.setOnClickListener(wallpaperOnClickListener);
+		//切换锁屏方式按钮
+		final ImageButton lock_line_button = (ImageButton)findViewById(R.id.home_lock_line);
+		final ImageButton lock_grid_button = (ImageButton)findViewById(R.id.home_lock_grid);
+				
+		lock_line_button.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				lock_line_button.setVisibility(View.GONE);
+				lock_grid_button.setVisibility(View.VISIBLE);
+			}
+		});
+		
+		lock_grid_button.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				lock_grid_button.setVisibility(View.GONE);
+				lock_line_button.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 
 	//设置按钮点击事件
@@ -53,13 +68,4 @@ public class HomeActivity extends Activity {
 		}
 	};
 	
-	//编辑壁纸按钮点击事件
-	private OnClickListener wallpaperOnClickListener = new OnClickListener() {
-		
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			startActivity(new Intent(HomeActivity.this, WallpaperEditActivity.class));  
-		}
-	};
 }
