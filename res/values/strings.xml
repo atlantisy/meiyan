@@ -60,5 +60,8 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setting">SettingActivity</string>
-	<string name="lock_verse">what will your verse be?</string>
+    <string name="app_verse">What will your verse be?</string>
+    <string name="title_activity_text_edit">TextEditActivity</string>
+    <string name="title_activity_wallpaper_edit">WallpaperEditActivity</string>
+
 </resources>

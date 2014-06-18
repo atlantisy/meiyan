@@ -13,7 +13,7 @@
         android:orientation="horizontal" >
 
         <ImageView
-            android:id="@+id/home_icon"
+            android:id="@+id/icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -30,19 +30,12 @@
             android:textColor="@android:color/white" />
 
         <ImageView
-            android:id="@+id/home_blank"
-            android:layout_width="wrap_content"
+            android:id="@+id/blank"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/blank" />
 
-        <ImageButton
-            android:id="@+id/home_history"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="center"
-            android:padding="4dp"
-            android:src="@drawable/recent_history" />
 
         <ImageButton
             android:id="@+id/home_setting"
@@ -60,24 +53,16 @@
         android:background="@color/alpha_white"
         android:orientation="vertical" >
 
-        <ImageButton
-            android:id="@+id/home_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:padding="4dp"
-            android:src="@drawable/share" />
-
         <TextView
             android:id="@+id/lock_verse"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/lock_verse"
+            android:text="@string/app_verse_cn"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
-            android:textSize="12sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:id="@+id/home_bottombar"
@@ -87,25 +72,39 @@
             android:orientation="horizontal" >
 
             <ImageButton
-                android:id="@+id/home_edit"
-                android:layout_height="wrap_content"
+                android:id="@+id/home_text"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:src="@drawable/edit" />
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:src="@drawable/edit_text" />
+
+            <ImageButton
+                android:id="@+id/home_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:src="@drawable/edit_image" />
 
             <ImageButton
                 android:id="@+id/home_refresh"
-                android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
                 android:src="@drawable/refresh" />
 
             <ImageButton
-                android:id="@+id/home_lockstyle"
-                android:layout_height="wrap_content"
+                android:id="@+id/home_line"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:src="@drawable/lock_style" />
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:src="@drawable/lock_line" />
+
+            <ImageButton
+                android:id="@+id/home_table"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:src="@drawable/lock_table" />
         </LinearLayout>
     </LinearLayout>
 
