@@ -1,7 +1,9 @@
 <resources>
 
     <string name="app_name">美言锁屏</string>
-    <string name="app_verse_cn">每时每刻，美妙美言</string>    
+    <string name="app_verse_cn">每时每刻，美妙美言</string>
+    <string name="line_verse_style">简单滑动锁屏</string>        
+    <string name="grid_verse_style">九宫手势锁屏</string>  
     <string name="charging">正在充电</string>
     <string name="charging_full">已经充满</string>
     <string name="right_slide_unlock">解 锁</string>
