@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +17,16 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class HomeActivity extends Activity {
+	private ImageButton lockbtn = null;// 锁屏按钮
+
+	private static final int LINE = 1;// 简约状态
+	private static final int GRID = 2;// 九宫状态
+	private static final int STATE_LINE = 1;// 锁屏状态设为1
+	private static final int STATE_GRID = 2;// 锁屏状态设为2
+	private int flag = 1;// 标记
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,27 +59,47 @@ public class HomeActivity extends Activity {
 		ImageButton text_button = (ImageButton) findViewById(R.id.home_text);
 		text_button.setOnClickListener(textOnClickListener);
 
-		// 切换锁屏方式按钮
-		final ImageButton lock_line_button = (ImageButton) findViewById(R.id.home_lock_line);
-		final ImageButton lock_grid_button = (ImageButton) findViewById(R.id.home_lock_grid);
-		// 简约锁屏事件
-		lock_line_button.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				lock_line_button.setVisibility(View.GONE);
-				lock_grid_button.setVisibility(View.VISIBLE);
+		// 切换锁屏方式
+		ShowLockBtn();
+
+	}
+
+	/**
+	 * 显示锁屏按钮
+	 */
+	private void ShowLockBtn() {
+		lockbtn = (ImageButton) findViewById(R.id.home_lock);
+		lockbtn.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				switch (flag) {
+				case STATE_LINE:
+					grid();
+					break;
+
+				case STATE_GRID:
+					line();
+					break;
+				}
 			}
 		});
-		// 九宫格锁屏事件
-		lock_grid_button.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				lock_grid_button.setVisibility(View.GONE);
-				lock_line_button.setVisibility(View.VISIBLE);
-			}
-		});
+
+	}
+
+	// 简约锁屏
+	protected void line() {
+		flag = LINE;
+		lockbtn.setImageResource(R.drawable.lock_grid);
+		Toast.makeText(getApplicationContext(), "简单滑动锁屏",
+			     Toast.LENGTH_SHORT).show();
+	}
+
+	// 九宫锁屏
+	protected void grid() {
+		flag = GRID;
+		lockbtn.setImageResource(R.drawable.lock_line);
+		Toast.makeText(getApplicationContext(), "九宫滑动锁屏",
+			     Toast.LENGTH_SHORT).show();
 	}
 
 	// 当AdapterView被单击(触摸屏或者键盘)，则返回的Item单击事件
