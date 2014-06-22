@@ -18,6 +18,8 @@ public final class R {
         public static final int Summer=0x7f060001;
         public static final int Wind=0x7f060008;
         public static final int Winter=0x7f060003;
+        public static final int customize=0x7f06000a;
+        public static final int verse_option_name=0x7f060009;
     }
     public static final class attr {
     }
@@ -90,11 +92,13 @@ public final class R {
     }
     public static final class id {
         public static final int album_button=0x7f080017;
-        public static final int am_pm=0x7f080022;
+        public static final int am_pm=0x7f080023;
         public static final int blank=0x7f080002;
-        public static final int button1=0x7f080011;
-        public static final int checkBox_meiyan=0x7f080026;
-        public static final int editText_custom=0x7f080027;
+        public static final int button1=0x7f08001e;
+        public static final int checkBox_meiyan=0x7f080027;
+        public static final int custom_text=0x7f080010;
+        public static final int editText_custom=0x7f080028;
+        public static final int edit_ok=0x7f080011;
         public static final int grid_verse=0x7f080007;
         public static final int historylist=0x7f080013;
         public static final int historytext=0x7f080012;
@@ -112,21 +116,22 @@ public final class R {
         public static final int iv_camera=0x7f08001d;
         public static final int iv_unlock=0x7f080019;
         public static final int line_verse=0x7f080006;
+        public static final int listview=0x7f08002a;
         public static final int photograph_button=0x7f080016;
-        public static final int root=0x7f08001e;
-        public static final int selfedit_text=0x7f080010;
-        public static final int setting=0x7f080025;
-        public static final int setting_return=0x7f080024;
+        public static final int root=0x7f08001f;
+        public static final int setting=0x7f080026;
+        public static final int setting_return=0x7f080025;
+        public static final int textView=0x7f080029;
         public static final int textedit_return=0x7f08000d;
         public static final int textedit_topbar=0x7f08000c;
         public static final int textedit_view=0x7f08000f;
-        public static final int time=0x7f080020;
-        public static final int timeDisplay=0x7f080021;
-        public static final int tv_blank1=0x7f08001f;
+        public static final int time=0x7f080021;
+        public static final int timeDisplay=0x7f080022;
+        public static final int tv_blank1=0x7f080020;
         public static final int tv_hello=0x7f08001b;
         public static final int verse_content=0x7f080018;
         public static final int verse_option=0x7f080001;
-        public static final int viewpager=0x7f080023;
+        public static final int viewpager=0x7f080024;
         public static final int wallpaper_return=0x7f080014;
         public static final int wallpaper_view=0x7f080015;
     }
@@ -141,6 +146,8 @@ public final class R {
         public static final int lock_iphone_view=0x7f030007;
         public static final int lock_iphone_view2=0x7f030008;
         public static final int setting=0x7f030009;
+        public static final int spiner_item_layout=0x7f03000a;
+        public static final int spiner_window_layout=0x7f03000b;
     }
     public static final class string {
         public static final int app_name=0x7f050001;

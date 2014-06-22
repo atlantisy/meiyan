@@ -2,12 +2,19 @@ package com.meiyanlock.android;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import com.meiyanlock.android.R;
+import com.meiyanlock.widget.CustemSpinerAdapter;
+import com.meiyanlock.widget.SpinerPopWindow;
+import com.meiyanlock.widget.CustemObject;
+import com.meiyanlock.widget.AbstractSpinerAdapter;
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,10 +29,14 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends Activity implements OnClickListener, AbstractSpinerAdapter.IOnItemSelectListener{
 	private TextView verse_line = null;
 	private GridView verse_grid = null;
 	private ImageButton lockbtn = null;// À¯∆¡∞¥≈•
+	
+	private Button mBtnDropDown;
+	private List<CustemObject> nameList = new ArrayList<CustemObject>();
+	private AbstractSpinerAdapter mAdapter;
 	
 	private static final int LINE = 1;// ºÚ‘º◊¥Ã¨
 	private static final int GRID = 2;// æ≈π¨◊¥Ã¨
@@ -38,6 +49,9 @@ public class HomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
+		// √¿—‘÷÷¿‡—°‘Ò
+		verseOptionSetup();
+		
 		// …Ë÷√∞¥≈•
 		ImageButton setting_button = (ImageButton) findViewById(R.id.home_setting);
 		setting_button.setOnClickListener(settingOnClickListener);
@@ -83,6 +97,27 @@ public class HomeActivity extends Activity {
 
 	}
 
+    private void verseOptionSetup(){
+
+		mBtnDropDown = (Button) findViewById(R.id.verse_option);
+		mBtnDropDown.setOnClickListener(this);
+				
+		String[] names = getResources().getStringArray(R.array.verse_option_name);
+		for(int i = 0; i < names.length; i++){
+			CustemObject object = new CustemObject();
+			object.data = names[i];
+			nameList.add(object);
+		}
+				
+		mAdapter = new CustemSpinerAdapter(this);
+		mAdapter.refreshData(nameList, 0);
+
+		mSpinerPopWindow = new SpinerPopWindow(this);
+		mSpinerPopWindow.setAdatper(mAdapter);
+		mSpinerPopWindow.setItemListener(this);
+    }
+
+	
 	/**
 	 * œ‘ æÀ¯∆¡∞¥≈•
 	 */
@@ -161,5 +196,34 @@ public class HomeActivity extends Activity {
 			startActivity(new Intent(HomeActivity.this, TextEditActivity.class));
 		}
 	};
+	
+	@Override
+	public void onClick(View view) {
+		switch(view.getId()){
+		case R.id.verse_option:
+			showSpinWindow();
+			break;
+		}
+	}
+	
+	private void setVerse(int pos){
+		if (pos >= 0 && pos <= nameList.size()){
+			CustemObject value = nameList.get(pos);
+		
+			mBtnDropDown.setText(value.toString());
+		}
+	}
+	
+	private SpinerPopWindow mSpinerPopWindow;
+	private void showSpinWindow(){
+		Log.e("", "showSpinWindow");
+		mSpinerPopWindow.setWidth(mBtnDropDown.getWidth());
+		mSpinerPopWindow.showAsDropDown(mBtnDropDown);
+	}
+	
+	@Override
+	public void onItemClick(int pos) {
+		setVerse(pos);
+	}
 
 }
