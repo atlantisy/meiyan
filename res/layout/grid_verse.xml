@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        
+        android:textColorLink="@color/alpha0_white"
+        android:background="@color/alpha_black"       
         android:text="@string/app_name" />
 
 </RelativeLayout>

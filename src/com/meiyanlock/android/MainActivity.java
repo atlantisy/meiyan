@@ -57,7 +57,7 @@ public class MainActivity extends FragmentActivity {
 		//Remove notification bar
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
-		setContentView(R.layout.lock_iphone_view2);		
+		setContentView(R.layout.lock_view);		
 		//获取默认随机诗词
 		sHome = (String[]) this.getResources().getStringArray(R.array.Summer);
 		len = sHome.length;
