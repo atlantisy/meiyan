@@ -26,7 +26,7 @@ public class TextEditActivity extends Activity implements OnClickListener, Abstr
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_text_edit);
+		setContentView(R.layout.activity_verse);
 		
 		// 自定义种类选择
 		customOptionSetup();

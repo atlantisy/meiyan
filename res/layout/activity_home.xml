@@ -85,6 +85,7 @@
                 android:id="@+id/line_verse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/alpha"
                 android:layout_gravity="center"
                 android:shadowColor="#40000000"
                 android:shadowDx="2"
@@ -117,7 +118,7 @@
                 android:id="@+id/home_text"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:background="@color/alpha"
                 android:src="@drawable/edit_text" />
 
@@ -125,7 +126,7 @@
                 android:id="@+id/home_refresh"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:background="@color/alpha"
                 android:src="@drawable/refresh" />
 
@@ -133,7 +134,7 @@
                 android:id="@+id/home_lock"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:background="@color/alpha"
                 android:src="@drawable/lock_button_style" />
         </LinearLayout>

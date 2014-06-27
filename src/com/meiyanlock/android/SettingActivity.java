@@ -66,7 +66,7 @@ public class SettingActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.setting);
+		setContentView(R.layout.activity_setting);
 
 		// read saved setting.
 		SharedPreferences prefs = PreferenceManager

@@ -58,7 +58,7 @@ public class MainFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		Log.d(TAG, "MainFragment-----onCreateView");
-		View view = inflater.inflate(R.layout.lay1, container, false);
+		View view = inflater.inflate(R.layout.frag_main, container, false);
 		viewhello = (TextView) view.findViewById(R.id.tv_hello);
 		viewhello.setText(hello);
 
