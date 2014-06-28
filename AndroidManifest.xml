@@ -59,6 +59,10 @@
             android:name="com.meiyanlock.android.WallpaperEditActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        <activity
+            android:name="com.meiyanlock.android.SetPasswordActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>

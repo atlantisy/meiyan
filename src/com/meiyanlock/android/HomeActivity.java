@@ -158,6 +158,8 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		verse_grid.setVisibility(View.VISIBLE);
         Toast.makeText(this, R.string.grid_verse_style, Toast.LENGTH_LONG)
         .show();
+        //设置九宫格手势
+        startActivity(new Intent(HomeActivity.this, SetPasswordActivity.class));
 	}
 
 	// 当AdapterView被单击(触摸屏或者键盘)，则返回的Item单击事件

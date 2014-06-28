@@ -84,7 +84,7 @@ public final class R {
     }
     public static final class id {
         public static final int album_button=0x7f08001e;
-        public static final int am_pm=0x7f080029;
+        public static final int am_pm=0x7f080028;
         public static final int app_name=0x7f080002;
         public static final int blank=0x7f080003;
         public static final int checkBox_meiyan=0x7f080011;
@@ -110,7 +110,8 @@ public final class R {
         public static final int iv_unlock=0x7f080023;
         public static final int line_verse=0x7f080008;
         public static final int listview=0x7f08002f;
-        public static final int mLocusPassWordView=0x7f08002b;
+        public static final int login_toast=0x7f080029;
+        public static final int mLocusPassWordView=0x7f08002a;
         public static final int photograph_button=0x7f08001d;
         public static final int root=0x7f080025;
         public static final int setting=0x7f080010;
@@ -120,15 +121,14 @@ public final class R {
         public static final int textedit_return=0x7f080014;
         public static final int textedit_topbar=0x7f080013;
         public static final int textedit_view=0x7f080015;
-        public static final int time=0x7f080027;
-        public static final int timeDisplay=0x7f080028;
+        public static final int time=0x7f080026;
+        public static final int timeDisplay=0x7f080027;
         public static final int tvReset=0x7f08002c;
         public static final int tvSave=0x7f08002d;
-        public static final int tv_blank1=0x7f080026;
         public static final int tv_hello=0x7f080021;
         public static final int verse_content=0x7f080024;
         public static final int verse_option=0x7f080001;
-        public static final int viewpager=0x7f08002a;
+        public static final int viewpager=0x7f08002b;
         public static final int wallpaper_return=0x7f08001b;
         public static final int wallpaper_view=0x7f08001c;
     }

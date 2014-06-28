@@ -6,6 +6,9 @@ import com.meiyanlock.android.R;
 
 import com.meiyanlock.android.MainActivity.MyOnPageChangeListener;
 
+import com.meiyanlock.widget.LocusPassWordView;
+import com.meiyanlock.widget.LocusPassWordView.OnCompleteListener;
+
 import android.R.string;
 import android.app.Activity;
 import android.content.Context;
@@ -33,6 +36,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.text.style.ForegroundColorSpan;
 
 public class MainActivity extends FragmentActivity {
@@ -45,10 +49,24 @@ public class MainActivity extends FragmentActivity {
 	private int len;
 	private int currIndex = 1;
 	private int homeIndex = 0;
-
+	
+	private LocusPassWordView lpwv;
+	private Toast toast;
 	private ImageView viewRightArrow;
 	private ImageView viewLeftArrow;
 
+	
+	private void showToast(CharSequence message) {
+		if (null == toast) {
+			toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+			// toast.setGravity(Gravity.CENTER, 0, 0);
+		} else {
+			toast.setText(message);
+		}
+
+		toast.show();
+	}
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -69,7 +87,22 @@ public class MainActivity extends FragmentActivity {
 		else 
 			sCustom=SettingActivity.customText;
 		Log.d(TAG, sCustom);
-		//初始化Viewpager
+		//九宫手势解锁
+		lpwv = (LocusPassWordView) this.findViewById(R.id.mLocusPassWordView);
+		lpwv.setOnCompleteListener(new OnCompleteListener() {
+			@Override
+			public void onComplete(String mPassword) {
+				// 如果密码正确,则进入主页面。
+				if (lpwv.verifyPassword(mPassword)) {
+					showToast("解锁成功！");
+					unLock();
+				} else {
+					showToast("密码输入错误,请重新输入");
+					lpwv.clearPassword();
+				}
+			}
+		});
+		//初始化滑动解锁Viewpager
 		InitViewPager();
 	}
 

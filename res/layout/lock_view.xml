@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/default_wallpaper"
     android:gravity="center_horizontal" >
-        
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" >
 
-        <LinearLayout
+<!--         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="0.25" >
@@ -21,13 +21,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="" />
-        </LinearLayout>
+        </LinearLayout> -->
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:background="@drawable/empty" >
 
             <com.meiyanlock.android.DigitalClock
@@ -41,28 +41,44 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="60sp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="60sp" />
 
                 <TextView
                     android:id="@+id/am_pm"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="20sp" />
+                    android:textSize="20sp" 
+                    android:textColor="@color/white"/>
             </com.meiyanlock.android.DigitalClock>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="4.5" >
+            android:layout_weight="3"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/login_toast"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="滑动手势解锁"
+                android:textColor="@android:color/white" />
+
+            <com.meiyanlock.widget.LocusPassWordView
+                android:id="@+id/mLocusPassWordView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.25" >
+            android:layout_weight="1" >
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
@@ -72,18 +88,6 @@
                 android:flipInterval="100"
                 android:persistentDrawingCache="animation" />
         </LinearLayout>
-
-<!--         <LinearLayout -->
-<!--             android:layout_width="fill_parent" -->
-<!--             android:layout_height="0dp" -->
-<!--             android:layout_weight="0.5" > -->
-
-<!--             <TextView -->
-<!--                 android:id="@+id/tv_blank2" -->
-<!--                 android:layout_width="fill_parent" -->
-<!--                 android:layout_height="wrap_content" -->
-<!--                 android:text="" /> -->
-<!--         </LinearLayout> -->
     </LinearLayout>
 
 </com.meiyanlock.android.IPhoneLockView>
