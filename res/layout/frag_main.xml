@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/alpha0_black"
         android:padding="8dp" 
-        android:src="@drawable/arrow_right" />
+        android:src="@drawable/ic_right" />
 
     <TextView
         android:id="@+id/tv_hello"
@@ -28,6 +28,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/alpha0_black"
-        android:src="@drawable/arrow_left" />
+        android:src="@drawable/ic_left" />
 
 </LinearLayout>

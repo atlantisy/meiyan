@@ -5,87 +5,46 @@
     android:background="@drawable/default_wallpaper"
     tools:context="${packageName}.${activityClass}" >
 
-    <LinearLayout
-        android:id="@+id/textedit_topbar"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="@color/app_color"
-        android:orientation="horizontal" >
-
-        <ImageButton
-            android:id="@+id/textedit_return"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/alpha"
-            android:src="@drawable/arrow_left" />
-
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:src="@drawable/lock_icon" 
-            android:visibility="gone"/>
-
-        <Button
-            android:id="@+id/textedit_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/alpha"
-            android:paddingBottom="12dp"
-            android:paddingTop="12dp"
-            android:text="@string/text_edit"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white" 
-            android:visibility="gone"/>
-        
-        <TextView
-            android:id="@+id/textedit_label"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingBottom="12dp"
-            android:paddingTop="12dp"
-            android:text="@string/text_edit"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
-
     <EditText
         android:id="@+id/custom_text"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textedit_topbar"
-        android:layout_toLeftOf="@+id/edit_ok"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:ems="10"
         android:inputType="textMultiLine" >
     </EditText>
 
-    
-    <Button
+    <ImageButton
         android:id="@+id/edit_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/custom_text"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentRight="true"
-        android:text="Yes" />
+        android:background="@color/alpha"
+        android:src="@drawable/ic_ok"/>
 
-    <TextView
-        android:id="@+id/historytext"
+    <ImageButton
+        android:id="@+id/textedit_return"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/alpha"
+        android:src="@drawable/ic_exit"/>
+
+    <Button
+        android:id="@+id/textedit_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/custom_text"
-        android:text="@string/history" />
-    
-    <ListView
-        android:id="@+id/historylist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/historytext" >
-    </ListView>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/alpha"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:text="@string/text_edit"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:visibility="gone" />
 
 </RelativeLayout>

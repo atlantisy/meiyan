@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-//import com.aven.qqdemo.MyFragmentPagerAdapter;
-//import com.aven.qqdemo.TestFragment;
-//import com.demo.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -34,13 +30,13 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentActivity;
+//import android.support.v4.app.FragmentManager;
+//import android.support.v4.app.FragmentPagerAdapter;
+//import android.support.v4.app.FragmentTransaction;
+//import android.support.v4.view.ViewPager;
+//import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 public class IPhoneLockView extends FrameLayout{    
 	public IPhoneLockView(Context context, AttributeSet attrs) {

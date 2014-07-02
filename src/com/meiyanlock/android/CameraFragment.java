@@ -2,6 +2,7 @@ package com.meiyanlock.android;
 
 import com.meiyanlock.android.R;
 
+//import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;

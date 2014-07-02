@@ -143,7 +143,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	// ºÚ‘ºÀ¯∆¡
 	protected void line() {
 		flag = LINE;
-		lockbtn.setImageResource(R.drawable.lock_grid);
+		lockbtn.setImageResource(R.drawable.ic_lock_grid);
 		verse_line.setVisibility(View.VISIBLE);
 		verse_grid.setVisibility(View.GONE);
         Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_LONG)
@@ -153,7 +153,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	// æ≈π¨À¯∆¡
 	protected void grid() {
 		flag = GRID;
-		lockbtn.setImageResource(R.drawable.lock_line);
+		lockbtn.setImageResource(R.drawable.ic_lock_line);
 		verse_line.setVisibility(View.GONE);
 		verse_grid.setVisibility(View.VISIBLE);
         Toast.makeText(this, R.string.grid_verse_style, Toast.LENGTH_LONG)
