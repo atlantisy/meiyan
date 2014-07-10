@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/alpha"
+    android:background="@drawable/default_wallpaper"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -49,10 +49,18 @@
             android:src="@drawable/blank" />
 
         <ImageButton
-            android:id="@+id/home_share"
-            android:layout_width="48dp"
+            android:id="@+id/home_favorite1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/alpha"
+            android:padding="4dp"
+            android:src="@drawable/ic_star"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/home_share1"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:background="@color/alpha"
             android:padding="4dp"
             android:src="@drawable/ic_share" />
@@ -67,40 +75,179 @@
             android:src="@drawable/ic_setting" />
     </LinearLayout>
 
-    <!--
-         <com.handmark.pulltorefresh.library.PullToRefreshScrollView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/pull_refresh_scrollview"
+    <View
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clipChildren="true"          
-        android:scrollbars="none"
-        ptr:ptrAnimationStyle="flip"
-        ptr:ptrMode="both" >    -->
+        android:layout_height="1px"
+        android:background="@color/black" >
+    </View>
 
     <FrameLayout
         android:id="@+id/home_verse"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/default_wallpaper" >
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/alpha" >
 
         <com.handmark.pulltorefresh.library.PullToRefreshGridView
             xmlns:ptr="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/pull_refresh_webview"
+            android:id="@+id/pull_refresh_grid"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/alpha"
-            ptr:ptrMode="both" />
+            ptr:ptrHeaderBackground="@color/white"
+            ptr:ptrHeaderTextColor="@color/gray_white"
+            ptr:ptrMode="pullFromStart" />
+
+        <LinearLayout
+            android:id="@+id/verse_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/alpha"
+            android:orientation="vertical" 
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/alpha"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/verse0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/locus_round_original"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="感"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/verse1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/locus_round_original"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="觉"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/verse2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/locus_round_original"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text=""
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/alpha"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/verse3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/locus_round_original"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="自"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/verse4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/locus_round_original"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="己"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/verse5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/locus_round_original"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="	"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/alpha"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/verse6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/locus_round_original"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="萌"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/verse7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/locus_round_original"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="萌"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/verse8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/locus_round_original"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="哒"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/line_verse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="bottom|center_horizontal"
             android:background="@color/alpha"
-            android:shadowColor="#40000000"
-            android:shadowDx="2"
-            android:shadowDy="0"
+            android:padding="10dp"
+            android:shadowColor="#FF000000"
+            android:shadowDx="0"
+            android:shadowDy="3"
+            android:shadowRadius="1"
             android:text="@string/app_verse_cn"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
@@ -111,45 +258,87 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:horizontalSpacing="10dp"
-            android:numColumns="3"
+            android:columnWidth="100dp"
+            android:gravity="fill"
+            android:horizontalSpacing="1dp"
+            android:numColumns="auto_fit"
             android:stretchMode="columnWidth"
-            android:verticalSpacing="10dp" >
+            android:verticalSpacing="1dp"
+            android:visibility="gone" >
         </GridView>
 
-        <LinearLayout
-            android:id="@+id/home_bottombar"
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="bottom"
-            android:background="@color/alpha"
-            android:orientation="horizontal" >
-
-            <ImageButton
-                android:id="@+id/home_text"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="@color/alpha"
-                android:src="@drawable/ic_edit_text" />
-
-            <ImageButton
-                android:id="@+id/home_refresh"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="@color/alpha"
-                android:src="@drawable/ic_refresh" />
-
-            <ImageButton
-                android:id="@+id/home_lock"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="@color/alpha"
-                android:src="@drawable/lock_button_style" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/home_setup_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/alpha_black"
+            android:drawableRight="@drawable/ic_right"
+            android:padding="10dp"
+            android:text="设置九宫格手势  "
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
     </FrameLayout>
-    <!-- </com.handmark.pulltorefresh.library.PullToRefreshScrollView> -->
+
+    <LinearLayout
+        android:id="@+id/home_social"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@color/alpha"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <ImageButton
+            android:id="@+id/home_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_star" />
+
+        <ImageButton
+            android:id="@+id/home_share"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_share" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/alpha" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/home_bottombar"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@color/alpha"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/home_recent"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_recent" />
+
+        <ImageButton
+            android:id="@+id/home_text"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_edit_text" />
+
+        <ImageButton
+            android:id="@+id/home_lock"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/alpha"
+            android:src="@drawable/lock_button_style" />
+    </LinearLayout>
 
 </LinearLayout>

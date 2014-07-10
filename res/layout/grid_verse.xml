@@ -2,17 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="4dp" 
-    android:gravity="center">
+    android:gravity="center"
+    android:paddingBottom="4dp" >
 
     <TextView
         android:id="@+id/verse_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:textColorLink="@color/alpha0_white"
-        android:background="@color/alpha_black"       
-        android:text="@string/app_name" />
+        android:layout_centerHorizontal="true"
+        android:shadowColor="#40000000"
+        android:shadowDx="0"
+        android:shadowDy="5"
+        android:shadowRadius="1"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
 </RelativeLayout>
