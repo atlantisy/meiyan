@@ -222,7 +222,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		lockbtn.setImageResource(R.drawable.ic_lock_line);
 		verse_line.setVisibility(View.GONE);
 		verse_grid1.setVisibility(View.VISIBLE);
-		//setup_grid_button.setVisibility(View.VISIBLE);
+		setup_grid_button.setVisibility(View.VISIBLE);
         Toast.makeText(this, R.string.grid_verse_style, Toast.LENGTH_LONG)
         .show();
 /*        //设置九宫格手势

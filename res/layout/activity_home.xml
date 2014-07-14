@@ -63,7 +63,8 @@
             android:layout_height="match_parent"
             android:background="@color/alpha"
             android:padding="4dp"
-            android:src="@drawable/ic_share" />
+            android:src="@drawable/ic_share" 
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/home_setting"
@@ -81,13 +82,31 @@
         android:background="@color/black" >
     </View>
 
+    <Button
+            android:id="@+id/home_setup_grid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:background="@color/yellow"
+            android:padding="15dp"           
+            android:text="九宫格密码未设置  >>"
+            android:textColor="@android:color/black"
+            android:visibility="gone">
+    </Button>
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/black" >
+    </View>
+                
     <FrameLayout
         android:id="@+id/home_verse"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/alpha" >
-
+                            
         <com.handmark.pulltorefresh.library.PullToRefreshGridView
             xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/pull_refresh_grid"
@@ -97,7 +116,7 @@
             ptr:ptrHeaderBackground="@color/white"
             ptr:ptrHeaderTextColor="@color/gray_white"
             ptr:ptrMode="pullFromStart" />
-
+    
         <LinearLayout
             android:id="@+id/verse_layout"
             android:layout_width="wrap_content"
@@ -121,6 +140,10 @@
                     android:gravity="center"
                     android:layout_margin="10dp"
                     android:text="感"
+                    android:shadowColor="#4F000000"
+                    android:shadowDx="0"
+            		android:shadowDy="3"
+            		android:shadowRadius="1"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -133,6 +156,10 @@
                     android:gravity="center"
                     android:layout_margin="10dp"
                     android:text="觉"
+                    android:shadowColor="#4F000000"
+                    android:shadowDx="0"
+            		android:shadowDy="3"
+            		android:shadowRadius="1"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -145,6 +172,10 @@
                     android:gravity="center"
                     android:layout_margin="10dp"
                     android:text=""
+                    android:shadowColor="#4F000000"
+                    android:shadowDx="0"
+            		android:shadowDy="3"
+            		android:shadowRadius="1"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -164,6 +195,10 @@
                     android:gravity="center"
                     android:layout_margin="10dp"
                     android:text="自"
+                    android:shadowColor="#4F000000"
+                    android:shadowDx="0"
+            		android:shadowDy="3"
+            		android:shadowRadius="1"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -176,6 +211,10 @@
                     android:gravity="center"
                     android:layout_margin="10dp"
                     android:text="己"
+                    android:shadowColor="#4F000000"
+                    android:shadowDx="0"
+            		android:shadowDy="3"
+            		android:shadowRadius="1"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -187,7 +226,11 @@
                     android:background="@drawable/locus_round_original"
                     android:gravity="center"
                     android:layout_margin="10dp"
-                    android:text="	"
+                    android:text=""
+                    android:shadowColor="#4F000000"
+                    android:shadowDx="0"
+            		android:shadowDy="3"
+            		android:shadowRadius="1"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -207,6 +250,10 @@
                     android:gravity="center"
                     android:layout_margin="10dp"
                     android:text="萌"
+                    android:shadowColor="#4F000000"
+                    android:shadowDx="0"
+            		android:shadowDy="3"
+            		android:shadowRadius="1"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -219,6 +266,10 @@
                     android:gravity="center"
                     android:layout_margin="10dp"
                     android:text="萌"
+                    android:shadowColor="#4F000000"
+                    android:shadowDx="0"
+            		android:shadowDy="3"
+            		android:shadowRadius="1"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -231,28 +282,33 @@
                     android:gravity="center"
                     android:layout_margin="10dp"
                     android:text="哒"
+                    android:shadowColor="#4F000000"
+                    android:shadowDx="0"
+            		android:shadowDy="3"
+            		android:shadowRadius="1"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
+<!--         <TextView
             android:id="@+id/line_verse"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center"
             android:background="@color/alpha"
-            android:padding="10dp"
-            android:shadowColor="#FF000000"
+            android:paddingBottom="20dp"
+            android:shadowColor="#4F000000"
             android:shadowDx="0"
             android:shadowDy="3"
             android:shadowRadius="1"
             android:text="@string/app_verse_cn"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
-
+            android:textSize="20sp" />  -->       
+        
         <GridView
             android:id="@+id/grid_verse"
             android:layout_width="wrap_content"
@@ -266,47 +322,53 @@
             android:verticalSpacing="1dp"
             android:visibility="gone" >
         </GridView>
-
-        <Button
-            android:id="@+id/home_setup_grid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/alpha_black"
-            android:drawableRight="@drawable/ic_right"
-            android:padding="10dp"
-            android:text="设置九宫格手势  "
-            android:textColor="@android:color/white"
-            android:visibility="gone" />
+               
     </FrameLayout>
 
     <LinearLayout
         android:id="@+id/home_social"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
+        android:gravity="center"
         android:background="@color/alpha"
-        android:orientation="horizontal"
-        android:visibility="gone" >
+        android:orientation="horizontal">
 
-        <ImageButton
+        <TextView
+            android:id="@+id/line_verse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/alpha"            
+            android:shadowColor="#4F000000"
+            android:shadowDx="0"
+            android:shadowDy="3"
+            android:shadowRadius="1"
+            android:text="@string/app_verse_cn"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+                
+<!--         <ImageButton
             android:id="@+id/home_favorite"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@color/alpha"
-            android:src="@drawable/ic_star" />
+            android:src="@drawable/ic_favorite" /> -->
 
-        <ImageButton
+        <!-- <ImageButton
             android:id="@+id/home_share"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="@color/alpha"
-            android:src="@drawable/ic_share" />
+            android:src="@drawable/ic_share" /> -->
 
-        <ImageButton
+<!--         <ImageButton
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="@color/alpha" />
+            android:background="@color/alpha" /> -->
     </LinearLayout>
 
     <LinearLayout
@@ -328,7 +390,7 @@
             android:id="@+id/home_text"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:background="@color/alpha"
             android:src="@drawable/ic_edit_text" />
 
