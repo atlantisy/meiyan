@@ -4,18 +4,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/default_wallpaper"
     android:orientation="vertical" >
-
+    
+        
     <LinearLayout
         android:id="@+id/home_topbar"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@color/app_color"
+        android:background="@color/gray_black"
         android:orientation="horizontal" >
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
+            android:id="@+id/verse_logo"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:background="@color/alpha"
             android:src="@drawable/ic_icon" />
 
         <Button
@@ -39,7 +41,7 @@
             android:paddingTop="12dp"
             android:text="@string/app_name"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/gray_white" />
 
         <ImageView
             android:id="@+id/blank"
@@ -53,18 +55,14 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="@color/alpha"
-            android:padding="4dp"
-            android:src="@drawable/ic_star"
-            android:visibility="gone" />
+            android:src="@drawable/ic_love"/>
 
         <ImageButton
             android:id="@+id/home_share1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@color/alpha"
-            android:padding="4dp"
-            android:src="@drawable/ic_share" 
-            android:visibility="gone"/>
+            android:src="@drawable/ic_share"/>
 
         <ImageButton
             android:id="@+id/home_setting"
@@ -72,14 +70,13 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@color/alpha"
-            android:padding="4dp"
             android:src="@drawable/ic_setting" />
     </LinearLayout>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
-        android:background="@color/black" >
+        android:background="@android:color/black" >
     </View>
 
     <Button
@@ -88,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top|center_horizontal"
             android:background="@color/yellow"
-            android:padding="15dp"           
+            android:padding="12dp"           
             android:text="九宫格密码未设置  >>"
             android:textColor="@android:color/black"
             android:visibility="gone">
@@ -97,9 +94,9 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
-        android:background="@color/black" >
-    </View>
-                
+        android:background="@android:color/darker_gray" >
+    </View>            
+        
     <FrameLayout
         android:id="@+id/home_verse"
         android:layout_width="fill_parent"
@@ -107,6 +104,37 @@
         android:layout_weight="1"
         android:background="@color/alpha" >
                             
+        <LinearLayout
+        android:id="@+id/home_social"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@color/alpha"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/home_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_love" />        
+                                
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/alpha" />
+        
+        <ImageButton
+            android:id="@+id/home_share"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_share" />
+        </LinearLayout>
+        
         <com.handmark.pulltorefresh.library.PullToRefreshGridView
             xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/pull_refresh_grid"
@@ -292,7 +320,7 @@
             </LinearLayout>
         </LinearLayout>
 
-<!--         <TextView
+        <TextView
             android:id="@+id/line_verse"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -307,7 +335,7 @@
             android:text="@string/app_verse_cn"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />  -->       
+            android:textSize="20sp" />        
         
         <GridView
             android:id="@+id/grid_verse"
@@ -324,53 +352,7 @@
         </GridView>
                
     </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/home_social"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:background="@color/alpha"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/line_verse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@color/alpha"            
-            android:shadowColor="#4F000000"
-            android:shadowDx="0"
-            android:shadowDy="3"
-            android:shadowRadius="1"
-            android:text="@string/app_verse_cn"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-                
-<!--         <ImageButton
-            android:id="@+id/home_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/alpha"
-            android:src="@drawable/ic_favorite" /> -->
-
-        <!-- <ImageButton
-            android:id="@+id/home_share"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:background="@color/alpha"
-            android:src="@drawable/ic_share" /> -->
-
-<!--         <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@color/alpha" /> -->
-    </LinearLayout>
-
+    
     <LinearLayout
         android:id="@+id/home_bottombar"
         android:layout_width="fill_parent"
