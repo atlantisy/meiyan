@@ -54,8 +54,8 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	private static final int STATE_LINE = 1;// 锁屏状态设为1
 	private static final int STATE_GRID = 2;// 锁屏状态设为2
 	private int flag = 1;// 标记
-	
-	
+	private boolean bPassWord = false;//九宫格是否设置密码
+		
 	static final int MENU_SET_MODE = 0;
 
 	private PullToRefreshGridView mPullRefreshGridView;
@@ -134,11 +134,16 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		switch (flag) {
 		case STATE_LINE:
 			verse_line.setVisibility(View.VISIBLE);
-			verse_grid1.setVisibility(View.GONE);			
+			verse_grid1.setVisibility(View.GONE);
+			setup_grid_button.setVisibility(View.GONE);
 			break;			
 		case STATE_GRID:
 			verse_line.setVisibility(View.GONE);
 			verse_grid1.setVisibility(View.VISIBLE);
+			if(bPassWord==true)
+				setup_grid_button.setVisibility(View.GONE);
+			else
+				setup_grid_button.setVisibility(View.VISIBLE);
 			break;
 		}
 		ShowLockBtn();
@@ -195,7 +200,6 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 				case STATE_LINE:
 					grid();
 					break;
-
 				case STATE_GRID:
 					line();
 					break;
@@ -208,7 +212,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	// 简约锁屏
 	protected void line() {
 		flag = LINE;
-		lockbtn.setImageResource(R.drawable.ic_lock_grid);
+		lockbtn.setImageResource(R.drawable.ic_lock_line);
 		verse_line.setVisibility(View.VISIBLE);
 		verse_grid1.setVisibility(View.GONE);
 		setup_grid_button.setVisibility(View.GONE);
@@ -219,14 +223,15 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	// 九宫锁屏
 	protected void grid() {
 		flag = GRID;
-		lockbtn.setImageResource(R.drawable.ic_lock_line);
+		lockbtn.setImageResource(R.drawable.ic_lock_grid);
 		verse_line.setVisibility(View.GONE);
 		verse_grid1.setVisibility(View.VISIBLE);
-		setup_grid_button.setVisibility(View.VISIBLE);
+		if (bPassWord==true)
+			setup_grid_button.setVisibility(View.GONE);
+		else
+			setup_grid_button.setVisibility(View.VISIBLE);
         Toast.makeText(this, R.string.grid_verse_style, Toast.LENGTH_LONG)
         .show();
-/*        //设置九宫格手势
-        startActivity(new Intent(HomeActivity.this, SetPasswordActivity.class));*/
 	}
 
 	// 当AdapterView被单击(触摸屏或者键盘)，则返回的Item单击事件
@@ -268,14 +273,31 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	
 	// 设置九宫格按钮点击事件
 	private OnClickListener setGridOnClickListener = new OnClickListener() {
-
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stubsetGridOnClickListener
 	        //设置九宫格手势
-	        startActivity(new Intent(HomeActivity.this, SetPasswordActivity.class));
+	        startActivityForResult(new Intent(HomeActivity.this, SetPasswordActivity.class), 100);
 		}
 	};
+	
+	
+	//返回其他activity传递的结果
+	@Override  
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		//获取九宫密码是否设置结果
+		if (20==resultCode){
+			if(data.getExtras().getBoolean("SetPassWord")==true){
+				bPassWord = true;
+				setup_grid_button.setVisibility(View.GONE);
+			}	
+/*			else
+				bPassWord = false;*/			
+		}
+		super.onActivityResult(requestCode, resultCode, data); 
+	} 
+	
+	
 	
 	@Override
 	public void onClick(View view) {

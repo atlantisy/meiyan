@@ -21,7 +21,6 @@ public class BootReceiver extends BroadcastReceiver {
 		if (intent.getAction().equals(ACTION)) {
 //			Toast.makeText(context, "OlympicsReminder service has started!",
 //					Toast.LENGTH_LONG).show();
-			mContext.startService(mIntent);
 //			Timer timer = new Timer();
 //				timer.schedule(new TimerTask() {
 //				public void run() {
@@ -29,6 +28,7 @@ public class BootReceiver extends BroadcastReceiver {
 //					this.cancel();
 //				}
 //			}, 30000);
+			mContext.startService(mIntent);
 		}
 	}
 }
