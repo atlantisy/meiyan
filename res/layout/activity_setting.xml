@@ -18,11 +18,11 @@
             android:background="@color/alpha"
             android:src="@drawable/ic_left" />
 
-		<ImageView
+		<!-- <ImageView
             android:id="@+id/icon"
             android:layout_width="40dp"
             android:layout_height="fill_parent"
-            android:src="@drawable/ic_icon" />
+            android:src="@drawable/ic_icon" /> -->
 
         <TextView
             android:id="@+id/setting"
@@ -57,12 +57,12 @@
         android:hint="@string/custom_text"
         android:singleLine="true" />
 
-    <!--
-         <Switch
+    
+<!--          <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Switch" />
-    -->
+        android:text="Switch" /> -->
+   
 
 </LinearLayout>

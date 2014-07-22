@@ -13,6 +13,7 @@ import android.R.string;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -49,6 +50,9 @@ public class MainActivity extends FragmentActivity {
 	private int len;
 	private int currIndex = 1;
 	private int homeIndex = 0;
+	public static final String PREFS = "lock_pref";//pref文件名
+	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
+	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
 	private LocusPassWordView lpwv;
 	private Toast toast;
@@ -87,7 +91,10 @@ public class MainActivity extends FragmentActivity {
 		else 
 			sCustom=SettingActivity.customText;
 		Log.d(TAG, sCustom);
-		//九宫手势解锁
+		
+		//初始化滑动解锁Viewpager，即锁屏方式1
+		InitViewPager();
+		//九宫手势解锁，即锁屏方式2
 		lpwv = (LocusPassWordView) this.findViewById(R.id.mLocusPassWordView);
 		lpwv.setOnCompleteListener(new OnCompleteListener() {
 			@Override
@@ -102,8 +109,20 @@ public class MainActivity extends FragmentActivity {
 				}
 			}
 		});
-		//初始化滑动解锁Viewpager
-		InitViewPager();
+		
+		//获取存储的pref数据
+		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);  
+		int flag = home_setting.getInt(LOCKFLAG, 1);
+		boolean setPassword = home_setting.getBoolean(PWSETUP, false);
+		//控制锁屏方式的显示
+		if(flag==2 & setPassword==true){			
+			mPager.setVisibility(View.GONE);
+			lpwv.setVisibility(View.VISIBLE);			
+		}
+		else{
+			mPager.setVisibility(View.VISIBLE);
+			lpwv.setVisibility(View.GONE);			
+		}
 	}
 
 	private void InitViewPager() {

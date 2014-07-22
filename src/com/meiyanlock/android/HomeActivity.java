@@ -18,6 +18,7 @@ import com.meiyanlock.widget.AbstractSpinerAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -52,10 +53,14 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	private static final int LINE = 1;// 简约状态
 	private static final int GRID = 2;// 九宫状态
 	private static final int STATE_LINE = 1;// 锁屏状态设为1
-	private static final int STATE_GRID = 2;// 锁屏状态设为2
-	private int flag = 1;// 标记
-	private boolean bPassWord = false;//九宫格是否设置密码
-		
+	private static final int STATE_GRID = 2;// 锁屏状态设为2	
+	private static int flag = 1;// 锁屏方式pref值
+	private static boolean bPassWord = false;//九宫格是否设置pref值
+	
+	public static final String PREFS = "lock_pref";//pref文件名	
+	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
+	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
+	
 	static final int MENU_SET_MODE = 0;
 
 	private PullToRefreshGridView mPullRefreshGridView;
@@ -130,6 +135,10 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		// 添加消息处理
 		verse_grid.setOnItemClickListener(new ItemClickListener());
 
+		//获取存储的pref数据
+		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);  
+		flag = home_setting.getInt(LOCKFLAG, 1);
+		bPassWord = home_setting.getBoolean(PWSETUP, false);		
 		// 切换锁屏方式
 		switch (flag) {
 		case STATE_LINE:
@@ -139,15 +148,15 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 			break;			
 		case STATE_GRID:
 			verse_line.setVisibility(View.GONE);
-			verse_grid1.setVisibility(View.VISIBLE);
+			verse_grid1.setVisibility(View.VISIBLE); 
 			if(bPassWord==true)
 				setup_grid_button.setVisibility(View.GONE);
 			else
 				setup_grid_button.setVisibility(View.VISIBLE);
 			break;
 		}
+		//切换显示锁屏方式按钮图标
 		ShowLockBtn();
-
 	}
 
 	//下拉
@@ -204,6 +213,11 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 					line();
 					break;
 				}
+				//将锁屏方式设置存入SharedPreferences
+				SharedPreferences setting1 = getSharedPreferences(PREFS, 0);  
+				SharedPreferences.Editor editor1 = setting1.edit();  
+				editor1.putInt(LOCKFLAG, flag);  
+				editor1.commit();
 			}
 		});
 
@@ -288,7 +302,14 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		//获取九宫密码是否设置结果
 		if (20==resultCode){
 			if(data.getExtras().getBoolean("SetPassWord")==true){
-				bPassWord = true;
+				//从setPasswordActivity返回的是否设置九宫密码确认值
+				bPassWord = data.getExtras().getBoolean("SetPassWord");			
+				//将九宫密码提示设置存入SharedPreferences
+				SharedPreferences setting = getSharedPreferences(PREFS, 0);  
+				SharedPreferences.Editor editor = setting.edit();  
+				editor.putBoolean(PWSETUP, bPassWord);  
+				editor.commit();
+				//隐藏九宫密码设置提示按钮
 				setup_grid_button.setVisibility(View.GONE);
 			}	
 /*			else
