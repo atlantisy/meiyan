@@ -111,7 +111,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		setup_grid_button.setOnClickListener(setGridOnClickListener);
 		
 		// Verse
-		String strVerse = "感觉 自己 萌萌哒";
+		String strVerse = "396796777";
 		// 简约视图
 		verse_line = (TextView) findViewById(R.id.line_verse);
 		// 九宫格视图

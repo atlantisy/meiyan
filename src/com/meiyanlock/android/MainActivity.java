@@ -86,10 +86,7 @@ public class MainActivity extends FragmentActivity {
 		homeIndex = (int)(Math.random()*len);
 		sRandom=sHome[homeIndex];
 		//获取自定义诗词		
-		if(SettingActivity.customText.equals(""))
-			sCustom=sRandom;
-		else 
-			sCustom=SettingActivity.customText;
+		sCustom=sRandom;
 		Log.d(TAG, sCustom);
 		
 		//初始化滑动解锁Viewpager，即锁屏方式1

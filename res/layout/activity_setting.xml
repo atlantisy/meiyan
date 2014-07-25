@@ -13,56 +13,102 @@
 
         <ImageButton
             android:id="@+id/setting_return"
-            android:layout_width="24dp"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:background="@color/alpha"
-            android:src="@drawable/ic_left" />
-
-		<!-- <ImageView
-            android:id="@+id/icon"
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
-            android:src="@drawable/ic_icon" /> -->
+            android:src="@drawable/ic_return" />
 
         <TextView
             android:id="@+id/setting"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"            
+            android:layout_height="match_parent"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"
             android:text="@string/setting"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white" />      
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <CheckBox
-        android:id="@+id/checkBox_meiyan"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="@string/meiyan_check"
-        android:textColor="@color/black" />
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbarThumbVertical="@drawable/scrollbar_handle_vertical"
+        android:visibility="visible" >
 
-    <!-- <CheckBox -->
-    <!-- android:id="@+id/checkBox_customText" -->
-    <!-- android:layout_width="wrap_content" -->
-    <!-- android:layout_height="wrap_content" -->
-    <!-- android:text="@string/custom_check" /> -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp" >
 
-    <EditText
-        android:id="@+id/editText_custom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/custom_text"
-        android:singleLine="true" />
+            <CheckBox
+                android:id="@+id/lock_switch"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="是否开启美言锁屏"
+                android:textColor="@color/gray_black" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
 
-    
-<!--          <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch" /> -->
-   
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="投递美言"
+                android:textColor="@color/gray_black"
+                android:textSize="16sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="意见反馈"
+                android:textColor="@color/gray_black"
+                android:textSize="16sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
+            
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="关于"
+                android:textColor="@color/gray_black"
+                android:textSize="16sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2.0px"
+                android:background="@drawable/shape_line" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:text="退出"
+                android:textColor="@color/gray_black"
+                android:textSize="20sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
+                        
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

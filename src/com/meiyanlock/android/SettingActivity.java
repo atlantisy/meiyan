@@ -54,39 +54,38 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class SettingActivity extends Activity {
 
-	private CheckBox checkbox = null;
-	private EditText edittext = null;
-	private SharedPreferences sp = null;
+	private CheckBox lock_checkbox = null;
+	private SharedPreferences prefs = null;
 	static public String customText = "";
 
-	private final String SPF_KEY = "spf";
-
-	private final String LOCK_SCREEN_ON_OFF = "lock_screen_on_off";
-	private boolean mIsLockScreenOn;
+	private final String LOCK_VERSE = "verse";
+	private final String LOCK_SWITCH = "lock_screen_switch";
+	
+	private boolean mIsLockScreenOn = true;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setting);
 
-		// read saved setting.
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		mIsLockScreenOn = prefs.getBoolean(LOCK_SCREEN_ON_OFF, false);
+		// 获取保存的prefs数据
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
 
-		checkbox = (CheckBox) findViewById(R.id.checkBox_meiyan);
-		checkbox.setChecked(mIsLockScreenOn);
-		checkbox.setOnClickListener(new OnCheckedListener());
+		// 锁屏开关
+		lock_checkbox = (CheckBox) findViewById(R.id.lock_switch);
+		lock_checkbox.setChecked(mIsLockScreenOn);
+		lock_checkbox.setOnClickListener(new OnCheckedListener());
 
 		// 返回按钮
 		ImageButton return_button = (ImageButton) findViewById(R.id.setting_return);
 		return_button.setOnClickListener(returnOnClickListener);
 
-		edittext = (EditText) findViewById(R.id.editText_custom);
+/*		edittext = (EditText) findViewById(R.id.editText_custom);
 		sp = getPreferences(MODE_PRIVATE);
 		String rs = sp.getString(SPF_KEY, null);
 		if (rs != null) {
 			edittext.setText(rs);
-		}
+		}*/
 
 		EnableSystemKeyguard(false);
 	}
@@ -103,13 +102,11 @@ public class SettingActivity extends Activity {
 	class OnCheckedListener implements OnClickListener {
 		public void onClick(View v) {
 			// TODO
-			SharedPreferences.Editor spEdit = sp.edit();
-
-			if (checkbox.isChecked()) {
-				customText = edittext.getText().toString();
-				spEdit.putString(SPF_KEY, customText);
-				spEdit.commit();
-			}
+			mIsLockScreenOn = lock_checkbox.isChecked();
+			//将锁屏开关check值存入pref中
+			SharedPreferences.Editor editor = prefs.edit();
+			editor.putBoolean(LOCK_SWITCH, mIsLockScreenOn);
+			editor.commit();
 		}
 	}
 
@@ -118,7 +115,7 @@ public class SettingActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-
+		//启动锁屏
 		startService(new Intent(this, MyLockScreenService.class));
 	}
 
@@ -127,7 +124,6 @@ public class SettingActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onStop();
 
-		mIsLockScreenOn = checkbox.isChecked();
 		if (mIsLockScreenOn)
 			// keep on disabling the system Keyguard
 			EnableSystemKeyguard(false);
@@ -138,10 +134,10 @@ public class SettingActivity extends Activity {
 		}
 
 		// save the setting before leaving.
-		SharedPreferences.Editor editor = PreferenceManager
+/*		SharedPreferences.Editor editor = PreferenceManager
 				.getDefaultSharedPreferences(this).edit();
 		editor.putBoolean(LOCK_SCREEN_ON_OFF, mIsLockScreenOn);
-		editor.commit();
+		editor.commit();*/
 
 	}
 
