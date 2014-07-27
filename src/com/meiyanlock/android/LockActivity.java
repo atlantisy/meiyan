@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.meiyanlock.android.R;
 
-import com.meiyanlock.android.MainActivity.MyOnPageChangeListener;
+import com.meiyanlock.android.LockActivity.MyOnPageChangeListener;
 
 import com.meiyanlock.widget.LocusPassWordView;
 import com.meiyanlock.widget.LocusPassWordView.OnCompleteListener;
@@ -40,7 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.text.style.ForegroundColorSpan;
 
-public class MainActivity extends FragmentActivity {
+public class LockActivity extends FragmentActivity {
 	private static final String TAG = "MeiYan";
 	private ViewPager mPager;
 	private ArrayList<Fragment> fragmentsList;

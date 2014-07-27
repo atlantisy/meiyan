@@ -13,9 +13,8 @@
 
         <ImageButton
             android:id="@+id/setting_return"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
             android:background="@color/alpha"
             android:src="@drawable/ic_return" />
 
@@ -61,7 +60,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
                 android:gravity="center_vertical"
-                android:text="投递美言"
+                android:text="投稿"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
             <View

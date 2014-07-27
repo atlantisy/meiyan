@@ -11,8 +11,11 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -48,19 +51,21 @@ public class LocusPassWordView extends View {
 	// 选中的点
 	private List<Point> sPoints = new ArrayList<Point>();
 	private boolean checking = false;
-	private Bitmap locus_round_original;//圆点初始状态时的图片
-	private Bitmap locus_round_click;//圆点点击时的图片
-	private Bitmap locus_round_click_error;//出错时圆点的图片
-	private Bitmap locus_line;//正常状态下线的图片
+	private Bitmap locus_round_original;// 圆点初始状态时的图片
+	private Bitmap[] originals = new Bitmap[9];// 圆点初始状态图片组
+	private Bitmap locus_round_click;// 圆点点击时的图片
+	private Bitmap[] clicks = new Bitmap[9];// 圆点点击时图片组
+	private Bitmap locus_round_click_error;// 出错时圆点的图片
+	private Bitmap locus_line;// 正常状态下线的图片
 	private Bitmap locus_line_semicircle;
 	private Bitmap locus_line_semicircle_error;
-	private Bitmap locus_arrow;//线的移动方向
-	private Bitmap locus_line_error;//错误状态下的线的图片
-	private long CLEAR_TIME = 0;//清除痕迹的时间
-	private int passwordMinLength = 5;//密码最小长度
+	private Bitmap locus_arrow;// 线的移动方向
+	private Bitmap locus_line_error;// 错误状态下的线的图片
+	private long CLEAR_TIME = 0;// 清除痕迹的时间
+	private int passwordMinLength = 4;// 密码最小长度
 	private boolean isTouch = true; // 是否可操作
 	private Matrix mMatrix = new Matrix();
-	private int lineAlpha = 50;//连线的透明度
+	private int lineAlpha = 50;// 连线的透明度
 
 	public LocusPassWordView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -83,26 +88,42 @@ public class LocusPassWordView extends View {
 	}
 
 	private void drawToCanvas(Canvas canvas) {
-
 		// mPaint.setColor(Color.RED);
 		// Point p1 = mPoints[1][1];
 		// Rect r1 = new Rect(p1.x - r,p1.y - r,p1.x +
 		// locus_round_click.getWidth() - r,p1.y+locus_round_click.getHeight()-
 		// r);
 		// canvas.drawRect(r1, mPaint);
+	
+		// 设置画字的paint
+		Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG
+				| Paint.DEV_KERN_TEXT_FLAG);
+		textPaint.setTextSize(40.0f);// 字体大小
+		textPaint.setTypeface(Typeface.SANS_SERIF);// 采用默认的宽度
+		textPaint.setColor(Color.WHITE);// 采用的颜色
+		textPaint.setShadowLayer(1f, 0,
+		3,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
+		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置
+		
+		//美言
+		String verse="感觉 自己 萌萌哒";
 		// 画所有点
 		for (int i = 0; i < mPoints.length; i++) {
 			for (int j = 0; j < mPoints[i].length; j++) {
 				Point p = mPoints[i][j];
+				int index = i*mPoints[i].length+j;
+				float textY=(textPaint.descent()-textPaint.ascent())/2;
 				if (p.state == Point.STATE_CHECK) {
 					canvas.drawBitmap(locus_round_click, p.x - r, p.y - r,
 							mPaint);
+					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				} else if (p.state == Point.STATE_CHECK_ERROR) {
 					canvas.drawBitmap(locus_round_click_error, p.x - r,
 							p.y - r, mPaint);
 				} else {
 					canvas.drawBitmap(locus_round_original, p.x - r, p.y - r,
 							mPaint);
+					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				}
 			}
 		}
@@ -159,6 +180,7 @@ public class LocusPassWordView extends View {
 				this.getResources(), R.drawable.locus_round_original);
 		locus_round_click = BitmapFactory.decodeResource(this.getResources(),
 				R.drawable.locus_round_click);
+
 		locus_round_click_error = BitmapFactory.decodeResource(
 				this.getResources(), R.drawable.locus_round_click_error);
 

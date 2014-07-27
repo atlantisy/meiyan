@@ -3,7 +3,6 @@ package com.meiyanlock.util;
 /**
  * µ„Œª÷√
  * 
- * @author Crazy24k@gmail.com
  * 
  */
 public class Point {
