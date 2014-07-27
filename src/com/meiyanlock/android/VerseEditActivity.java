@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class TextEditActivity extends Activity implements OnClickListener, AbstractSpinerAdapter.IOnItemSelectListener{
+public class VerseEditActivity extends Activity implements OnClickListener, AbstractSpinerAdapter.IOnItemSelectListener{
 
 	private Button mBtnDropDown;
 	private List<CustemObject> nameList = new ArrayList<CustemObject>();

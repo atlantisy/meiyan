@@ -128,7 +128,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		}
 		// 生成适配器的Verses <====> 动态数组的元素，一一对应
 		SimpleAdapter saVerses = new SimpleAdapter(this, listVerse,
-				R.layout.grid_verse, new String[] { "Verse" },
+				R.layout.gridview_verse, new String[] { "Verse" },
 				new int[] { R.id.verse_content });
 		// 添加并且显示
 		verse_grid.setAdapter(saVerses);
@@ -169,7 +169,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	//上拉编辑
 	private void PullUp(){
 		//进入编辑模式		
-		startActivity(new Intent(HomeActivity.this, TextEditActivity.class));
+		startActivity(new Intent(HomeActivity.this, VerseEditActivity.class));
 		// Call onRefreshComplete when the list has been refreshed.
 		mPullRefreshGridView.onRefreshComplete();
 		
@@ -281,7 +281,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			startActivity(new Intent(HomeActivity.this, TextEditActivity.class));
+			startActivity(new Intent(HomeActivity.this, VerseEditActivity.class));
 		}
 	};
 	

@@ -32,7 +32,7 @@ public class SetPasswordActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.setpassword_activity);
+		setContentView(R.layout.activity_setpassword);
 		lpwv = (LocusPassWordView) this.findViewById(R.id.mLocusPassWordView);
 		lpwv.setOnCompleteListener(new OnCompleteListener() {
 			@Override

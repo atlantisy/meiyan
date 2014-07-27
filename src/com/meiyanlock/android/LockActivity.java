@@ -79,7 +79,7 @@ public class LockActivity extends FragmentActivity {
 		//Remove notification bar
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
-		setContentView(R.layout.lock_view);		
+		setContentView(R.layout.activity_lock);		
 		//获取默认随机诗词
 		sHome = (String[]) this.getResources().getStringArray(R.array.Summer);
 		len = sHome.length;
@@ -127,7 +127,7 @@ public class LockActivity extends FragmentActivity {
 
 		fragmentsList = new ArrayList<Fragment>();
 		UnlockFragment unlockFragment = new UnlockFragment();
-		Fragment homeFragment = MainFragment.newString(sCustom);
+		Fragment homeFragment = VerseFragment.newString(sCustom);
 		CameraFragment cameraFragment = new CameraFragment();
 
 		fragmentsList.add(unlockFragment);

@@ -102,7 +102,7 @@ public class LocusPassWordView extends View {
 		textPaint.setTypeface(Typeface.SANS_SERIF);// 采用默认的宽度
 		textPaint.setColor(Color.WHITE);// 采用的颜色
 		textPaint.setShadowLayer(1f, 0,
-		3,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
+		2,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
 		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置
 		
 		//美言
