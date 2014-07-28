@@ -79,15 +79,7 @@ public class SettingActivity extends Activity {
 		// 返回按钮
 		ImageButton return_button = (ImageButton) findViewById(R.id.setting_return);
 		return_button.setOnClickListener(returnOnClickListener);
-
-/*		edittext = (EditText) findViewById(R.id.editText_custom);
-		sp = getPreferences(MODE_PRIVATE);
-		String rs = sp.getString(SPF_KEY, null);
-		if (rs != null) {
-			edittext.setText(rs);
-		}*/
-
-		EnableSystemKeyguard(false);
+		
 	}
 
 	private OnClickListener returnOnClickListener = new OnClickListener() {
@@ -103,6 +95,16 @@ public class SettingActivity extends Activity {
 		public void onClick(View v) {
 			// TODO
 			mIsLockScreenOn = lock_checkbox.isChecked();
+			//启动锁屏
+			if (mIsLockScreenOn){
+				// keep on disabling the system Keyguard
+				//启动锁屏
+				EnableSystemKeyguard(false);
+			}
+			else {
+				// recover original Keyguard
+				EnableSystemKeyguard(true);
+			}
 			//将锁屏开关check值存入pref中
 			SharedPreferences.Editor editor = prefs.edit();
 			editor.putBoolean(LOCK_SWITCH, mIsLockScreenOn);
@@ -115,7 +117,6 @@ public class SettingActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		//启动锁屏
 		startService(new Intent(this, MyLockScreenService.class));
 	}
 
@@ -123,22 +124,18 @@ public class SettingActivity extends Activity {
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-
-		if (mIsLockScreenOn)
+		//启动锁屏
+		if (mIsLockScreenOn){
 			// keep on disabling the system Keyguard
+			//启动锁屏
+			startService(new Intent(this, MyLockScreenService.class));
 			EnableSystemKeyguard(false);
+		}
 		else {
 			stopService(new Intent(this, MyLockScreenService.class));
 			// recover original Keyguard
 			EnableSystemKeyguard(true);
 		}
-
-		// save the setting before leaving.
-/*		SharedPreferences.Editor editor = PreferenceManager
-				.getDefaultSharedPreferences(this).edit();
-		editor.putBoolean(LOCK_SCREEN_ON_OFF, mIsLockScreenOn);
-		editor.commit();*/
-
 	}
 
 	void EnableSystemKeyguard(boolean bEnable) {

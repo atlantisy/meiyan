@@ -52,9 +52,7 @@ public class LocusPassWordView extends View {
 	private List<Point> sPoints = new ArrayList<Point>();
 	private boolean checking = false;
 	private Bitmap locus_round_original;// 圆点初始状态时的图片
-	private Bitmap[] originals = new Bitmap[9];// 圆点初始状态图片组
 	private Bitmap locus_round_click;// 圆点点击时的图片
-	private Bitmap[] clicks = new Bitmap[9];// 圆点点击时图片组
 	private Bitmap locus_round_click_error;// 出错时圆点的图片
 	private Bitmap locus_line;// 正常状态下线的图片
 	private Bitmap locus_line_semicircle;
@@ -66,6 +64,9 @@ public class LocusPassWordView extends View {
 	private boolean isTouch = true; // 是否可操作
 	private Matrix mMatrix = new Matrix();
 	private int lineAlpha = 50;// 连线的透明度
+	
+	public static final String PREFS = "lock_pref";//pref文件名
+	public static final String VERSE = "verse";//锁屏方式pref值名称
 
 	public LocusPassWordView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -84,6 +85,7 @@ public class LocusPassWordView extends View {
 		if (!isCache) {
 			initCache();
 		}
+
 		drawToCanvas(canvas);
 	}
 
@@ -101,12 +103,13 @@ public class LocusPassWordView extends View {
 		textPaint.setTextSize(40.0f);// 字体大小
 		textPaint.setTypeface(Typeface.SANS_SERIF);// 采用默认的宽度
 		textPaint.setColor(Color.WHITE);// 采用的颜色
-		textPaint.setShadowLayer(1f, 0,
-		2,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
-		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置
+/*		textPaint.setShadowLayer(1f, 0,
+		0,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
+*/		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置
 		
 		//美言
-		String verse="感觉 自己 萌萌哒";
+		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0);  
+		String verse = settings.getString(VERSE, "感觉 自己 萌萌哒");
 		// 画所有点
 		for (int i = 0; i < mPoints.length; i++) {
 			for (int j = 0; j < mPoints[i].length; j++) {

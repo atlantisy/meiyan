@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.meiyanlock.android.R;
 
-import com.meiyanlock.android.LockActivity.MyOnPageChangeListener;
+import com.meiyanlock.android.MineLockActivity.MyOnPageChangeListener;
 
 import com.meiyanlock.widget.LocusPassWordView;
 import com.meiyanlock.widget.LocusPassWordView.OnCompleteListener;
@@ -40,17 +40,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.text.style.ForegroundColorSpan;
 
-public class LockActivity extends FragmentActivity {
+public class MineLockActivity extends FragmentActivity {
 	private static final String TAG = "MeiYan";
 	private ViewPager mPager;
 	private ArrayList<Fragment> fragmentsList;
-	private String[] sHome;
 	private String sCustom;
-	private String sRandom;
-	private int len;
 	private int currIndex = 1;
-	private int homeIndex = 0;
+	
 	public static final String PREFS = "lock_pref";//pref文件名
+	public static final String VERSE = "verse";//锁屏方式pref值名称
 	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
@@ -72,21 +70,20 @@ public class LockActivity extends FragmentActivity {
 	}
 	
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
+		super.onCreate(savedInstanceState);			
 		//Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		//Remove notification bar
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        
-		setContentView(R.layout.activity_lock);		
-		//获取默认随机诗词
-		sHome = (String[]) this.getResources().getStringArray(R.array.Summer);
-		len = sHome.length;
-		homeIndex = (int)(Math.random()*len);
-		sRandom=sHome[homeIndex];
-		//获取自定义诗词		
-		sCustom=sRandom;
+		setContentView(R.layout.activity_lock);
+			
+		//获取随机诗词美言
+/*		String[] sArray = (String[]) this.getResources().getStringArray(R.array.Summer);
+		int index = (int)(Math.random()*sArray.length);
+		String str = sArray[index]; */
+		//获取保存的美言			
+		SharedPreferences settings = getSharedPreferences(PREFS, 0);  
+		sCustom = settings.getString(VERSE, "感觉自己萌萌哒");
 		Log.d(TAG, sCustom);
 		
 		//初始化滑动解锁Viewpager，即锁屏方式1

@@ -39,7 +39,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name="com.meiyanlock.android.LockActivity" />
+        <activity android:name="com.meiyanlock.android.MineLockActivity" />
 
         <receiver android:name="com.meiyanlock.android.BootReceiver" >
             <intent-filter>
@@ -52,7 +52,7 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.meiyanlock.android.VerseEditActivity"
+            android:name="com.meiyanlock.android.EditVerseActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity

@@ -148,7 +148,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 			break;			
 		case STATE_GRID:
 			verse_line.setVisibility(View.GONE);
-			verse_grid1.setVisibility(View.VISIBLE); 
+			verse_grid1.setVisibility(View.VISIBLE);
 			if(bPassWord==true)
 				setup_grid_button.setVisibility(View.GONE);
 			else
@@ -169,7 +169,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	//上拉编辑
 	private void PullUp(){
 		//进入编辑模式		
-		startActivity(new Intent(HomeActivity.this, VerseEditActivity.class));
+		startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));
 		// Call onRefreshComplete when the list has been refreshed.
 		mPullRefreshGridView.onRefreshComplete();
 		
@@ -214,10 +214,10 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 					break;
 				}
 				//将锁屏方式设置存入SharedPreferences
-				SharedPreferences setting1 = getSharedPreferences(PREFS, 0);  
-				SharedPreferences.Editor editor1 = setting1.edit();  
-				editor1.putInt(LOCKFLAG, flag);  
-				editor1.commit();
+				SharedPreferences setting = getSharedPreferences(PREFS, 0);  
+				SharedPreferences.Editor editor = setting.edit();  
+				editor.putInt(LOCKFLAG, flag);  
+				editor.commit();
 			}
 		});
 
@@ -281,7 +281,7 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			startActivity(new Intent(HomeActivity.this, VerseEditActivity.class));
+			startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));
 		}
 	};
 	

@@ -49,7 +49,7 @@ public class VerseFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "MainFragment-----onCreate");
+		Log.d(TAG, "VerseFragment-----onCreate");
 		Bundle args = getArguments();
 		hello = args != null ? args.getString("hello") : "";
 	}
@@ -57,9 +57,9 @@ public class VerseFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		Log.d(TAG, "MainFragment-----onCreateView");
+		Log.d(TAG, "VerseFragment-----onCreateView");
 		View view = inflater.inflate(R.layout.frag_verse, container, false);
-		viewhello = (TextView) view.findViewById(R.id.tv_hello);
+		viewhello = (TextView) view.findViewById(R.id.tv_verse);
 		viewhello.setText(hello);
 
 		viewRightArrow = (ImageView) view.findViewById(R.id.iv_arrow_right);
@@ -69,7 +69,8 @@ public class VerseFragment extends Fragment {
 
 		viewhello.setOnTouchListener(textViewTouchListener);
 
-		startIndicateAnimation();
+		//Ñ­»·Öğ×ÖºÚ°×ÏÔÊ¾ÃÀÑÔ
+		//startIndicateAnimation();
 		return view;
 	}
 
@@ -79,7 +80,7 @@ public class VerseFragment extends Fragment {
 		stopIndicateAnimation();
 
 		super.onDestroy();
-		Log.d(TAG, "MainFragment-----onDestroy");
+		Log.d(TAG, "VerseFragment-----onDestroy");
 	}
 
 	private void startIndicateAnimation() {
@@ -111,12 +112,12 @@ public class VerseFragment extends Fragment {
 			SpannableString spannable = new SpannableString(hello);
 			CharacterStyle ss = null;
 			if (index >= 0 && index < len) {
-				ss = new ForegroundColorSpan(Color.argb(0xff, 0xff, 0xff, 0xff));
+				ss = new ForegroundColorSpan(Color.argb(0xff, 0x00, 0x00, 0x00));
 				spannable.setSpan(ss, index + 0, index + 1,
 						Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (index >= 1 && index < len - 1) {
-				ss = new ForegroundColorSpan(Color.argb(0xff, 0xff, 0xff, 0xff));
+				ss = new ForegroundColorSpan(Color.argb(0xff, 0x00, 0x00, 0x00));
 				spannable.setSpan(ss, index + 1, index + 2,
 						Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
@@ -125,7 +126,7 @@ public class VerseFragment extends Fragment {
 			index++;
 
 			if (index == len) {
-				ss = new ForegroundColorSpan(Color.argb(0xff, 0xaa, 0xaa, 0xaa));
+				ss = new ForegroundColorSpan(Color.argb(0xff, 0xff, 0xff, 0xff));
 				spannable.setSpan(ss, len - 1, len,
 						Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				viewhello.setText(spannable);

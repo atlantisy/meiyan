@@ -5,25 +5,6 @@
     android:background="@drawable/default_wallpaper"
     tools:context="${packageName}.${activityClass}" >
 
-    <EditText
-        android:id="@+id/custom_text"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:inputType="textMultiLine" >
-    </EditText>
-
-    <ImageButton
-        android:id="@+id/edit_ok"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentRight="true"
-        android:background="@color/alpha"
-        android:src="@drawable/ic_ok"/>
-
     <ImageButton
         android:id="@+id/textedit_return"
         android:layout_width="48dp"
@@ -31,7 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@color/alpha"
-        android:src="@drawable/ic_exit"/>
+        android:src="@drawable/ic_exit" />
 
     <Button
         android:id="@+id/textedit_view"
@@ -46,5 +27,36 @@
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@android:color/white"
         android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/edit_ok"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/alpha"
+        android:src="@drawable/ic_ok" 
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/custom_verse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:ems="16"
+        android:hint="写下喜欢的一句話"
+        android:inputType="textMultiLine"
+        android:maxLength="32"
+        android:textColorHint="@color/gray_white"
+        android:textSize="20sp" 
+        android:text="感觉 自己 萌萌哒">
+    </EditText>
+
+    <Gallery
+        android:id="@+id/wallpaper_gallery"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

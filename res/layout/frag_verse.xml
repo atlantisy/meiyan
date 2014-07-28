@@ -5,23 +5,27 @@
     android:background="@color/alpha0_black"
     android:gravity="center"
     android:orientation="horizontal" >
-    
+
     <ImageView
         android:id="@+id/iv_arrow_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/alpha0_black"
-        android:padding="8dp" 
+        android:padding="8dp"
         android:src="@drawable/ic_right" />
 
     <TextView
-        android:id="@+id/tv_hello"
+        android:id="@+id/tv_verse"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:text="@string/app_name"
         android:gravity="center"
-        android:textColor="@color/gray_white"
-        android:textSize="24sp"/>
+        android:text="面朝大海 春暖花开"
+        android:shadowColor="#4F000000"
+        android:shadowDx="0"
+        android:shadowDy="3"
+        android:shadowRadius="1"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/iv_arrow_left"

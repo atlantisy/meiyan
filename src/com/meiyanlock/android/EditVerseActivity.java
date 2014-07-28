@@ -9,6 +9,7 @@ import com.meiyanlock.widget.CustemSpinerAdapter;
 import com.meiyanlock.widget.SpinerPopWindow;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,17 +17,38 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-public class VerseEditActivity extends Activity implements OnClickListener, AbstractSpinerAdapter.IOnItemSelectListener{
+public class EditVerseActivity extends Activity implements OnClickListener, AbstractSpinerAdapter.IOnItemSelectListener{
 
-	private Button mBtnDropDown;
+	private Button mBtnDropDown;//下拉按钮
 	private List<CustemObject> nameList = new ArrayList<CustemObject>();
 	private AbstractSpinerAdapter mAdapter;
+
+	public static final String PREFS = "lock_pref";//pref文件名
+	public static final String VERSE = "verse";//锁屏方式pref值名称
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_verse);
+		setContentView(R.layout.activity_editverse);
+		
+		//获取自定义美言
+		EditText verse_text = (EditText)findViewById(R.id.custom_verse);
+		String verse = verse_text.getText().toString();
+		//verse_text.setText(verse.toCharArray(), 0, verse.length());//将verse字符赋给verse_text 
+
+		//判断是否需要扩展美言
+		int len = verse.length();
+		if(len<9)
+			for(int i=0; i<=9-len; i++)
+				verse+="";
+		//将美言存入SharedPreferences
+		SharedPreferences setting = getSharedPreferences(PREFS, 0);  
+		SharedPreferences.Editor editor = setting.edit();  
+		editor.putString(VERSE, verse);  
+		editor.commit();
 		
 		// 自定义种类选择
 		customOptionSetup();
@@ -60,16 +82,9 @@ public class VerseEditActivity extends Activity implements OnClickListener, Abst
 			break;
 		}
 	}
-	
-	private void setCustom(int pos){
-		if (pos >= 0 && pos <= nameList.size()){
-			CustemObject value = nameList.get(pos);
 		
-			mBtnDropDown.setText(value.toString());
-		}
-	}
-	
 	private SpinerPopWindow mSpinerPopWindow;
+	
 	private void showSpinWindow(){
 		Log.e("", "showSpinWindow");
 		mSpinerPopWindow.setWidth(mBtnDropDown.getWidth());
@@ -80,4 +95,13 @@ public class VerseEditActivity extends Activity implements OnClickListener, Abst
 	public void onItemClick(int pos) {
 		setCustom(pos);
 	}
+	
+	private void setCustom(int pos){
+		if (pos >= 0 && pos <= nameList.size()){
+			CustemObject value = nameList.get(pos);
+		
+			mBtnDropDown.setText(value.toString());
+		}
+	}
+	
 }
