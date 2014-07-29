@@ -42,7 +42,6 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	private GridView verse_grid = null;
 	private LinearLayout verse_grid1 = null;
 	
-	//private LocusPassWordView verse_grid = null;
 	private ImageButton lockbtn = null;// 锁屏按钮
 	private Button setup_grid_button = null;//设置九宫手势按钮
 	
@@ -56,8 +55,10 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 	private static final int STATE_GRID = 2;// 锁屏状态设为2	
 	private static int flag = 1;// 锁屏方式pref值
 	private static boolean bPassWord = false;//九宫格是否设置pref值
+	private static String verse = "";//美言pref值
 	
-	public static final String PREFS = "lock_pref";//pref文件名	
+	public static final String PREFS = "lock_pref";//pref文件名
+	public static final String VERSE = "verse";//美言pref值名称
 	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
@@ -115,9 +116,9 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		// 简约视图
 		verse_line = (TextView) findViewById(R.id.line_verse);
 		// 九宫格视图
-		//verse_grid = (LocusPassWordView) findViewById(R.id.mLocusPassWordView);
+		//verse_grid = (PatternPassWordView) findViewById(R.id.mPatternPassWordView);
 		verse_grid1 = (LinearLayout) findViewById(R.id.verse_layout);
-		verse_grid = (GridView) findViewById(R.id.grid_verse);		
+		verse_grid = (GridView) findViewById(R.id.grid_verse);	
 		char[] chVerse = strVerse.toCharArray();
 		// 生成动态数组，并且转入数据
 		ArrayList<HashMap<String, Object>> listVerse = new ArrayList<HashMap<String, Object>>();
@@ -138,7 +139,10 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		//获取存储的pref数据
 		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);  
 		flag = home_setting.getInt(LOCKFLAG, 1);
-		bPassWord = home_setting.getBoolean(PWSETUP, false);		
+		bPassWord = home_setting.getBoolean(PWSETUP, false);
+		verse = home_setting.getString(VERSE, "每时每刻 美妙美言");
+		//设置美言，简言和九宫言
+		SetVerse();
 		// 切换锁屏方式
 		switch (flag) {
 		case STATE_LINE:
@@ -175,9 +179,33 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		
 	}
 	
+	//设置美言
+	private void SetVerse(){
+		TextView line_verse = (TextView) findViewById(R.id.line_verse);
+		line_verse.setText(verse.replace(" ", ""));
+		
+		TextView verse0 = (TextView) findViewById(R.id.verse0);
+		verse0.setText(verse.substring(0,1));
+		TextView verse1 = (TextView) findViewById(R.id.verse1);
+		verse1.setText(verse.substring(1,2));
+		TextView verse2 = (TextView) findViewById(R.id.verse2);
+		verse2.setText(verse.substring(2,3));
+		TextView verse3 = (TextView) findViewById(R.id.verse3);
+		verse3.setText(verse.substring(3,4));
+		TextView verse4 = (TextView) findViewById(R.id.verse4);
+		verse4.setText(verse.substring(4,5));
+		TextView verse5 = (TextView) findViewById(R.id.verse5);
+		verse5.setText(verse.substring(5,6));
+		TextView verse6 = (TextView) findViewById(R.id.verse6);
+		verse6.setText(verse.substring(6,7));
+		TextView verse7 = (TextView) findViewById(R.id.verse7);
+		verse7.setText(verse.substring(7,8));
+		TextView verse8 = (TextView) findViewById(R.id.verse8);
+		verse8.setText(verse.substring(8));
+	}
+	
     //美言类型设置选项
 	private void verseOptionSetup(){
-
 		mBtnDropDown = (Button) findViewById(R.id.verse_option);
 		mBtnDropDown.setOnClickListener(this);
 				

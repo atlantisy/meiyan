@@ -245,9 +245,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int app_name=0x7f050014;
         public static final int blank=0x7f050015;
         public static final int both=0x7f050003;
-        public static final int custom_verse=0x7f05000f;
         public static final int disabled=0x7f050000;
+        public static final int edit_label=0x7f05000d;
         public static final int edit_ok=0x7f05000e;
+        public static final int edit_verse=0x7f05000f;
         public static final int fl_inner=0x7f050045;
         public static final int flip=0x7f050008;
         public static final int grid_verse=0x7f05002a;
@@ -295,7 +296,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textView3=0x7f05003d;
         public static final int textView4=0x7f05003e;
         public static final int textedit_return=0x7f05000c;
-        public static final int textedit_view=0x7f05000d;
         public static final int time=0x7f050030;
         public static final int timeDisplay=0x7f050031;
         public static final int tvReset=0x7f050036;

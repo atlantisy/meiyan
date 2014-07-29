@@ -109,7 +109,7 @@ public class PatternPassWordView extends View {
 		
 		//美言
 		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0);  
-		String verse = settings.getString(VERSE, "123456789");
+		String verse = settings.getString(VERSE, "每时每刻 美妙美言");
 		// 画所有点
 		for (int i = 0; i < mPoints.length; i++) {
 			for (int j = 0; j < mPoints[i].length; j++) {

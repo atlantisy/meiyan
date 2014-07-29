@@ -15,7 +15,7 @@
         android:src="@drawable/ic_exit" />
 
     <Button
-        android:id="@+id/textedit_view"
+        android:id="@+id/edit_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -34,11 +34,10 @@
         android:layout_height="48dp"
         android:layout_alignParentRight="true"
         android:background="@color/alpha"
-        android:src="@drawable/ic_ok" 
-        android:visibility="invisible"/>
+        android:src="@drawable/ic_ok" />
 
     <EditText
-        android:id="@+id/custom_verse"
+        android:id="@+id/edit_verse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -50,7 +49,7 @@
         android:maxLength="32"
         android:textColorHint="@color/gray_white"
         android:textSize="20sp" 
-        android:text="感觉 自己 萌萌哒">
+        android:text="每时每刻  美妙美言">
     </EditText>
 
     <Gallery
