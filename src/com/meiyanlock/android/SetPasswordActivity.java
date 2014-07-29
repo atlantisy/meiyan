@@ -8,12 +8,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.meiyanlock.widget.LocusPassWordView;
-import com.meiyanlock.widget.LocusPassWordView.OnCompleteListener;
+import com.meiyanlock.widget.PatternPassWordView;
+import com.meiyanlock.widget.PatternPassWordView.OnCompleteListener;
 import com.meiyanlock.util.StringUtil;
 
 public class SetPasswordActivity extends Activity {
-	private LocusPassWordView lpwv;
+	private PatternPassWordView ppwv;
 	private String password;
 	private boolean needverify = true;
 	private Toast toast;
@@ -33,19 +33,19 @@ public class SetPasswordActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setpassword);
-		lpwv = (LocusPassWordView) this.findViewById(R.id.mLocusPassWordView);
-		lpwv.setOnCompleteListener(new OnCompleteListener() {
+		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
+		ppwv.setOnCompleteListener(new OnCompleteListener() {
 			@Override
 			public void onComplete(String mPassword) {
 				password = mPassword;
 				if (needverify) {
-					if (lpwv.verifyPassword(mPassword)) {
+					if (ppwv.verifyPassword(mPassword)) {
 						showToast("密码输入正确,请输入新密码!");
-						lpwv.clearPassword();
+						ppwv.clearPassword();
 						needverify = false;
 					} else {
 						showToast("错误的密码,请重新输入!");
-						lpwv.clearPassword();
+						ppwv.clearPassword();
 						password = "";
 					}
 				}
@@ -58,8 +58,8 @@ public class SetPasswordActivity extends Activity {
 				switch (v.getId()) {
 				case R.id.tvSave:
 					if (StringUtil.isNotEmpty(password)) {
-						lpwv.resetPassWord(password);
-						lpwv.clearPassword();
+						ppwv.resetPassWord(password);
+						ppwv.clearPassword();
 						showToast("密码修改成功,请记住密码.");
 						//返回九宫格已设置结果
 			            Intent data=new Intent();  
@@ -68,12 +68,12 @@ public class SetPasswordActivity extends Activity {
 			            setResult(20, data);
 						finish();
 					} else {
-						lpwv.clearPassword();
+						ppwv.clearPassword();
 						showToast("密码不能为空,请输入密码.");
 					}
 					break;
 				case R.id.tvReset:
-					lpwv.clearPassword();
+					ppwv.clearPassword();
 					break;
 				}
 			}
@@ -83,7 +83,7 @@ public class SetPasswordActivity extends Activity {
 		Button tvReset = (Button) this.findViewById(R.id.tvReset);
 		tvReset.setOnClickListener(mOnClickListener);
 		// 如果密码为空,直接输入密码
-		if (lpwv.isPasswordEmpty()) {
+		if (ppwv.isPasswordEmpty()) {
 			this.needverify = false;
 			showToast("请输入密码");
 		}

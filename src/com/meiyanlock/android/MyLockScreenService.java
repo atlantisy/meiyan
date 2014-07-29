@@ -47,7 +47,7 @@ public class MyLockScreenService extends Service {
 				try{
 					Intent i = new Intent();  
 		            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
-		            i.setClass(context, MineLockActivity.class);  
+		            i.setClass(context, LockActivity.class);  
 		            context.startActivity(i);
 				}catch (Exception e) {
 					// TODO: handle exception

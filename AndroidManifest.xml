@@ -39,7 +39,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name="com.meiyanlock.android.MineLockActivity" />
+        <activity android:name="com.meiyanlock.android.LockActivity" />
 
         <receiver android:name="com.meiyanlock.android.BootReceiver" >
             <intent-filter>

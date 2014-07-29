@@ -35,7 +35,7 @@ import com.meiyanlock.util.StringUtil;
  * 
  * 
  */
-public class LocusPassWordView extends View {
+public class PatternPassWordView extends View {
 	private float w = 0;
 	private float h = 0;
 
@@ -51,14 +51,14 @@ public class LocusPassWordView extends View {
 	// 选中的点
 	private List<Point> sPoints = new ArrayList<Point>();
 	private boolean checking = false;
-	private Bitmap locus_round_original;// 圆点初始状态时的图片
-	private Bitmap locus_round_click;// 圆点点击时的图片
-	private Bitmap locus_round_click_error;// 出错时圆点的图片
-	private Bitmap locus_line;// 正常状态下线的图片
-	private Bitmap locus_line_semicircle;
-	private Bitmap locus_line_semicircle_error;
-	private Bitmap locus_arrow;// 线的移动方向
-	private Bitmap locus_line_error;// 错误状态下的线的图片
+	private Bitmap pattern_round_original;// 圆点初始状态时的图片
+	private Bitmap pattern_round_click;// 圆点点击时的图片
+	private Bitmap pattern_round_click_error;// 出错时圆点的图片
+	private Bitmap pattern_line;// 正常状态下线的图片
+	private Bitmap pattern_line_semicircle;
+	private Bitmap pattern_line_semicircle_error;
+	private Bitmap pattern_arrow;// 线的移动方向
+	private Bitmap pattern_line_error;// 错误状态下的线的图片
 	private long CLEAR_TIME = 0;// 清除痕迹的时间
 	private int passwordMinLength = 4;// 密码最小长度
 	private boolean isTouch = true; // 是否可操作
@@ -68,15 +68,15 @@ public class LocusPassWordView extends View {
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String VERSE = "verse";//锁屏方式pref值名称
 
-	public LocusPassWordView(Context context, AttributeSet attrs, int defStyle) {
+	public PatternPassWordView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
-	public LocusPassWordView(Context context, AttributeSet attrs) {
+	public PatternPassWordView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public LocusPassWordView(Context context) {
+	public PatternPassWordView(Context context) {
 		super(context);
 	}
 
@@ -93,7 +93,7 @@ public class LocusPassWordView extends View {
 		// mPaint.setColor(Color.RED);
 		// Point p1 = mPoints[1][1];
 		// Rect r1 = new Rect(p1.x - r,p1.y - r,p1.x +
-		// locus_round_click.getWidth() - r,p1.y+locus_round_click.getHeight()-
+		// pattern_round_click.getWidth() - r,p1.y+pattern_round_click.getHeight()-
 		// r);
 		// canvas.drawRect(r1, mPaint);
 	
@@ -109,7 +109,7 @@ public class LocusPassWordView extends View {
 		
 		//美言
 		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0);  
-		String verse = settings.getString(VERSE, "感觉 自己 萌萌哒");
+		String verse = settings.getString(VERSE, "123456789");
 		// 画所有点
 		for (int i = 0; i < mPoints.length; i++) {
 			for (int j = 0; j < mPoints[i].length; j++) {
@@ -117,14 +117,14 @@ public class LocusPassWordView extends View {
 				int index = i*mPoints[i].length+j;
 				float textY=(textPaint.descent()-textPaint.ascent())/2;
 				if (p.state == Point.STATE_CHECK) {
-					canvas.drawBitmap(locus_round_click, p.x - r, p.y - r,
+					canvas.drawBitmap(pattern_round_click, p.x - r, p.y - r,
 							mPaint);
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				} else if (p.state == Point.STATE_CHECK_ERROR) {
-					canvas.drawBitmap(locus_round_click_error, p.x - r,
+					canvas.drawBitmap(pattern_round_click_error, p.x - r,
 							p.y - r, mPaint);
 				} else {
-					canvas.drawBitmap(locus_round_original, p.x - r, p.y - r,
+					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r,
 							mPaint);
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				}
@@ -179,26 +179,26 @@ public class LocusPassWordView extends View {
 			h = w;
 		}
 
-		locus_round_original = BitmapFactory.decodeResource(
-				this.getResources(), R.drawable.locus_round_original);
-		locus_round_click = BitmapFactory.decodeResource(this.getResources(),
-				R.drawable.locus_round_click);
+		pattern_round_original = BitmapFactory.decodeResource(
+				this.getResources(), R.drawable.pattern_round_original);
+		pattern_round_click = BitmapFactory.decodeResource(this.getResources(),
+				R.drawable.pattern_round_click);
 
-		locus_round_click_error = BitmapFactory.decodeResource(
-				this.getResources(), R.drawable.locus_round_click_error);
+		pattern_round_click_error = BitmapFactory.decodeResource(
+				this.getResources(), R.drawable.pattern_round_click_error);
 
-		locus_line = BitmapFactory.decodeResource(this.getResources(),
-				R.drawable.locus_line);
-		locus_line_semicircle = BitmapFactory.decodeResource(
-				this.getResources(), R.drawable.locus_line_semicircle);
+		pattern_line = BitmapFactory.decodeResource(this.getResources(),
+				R.drawable.pattern_line);
+		pattern_line_semicircle = BitmapFactory.decodeResource(
+				this.getResources(), R.drawable.pattern_line_semicircle);
 
-		locus_line_error = BitmapFactory.decodeResource(this.getResources(),
-				R.drawable.locus_line_error);
-		locus_line_semicircle_error = BitmapFactory.decodeResource(
-				this.getResources(), R.drawable.locus_line_semicircle_error);
+		pattern_line_error = BitmapFactory.decodeResource(this.getResources(),
+				R.drawable.pattern_line_error);
+		pattern_line_semicircle_error = BitmapFactory.decodeResource(
+				this.getResources(), R.drawable.pattern_line_semicircle_error);
 
-		locus_arrow = BitmapFactory.decodeResource(this.getResources(),
-				R.drawable.locus_arrow);
+		pattern_arrow = BitmapFactory.decodeResource(this.getResources(),
+				R.drawable.pattern_arrow);
 		// Log.d("Canvas w h :", "w:" + w + " h:" + h);
 
 		// 计算圆圈图片的大小
@@ -213,21 +213,21 @@ public class LocusPassWordView extends View {
 		x += deviation;
 		x += deviation;
 
-		if (locus_round_original.getWidth() > roundMinW) {
-			float sf = roundMinW * 1.0f / locus_round_original.getWidth(); // 取得缩放比例，将所有的图片进行缩放
-			locus_round_original = BitmapUtil.zoom(locus_round_original, sf);
-			locus_round_click = BitmapUtil.zoom(locus_round_click, sf);
-			locus_round_click_error = BitmapUtil.zoom(locus_round_click_error,
+		if (pattern_round_original.getWidth() > roundMinW) {
+			float sf = roundMinW * 1.0f / pattern_round_original.getWidth(); // 取得缩放比例，将所有的图片进行缩放
+			pattern_round_original = BitmapUtil.zoom(pattern_round_original, sf);
+			pattern_round_click = BitmapUtil.zoom(pattern_round_click, sf);
+			pattern_round_click_error = BitmapUtil.zoom(pattern_round_click_error,
 					sf);
 
-			locus_line = BitmapUtil.zoom(locus_line, sf);
-			locus_line_semicircle = BitmapUtil.zoom(locus_line_semicircle, sf);
+			pattern_line = BitmapUtil.zoom(pattern_line, sf);
+			pattern_line_semicircle = BitmapUtil.zoom(pattern_line_semicircle, sf);
 
-			locus_line_error = BitmapUtil.zoom(locus_line_error, sf);
-			locus_line_semicircle_error = BitmapUtil.zoom(
-					locus_line_semicircle_error, sf);
-			locus_arrow = BitmapUtil.zoom(locus_arrow, sf);
-			roundW = locus_round_original.getWidth() / 2;
+			pattern_line_error = BitmapUtil.zoom(pattern_line_error, sf);
+			pattern_line_semicircle_error = BitmapUtil.zoom(
+					pattern_line_semicircle_error, sf);
+			pattern_arrow = BitmapUtil.zoom(pattern_arrow, sf);
+			roundW = pattern_round_original.getWidth() / 2;
 		}
 
 		mPoints[0][0] = new Point(x + 0 + roundW, y + 0 + roundW);
@@ -246,7 +246,7 @@ public class LocusPassWordView extends View {
 				k++;
 			}
 		}
-		r = locus_round_original.getHeight() / 2;// roundW;
+		r = pattern_round_original.getHeight() / 2;// roundW;
 		isCache = true;
 	}
 
@@ -264,25 +264,25 @@ public class LocusPassWordView extends View {
 		canvas.rotate(degrees, a.x, a.y);
 
 		if (a.state == Point.STATE_CHECK_ERROR) {
-			mMatrix.setScale((ah - locus_line_semicircle_error.getWidth())
-					/ locus_line_error.getWidth(), 1);
-			mMatrix.postTranslate(a.x, a.y - locus_line_error.getHeight()
+			mMatrix.setScale((ah - pattern_line_semicircle_error.getWidth())
+					/ pattern_line_error.getWidth(), 1);
+			mMatrix.postTranslate(a.x, a.y - pattern_line_error.getHeight()
 					/ 2.0f);
-			canvas.drawBitmap(locus_line_error, mMatrix, mPaint);
-			canvas.drawBitmap(locus_line_semicircle_error, a.x
-					+ locus_line_error.getWidth(),
-					a.y - locus_line_error.getHeight() / 2.0f, mPaint);
+			canvas.drawBitmap(pattern_line_error, mMatrix, mPaint);
+			canvas.drawBitmap(pattern_line_semicircle_error, a.x
+					+ pattern_line_error.getWidth(),
+					a.y - pattern_line_error.getHeight() / 2.0f, mPaint);
 		} else {
-			mMatrix.setScale((ah - locus_line_semicircle.getWidth())
-					/ locus_line.getWidth(), 1);
-			mMatrix.postTranslate(a.x, a.y - locus_line.getHeight() / 2.0f);
-			canvas.drawBitmap(locus_line, mMatrix, mPaint);
-			canvas.drawBitmap(locus_line_semicircle, a.x + ah
-					- locus_line_semicircle.getWidth(),
-					a.y - locus_line.getHeight() / 2.0f, mPaint);
+			mMatrix.setScale((ah - pattern_line_semicircle.getWidth())
+					/ pattern_line.getWidth(), 1);
+			mMatrix.postTranslate(a.x, a.y - pattern_line.getHeight() / 2.0f);
+			canvas.drawBitmap(pattern_line, mMatrix, mPaint);
+			canvas.drawBitmap(pattern_line_semicircle, a.x + ah
+					- pattern_line_semicircle.getWidth(),
+					a.y - pattern_line.getHeight() / 2.0f, mPaint);
 		}
 
-		canvas.drawBitmap(locus_arrow, a.x, a.y - locus_arrow.getHeight()
+		canvas.drawBitmap(pattern_arrow, a.x, a.y - pattern_arrow.getHeight()
 				/ 2.0f, mPaint);
 
 		canvas.rotate(-degrees, a.x, a.y);

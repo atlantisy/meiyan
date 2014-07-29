@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import com.meiyanlock.android.R;
 
-import com.meiyanlock.android.MineLockActivity.MyOnPageChangeListener;
+import com.meiyanlock.android.LockActivity.MyOnPageChangeListener;
 
-import com.meiyanlock.widget.LocusPassWordView;
-import com.meiyanlock.widget.LocusPassWordView.OnCompleteListener;
+import com.meiyanlock.widget.PatternPassWordView;
+import com.meiyanlock.widget.PatternPassWordView.OnCompleteListener;
 
 import android.R.string;
 import android.app.Activity;
@@ -40,7 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.text.style.ForegroundColorSpan;
 
-public class MineLockActivity extends FragmentActivity {
+public class LockActivity extends FragmentActivity {
 	private static final String TAG = "MeiYan";
 	private ViewPager mPager;
 	private ArrayList<Fragment> fragmentsList;
@@ -52,7 +52,7 @@ public class MineLockActivity extends FragmentActivity {
 	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
-	private LocusPassWordView lpwv;
+	private PatternPassWordView ppwv;
 	private Toast toast;
 	private ImageView viewRightArrow;
 	private ImageView viewLeftArrow;
@@ -89,17 +89,17 @@ public class MineLockActivity extends FragmentActivity {
 		//初始化滑动解锁Viewpager，即锁屏方式1
 		InitViewPager();
 		//九宫手势解锁，即锁屏方式2
-		lpwv = (LocusPassWordView) this.findViewById(R.id.mLocusPassWordView);
-		lpwv.setOnCompleteListener(new OnCompleteListener() {
+		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
+		ppwv.setOnCompleteListener(new OnCompleteListener() {
 			@Override
 			public void onComplete(String mPassword) {
 				// 如果密码正确,则进入主页面。
-				if (lpwv.verifyPassword(mPassword)) {
+				if (ppwv.verifyPassword(mPassword)) {
 					showToast("解锁成功！");
 					unLock();
 				} else {
 					showToast("密码输入错误,请重新输入");
-					lpwv.clearPassword();
+					ppwv.clearPassword();
 				}
 			}
 		});
@@ -111,11 +111,11 @@ public class MineLockActivity extends FragmentActivity {
 		//控制锁屏方式的显示
 		if(flag==2 & setPassword==true){			
 			mPager.setVisibility(View.GONE);
-			lpwv.setVisibility(View.VISIBLE);			
+			ppwv.setVisibility(View.VISIBLE);			
 		}
 		else{
 			mPager.setVisibility(View.VISIBLE);
-			lpwv.setVisibility(View.GONE);			
+			ppwv.setVisibility(View.GONE);			
 		}
 	}
 

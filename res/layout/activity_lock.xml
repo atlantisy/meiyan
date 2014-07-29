@@ -58,8 +58,8 @@
                 android:text=""
                 android:textColor="@android:color/white" />
 
-            <com.meiyanlock.widget.LocusPassWordView
-                android:id="@+id/mLocusPassWordView"
+            <com.meiyanlock.widget.PatternPassWordView
+                android:id="@+id/mPatternPassWordView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>

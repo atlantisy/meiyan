@@ -10,7 +10,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.meiyanlock.android.R;
 import com.meiyanlock.widget.CustemSpinerAdapter;
-import com.meiyanlock.widget.LocusPassWordView;
+import com.meiyanlock.widget.PatternPassWordView;
 import com.meiyanlock.widget.SpinerPopWindow;
 import com.meiyanlock.widget.CustemObject;
 import com.meiyanlock.widget.AbstractSpinerAdapter;
