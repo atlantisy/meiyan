@@ -15,13 +15,13 @@ import com.meiyanlock.widget.SpinerPopWindow;
 import com.meiyanlock.widget.CustemObject;
 import com.meiyanlock.widget.AbstractSpinerAdapter;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,31 +37,33 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HomeActivity extends Activity implements OnClickListener, AbstractSpinerAdapter.IOnItemSelectListener{
+public class HomeActivity extends Activity implements OnClickListener,
+		AbstractSpinerAdapter.IOnItemSelectListener {
+	private long mExitTime;
 	private TextView verse_line = null;
 	private GridView verse_grid = null;
 	private LinearLayout verse_grid1 = null;
-	
+
 	private ImageButton lockbtn = null;// 锁屏按钮
-	private Button setup_grid_button = null;//设置九宫手势按钮
-	
+	private Button setup_grid_button = null;// 设置九宫手势按钮
+
 	private Button mBtnDropDown;
 	private List<CustemObject> nameList = new ArrayList<CustemObject>();
 	private AbstractSpinerAdapter mAdapter;
-	
+
 	private static final int LINE = 1;// 简约状态
 	private static final int GRID = 2;// 九宫状态
 	private static final int STATE_LINE = 1;// 锁屏状态设为1
-	private static final int STATE_GRID = 2;// 锁屏状态设为2	
+	private static final int STATE_GRID = 2;// 锁屏状态设为2
 	private static int flag = 1;// 锁屏方式pref值
-	private static boolean bPassWord = false;//九宫格是否设置pref值
-	private static String verse = "";//美言pref值
-	
-	public static final String PREFS = "lock_pref";//pref文件名
-	public static final String VERSE = "verse";//美言pref值名称
-	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
-	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
-	
+	private static boolean bPassWord = false;// 九宫格是否设置pref值
+	private static String verse = "";// 美言pref值
+
+	public static final String PREFS = "lock_pref";// pref文件名
+	public static final String VERSE = "verse";// 美言pref值名称
+	public static final String LOCKFLAG = "lockFlag";// 锁屏方式pref值名称
+	public static final String PWSETUP = "passWordSetUp";// 九宫格是否设置pref值名称
+
 	static final int MENU_SET_MODE = 0;
 
 	private PullToRefreshGridView mPullRefreshGridView;
@@ -72,53 +74,62 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		//下拉刷新
+		// 下拉刷新
 		mPullRefreshGridView = (PullToRefreshGridView) findViewById(R.id.pull_refresh_grid);
 		mGridView = mPullRefreshGridView.getRefreshableView();
 		// Set a listener to be invoked when the list should be refreshed.
-		mPullRefreshGridView.setOnRefreshListener(new OnRefreshListener2<GridView>() {
+		mPullRefreshGridView
+				.setOnRefreshListener(new OnRefreshListener2<GridView>() {
 
-			@Override
-			public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {
-//				mPullRefreshGridView.getLoadingLayoutProxy().setRefreshingLabel("正在加载"); 
-//				mPullRefreshGridView.getLoadingLayoutProxy().setPullLabel("下拉推荐美言…"); 
-//				mPullRefreshGridView.getLoadingLayoutProxy().setReleaseLabel("放开以推荐…");
-				//下拉
-				PullDown();
-			}
+					@Override
+					public void onPullDownToRefresh(
+							PullToRefreshBase<GridView> refreshView) {
+						// mPullRefreshGridView.getLoadingLayoutProxy().setRefreshingLabel("正在加载");
+						// mPullRefreshGridView.getLoadingLayoutProxy().setPullLabel("下拉推荐美言…");
+						// mPullRefreshGridView.getLoadingLayoutProxy().setReleaseLabel("放开以推荐…");
+						// 下拉
+						PullDown();
+					}
 
-			@Override
-			public void onPullUpToRefresh(PullToRefreshBase<GridView> refreshView) {
-/*				mPullRefreshGridView.getLoadingLayoutProxy().setRefreshingLabel("正在加载"); 
-				mPullRefreshGridView.getLoadingLayoutProxy().setPullLabel("上拉编辑美言"); 
-				mPullRefreshGridView.getLoadingLayoutProxy().setReleaseLabel("放开以编辑");*/
-				//上拉
-				PullUp();
-			}
+					@Override
+					public void onPullUpToRefresh(
+							PullToRefreshBase<GridView> refreshView) {
+						/*
+						 * mPullRefreshGridView.getLoadingLayoutProxy().
+						 * setRefreshingLabel("正在加载");
+						 * mPullRefreshGridView.getLoadingLayoutProxy
+						 * ().setPullLabel("上拉编辑美言");
+						 * mPullRefreshGridView.getLoadingLayoutProxy
+						 * ().setReleaseLabel("放开以编辑");
+						 */
+						// 上拉
+						PullUp();
+					}
 
-		});
-		
-		//美言类型设置选项
-		verseOptionSetup();		
+				});
+
+		// 美言类型设置选项
+		verseOptionSetup();
 		// 设置按钮
 		ImageButton setting_button = (ImageButton) findViewById(R.id.home_setting);
 		setting_button.setOnClickListener(settingOnClickListener);
 		// 编辑美言按钮
 		ImageButton text_button = (ImageButton) findViewById(R.id.home_text);
 		text_button.setOnClickListener(textOnClickListener);
-		
+
 		// 设置九宫格手势
 		setup_grid_button = (Button) findViewById(R.id.home_setup_grid);
 		setup_grid_button.setOnClickListener(setGridOnClickListener);
-		
+
 		// Verse
 		String strVerse = "396796777";
 		// 简约视图
 		verse_line = (TextView) findViewById(R.id.line_verse);
 		// 九宫格视图
-		//verse_grid = (PatternPassWordView) findViewById(R.id.mPatternPassWordView);
+		// verse_grid = (PatternPassWordView)
+		// findViewById(R.id.mPatternPassWordView);
 		verse_grid1 = (LinearLayout) findViewById(R.id.verse_layout);
-		verse_grid = (GridView) findViewById(R.id.grid_verse);	
+		verse_grid = (GridView) findViewById(R.id.grid_verse);
 		char[] chVerse = strVerse.toCharArray();
 		// 生成动态数组，并且转入数据
 		ArrayList<HashMap<String, Object>> listVerse = new ArrayList<HashMap<String, Object>>();
@@ -136,12 +147,12 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		// 添加消息处理
 		verse_grid.setOnItemClickListener(new ItemClickListener());
 
-		//获取存储的pref数据
-		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);  
+		// 获取存储的pref数据
+		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);
 		flag = home_setting.getInt(LOCKFLAG, 1);
 		bPassWord = home_setting.getBoolean(PWSETUP, false);
 		verse = home_setting.getString(VERSE, "每时每刻 美妙美言");
-		//设置美言，简言和九宫言
+		// 设置美言，简言和九宫言
 		SetVerse();
 		// 切换锁屏方式
 		switch (flag) {
@@ -149,82 +160,99 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 			verse_line.setVisibility(View.VISIBLE);
 			verse_grid1.setVisibility(View.GONE);
 			setup_grid_button.setVisibility(View.GONE);
-			break;			
+			break;
 		case STATE_GRID:
 			verse_line.setVisibility(View.GONE);
 			verse_grid1.setVisibility(View.VISIBLE);
-			if(bPassWord==true)
+			if (bPassWord == true)
 				setup_grid_button.setVisibility(View.GONE);
 			else
 				setup_grid_button.setVisibility(View.VISIBLE);
 			break;
 		}
-		//切换显示锁屏方式按钮图标
+		// 切换显示锁屏方式按钮图标
 		ShowLockBtn();
 	}
 
-	//下拉
-	private void PullDown(){
+	// 下拉
+	private void PullDown() {
 		// Call onRefreshComplete when the list has been refreshed.
 		mPullRefreshGridView.onRefreshComplete();
-		
+
 	}
-	
-	//上拉编辑
-	private void PullUp(){
-		//进入编辑模式		
+
+	// 上拉编辑
+	private void PullUp() {
+		// 进入编辑模式
 		startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));
 		// Call onRefreshComplete when the list has been refreshed.
 		mPullRefreshGridView.onRefreshComplete();
-		
+
 	}
-	
-	//设置美言
-	private void SetVerse(){
+
+	// 设置美言
+	private void SetVerse() {
 		TextView line_verse = (TextView) findViewById(R.id.line_verse);
 		line_verse.setText(verse.replace(" ", ""));
-		
+
+		String s = verse.replace("\n", " ");
 		TextView verse0 = (TextView) findViewById(R.id.verse0);
-		verse0.setText(verse.substring(0,1));
+		verse0.setText(s.substring(0, 1));
 		TextView verse1 = (TextView) findViewById(R.id.verse1);
-		verse1.setText(verse.substring(1,2));
+		verse1.setText(s.substring(1, 2));
 		TextView verse2 = (TextView) findViewById(R.id.verse2);
-		verse2.setText(verse.substring(2,3));
+		verse2.setText(s.substring(2, 3));
 		TextView verse3 = (TextView) findViewById(R.id.verse3);
-		verse3.setText(verse.substring(3,4));
+		verse3.setText(s.substring(3, 4));
 		TextView verse4 = (TextView) findViewById(R.id.verse4);
-		verse4.setText(verse.substring(4,5));
+		verse4.setText(s.substring(4, 5));
 		TextView verse5 = (TextView) findViewById(R.id.verse5);
-		verse5.setText(verse.substring(5,6));
+		verse5.setText(s.substring(5, 6));
 		TextView verse6 = (TextView) findViewById(R.id.verse6);
-		verse6.setText(verse.substring(6,7));
+		verse6.setText(s.substring(6, 7));
 		TextView verse7 = (TextView) findViewById(R.id.verse7);
-		verse7.setText(verse.substring(7,8));
+		verse7.setText(s.substring(7, 8));
 		TextView verse8 = (TextView) findViewById(R.id.verse8);
-		verse8.setText(verse.substring(8));
+		verse8.setText(s.substring(8, 9));
 	}
-	
-    //美言类型设置选项
-	private void verseOptionSetup(){
+
+	//按两次返回键退出
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Object mHelperUtils;
+				Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+				mExitTime = System.currentTimeMillis();
+
+			} else {
+				finish();
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	// 美言类型设置选项
+	private void verseOptionSetup() {
 		mBtnDropDown = (Button) findViewById(R.id.verse_option);
 		mBtnDropDown.setOnClickListener(this);
-				
-		String[] names = getResources().getStringArray(R.array.verse_option_name);
-		for(int i = 0; i < names.length; i++){
+
+		String[] names = getResources().getStringArray(
+				R.array.verse_option_name);
+		for (int i = 0; i < names.length; i++) {
 			CustemObject object = new CustemObject();
 			object.data = names[i];
 			nameList.add(object);
 		}
-				
+
 		mAdapter = new CustemSpinerAdapter(this);
 		mAdapter.refreshData(nameList, 0);
 
 		mSpinerPopWindow = new SpinerPopWindow(this);
 		mSpinerPopWindow.setAdatper(mAdapter);
 		mSpinerPopWindow.setItemListener(this);
-    }
+	}
 
-	
 	/**
 	 * 显示锁屏按钮
 	 */
@@ -241,10 +269,10 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 					line();
 					break;
 				}
-				//将锁屏方式设置存入SharedPreferences
-				SharedPreferences setting = getSharedPreferences(PREFS, 0);  
-				SharedPreferences.Editor editor = setting.edit();  
-				editor.putInt(LOCKFLAG, flag);  
+				// 将锁屏方式设置存入SharedPreferences
+				SharedPreferences setting = getSharedPreferences(PREFS, 0);
+				SharedPreferences.Editor editor = setting.edit();
+				editor.putInt(LOCKFLAG, flag);
 				editor.commit();
 			}
 		});
@@ -258,8 +286,8 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		verse_line.setVisibility(View.VISIBLE);
 		verse_grid1.setVisibility(View.GONE);
 		setup_grid_button.setVisibility(View.GONE);
-        Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_LONG)
-        .show();
+		Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_LONG)
+				.show();
 	}
 
 	// 九宫锁屏
@@ -268,12 +296,12 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 		lockbtn.setImageResource(R.drawable.ic_lock_grid);
 		verse_line.setVisibility(View.GONE);
 		verse_grid1.setVisibility(View.VISIBLE);
-		if (bPassWord==true)
+		if (bPassWord == true)
 			setup_grid_button.setVisibility(View.GONE);
 		else
 			setup_grid_button.setVisibility(View.VISIBLE);
-        Toast.makeText(this, R.string.grid_verse_style, Toast.LENGTH_LONG)
-        .show();
+		Toast.makeText(this, R.string.grid_verse_style, Toast.LENGTH_LONG)
+				.show();
 	}
 
 	// 当AdapterView被单击(触摸屏或者键盘)，则返回的Item单击事件
@@ -312,66 +340,66 @@ public class HomeActivity extends Activity implements OnClickListener, AbstractS
 			startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));
 		}
 	};
-	
+
 	// 设置九宫格按钮点击事件
 	private OnClickListener setGridOnClickListener = new OnClickListener() {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stubsetGridOnClickListener
-	        //设置九宫格手势
-	        startActivityForResult(new Intent(HomeActivity.this, SetPasswordActivity.class), 100);
+			// 设置九宫格手势
+			startActivityForResult(new Intent(HomeActivity.this,
+					SetPasswordActivity.class), 100);
 		}
 	};
-	
-	
-	//返回其他activity传递的结果
-	@Override  
-	protected void onActivityResult(int requestCode, int resultCode, Intent data){
-		//获取九宫密码是否设置结果
-		if (20==resultCode){
-			if(data.getExtras().getBoolean("SetPassWord")==true){
-				//从setPasswordActivity返回的是否设置九宫密码确认值
-				bPassWord = data.getExtras().getBoolean("SetPassWord");			
-				//将九宫密码提示设置存入SharedPreferences
-				SharedPreferences setting = getSharedPreferences(PREFS, 0);  
-				SharedPreferences.Editor editor = setting.edit();  
-				editor.putBoolean(PWSETUP, bPassWord);  
+
+	// 返回其他activity传递的结果
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// 获取九宫密码是否设置结果
+		if (20 == resultCode) {
+			if (data.getExtras().getBoolean("SetPassWord") == true) {
+				// 从setPasswordActivity返回的是否设置九宫密码确认值
+				bPassWord = data.getExtras().getBoolean("SetPassWord");
+				// 将九宫密码提示设置存入SharedPreferences
+				SharedPreferences setting = getSharedPreferences(PREFS, 0);
+				SharedPreferences.Editor editor = setting.edit();
+				editor.putBoolean(PWSETUP, bPassWord);
 				editor.commit();
-				//隐藏九宫密码设置提示按钮
+				// 隐藏九宫密码设置提示按钮
 				setup_grid_button.setVisibility(View.GONE);
-			}	
-/*			else
-				bPassWord = false;*/			
+			}
+			/*
+			 * else bPassWord = false;
+			 */
 		}
-		super.onActivityResult(requestCode, resultCode, data); 
-	} 
-	
-	
-	
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
 	@Override
 	public void onClick(View view) {
-		switch(view.getId()){
+		switch (view.getId()) {
 		case R.id.verse_option:
 			showSpinWindow();
 			break;
 		}
 	}
-	
-	private void setVerse(int pos){
-		if (pos >= 0 && pos <= nameList.size()){
+
+	private void setVerse(int pos) {
+		if (pos >= 0 && pos <= nameList.size()) {
 			CustemObject value = nameList.get(pos);
-		
+
 			mBtnDropDown.setText(value.toString());
 		}
 	}
-	
+
 	private SpinerPopWindow mSpinerPopWindow;
-	private void showSpinWindow(){
+
+	private void showSpinWindow() {
 		Log.e("", "showSpinWindow");
 		mSpinerPopWindow.setWidth(mBtnDropDown.getWidth());
 		mSpinerPopWindow.showAsDropDown(mBtnDropDown);
 	}
-	
+
 	@Override
 	public void onItemClick(int pos) {
 		setVerse(pos);

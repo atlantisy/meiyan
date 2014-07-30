@@ -75,13 +75,28 @@ public class SettingActivity extends Activity {
 		lock_checkbox = (CheckBox) findViewById(R.id.lock_switch);
 		lock_checkbox.setChecked(mIsLockScreenOn);
 		lock_checkbox.setOnClickListener(new OnCheckedListener());
-
+		// 设置九宫密码按钮
+		Button setpassword_button = (Button) findViewById(R.id.setting_setpassword);
+		setpassword_button.setOnClickListener(setPasswordOnClickListener);		
 		// 返回按钮
 		ImageButton return_button = (ImageButton) findViewById(R.id.setting_return);
 		return_button.setOnClickListener(returnOnClickListener);
+		// 退出按钮
+		Button exit_button = (Button) findViewById(R.id.setting_exit);
+		exit_button.setOnClickListener(exitOnClickListener);
 		
 	}
+	
+	// 设置九宫密码按钮
+	private OnClickListener setPasswordOnClickListener = new OnClickListener() {
 
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			startActivity(new Intent(SettingActivity.this, SetPasswordActivity.class));
+		}
+	};
+	// 返回按钮
 	private OnClickListener returnOnClickListener = new OnClickListener() {
 
 		@Override
@@ -90,7 +105,16 @@ public class SettingActivity extends Activity {
 			startActivity(new Intent(SettingActivity.this, HomeActivity.class));
 		}
 	};
+	// 退出按钮
+	private OnClickListener exitOnClickListener = new OnClickListener() {
 
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			finish();
+		}
+	};
+	
 	class OnCheckedListener implements OnClickListener {
 		public void onClick(View v) {
 			// TODO

@@ -19,11 +19,12 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:text="面朝大海 春暖花开"
         android:shadowColor="#4F000000"
         android:shadowDx="0"
         android:shadowDy="3"
         android:shadowRadius="1"
+        android:singleLine="true"
+        android:text="每时每刻 美妙美言"
         android:textColor="@color/white"
         android:textSize="20sp" />
 

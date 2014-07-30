@@ -32,11 +32,10 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:scrollbarThumbVertical="@drawable/scrollbar_handle_vertical"
-        android:visibility="visible" >
+        android:scrollbarThumbVertical="@drawable/scrollbar_handle_vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -51,63 +50,111 @@
                 android:checked="false"
                 android:text="是否开启美言锁屏"
                 android:textColor="@color/gray_black" />
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:background="@drawable/shape_line" />
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:gravity="center_vertical"
-                android:text="投稿"
-                android:textColor="@color/gray_black"
-                android:textSize="16sp" />
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:background="@drawable/shape_line" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:gravity="center_vertical"
-                android:text="意见反馈"
-                android:textColor="@color/gray_black"
-                android:textSize="16sp" />
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
                 android:background="@drawable/shape_line" />
             
-            <TextView
-                android:id="@+id/textView3"
+            <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
+                android:background="@color/alpha"
+                android:gravity="center_vertical"
+                android:text="关闭系统锁屏"
+                android:textColor="@color/gray_black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
+            
+            <Button
+                android:id="@+id/setting_setpassword"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@color/alpha"
+                android:gravity="center_vertical"
+                android:text="修改九宫格密码"
+                android:textColor="@color/gray_black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
+            
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@color/alpha"
+                android:gravity="center_vertical"
+                android:text="美言投稿"
+                android:textColor="@color/gray_black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@color/alpha"
+                android:gravity="center_vertical"
+                android:text="意见反馈"
+                android:textColor="@color/gray_black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@color/alpha"
+                android:gravity="center_vertical"
+                android:text="应用推荐"
+                android:textColor="@color/gray_black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@color/alpha"
                 android:gravity="center_vertical"
                 android:text="关于"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2.0px"
                 android:background="@drawable/shape_line" />
 
-            <TextView
-                android:id="@+id/textView4"
+            <Button
+                android:id="@+id/setting_exit"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
+                android:background="@color/alpha"
                 android:gravity="center"
                 android:text="退出"
                 android:textColor="@color/gray_black"
-                android:textSize="20sp" />
+                android:textSize="24sp"/>
+
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1.0px"
+                android:layout_height="0.0px"
                 android:background="@drawable/shape_line" />
-                        
         </LinearLayout>
     </ScrollView>
 

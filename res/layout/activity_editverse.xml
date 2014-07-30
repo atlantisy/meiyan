@@ -44,7 +44,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:ems="16"
-        android:hint="写下喜欢的一句話"
+        android:hint="发表美言..."
         android:inputType="textMultiLine"
         android:maxLength="32"
         android:textColorHint="@color/gray_white"
