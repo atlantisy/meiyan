@@ -25,9 +25,27 @@
             android:layout_height="match_parent"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"
-            android:text="@string/setting"
+            android:text="设置"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
+        
+		<ImageView
+            android:id="@+id/blank"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/blank" />
+         
+         <Button
+            android:id="@+id/setting_feedback"
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="8dp"
+            android:background="@color/alpha"
+            android:gravity="center"
+            android:text="意见/投稿"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <ScrollView
@@ -85,7 +103,7 @@
                 android:layout_height="1.0px"
                 android:background="@drawable/shape_line" />
             
-            <Button
+<!--             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
                 android:background="@color/alpha"
@@ -111,7 +129,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
-                android:background="@drawable/shape_line" />
+                android:background="@drawable/shape_line" /> -->
 
             <Button
                 android:layout_width="fill_parent"

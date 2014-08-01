@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="9"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="19" />
 
     <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
 
@@ -61,6 +61,10 @@
         </activity>
         <activity
             android:name="com.meiyanlock.android.SetPasswordActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.meiyanlock.android.RecentActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
     </application>

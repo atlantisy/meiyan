@@ -114,6 +114,9 @@ public class HomeActivity extends Activity implements OnClickListener,
 		ImageButton setting_button = (ImageButton) findViewById(R.id.home_setting);
 		setting_button.setOnClickListener(settingOnClickListener);
 		// 编辑美言按钮
+		ImageButton recent_button = (ImageButton) findViewById(R.id.home_recent);
+		recent_button.setOnClickListener(recentOnClickListener);
+		// 编辑美言按钮
 		ImageButton text_button = (ImageButton) findViewById(R.id.home_text);
 		text_button.setOnClickListener(textOnClickListener);
 
@@ -232,7 +235,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		return super.onKeyDown(keyCode, event);
 	}
 
-	// 美言类型设置选项
+	// 美言类型选项弹出窗口
 	private void verseOptionSetup() {
 		mBtnDropDown = (Button) findViewById(R.id.verse_option);
 		mBtnDropDown.setOnClickListener(this);
@@ -282,7 +285,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 简约锁屏
 	protected void line() {
 		flag = LINE;
-		lockbtn.setImageResource(R.drawable.ic_lock_line);
+		lockbtn.setImageResource(R.drawable.ic_lock_grid);
 		verse_line.setVisibility(View.VISIBLE);
 		verse_grid1.setVisibility(View.GONE);
 		setup_grid_button.setVisibility(View.GONE);
@@ -293,7 +296,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 九宫锁屏
 	protected void grid() {
 		flag = GRID;
-		lockbtn.setImageResource(R.drawable.ic_lock_grid);
+		lockbtn.setImageResource(R.drawable.ic_lock_line);
 		verse_line.setVisibility(View.GONE);
 		verse_grid1.setVisibility(View.VISIBLE);
 		if (bPassWord == true)
@@ -330,7 +333,15 @@ public class HomeActivity extends Activity implements OnClickListener,
 			startActivity(new Intent(HomeActivity.this, SettingActivity.class));
 		}
 	};
+	// 编辑美言按钮点击事件
+	private OnClickListener recentOnClickListener = new OnClickListener() {
 
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			startActivity(new Intent(HomeActivity.this, RecentActivity.class));
+		}
+	};
 	// 编辑美言按钮点击事件
 	private OnClickListener textOnClickListener = new OnClickListener() {
 

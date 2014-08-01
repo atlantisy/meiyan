@@ -55,7 +55,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="@color/alpha"
-            android:src="@drawable/ic_love"/>
+            android:src="@drawable/ic_love"
+            android:visibility="gone"/>
         
         <ImageButton
             android:id="@+id/home_share1"
