@@ -5,7 +5,8 @@
     android:background="@color/white"
     tools:context="${packageName}.${activityClass}" >
 
-	<LinearLayout
+    <LinearLayout
+        android:id="@+id/recent_top"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:background="@color/gray_black"
@@ -28,5 +29,11 @@
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_verse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_below="@+id/recent_top"/>
 
 </RelativeLayout>

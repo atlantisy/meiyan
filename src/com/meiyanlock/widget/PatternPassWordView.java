@@ -105,8 +105,7 @@ public class PatternPassWordView extends View {
 		textPaint.setColor(Color.WHITE);// 采用的颜色
 /*		textPaint.setShadowLayer(1f, 0,
 		0,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
-*/		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置
-		
+*/		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置		
 		//美言
 		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0);  
 		String verse = settings.getString(VERSE, "每时每刻 美妙美言");

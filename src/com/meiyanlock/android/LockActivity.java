@@ -84,7 +84,7 @@ public class LockActivity extends FragmentActivity {
 		//获取保存的美言			
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);  
 		sCustom = settings.getString(VERSE, "123456789");
-		sCustom = sCustom.replace(" ", "");//去掉所有空格
+		sCustom = sCustom.trim();//去掉前后空格
 		Log.d(TAG, sCustom);
 		
 		//初始化滑动解锁Viewpager，即锁屏方式1

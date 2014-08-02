@@ -94,6 +94,7 @@ public class SettingActivity extends Activity {
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
 			startActivity(new Intent(SettingActivity.this, SetPasswordActivity.class));
+			finish();
 		}
 	};
 	// 返回按钮
@@ -103,6 +104,7 @@ public class SettingActivity extends Activity {
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
 			startActivity(new Intent(SettingActivity.this, HomeActivity.class));
+			finish();
 		}
 	};
 	// 退出按钮

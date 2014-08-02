@@ -196,7 +196,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 设置美言
 	private void SetVerse() {
 		TextView line_verse = (TextView) findViewById(R.id.line_verse);
-		line_verse.setText(verse.replace(" ", ""));
+		line_verse.setText(verse.trim());//清楚前后空格
 
 		String s = verse.replace("\n", " ");
 		TextView verse0 = (TextView) findViewById(R.id.verse0);

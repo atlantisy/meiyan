@@ -73,7 +73,8 @@ public class EditVerseActivity extends Activity implements OnClickListener, Abst
 			editor.putString(VERSE, verse);  
 			editor.commit();
 			
-			startActivity(new Intent(EditVerseActivity.this, HomeActivity.class));			
+			startActivity(new Intent(EditVerseActivity.this, HomeActivity.class));
+			finish();
 		}
 	};
 
