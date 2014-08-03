@@ -9,7 +9,7 @@
         android:id="@+id/recent_top"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@color/gray_black"
+        android:background="@color/app_color"
         android:orientation="horizontal" >
 
         <ImageButton

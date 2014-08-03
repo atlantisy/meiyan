@@ -239,8 +239,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pattern_round_original=0x7f020030;
         public static final int scrollbar_handle_vertical=0x7f020031;
         public static final int shape_line=0x7f020032;
-        public static final int switcher_bg=0x7f020033;
-        public static final int welcome_bg=0x7f020034;
+        public static final int start_wallpaper=0x7f020033;
+        public static final int switcher_bg=0x7f020034;
+        public static final int welcome_bg=0x7f020035;
     }
     public static final class id {
         public static final int ItemTitle=0x7f050047;
@@ -339,6 +340,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_header_vertical=0x7f03000c;
         public static final int spiner_item_layout=0x7f03000d;
         public static final int spiner_window_layout=0x7f03000e;
+        public static final int start=0x7f03000f;
     }
     public static final class string {
         public static final int app_name=0x7f070007;

@@ -10,7 +10,7 @@
         android:id="@+id/home_topbar"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@color/gray_black"
+        android:background="@color/app_color"
         android:orientation="horizontal" >
 
         <ImageView
@@ -76,7 +76,7 @@
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1px"
+        android:layout_height="0px"
         android:background="@color/black" >
     </View>
 
@@ -94,7 +94,7 @@
     
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1px"
+        android:layout_height="0px"
         android:background="@android:color/darker_gray" >
     </View>            
         
