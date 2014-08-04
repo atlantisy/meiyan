@@ -78,15 +78,14 @@ public class HomeActivity extends Activity implements OnClickListener,
 		mPullRefreshGridView = (PullToRefreshGridView) findViewById(R.id.pull_refresh_grid);
 		mGridView = mPullRefreshGridView.getRefreshableView();
 		// Set a listener to be invoked when the list should be refreshed.
-		mPullRefreshGridView
-				.setOnRefreshListener(new OnRefreshListener2<GridView>() {
+		mPullRefreshGridView.setOnRefreshListener(new OnRefreshListener2<GridView>() {
 
 					@Override
 					public void onPullDownToRefresh(
 							PullToRefreshBase<GridView> refreshView) {
-						// mPullRefreshGridView.getLoadingLayoutProxy().setRefreshingLabel("正在加载");
-						// mPullRefreshGridView.getLoadingLayoutProxy().setPullLabel("下拉推荐美言…");
-						// mPullRefreshGridView.getLoadingLayoutProxy().setReleaseLabel("放开以推荐…");
+/*						mPullRefreshGridView.getLoadingLayoutProxy().setRefreshingLabel("正在加载");
+						mPullRefreshGridView.getLoadingLayoutProxy().setPullLabel("下拉推荐美言…");
+						mPullRefreshGridView.getLoadingLayoutProxy().setReleaseLabel("放开以推荐…");	*/					
 						// 下拉
 						PullDown();
 					}
@@ -111,9 +110,9 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 美言类型设置选项
 		verseOptionSetup();
 		// 设置按钮
-		ImageButton setting_button = (ImageButton) findViewById(R.id.home_setting);
+		ImageButton setting_button = (ImageButton) findViewById(R.id.home_setting1);
 		setting_button.setOnClickListener(settingOnClickListener);
-		// 编辑美言按钮
+		// 最近历史记录按钮
 		ImageButton recent_button = (ImageButton) findViewById(R.id.home_recent);
 		recent_button.setOnClickListener(recentOnClickListener);
 		// 编辑美言按钮
@@ -181,7 +180,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 	private void PullDown() {
 		// Call onRefreshComplete when the list has been refreshed.
 		mPullRefreshGridView.onRefreshComplete();
-
 	}
 
 	// 上拉编辑

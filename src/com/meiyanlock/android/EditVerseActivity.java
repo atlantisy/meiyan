@@ -40,10 +40,11 @@ public class EditVerseActivity extends Activity implements OnClickListener, Abst
 		
 		//获取保存的美言			
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);  
-		String verse = settings.getString(VERSE, "每时每刻 美妙美言");
+		String verse = settings.getString(VERSE, "");
 		//设置默认美言
 		verse_edit = (EditText)findViewById(R.id.edit_verse);	
 		verse_edit.setText(verse.trim().toCharArray(), 0, verse.trim().length());
+		verse_edit.setSelection(verse.trim().length());//设置光标在末尾
 		
 		//监听美言编辑完成
 		ImageButton editok_btn = (ImageButton)findViewById(R.id.edit_ok);

@@ -4,21 +4,21 @@
     android:layout_height="match_parent"
     android:background="@drawable/default_wallpaper"
     android:orientation="vertical" >
-    
-        
+
     <LinearLayout
         android:id="@+id/home_topbar"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@color/app_color"
-        android:orientation="horizontal" >
+        android:background="@color/alpha"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/verse_logo"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:background="@color/alpha"
-            android:src="@drawable/ic_icon" />
+            android:src="@drawable/ic_icon" 
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/verse_option"
@@ -41,7 +41,8 @@
             android:paddingTop="12dp"
             android:text="@string/app_name"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/white" />
+            android:textColor="@color/white" 
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/blank"
@@ -55,18 +56,17 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="@color/alpha"
-            android:src="@drawable/ic_love"
-            android:visibility="gone"/>
-        
+            android:src="@drawable/ic_love"/>
+
         <ImageButton
             android:id="@+id/home_share1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@color/alpha"
-            android:src="@drawable/ic_share"/>
-        
+            android:src="@drawable/ic_share" />
+
         <ImageButton
-            android:id="@+id/home_setting"
+            android:id="@+id/home_setting1"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -74,68 +74,63 @@
             android:src="@drawable/ic_setting" />
     </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0px"
-        android:background="@color/black" >
-    </View>
-
     <Button
-            android:id="@+id/home_setup_grid"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|center_horizontal"
-            android:background="@color/yellow"
-            android:padding="12dp"           
-            android:text="九宫格密码未设置  >>"
-            android:textColor="@android:color/black"
-            android:visibility="gone">
-    </Button>
-    
-    <View
+        android:id="@+id/home_setup_grid"
         android:layout_width="fill_parent"
-        android:layout_height="0px"
-        android:background="@android:color/darker_gray" >
-    </View>            
-        
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:background="@color/yellow"
+        android:padding="12dp"
+        android:text="九宫格密码未设置  >>"
+        android:textColor="@android:color/black"
+        android:visibility="gone" >
+    </Button>
+
     <FrameLayout
         android:id="@+id/home_verse"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/alpha" >
-                            
-        <LinearLayout
-        android:id="@+id/home_social"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:background="@color/alpha"
-        android:orientation="horizontal"
-        android:visibility="gone">
 
-        <ImageButton
-            android:id="@+id/home_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/home_social"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/alpha"
-            android:src="@drawable/ic_love" />        
-                                
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@color/alpha" />
-        
-        <ImageButton
-            android:id="@+id/home_share"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:background="@color/alpha"
-            android:src="@drawable/ic_share" />
+            android:gravity="center"
+            android:orientation="horizontal" 
+            android:visibility="gone">
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@color/alpha" />
+
+            <ImageButton
+                android:id="@+id/home_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@color/alpha"
+                android:src="@drawable/ic_love" />
+
+            <ImageButton
+                android:id="@+id/home_share"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@color/alpha"
+                android:src="@drawable/ic_share" />
+            
+<!--              <ImageButton
+                android:id="@+id/home_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@color/alpha"
+                android:src="@drawable/ic_setting" />  -->          
         </LinearLayout>
-        
+
         <com.handmark.pulltorefresh.library.PullToRefreshGridView
             xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/pull_refresh_grid"
@@ -145,15 +140,15 @@
             ptr:ptrHeaderBackground="@color/white"
             ptr:ptrHeaderTextColor="@color/gray_white"
             ptr:ptrMode="pullFromStart" />
-    
+
         <LinearLayout
             android:id="@+id/verse_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/alpha"
-            android:orientation="vertical" 
-            android:visibility="gone">
+            android:orientation="vertical"
+            android:visibility="gone" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -165,14 +160,14 @@
                     android:id="@+id/verse0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="感"
                     android:shadowColor="#4F000000"
                     android:shadowDx="0"
-            		android:shadowDy="3"
-            		android:shadowRadius="1"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text="感"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -181,14 +176,14 @@
                     android:id="@+id/verse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="觉"
                     android:shadowColor="#4F000000"
                     android:shadowDx="0"
-            		android:shadowDy="3"
-            		android:shadowRadius="1"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text="觉"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -197,14 +192,14 @@
                     android:id="@+id/verse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:text=""
                     android:shadowColor="#4F000000"
                     android:shadowDx="0"
-            		android:shadowDy="3"
-            		android:shadowRadius="1"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text=""
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -220,14 +215,14 @@
                     android:id="@+id/verse3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="自"
                     android:shadowColor="#4F000000"
                     android:shadowDx="0"
-            		android:shadowDy="3"
-            		android:shadowRadius="1"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text="自"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -236,14 +231,14 @@
                     android:id="@+id/verse4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="己"
                     android:shadowColor="#4F000000"
                     android:shadowDx="0"
-            		android:shadowDy="3"
-            		android:shadowRadius="1"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text="己"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -252,14 +247,14 @@
                     android:id="@+id/verse5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:text=""
                     android:shadowColor="#4F000000"
                     android:shadowDx="0"
-            		android:shadowDy="3"
-            		android:shadowRadius="1"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text=""
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -275,14 +270,14 @@
                     android:id="@+id/verse6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="萌"
                     android:shadowColor="#4F000000"
                     android:shadowDx="0"
-            		android:shadowDy="3"
-            		android:shadowRadius="1"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text="萌"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -291,14 +286,14 @@
                     android:id="@+id/verse7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="萌"
                     android:shadowColor="#4F000000"
                     android:shadowDx="0"
-            		android:shadowDy="3"
-            		android:shadowRadius="1"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text="萌"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -307,14 +302,14 @@
                     android:id="@+id/verse8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="哒"
                     android:shadowColor="#4F000000"
                     android:shadowDx="0"
-            		android:shadowDy="3"
-            		android:shadowRadius="1"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text="哒"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
@@ -326,8 +321,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
             android:background="@color/alpha"
+            android:gravity="center"
             android:shadowColor="#4F000000"
             android:shadowDx="0"
             android:shadowDy="3"
@@ -335,8 +330,8 @@
             android:text="@string/app_verse_cn"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />        
-        
+            android:textSize="20sp" />
+
         <GridView
             android:id="@+id/grid_verse"
             android:layout_width="wrap_content"
@@ -350,9 +345,8 @@
             android:verticalSpacing="1dp"
             android:visibility="gone" >
         </GridView>
-               
     </FrameLayout>
-    
+
     <LinearLayout
         android:id="@+id/home_bottombar"
         android:layout_width="fill_parent"

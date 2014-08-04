@@ -1,66 +1,96 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/default_wallpaper"
-    tools:context="${packageName}.${activityClass}" >
+    android:orientation="vertical" 
+    style="@anim/slide_in_from_bottom">
 
-    <ImageButton
-        android:id="@+id/textedit_return"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@color/alpha"
-        android:src="@drawable/ic_exit" />
-
-    <Button
-        android:id="@+id/edit_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="@color/alpha"
-        android:paddingBottom="12dp"
-        android:paddingTop="12dp"
-        android:text="@string/text_edit"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="@android:color/white"
-        android:visibility="gone" />
-
-    <ImageButton
-        android:id="@+id/edit_ok"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentRight="true"
-        android:background="@color/alpha"
-        android:src="@drawable/ic_ok" />
-
-    <EditText
-        android:id="@+id/edit_verse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/alpha_black"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:ems="16"
-        android:hint="发表美言..."
-        android:inputType="textMultiLine"
-        android:maxLength="32"
-        android:textColorHint="@color/gray_white"
-        android:textSize="20sp"
-        android:textColor="@color/white" 
-        android:text="每时每刻  美妙美言">
-    </EditText>
-
-    <Gallery
-        android:id="@+id/wallpaper_gallery"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:layout_alignParentBottom="true" />
+        android:background="@color/app_color"
+        android:orientation="horizontal" >
 
-</RelativeLayout>
+        <ImageButton
+            android:id="@+id/editverse_return"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:background="@color/alpha"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_return" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="发表美言"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/edit_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/alpha"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/text_edit"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/blank"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/blank" />
+
+        <ImageButton
+            android:id="@+id/edit_ok"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_ok" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_weight="1.0"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            android:scrollbars="vertical" >
+
+            <EditText
+                android:id="@+id/edit_verse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/alpha"
+                android:ems="16"
+                android:gravity="center"
+                android:hint="写下喜欢的一句话..."
+                android:inputType="textMultiLine"
+                android:maxLength="32"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/alpha_white"
+                android:textSize="20sp" >
+
+                <requestFocus />
+            </EditText>
+        </ScrollView>
+    </LinearLayout>  
+
+</LinearLayout>
