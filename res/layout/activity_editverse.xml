@@ -33,8 +33,6 @@
             android:id="@+id/edit_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:background="@color/alpha"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"

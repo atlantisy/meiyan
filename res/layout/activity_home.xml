@@ -139,7 +139,8 @@
             android:background="@color/alpha"
             ptr:ptrHeaderBackground="@color/white"
             ptr:ptrHeaderTextColor="@color/gray_white"
-            ptr:ptrMode="pullFromStart" />
+            ptr:ptrMode="pullFromStart" 
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/verse_layout"

@@ -93,14 +93,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 					@Override
 					public void onPullUpToRefresh(
 							PullToRefreshBase<GridView> refreshView) {
-						/*
-						 * mPullRefreshGridView.getLoadingLayoutProxy().
-						 * setRefreshingLabel("正在加载");
-						 * mPullRefreshGridView.getLoadingLayoutProxy
-						 * ().setPullLabel("上拉编辑美言");
-						 * mPullRefreshGridView.getLoadingLayoutProxy
-						 * ().setReleaseLabel("放开以编辑");
-						 */
 						// 上拉
 						PullUp();
 					}
@@ -111,17 +103,16 @@ public class HomeActivity extends Activity implements OnClickListener,
 		verseOptionSetup();
 		// 设置按钮
 		ImageButton setting_button = (ImageButton) findViewById(R.id.home_setting1);
-		setting_button.setOnClickListener(settingOnClickListener);
-		// 最近历史记录按钮
+		setting_button.setOnClickListener(this);
+		// 历史记录按钮
 		ImageButton recent_button = (ImageButton) findViewById(R.id.home_recent);
-		recent_button.setOnClickListener(recentOnClickListener);
+		recent_button.setOnClickListener(this);
 		// 编辑美言按钮
 		ImageButton text_button = (ImageButton) findViewById(R.id.home_text);
-		text_button.setOnClickListener(textOnClickListener);
-
+		text_button.setOnClickListener(this);
 		// 设置九宫格手势
 		setup_grid_button = (Button) findViewById(R.id.home_setup_grid);
-		setup_grid_button.setOnClickListener(setGridOnClickListener);
+		setup_grid_button.setOnClickListener(this);
 
 		// Verse
 		String strVerse = "396796777";
@@ -196,7 +187,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		TextView line_verse = (TextView) findViewById(R.id.line_verse);
 		line_verse.setText(verse.trim());//清楚前后空格
 
-		String s = verse.replace("\n", " ");
+		String s = verse.replace("\n", "");
 		TextView verse0 = (TextView) findViewById(R.id.verse0);
 		verse0.setText(s.substring(0, 1));
 		TextView verse1 = (TextView) findViewById(R.id.verse1);
@@ -321,46 +312,30 @@ public class HomeActivity extends Activity implements OnClickListener,
 		}
 
 	}
-
-	// 设置按钮点击事件
-	private OnClickListener settingOnClickListener = new OnClickListener() {
-
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+	
+	@Override
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.home_setting1:
 			startActivity(new Intent(HomeActivity.this, SettingActivity.class));
-		}
-	};
-	// 编辑美言按钮点击事件
-	private OnClickListener recentOnClickListener = new OnClickListener() {
-
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+			break;
+		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));
-		}
-	};
-	// 编辑美言按钮点击事件
-	private OnClickListener textOnClickListener = new OnClickListener() {
-
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+			break;
+		case R.id.home_text:
 			startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));
-		}
-	};
-
-	// 设置九宫格按钮点击事件
-	private OnClickListener setGridOnClickListener = new OnClickListener() {
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stubsetGridOnClickListener
-			// 设置九宫格手势
+			break;
+		case R.id.home_setup_grid:
 			startActivityForResult(new Intent(HomeActivity.this,
 					SetPasswordActivity.class), 100);
-		}
-	};
+			break;
+		case R.id.verse_option:
+			showSpinWindow();
+			break;
 
+		}
+	}
+	
 	// 返回其他activity传递的结果
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -385,14 +360,10 @@ public class HomeActivity extends Activity implements OnClickListener,
 	}
 
 	@Override
-	public void onClick(View view) {
-		switch (view.getId()) {
-		case R.id.verse_option:
-			showSpinWindow();
-			break;
-		}
+	public void onItemClick(int pos) {
+		setVerse(pos);
 	}
-
+	
 	private void setVerse(int pos) {
 		if (pos >= 0 && pos <= nameList.size()) {
 			CustemObject value = nameList.get(pos);
@@ -409,9 +380,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 		mSpinerPopWindow.showAsDropDown(mBtnDropDown);
 	}
 
-	@Override
-	public void onItemClick(int pos) {
-		setVerse(pos);
-	}
+
 
 }
