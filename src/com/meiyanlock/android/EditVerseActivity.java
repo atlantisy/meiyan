@@ -2,25 +2,25 @@ package com.meiyanlock.android;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.meiyanlock.widget.AbstractSpinerAdapter;
 import com.meiyanlock.widget.CustemObject;
 import com.meiyanlock.widget.CustemSpinerAdapter;
 import com.meiyanlock.widget.SpinerPopWindow;
-
+import com.meiyanlock.widget.WallpaperAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 
 public class EditVerseActivity extends Activity implements OnClickListener, AbstractSpinerAdapter.IOnItemSelectListener{
 
@@ -31,12 +31,22 @@ public class EditVerseActivity extends Activity implements OnClickListener, Abst
 
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String VERSE = "verse";//锁屏方式pref值名称
-
+	
+	private LinearLayout mEditverseLayout ;
+	private WallpaperAdapter wpAdapter;
+	private GridView wpGridview;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editverse);
+		mEditverseLayout = (LinearLayout)findViewById(R.id.editverse_layout);
+		//壁纸初始化
+		wpAdapter = new WallpaperAdapter(this);
+		wpGridview = (GridView) findViewById(R.id.wallpaper_grid);
+		wpGridview.setAdapter(wpAdapter);
+		wpGridview.setOnItemClickListener(wallpaperListener);	
+		//wpGridview.setVisibility(View.GONE);
 		
 		//获取保存的美言			
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);  
@@ -54,6 +64,20 @@ public class EditVerseActivity extends Activity implements OnClickListener, Abst
 		customOptionSetup();
 	}
 	
+	/** 选择壁纸**/
+	OnItemClickListener wallpaperListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			// TODO Auto-generated method stub
+			int WallpaperId = WallpaperAdapter.wallpaper[arg2];
+			mEditverseLayout.setBackgroundResource(WallpaperId);
+			//wpGridview.setVisibility(View.GONE);			
+		}
+	};
+	
+	//发布美言及壁纸
 	private OnClickListener editOkOnClickListener = new OnClickListener() {
 
 		@Override

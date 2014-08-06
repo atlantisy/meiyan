@@ -1,15 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editverse_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_wallpaper"
-    android:orientation="vertical" 
-    style="@anim/slide_in_from_bottom">
+    android:background="@drawable/wallpaper00"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@color/app_color"
+        android:background="@color/gray_black"
         android:orientation="horizontal" >
 
         <ImageButton
@@ -42,7 +42,6 @@
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/blank"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -59,8 +58,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="center"
         android:layout_weight="1.0"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <ScrollView
@@ -85,10 +84,48 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/alpha_white"
                 android:textSize="20sp" >
-
-                <requestFocus />
             </EditText>
         </ScrollView>
-    </LinearLayout>  
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/edit_camera"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_camera" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/blank" />
+
+        <ImageButton
+            android:id="@+id/edit_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_image" />
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/wallpaper_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:columnWidth="48dp"
+        android:gravity="center"
+        android:horizontalSpacing="4dp"
+        android:numColumns="5"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="4dp"
+        android:visibility="visible" >
+    </GridView>
 
 </LinearLayout>
