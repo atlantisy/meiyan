@@ -44,7 +44,7 @@ public class WallpaperAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		ImageView image = new ImageView(context);
 		image.setLayoutParams(new GridView.LayoutParams(80, 80));
-		image.setScaleType(ImageView.ScaleType.CENTER);
+		image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		//
 		image.setImageResource(wallpaper[position]);
 		return image;				

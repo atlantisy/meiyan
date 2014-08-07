@@ -33,6 +33,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String VERSE = "verse";// 美言pref值名称
+	public static final String WALLPAPER = "wallpaper";//壁纸pref值名称	
 	public static final String LOCKFLAG = "lockFlag";// 锁屏方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";// 九宫格是否设置pref值名称
 
@@ -144,6 +146,11 @@ public class HomeActivity extends Activity implements OnClickListener,
 		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);
 		flag = home_setting.getInt(LOCKFLAG, 1);
 		bPassWord = home_setting.getBoolean(PWSETUP, false);
+		// 设置壁纸
+		LinearLayout homeLayout = (LinearLayout)findViewById(R.id.HomeLayout);
+		int wallpaperId = home_setting.getInt(WALLPAPER, R.drawable.wallpaper00);
+		homeLayout.setBackgroundResource(wallpaperId);
+		// 获取美言
 		verse = home_setting.getString(VERSE, "每时每刻 美妙美言");
 		// 设置美言，简言和九宫言
 		SetVerse();
@@ -215,10 +222,9 @@ public class HomeActivity extends Activity implements OnClickListener,
 				Object mHelperUtils;
 				Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
 				mExitTime = System.currentTimeMillis();
-
-			} else {
+			} 
+			else
 				finish();
-			}
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);

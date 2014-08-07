@@ -2,10 +2,12 @@ package com.meiyanlock.android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.meiyanlock.widget.PatternPassWordView;
@@ -17,7 +19,10 @@ public class SetPasswordActivity extends Activity {
 	private String password;
 	private boolean needverify = true;
 	private Toast toast;
-
+	
+	public static final String PREFS = "lock_pref";//pref文件名
+	public static final String WALLPAPER = "wallpaper";//壁纸pref值名称
+	
 	private void showToast(CharSequence message) {
 		if (null == toast) {
 			toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
@@ -33,6 +38,12 @@ public class SetPasswordActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setpassword);
+		RelativeLayout setPasswordLayout = (RelativeLayout)findViewById(R.id.SetPasswordLayout);
+		//获取pref值
+		SharedPreferences settings = getSharedPreferences(PREFS, 0);
+		int wallpaperId = settings.getInt(WALLPAPER, R.drawable.wallpaper00);
+		setPasswordLayout.setBackgroundResource(wallpaperId);
+		//
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
 		ppwv.setOnCompleteListener(new OnCompleteListener() {
 			@Override

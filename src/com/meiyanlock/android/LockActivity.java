@@ -35,6 +35,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,7 @@ public class LockActivity extends FragmentActivity {
 	
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String VERSE = "verse";//锁屏方式pref值名称
+	public static final String WALLPAPER = "wallpaper";//壁纸pref值名称	
 	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
@@ -81,9 +83,14 @@ public class LockActivity extends FragmentActivity {
 /*		String[] sArray = (String[]) this.getResources().getStringArray(R.array.Summer);
 		int index = (int)(Math.random()*sArray.length);
 		String str = sArray[index]; */
-		//获取保存的美言			
-		SharedPreferences settings = getSharedPreferences(PREFS, 0);  
-		sCustom = settings.getString(VERSE, "123456789");
+		//获取pref值			
+		SharedPreferences settings = getSharedPreferences(PREFS, 0);
+		int wallpaperId = settings.getInt(WALLPAPER, R.drawable.wallpaper00);
+		//设置壁纸
+		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
+		lockLayout.setBackgroundResource(wallpaperId);
+		//设置美言
+		sCustom = settings.getString(VERSE, "每时每刻 美妙美言");		
 		sCustom = sCustom.trim();//去掉前后空格
 		Log.d(TAG, sCustom);
 		

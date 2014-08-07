@@ -56,7 +56,8 @@
         </activity>
         <activity
             android:name="com.meiyanlock.android.EditVerseActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name="com.meiyanlock.android.WallpaperEditActivity"

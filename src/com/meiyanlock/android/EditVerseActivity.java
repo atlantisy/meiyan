@@ -31,34 +31,40 @@ public class EditVerseActivity extends Activity implements OnClickListener, Abst
 
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String VERSE = "verse";//锁屏方式pref值名称
+	public static final String WALLPAPER = "wallpaper";//壁纸pref值名称
 	
-	private LinearLayout mEditverseLayout ;
+	private boolean bControlEditColor = true;
+	private LinearLayout mEditVerseLayout ;
 	private WallpaperAdapter wpAdapter;
 	private GridView wpGridview;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editverse);
-		mEditverseLayout = (LinearLayout)findViewById(R.id.editverse_layout);
+		mEditVerseLayout = (LinearLayout)findViewById(R.id.editverse_layout);
+		// 获取存储的pref数据
+		SharedPreferences settings = getSharedPreferences(PREFS, 0);
+		int wallpaperId = settings.getInt(WALLPAPER, R.drawable.wallpaper00);
+		mEditVerseLayout.setBackgroundResource(wallpaperId);
 		//壁纸初始化
 		wpAdapter = new WallpaperAdapter(this);
 		wpGridview = (GridView) findViewById(R.id.wallpaper_grid);
 		wpGridview.setAdapter(wpAdapter);
-		wpGridview.setOnItemClickListener(wallpaperListener);	
-		//wpGridview.setVisibility(View.GONE);
-		
-		//获取保存的美言			
-		SharedPreferences settings = getSharedPreferences(PREFS, 0);  
+		wpGridview.setOnItemClickListener(wallpaperListener);		
+		//获取保存的美言			  
 		String verse = settings.getString(VERSE, "");
 		//设置默认美言
 		verse_edit = (EditText)findViewById(R.id.edit_verse);	
-		verse_edit.setText(verse.trim().toCharArray(), 0, verse.trim().length());
-		verse_edit.setSelection(verse.trim().length());//设置光标在末尾
-		
-		//监听美言编辑完成
+		//verse_edit.setText(verse.trim().toCharArray(), 0, verse.trim().length());
+		//verse_edit.setSelection(verse.trim().length());//设置光标在末尾		
+		//发布美言
 		ImageButton editok_btn = (ImageButton)findViewById(R.id.edit_ok);
 		editok_btn.setOnClickListener(editOkOnClickListener);
+		//选择背景颜色
+		ImageButton editcolor_btn = (ImageButton)findViewById(R.id.edit_color);
+		editcolor_btn.setOnClickListener(editColorOnClickListener);
 		
 		// 自定义种类选择
 		customOptionSetup();
@@ -71,9 +77,13 @@ public class EditVerseActivity extends Activity implements OnClickListener, Abst
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
 			// TODO Auto-generated method stub
-			int WallpaperId = WallpaperAdapter.wallpaper[arg2];
-			mEditverseLayout.setBackgroundResource(WallpaperId);
-			//wpGridview.setVisibility(View.GONE);			
+			int wallpaperId = WallpaperAdapter.wallpaper[arg2];
+			mEditVerseLayout.setBackgroundResource(wallpaperId);
+			// 将锁屏方式设置存入SharedPreferences
+			SharedPreferences setting = getSharedPreferences(PREFS, 0);
+			SharedPreferences.Editor editor = setting.edit();
+			editor.putInt(WALLPAPER,wallpaperId);//
+			editor.commit();		
 		}
 	};
 	
@@ -103,6 +113,24 @@ public class EditVerseActivity extends Activity implements OnClickListener, Abst
 		}
 	};
 
+	//选择背景颜色
+	private OnClickListener editColorOnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			if(bControlEditColor==true){
+				bControlEditColor=false;
+				wpGridview.setVisibility(View.VISIBLE);				
+			}
+			else{
+				bControlEditColor=true;
+				wpGridview.setVisibility(View.GONE);				
+			}
+		}
+		
+	};
+	
 	private void customOptionSetup(){
 		mBtnDropDown = (Button) findViewById(R.id.edit_label);
 		mBtnDropDown.setOnClickListener(this);
