@@ -111,7 +111,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@color/alpha"
-            android:src="@drawable/ic_color" />
+            android:src="@drawable/ic_color" />        
     </LinearLayout>
 
     <GridView

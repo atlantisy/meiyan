@@ -218,13 +218,15 @@ public class HomeActivity extends Activity implements OnClickListener,
 	//按两次返回键退出
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+/*			if ((System.currentTimeMillis() - mExitTime) > 2000) {
 				Object mHelperUtils;
 				Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
 				mExitTime = System.currentTimeMillis();
 			} 
-			else
-				finish();
+			else*/
+				finish();				
+				//android.os.Process.killProcess(android.os.Process.myPid());
+				System.exit(0);
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);

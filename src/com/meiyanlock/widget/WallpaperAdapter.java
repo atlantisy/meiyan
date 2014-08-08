@@ -58,8 +58,10 @@ public class WallpaperAdapter extends BaseAdapter {
 		R.drawable.wallpaper12,R.drawable.wallpaper13,R.drawable.wallpaper14,
 		R.drawable.wallpaper15,R.drawable.wallpaper16,R.drawable.wallpaper17*/
 		
-		R.color.app_color,R.color.gray_black,R.color.orange,R.color.blue,R.color.yellow
-		
+		R.color.red,R.color.orange,R.color.orange1,
+		R.color.yellow,R.color.green,R.color.green1,
+		R.color.blue,R.color.blue1,R.color.violet,
+		R.color.app_color
 	};
 
 }

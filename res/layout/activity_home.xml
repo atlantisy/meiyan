@@ -80,7 +80,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center_horizontal"
-        android:background="@color/yellow"
+        android:background="@color/light_yellow"
         android:padding="12dp"
         android:text="九宫格密码未设置  >>"
         android:textColor="@android:color/black"

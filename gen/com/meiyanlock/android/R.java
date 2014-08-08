@@ -169,16 +169,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int alpha0_white=0x7f080001;
         public static final int alpha_black=0x7f080004;
         public static final int alpha_white=0x7f080003;
-        public static final int app_color=0x7f08000e;
-        public static final int black=0x7f080006;
-        public static final int blue=0x7f08000b;
-        public static final int blue1=0x7f08000c;
-        public static final int gray_black=0x7f080008;
-        public static final int gray_white=0x7f080007;
-        public static final int orange=0x7f080009;
-        public static final int orange1=0x7f08000a;
+        public static final int app_color=0x7f08000a;
+        public static final int black=0x7f080007;
+        public static final int blue=0x7f080011;
+        public static final int blue1=0x7f080012;
+        public static final int gray_black=0x7f080009;
+        public static final int gray_white=0x7f080008;
+        public static final int green=0x7f08000f;
+        public static final int green1=0x7f080010;
+        public static final int light_yellow=0x7f080006;
+        public static final int orange=0x7f08000c;
+        public static final int orange1=0x7f08000d;
+        public static final int red=0x7f08000b;
+        public static final int violet=0x7f080013;
         public static final int white=0x7f080005;
-        public static final int yellow=0x7f08000d;
+        public static final int yellow=0x7f08000e;
     }
     public static final class dimen {
         public static final int header_footer_left_right_padding=0x7f060003;
