@@ -1,6 +1,8 @@
 package com.meiyanlock.android;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,10 +14,16 @@ import com.meiyanlock.widget.CustemObject;
 import com.meiyanlock.widget.CustemSpinerAdapter;
 import com.meiyanlock.widget.SpinerPopWindow;
 import com.meiyanlock.widget.WallpaperAdapter;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -145,17 +153,22 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		}
 
 	};
-
+	
+	private static final int TAKE_PICTURE = 0;
+	private static final int CHOOSE_PICTURE = 1;
+	
 	// 拍照为背景
 	private OnClickListener editCameraOnClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			Intent i = new Intent(
-					MediaStore.ACTION_IMAGE_CAPTURE);
-			startActivityForResult(i, RESULT_TAKE_PHOTO);
-			//photo();
+			//Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			//startActivityForResult(i, RESULT_TAKE_PHOTO);
+			
+			// photo();
+			
+			showPicturePicker(EditVerseActivity.this);
 		}
 	};
 	// 选取相册图片为背景
@@ -163,14 +176,100 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub 
+			//Intent.ACTION_GET_CONTENT    Intent.ACTION_PICK
 			Intent i = new Intent(
-					Intent.ACTION_PICK,
+					Intent.ACTION_GET_CONTENT,
 					android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 			startActivityForResult(i, RESULT_LOAD_IMAGE);
 		}
 	};
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == Activity.RESULT_OK) {
+			switch (requestCode) {
+			case RESULT_TAKE_PHOTO:
+				// 检测SD卡是否可用
+				String sdStatus = Environment.getExternalStorageState();
+				if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {
+					Log.v("MinelockFile","SD card is not avaiable/writeable right now.");
+					return;
+				}
+				// 获取图片数据
+				Bundle bundle = data.getExtras();
+				Bitmap bitmap = (Bitmap) bundle.get("data");
+				// 设置背景图片
+				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+				
+				// 创建文件夹 及命名图片文件
+/*				File filedirName = new File("/sdcard/minelock/");
+				filedirName.mkdirs();
+				String fileName = "/sdcard/minelock/wallpaper.jpg";
+				// 将图片压缩并输出到SD卡上命名的文件上
+				FileOutputStream output = null;								
+				try {
+					output = new FileOutputStream(fileName);					
+					bitmap.compress(Bitmap.CompressFormat.JPEG, 100, output);// 把数据写入文件
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						output.flush();
+						output.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}*/
+				//bitmap.recycle();
+				break;
+			case RESULT_LOAD_IMAGE:
+				Uri uri = data.getData();
+				if (uri != null) {
+					Bitmap photo = BitmapFactory.decodeFile(uri.getPath());
+					mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(photo));
+
+/*					savePhotoToSDCard(photo, Environment
+							.getExternalStorageDirectory().getAbsolutePath(),
+							String.valueOf(System.currentTimeMillis()));
+					photo.recycle();*/
+				}
+				break;
+			}
+		}
+	}
+
+	public void showPicturePicker(Context context){
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle("锁屏壁纸");
+		builder.setNegativeButton("取消", null);
+		builder.setItems(new String[]{"拍照","从相册中选取"}, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				switch (which) {
+				case TAKE_PICTURE:
+					Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+					startActivityForResult(i, RESULT_TAKE_PHOTO);
+					break;
+					
+				case CHOOSE_PICTURE:
+					Intent intent = new Intent(
+							Intent.ACTION_GET_CONTENT,
+							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+					startActivityForResult(intent, RESULT_LOAD_IMAGE);
+					break;
+					
+				default:
+					break;
+				}
+			}
+		});
+		builder.create().show();
+	}
+	
 	private static final int RESULT_TAKE_PHOTO = 10;
 	private static final int RESULT_LOAD_IMAGE = 11;
 	private Uri photoUri;
@@ -187,7 +286,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			if (Environment.MEDIA_MOUNTED.equals(sdcardState)) {
 				File fileDir = new File(sdcardPathDir);
 				if (!fileDir.exists()) {
-					fileDir.mkdirs();//建立图片目录
+					fileDir.mkdirs();// 建立图片目录
 				}
 				// 按系统时间命名图片名称
 				file = new File(sdcardPathDir + System.currentTimeMillis()
@@ -206,20 +305,70 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		}
 	}
 
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
-		case RESULT_TAKE_PHOTO:
-            Bundle bundle = data.getExtras();             
-            Bitmap bitmap = (Bitmap) bundle.get("data"); 
-            mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
-			break;
-		case RESULT_LOAD_IMAGE:
-			Uri uri = data.getData();
-			if (uri != null) {
+	/** Save image to the SD card **/
+
+	public void savePhotoToSDCard(Bitmap photoBitmap, String path,
+			String photoName) {
+
+		if (android.os.Environment.getExternalStorageState().equals(
+				android.os.Environment.MEDIA_MOUNTED)) {
+
+			File dir = new File(path);
+
+			if (!dir.exists()) {
+
+				dir.mkdirs();
 
 			}
-			break;
+
+			File photoFile = new File(path, photoName); // 在指定路径下创建文件
+
+			FileOutputStream fileOutputStream = null;
+
+			try {
+
+				fileOutputStream = new FileOutputStream(photoFile);
+
+				if (photoBitmap != null) {
+
+					if (photoBitmap.compress(Bitmap.CompressFormat.PNG, 100,
+
+					fileOutputStream)) {
+
+						fileOutputStream.flush();
+
+					}
+
+				}
+
+			} catch (FileNotFoundException e) {
+
+				photoFile.delete();
+
+				e.printStackTrace();
+
+			} catch (IOException e) {
+
+				photoFile.delete();
+
+				e.printStackTrace();
+
+			} finally {
+
+				try {
+
+					fileOutputStream.close();
+
+				} catch (IOException e) {
+
+					e.printStackTrace();
+
+				}
+
+			}
+
 		}
+
 	}
 
 	private void customOptionSetup() {
