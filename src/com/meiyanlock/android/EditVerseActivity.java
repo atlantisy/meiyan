@@ -90,8 +90,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		ImageButton editcolor_btn = (ImageButton) findViewById(R.id.edit_color);
 		editcolor_btn.setOnClickListener(editColorOnClickListener);
 		// 拍照或选取相册图片为背景
-		ImageButton editcamera_btn = (ImageButton) findViewById(R.id.edit_camera);
-		editcamera_btn.setOnClickListener(editCameraOnClickListener);
+		ImageButton editwallpaper_btn = (ImageButton) findViewById(R.id.edit_camera);
+		editwallpaper_btn.setOnClickListener(editWallpaperOnClickListener);
 
 		// 自定义种类选择
 		customOptionSetup();
@@ -154,96 +154,19 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 
 	};
 	
-	private static final int TAKE_PICTURE = 0;
-	private static final int CHOOSE_PICTURE = 1;
-	
-	// 拍照为背景
-	private OnClickListener editCameraOnClickListener = new OnClickListener() {
+	// 拍照或选取相册图片为锁屏壁纸
+	private OnClickListener editWallpaperOnClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			//Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-			//startActivityForResult(i, RESULT_TAKE_PHOTO);
-			
-			// photo();
-			
 			showPicturePicker(EditVerseActivity.this);
 		}
 	};
-	// 选取相册图片为背景
-	private OnClickListener editCameraOnClickListener1 = new OnClickListener() {
-
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub 
-			//Intent.ACTION_GET_CONTENT    Intent.ACTION_PICK
-			Intent i = new Intent(
-					Intent.ACTION_GET_CONTENT,
-					android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-			startActivityForResult(i, RESULT_LOAD_IMAGE);
-		}
-	};
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (resultCode == Activity.RESULT_OK) {
-			switch (requestCode) {
-			case RESULT_TAKE_PHOTO:
-				// 检测SD卡是否可用
-				String sdStatus = Environment.getExternalStorageState();
-				if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {
-					Log.v("MinelockFile","SD card is not avaiable/writeable right now.");
-					return;
-				}
-				// 获取图片数据
-				Bundle bundle = data.getExtras();
-				Bitmap bitmap = (Bitmap) bundle.get("data");
-				// 设置背景图片
-				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
-				
-				// 创建文件夹 及命名图片文件
-/*				File filedirName = new File("/sdcard/minelock/");
-				filedirName.mkdirs();
-				String fileName = "/sdcard/minelock/wallpaper.jpg";
-				// 将图片压缩并输出到SD卡上命名的文件上
-				FileOutputStream output = null;								
-				try {
-					output = new FileOutputStream(fileName);					
-					bitmap.compress(Bitmap.CompressFormat.JPEG, 100, output);// 把数据写入文件
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						output.flush();
-						output.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}*/
-				//bitmap.recycle();
-				break;
-			case RESULT_LOAD_IMAGE:
-				Uri uri = data.getData();
-				if (uri != null) {
-					Bitmap photo = BitmapFactory.decodeFile(uri.getPath());
-					mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(photo));
-
-/*					savePhotoToSDCard(photo, Environment
-							.getExternalStorageDirectory().getAbsolutePath(),
-							String.valueOf(System.currentTimeMillis()));
-					photo.recycle();*/
-				}
-				break;
-			}
-		}
-	}
-
+	
 	public void showPicturePicker(Context context){
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		builder.setTitle("锁屏壁纸");
+		builder.setTitle("设置锁屏壁纸");
 		builder.setNegativeButton("取消", null);
 		builder.setItems(new String[]{"拍照","从相册中选取"}, new DialogInterface.OnClickListener() {
 			
@@ -251,15 +174,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			public void onClick(DialogInterface dialog, int which) {
 				switch (which) {
 				case TAKE_PICTURE:
-					Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					startActivityForResult(i, RESULT_TAKE_PHOTO);
+					Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+					startActivityForResult(openCameraIntent, TAKE_PICTURE);
 					break;
 					
 				case CHOOSE_PICTURE:
-					Intent intent = new Intent(
-							Intent.ACTION_GET_CONTENT,
-							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-					startActivityForResult(intent, RESULT_LOAD_IMAGE);
+					Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
+					openAlbumIntent.setType("image/*");
+					startActivityForResult(openAlbumIntent, CHOOSE_PICTURE);
 					break;
 					
 				default:
@@ -269,106 +191,42 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		});
 		builder.create().show();
 	}
+		
+	private static final int TAKE_PICTURE = 0;
+	private static final int CHOOSE_PICTURE = 1;
 	
-	private static final int RESULT_TAKE_PHOTO = 10;
-	private static final int RESULT_LOAD_IMAGE = 11;
-	private Uri photoUri;
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 
-	public void photo() {
-		try {
-			Intent openCameraIntent = new Intent(
-					MediaStore.ACTION_IMAGE_CAPTURE);
-
-			String sdcardState = Environment.getExternalStorageState();
-			String sdcardPathDir = android.os.Environment
-					.getExternalStorageDirectory().getPath() + "/minelock/";
-			File file = null;
-			if (Environment.MEDIA_MOUNTED.equals(sdcardState)) {
-				File fileDir = new File(sdcardPathDir);
-				if (!fileDir.exists()) {
-					fileDir.mkdirs();// 建立图片目录
-				}
-				// 按系统时间命名图片名称
-				file = new File(sdcardPathDir + System.currentTimeMillis()
-						+ ".JPEG");
-			}
-			if (file != null) {
-				String path = file.getPath();
-				photoUri = Uri.fromFile(file);
-				openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-
-				startActivityForResult(openCameraIntent, RESULT_TAKE_PHOTO);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/** Save image to the SD card **/
-
-	public void savePhotoToSDCard(Bitmap photoBitmap, String path,
-			String photoName) {
-
-		if (android.os.Environment.getExternalStorageState().equals(
-				android.os.Environment.MEDIA_MOUNTED)) {
-
-			File dir = new File(path);
-
-			if (!dir.exists()) {
-
-				dir.mkdirs();
-
-			}
-
-			File photoFile = new File(path, photoName); // 在指定路径下创建文件
-
-			FileOutputStream fileOutputStream = null;
-
-			try {
-
-				fileOutputStream = new FileOutputStream(photoFile);
-
-				if (photoBitmap != null) {
-
-					if (photoBitmap.compress(Bitmap.CompressFormat.PNG, 100,
-
-					fileOutputStream)) {
-
-						fileOutputStream.flush();
-
+		if (resultCode == Activity.RESULT_OK) {
+			switch (requestCode) {
+			case TAKE_PICTURE:
+				// 获取图片数据
+				Bundle bundle = data.getExtras();
+				Bitmap bitmap = (Bitmap) bundle.get("data");
+				// 设置锁屏壁纸
+				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));				
+				break;
+				
+			case CHOOSE_PICTURE:								
+				ContentResolver resolver = getContentResolver();			
+				Uri originalUri = data.getData(); 
+	            try {
+					Bitmap photo = MediaStore.Images.Media.getBitmap(resolver, originalUri);
+					if (photo != null) {						
+						// 设置锁屏壁纸
+						mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(photo));
 					}
-
-				}
-
-			} catch (FileNotFoundException e) {
-
-				photoFile.delete();
-
-				e.printStackTrace();
-
-			} catch (IOException e) {
-
-				photoFile.delete();
-
-				e.printStackTrace();
-
-			} finally {
-
-				try {
-
-					fileOutputStream.close();
-
-				} catch (IOException e) {
-
+				} catch (FileNotFoundException e) {
 					e.printStackTrace();
-
-				}
-
+				} catch (IOException e) {
+					e.printStackTrace();
+				}  
+				break;
+				
 			}
-
 		}
-
 	}
 
 	private void customOptionSetup() {
