@@ -210,7 +210,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int empty=0x7f02000e;
         public static final int ic_camera=0x7f02000f;
         public static final int ic_color=0x7f020010;
-        public static final int ic_edit_text=0x7f020011;
+        public static final int ic_edit=0x7f020011;
         public static final int ic_exit=0x7f020012;
         public static final int ic_icon=0x7f020013;
         public static final int ic_lock_blank=0x7f020014;

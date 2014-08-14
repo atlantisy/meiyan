@@ -43,7 +43,7 @@
             android:layout_marginRight="8dp"
             android:background="@color/alpha"
             android:gravity="center"
-            android:text="投稿/意见"
+            android:text="投稿/反馈"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>
