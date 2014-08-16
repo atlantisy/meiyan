@@ -3,6 +3,9 @@ package com.meiyanlock.android;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +24,9 @@ public class SetPasswordActivity extends Activity {
 	private Toast toast;
 	
 	public static final String PREFS = "lock_pref";//pref文件名
-	public static final String WALLPAPER = "wallpaper";//壁纸pref值名称
+	public static final String BOOLIDPATH = "wallpaper_idorpath";//应用内or外壁纸bool的pref值名称,true为ID，false为path
+	public static final String WALLPAPERID = "wallpaper_id";//应用内壁纸资源ID的pref值名称
+	public static final String WALLPAPERPATH = "wallpaper_path";//应用外壁纸Path的pref值名称
 	
 	private void showToast(CharSequence message) {
 		if (null == toast) {
@@ -41,8 +46,15 @@ public class SetPasswordActivity extends Activity {
 		RelativeLayout setPasswordLayout = (RelativeLayout)findViewById(R.id.SetPasswordLayout);
 		//获取pref值
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);
-		int wallpaperId = settings.getInt(WALLPAPER, R.drawable.wallpaper00);
-		setPasswordLayout.setBackgroundResource(wallpaperId);
+		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
+		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
+		String wallpaperPath = settings.getString(WALLPAPERPATH, "");	
+		if(bIdOrPath==true)//设置壁纸			
+			setPasswordLayout.setBackgroundResource(wallpaperId);
+		else{
+			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
+			setPasswordLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+		}
 		//
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
 		ppwv.setOnCompleteListener(new OnCompleteListener() {

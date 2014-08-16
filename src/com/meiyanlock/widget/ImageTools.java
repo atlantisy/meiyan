@@ -27,8 +27,6 @@ import android.graphics.drawable.Drawable;
 /**
  * Tools for handler picture
  * 
- * @author Ryan.Tang
- * 
  */
 public final class ImageTools {
 

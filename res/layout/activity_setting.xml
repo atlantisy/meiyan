@@ -81,7 +81,7 @@
                 android:gravity="center_vertical"
                 android:text="关闭系统锁屏"
                 android:textColor="@color/gray_black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -96,7 +96,7 @@
                 android:gravity="center_vertical"
                 android:text="修改九宫格密码"
                 android:textColor="@color/gray_black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -110,7 +110,7 @@
                 android:gravity="center_vertical"
                 android:text="美言投稿"
                 android:textColor="@color/gray_black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -124,7 +124,7 @@
                 android:gravity="center_vertical"
                 android:text="意见反馈"
                 android:textColor="@color/gray_black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -136,9 +136,9 @@
                 android:layout_height="48dp"
                 android:background="@color/alpha"
                 android:gravity="center_vertical"
-                android:text="应用推荐"
+                android:text="版本"
                 android:textColor="@color/gray_black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -152,7 +152,12 @@
                 android:gravity="center_vertical"
                 android:text="关于"
                 android:textColor="@color/gray_black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
+           
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="24dp"
+                android:background="@color/alpha" />
 
             <View
                 android:layout_width="fill_parent"
@@ -171,7 +176,7 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="0.0px"
+                android:layout_height="2.0px"
                 android:background="@drawable/shape_line" />
         </LinearLayout>
     </ScrollView>

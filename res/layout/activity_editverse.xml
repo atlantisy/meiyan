@@ -23,9 +23,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingBottom="12dp"
-            android:paddingTop="12dp"
-            android:text="发布美言"
+			android:gravity="center_vertical"
+            android:text="编辑锁屏"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
 
@@ -47,12 +46,14 @@
             android:layout_weight="1"
             android:src="@drawable/blank" />
 
-        <ImageButton
+        <Button
             android:id="@+id/edit_ok"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@color/alpha"
-            android:src="@drawable/ic_ok" />
+            android:text="发布"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +77,7 @@
                 android:background="@color/alpha"
                 android:ems="16"
                 android:gravity="center"
-                android:hint="写下喜欢的一句话..."
+                android:hint="写美言..."
                 android:inputType="textMultiLine"
                 android:maxLength="32"
                 android:paddingLeft="10dp"

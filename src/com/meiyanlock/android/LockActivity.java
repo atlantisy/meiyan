@@ -15,8 +15,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -50,7 +53,9 @@ public class LockActivity extends FragmentActivity {
 	
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String VERSE = "verse";//锁屏方式pref值名称
-	public static final String WALLPAPER = "wallpaper";//壁纸pref值名称	
+	public static final String BOOLIDPATH = "wallpaper_idorpath";//应用内or外壁纸bool的pref值名称,true为ID，false为path
+	public static final String WALLPAPERID = "wallpaper_id";//应用内壁纸资源ID的pref值名称
+	public static final String WALLPAPERPATH = "wallpaper_path";//应用外壁纸Path的pref值名称
 	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
@@ -78,25 +83,32 @@ public class LockActivity extends FragmentActivity {
 		//Remove notification bar
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_lock);
-			
-		//获取随机诗词美言
+		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
+		
+		// 获取随机诗词美言
 /*		String[] sArray = (String[]) this.getResources().getStringArray(R.array.Summer);
 		int index = (int)(Math.random()*sArray.length);
 		String str = sArray[index]; */
-		//获取pref值			
+		// 获取pref值			
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);
-		int wallpaperId = settings.getInt(WALLPAPER, R.drawable.wallpaper00);
-		//设置壁纸
-		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
-		lockLayout.setBackgroundResource(wallpaperId);
-		//设置美言
+		// 设置壁纸		
+		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
+		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
+		String wallpaperPath = settings.getString(WALLPAPERPATH, "");	
+		if(bIdOrPath==true)//设置壁纸			
+			lockLayout.setBackgroundResource(wallpaperId);
+		else{
+			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
+			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+		}		
+		// 设置美言
 		sCustom = settings.getString(VERSE, "每时每刻 美妙美言");		
 		sCustom = sCustom.trim();//去掉前后空格
 		Log.d(TAG, sCustom);
 		
-		//初始化滑动解锁Viewpager，即锁屏方式1
+		// 初始化滑动解锁Viewpager，即锁屏方式1
 		InitViewPager();
-		//九宫手势解锁，即锁屏方式2
+		// 九宫手势解锁，即锁屏方式2
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
 		ppwv.setOnCompleteListener(new OnCompleteListener() {
 			@Override
@@ -112,11 +124,11 @@ public class LockActivity extends FragmentActivity {
 			}
 		});
 		
-		//获取存储的pref数据
+		// 获取存储的pref数据
 		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);  
 		int flag = home_setting.getInt(LOCKFLAG, 1);
 		boolean setPassword = home_setting.getBoolean(PWSETUP, false);
-		//控制锁屏方式的显示
+		// 控制锁屏方式的显示
 		if(flag==2 & setPassword==true){			
 			mPager.setVisibility(View.GONE);
 			ppwv.setVisibility(View.VISIBLE);			

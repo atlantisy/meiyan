@@ -18,6 +18,9 @@ import com.meiyanlock.widget.AbstractSpinerAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -62,7 +65,9 @@ public class HomeActivity extends Activity implements OnClickListener,
 
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String VERSE = "verse";// 美言pref值名称
-	public static final String WALLPAPER = "wallpaper";//壁纸pref值名称	
+	public static final String BOOLIDPATH = "wallpaper_idorpath";// 应用内or外壁纸bool的pref值名称,true为ID，false为path
+	public static final String WALLPAPERID = "wallpaper_id";// 应用内壁纸资源ID的pref值名称
+	public static final String WALLPAPERPATH = "wallpaper_path";// 应用外壁纸Path的pref值名称	
 	public static final String LOCKFLAG = "lockFlag";// 锁屏方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";// 九宫格是否设置pref值名称
 
@@ -75,7 +80,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-
 		// 下拉刷新
 		mPullRefreshGridView = (PullToRefreshGridView) findViewById(R.id.pull_refresh_grid);
 		mGridView = mPullRefreshGridView.getRefreshableView();
@@ -84,21 +88,16 @@ public class HomeActivity extends Activity implements OnClickListener,
 
 					@Override
 					public void onPullDownToRefresh(
-							PullToRefreshBase<GridView> refreshView) {
-/*						mPullRefreshGridView.getLoadingLayoutProxy().setRefreshingLabel("正在加载");
-						mPullRefreshGridView.getLoadingLayoutProxy().setPullLabel("下拉推荐美言…");
-						mPullRefreshGridView.getLoadingLayoutProxy().setReleaseLabel("放开以推荐…");	*/					
+							PullToRefreshBase<GridView> refreshView) {					
 						// 下拉
 						PullDown();
 					}
-
 					@Override
 					public void onPullUpToRefresh(
 							PullToRefreshBase<GridView> refreshView) {
 						// 上拉
 						PullUp();
 					}
-
 				});
 
 		// 美言类型设置选项
@@ -115,14 +114,12 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 设置九宫格手势
 		setup_grid_button = (Button) findViewById(R.id.home_setup_grid);
 		setup_grid_button.setOnClickListener(this);
-
 		// Verse
-		String strVerse = "396796777";
+		String strVerse = "123456789";
 		// 简约视图
 		verse_line = (TextView) findViewById(R.id.line_verse);
 		// 九宫格视图
-		// verse_grid = (PatternPassWordView)
-		// findViewById(R.id.mPatternPassWordView);
+		// verse_grid = (PatternPassWordView)findViewById(R.id.mPatternPassWordView);
 		verse_grid1 = (LinearLayout) findViewById(R.id.verse_layout);
 		verse_grid = (GridView) findViewById(R.id.grid_verse);
 		char[] chVerse = strVerse.toCharArray();
@@ -133,23 +130,28 @@ public class HomeActivity extends Activity implements OnClickListener,
 			map.put("Verse", "" + chVerse[i]);
 			listVerse.add(map);
 		}
-		// 生成适配器的Verses <====> 动态数组的元素，一一对应
+		// 生成适配器
 		SimpleAdapter saVerses = new SimpleAdapter(this, listVerse,
 				R.layout.gridview_verse, new String[] { "Verse" },
 				new int[] { R.id.verse_content });
-		// 添加并且显示
+		// 添加并且显示,添加消息处理
 		verse_grid.setAdapter(saVerses);
-		// 添加消息处理
 		verse_grid.setOnItemClickListener(new ItemClickListener());
-
 		// 获取存储的pref数据
 		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);
 		flag = home_setting.getInt(LOCKFLAG, 1);
 		bPassWord = home_setting.getBoolean(PWSETUP, false);
 		// 设置壁纸
-		LinearLayout homeLayout = (LinearLayout)findViewById(R.id.HomeLayout);
-		int wallpaperId = home_setting.getInt(WALLPAPER, R.drawable.wallpaper00);
-		homeLayout.setBackgroundResource(wallpaperId);
+		LinearLayout homeLayout = (LinearLayout)findViewById(R.id.HomeLayout);		
+		boolean bIdOrPath = home_setting.getBoolean(BOOLIDPATH, true);
+		int wallpaperId = home_setting.getInt(WALLPAPERID, R.drawable.wallpaper00);
+		String wallpaperPath = home_setting.getString(WALLPAPERPATH, "");	
+		if(bIdOrPath==true)//设置壁纸			
+			homeLayout.setBackgroundResource(wallpaperId);
+		else{
+			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
+			homeLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+		}
 		// 获取美言
 		verse = home_setting.getString(VERSE, "每时每刻 美妙美言");
 		// 设置美言，简言和九宫言
@@ -194,7 +196,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		TextView line_verse = (TextView) findViewById(R.id.line_verse);
 		line_verse.setText(verse.trim());//清楚前后空格
 
-		String s = verse.replace("\n", "");
+		String s = verse.replace("\n", " ");
 		TextView verse0 = (TextView) findViewById(R.id.verse0);
 		verse0.setText(s.substring(0, 1));
 		TextView verse1 = (TextView) findViewById(R.id.verse1);
@@ -218,15 +220,15 @@ public class HomeActivity extends Activity implements OnClickListener,
 	//按两次返回键退出
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-/*			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
 				Object mHelperUtils;
 				Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
 				mExitTime = System.currentTimeMillis();
 			} 
-			else*/
+			else
 				finish();				
 				//android.os.Process.killProcess(android.os.Process.myPid());
-				System.exit(0);
+				//System.exit(0);
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
