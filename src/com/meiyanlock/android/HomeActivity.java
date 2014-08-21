@@ -14,10 +14,12 @@ import com.meiyanlock.widget.PatternPassWordView;
 import com.meiyanlock.widget.SpinerPopWindow;
 import com.meiyanlock.widget.CustemObject;
 import com.meiyanlock.widget.AbstractSpinerAdapter;
+import com.meiyanlock.widget.dbHelper;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -38,6 +40,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,11 +79,13 @@ public class HomeActivity extends Activity implements OnClickListener,
 
 	private PullToRefreshGridView mPullRefreshGridView;
 	private GridView mGridView;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		        
 		// ÏÂÀ­Ë¢ÐÂ
 		mPullRefreshGridView = (PullToRefreshGridView) findViewById(R.id.pull_refresh_grid);
 		mGridView = mPullRefreshGridView.getRefreshableView();

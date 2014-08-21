@@ -2,8 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    style="@anim/slide_in_from_bottom"
     tools:context="${packageName}.${activityClass}" >
 
     <LinearLayout
@@ -26,7 +24,7 @@
             android:layout_height="match_parent"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"
-            android:text="历史记录"
+            android:text="历史发言"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
     </LinearLayout>

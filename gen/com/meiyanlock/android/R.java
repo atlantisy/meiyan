@@ -267,7 +267,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class id {
         public static final int HomeLayout=0x7f050014;
-        public static final int ItemTitle=0x7f05004c;
         public static final int LockLayout=0x7f050033;
         public static final int SetPasswordLayout=0x7f05003d;
         public static final int am_pm=0x7f050036;
@@ -282,7 +281,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int edit_verse=0x7f050010;
         public static final int editverse_layout=0x7f05000c;
         public static final int editverse_return=0x7f05000d;
-        public static final int fl_inner=0x7f05004d;
+        public static final int fl_inner=0x7f05004c;
         public static final int flip=0x7f050008;
         public static final int grid_verse=0x7f05002e;
         public static final int gridview=0x7f050009;
@@ -305,7 +304,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int iv_unlock=0x7f050047;
         public static final int line_verse=0x7f05002d;
         public static final int list_verse=0x7f05003c;
-        public static final int listview=0x7f050053;
+        public static final int listview=0x7f050052;
         public static final int lock_switch=0x7f050043;
         public static final int login_toast=0x7f050037;
         public static final int mPatternPassWordView=0x7f050038;
@@ -315,10 +314,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pullFromStart=0x7f050001;
         public static final int pullUpFromBottom=0x7f050006;
         public static final int pull_refresh_grid=0x7f050022;
-        public static final int pull_to_refresh_image=0x7f05004e;
-        public static final int pull_to_refresh_progress=0x7f05004f;
-        public static final int pull_to_refresh_sub_text=0x7f050051;
-        public static final int pull_to_refresh_text=0x7f050050;
+        public static final int pull_to_refresh_image=0x7f05004d;
+        public static final int pull_to_refresh_progress=0x7f05004e;
+        public static final int pull_to_refresh_sub_text=0x7f050050;
+        public static final int pull_to_refresh_text=0x7f05004f;
+        public static final int recent_item=0x7f050053;
         public static final int recent_return=0x7f05003b;
         public static final int recent_top=0x7f05003a;
         public static final int rotate=0x7f050007;
@@ -328,7 +328,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int setting_feedback=0x7f050042;
         public static final int setting_return=0x7f050040;
         public static final int setting_setpassword=0x7f050044;
-        public static final int textView=0x7f050052;
+        public static final int textView=0x7f050051;
         public static final int time=0x7f050034;
         public static final int timeDisplay=0x7f050035;
         public static final int tvReset=0x7f05003e;
@@ -362,12 +362,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int frag_unlock=0x7f030007;
         public static final int frag_verse=0x7f030008;
         public static final int gridview_verse=0x7f030009;
-        public static final int listview_recent=0x7f03000a;
-        public static final int pull_to_refresh_header_horizontal=0x7f03000b;
-        public static final int pull_to_refresh_header_vertical=0x7f03000c;
-        public static final int spiner_item_layout=0x7f03000d;
-        public static final int spiner_window_layout=0x7f03000e;
-        public static final int start=0x7f03000f;
+        public static final int pull_to_refresh_header_horizontal=0x7f03000a;
+        public static final int pull_to_refresh_header_vertical=0x7f03000b;
+        public static final int spiner_item_layout=0x7f03000c;
+        public static final int spiner_window_layout=0x7f03000d;
+        public static final int start=0x7f03000e;
+        public static final int view_recent=0x7f03000f;
     }
     public static final class string {
         public static final int app_name=0x7f070007;

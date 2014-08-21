@@ -67,7 +67,8 @@
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="是否开启美言锁屏"
-                android:textColor="@color/gray_black" />
+                android:textColor="@color/gray_black" 
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="fill_parent"

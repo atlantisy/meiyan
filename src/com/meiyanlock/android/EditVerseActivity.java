@@ -15,6 +15,7 @@ import com.meiyanlock.widget.CustemSpinerAdapter;
 import com.meiyanlock.widget.SpinerPopWindow;
 import com.meiyanlock.widget.WallpaperAdapter;
 import com.meiyanlock.widget.ImageTools;
+import com.meiyanlock.widget.dbHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -43,6 +44,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 
@@ -70,6 +72,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	private LinearLayout mEditVerseLayout;
 	private WallpaperAdapter wpAdapter;
 	private GridView wpGridview;
+	
+	dbHelper dbRecent;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +113,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		Button editok_btn = (Button) findViewById(R.id.edit_ok);
 		editok_btn.setOnClickListener(editOkOnClickListener);
 
+        //存入SQL数据库
+		dbRecent = new dbHelper(this);
+		
 		// 自定义种类选择
 		customOptionSetup();
 	}
@@ -127,6 +134,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			if (len < 9)
 				for (int i = 0; i <= 9 - len; i++)
 					verse += " ";
+			// 将新增美言存入SQL数据库
+			dbRecent.insert(verse);
 			// 将美言存入SharedPreferences
 			editor.putString(VERSE, verse);// 美言
 			// 将壁纸结果存入SharedPreferences
