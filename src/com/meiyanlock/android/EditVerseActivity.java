@@ -119,7 +119,6 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 自定义种类选择
 		customOptionSetup();
 	}
-
 	
 	// 发布美言及壁纸
 	private OnClickListener editOkOnClickListener = new OnClickListener() {
@@ -145,7 +144,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			editor.commit();
 
 			startActivity(new Intent(EditVerseActivity.this, HomeActivity.class));
-			finish();
+			//finish();
 		}
 	};
 	

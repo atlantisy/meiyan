@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
@@ -9,8 +10,10 @@
         android:id="@+id/recent_item"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:text="verse"
-        android:textSize="20sp" />
+        android:textSize="18sp" 
+        android:textColor="@color/black"/>
 
 </RelativeLayout>

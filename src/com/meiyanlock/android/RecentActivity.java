@@ -9,6 +9,8 @@ import com.meiyanlock.widget.dbHelper;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnCreateContextMenuListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
@@ -47,51 +50,34 @@ public class RecentActivity extends Activity {
         		R.layout.view_recent,recentCursor,
         		new String[]{dbHelper.FIELD_TITLE},
         		new int[]{R.id.recent_item});
-        recentList.setAdapter(recentAdapter);
-        
-        
-/*        //生成动态数组，加入数据
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
-        //历史记录只取30条
-        for(int i = 0; i < 30; i++){
-        	HashMap<String, Object> map = new HashMap<String, Object>();
-        	map.put("ItemTitle", "What will your verse be? "+i);
-        	listItem.add(map);
-        }
-        //生成适配器的Item和动态数组对应的元素
-        SimpleAdapter listItemAdapter = new SimpleAdapter(this,
-        	//数据源
-        	listItem, 
-        	//listview_recent的XML实现
-        	R.layout.view_recent,
-            //动态数组与ImageItem对应的子项        
-            new String[] {"ItemTitle"}, 
-            new int[] {R.id.recent_item}
-        );       
-        //添加并且显示
-        recentList.setAdapter(listItemAdapter); */
-        
+        recentList.setAdapter(recentAdapter);  
         
         //添加点击
         recentList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				//setTitle("点击第"+arg2+"个项目");
 				recentCursor.moveToPosition(arg2);
 				_id = recentCursor.getInt(0);
 				String verse = recentCursor.getString(1);
+				// 将美言存入SharedPreferences
+				SharedPreferences settings = getSharedPreferences(PREFS, 0);
+				SharedPreferences.Editor editor = settings.edit();				
+				editor.putString(VERSE, verse);// 美言
+				editor.commit();
+				
+				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
 			}
 		});
         
-        recentList.setOnItemSelectedListener(new OnItemSelectedListener() {
+/*        recentList.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				// TODO Auto-generated method stub
-				SQLiteCursor sc=(SQLiteCursor)arg0.getSelectedItem();
-				_id=sc.getInt(0);
-				String verse = sc.getString(1);
+				SQLiteCursor sc = (SQLiteCursor)arg0.getSelectedItem();
+				_id = sc.getInt(0);
+				//String verse = sc.getString(1);
 			}
 
 			@Override
@@ -99,7 +85,7 @@ public class RecentActivity extends Activity {
 				// TODO Auto-generated method stub
 				
 			}
-		});
+		}); */       
         
         //添加长按点击
         recentList.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {			
@@ -114,11 +100,9 @@ public class RecentActivity extends Activity {
 	
 	//长按菜单响应函数
 	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		//setTitle("点击第"+item.getItemId()+"个项目"); 
-		//return super.onContextItemSelected(item);
+	public boolean onContextItemSelected(MenuItem item) {		
+		super.onOptionsItemSelected(item);
 		
-		super.onOptionsItemSelected(item); 
 		switch (item.getItemId()) {
 		case 0:
 			operation("delete");
