@@ -33,7 +33,10 @@ public class RecentActivity extends Activity {
 	dbHelper dbRecent;
 	private Cursor recentCursor;
 	private ListView recentList;
+	private SimpleCursorAdapter recentAdapter;
 	private int _id;
+	
+	private String deleteItem;
 	
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String VERSE = "verse";// 美言pref值名称
@@ -46,7 +49,7 @@ public class RecentActivity extends Activity {
         
         dbRecent = new dbHelper(this);
         recentCursor = dbRecent.select();
-    	SimpleCursorAdapter recentAdapter = new SimpleCursorAdapter(this,
+    	recentAdapter = new SimpleCursorAdapter(this,
         		R.layout.view_recent,recentCursor,
         		new String[]{dbHelper.FIELD_TITLE},
         		new int[]{R.id.recent_item});
@@ -77,7 +80,6 @@ public class RecentActivity extends Activity {
 				// TODO Auto-generated method stub
 				SQLiteCursor sc = (SQLiteCursor)arg0.getSelectedItem();
 				_id = sc.getInt(0);
-				//String verse = sc.getString(1);
 			}
 
 			@Override
@@ -88,10 +90,24 @@ public class RecentActivity extends Activity {
 		}); */       
         
         //添加长按点击
+        recentList.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				recentCursor.moveToPosition(arg2);
+				_id = recentCursor.getInt(0);
+				deleteItem = recentCursor.getString(1);
+				return false;
+			}
+		});
+        
+        //添加长按菜单响应
         recentList.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {			
 			@Override
 			public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-				//menu.setHeaderTitle("美言");   
+				menu.setHeaderTitle(deleteItem.trim());   
 				menu.add(0, 0, 0, "删除");
 				//menu.add(0, 1, 0, "收藏");   
 			}
@@ -104,7 +120,7 @@ public class RecentActivity extends Activity {
 		super.onOptionsItemSelected(item);
 		
 		switch (item.getItemId()) {
-		case 0:
+		case 0:			
 			operation("delete");
 			break;
 		default:
@@ -115,6 +131,7 @@ public class RecentActivity extends Activity {
 	
     private void operation(String cmd)
     {
+    	setTitle("");
 /*    	if(cmd=="add")
     		dbRecent.insert( myEditText.getText().toString());
     	if(cmd=="edit")
@@ -122,7 +139,9 @@ public class RecentActivity extends Activity {
     	if(cmd=="delete")
     		dbRecent.delete(_id);
     	recentCursor.requery();
-    	recentList.invalidateViews();
+    	//recentList.invalidateViews();
+    	recentAdapter.notifyDataSetChanged();
+    	recentList.invalidate();
     	_id=0;    	
     }
 	
