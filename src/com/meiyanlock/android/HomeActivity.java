@@ -64,8 +64,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 	private static final int STATE_LINE = 1;// 锁屏状态设为1
 	private static final int STATE_GRID = 2;// 锁屏状态设为2
 	private static int flag = 1;// 锁屏方式pref值
-	private static boolean bPassWord = false;// 九宫格是否设置pref值
-	private static String verse = "";// 美言pref值
+	private static boolean bPassWord = false;// 九宫格是否设置
+	private static String verse = "";// 美言
 
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String VERSE = "verse";// 美言pref值名称
@@ -108,6 +108,10 @@ public class HomeActivity extends Activity implements OnClickListener,
 
 		// 美言类型设置选项
 		verseOptionSetup();
+		
+		// 分享按钮
+		ImageButton share_button = (ImageButton) findViewById(R.id.home_share1);
+		share_button.setOnClickListener(this);
 		// 设置按钮
 		ImageButton setting_button = (ImageButton) findViewById(R.id.home_setting1);
 		setting_button.setOnClickListener(this);
@@ -332,6 +336,13 @@ public class HomeActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
+		case R.id.home_share1:
+			Intent intent=new Intent(Intent.ACTION_SEND);  
+			intent.setType("text/plain");  
+			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");  
+			intent.putExtra(Intent.EXTRA_TEXT, verse);  
+			startActivity(Intent.createChooser(intent, getTitle()));
+			break;
 		case R.id.home_setting1:
 			startActivity(new Intent(HomeActivity.this, SettingActivity.class));
 			break;
