@@ -96,8 +96,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 获取保存的美言
 		String verse = settings.getString(VERSE, "");		
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
-		verse_edit.setText(verse.trim().toCharArray(), 0, verse.trim().length());//设置默认美言
-		verse_edit.setSelection(verse.trim().length());//设置光标在末尾
+		//verse_edit.setText(verse.trim().toCharArray(), 0, verse.trim().length());//设置默认美言
+		//verse_edit.setSelection(verse.trim().length());//设置光标在末尾
 		// 选择应用自带颜色初始化
 		wpAdapter = new WallpaperAdapter(this);
 		wpGridview = (GridView) findViewById(R.id.wallpaper_grid);

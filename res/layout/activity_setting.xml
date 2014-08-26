@@ -68,7 +68,7 @@
                 android:checked="false"
                 android:text="是否开启美言锁屏"
                 android:textColor="@color/gray_black" 
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -82,7 +82,7 @@
                 android:gravity="center_vertical"
                 android:text="关闭系统锁屏"
                 android:textColor="@color/gray_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -97,7 +97,7 @@
                 android:gravity="center_vertical"
                 android:text="修改九宫格密码"
                 android:textColor="@color/gray_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -111,7 +111,7 @@
                 android:gravity="center_vertical"
                 android:text="美言投稿"
                 android:textColor="@color/gray_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -125,7 +125,7 @@
                 android:gravity="center_vertical"
                 android:text="意见反馈"
                 android:textColor="@color/gray_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -139,7 +139,7 @@
                 android:gravity="center_vertical"
                 android:text="版本"
                 android:textColor="@color/gray_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -153,7 +153,7 @@
                 android:gravity="center_vertical"
                 android:text="关于"
                 android:textColor="@color/gray_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
            
             <View
                 android:layout_width="fill_parent"
@@ -173,7 +173,7 @@
                 android:gravity="center"
                 android:text="退出"
                 android:textColor="@color/gray_black"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
             <View
                 android:layout_width="fill_parent"
