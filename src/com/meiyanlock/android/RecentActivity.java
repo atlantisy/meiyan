@@ -51,17 +51,17 @@ public class RecentActivity extends Activity {
         recentCursor = dbRecent.select();
     	recentAdapter = new SimpleCursorAdapter(this,
         		R.layout.view_recent,recentCursor,
-        		new String[]{dbHelper.FIELD_TITLE},
-        		new int[]{R.id.recent_item});
-        recentList.setAdapter(recentAdapter);  
-        
+        		new String[]{dbHelper.FIELD_TITLE,dbHelper.FIELD_ITEM},
+        		new int[]{R.id.recent_title,R.id.recent_item});
+        recentList.setAdapter(recentAdapter);
+               
         //添加点击
         recentList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				recentCursor.moveToPosition(arg2);
 				_id = recentCursor.getInt(0);
-				String verse = recentCursor.getString(1);
+				String verse = recentCursor.getString(1) + recentCursor.getString(2);
 				// 将美言存入SharedPreferences
 				SharedPreferences settings = getSharedPreferences(PREFS, 0);
 				SharedPreferences.Editor editor = settings.edit();				
@@ -98,7 +98,7 @@ public class RecentActivity extends Activity {
 				// TODO Auto-generated method stub
 				recentCursor.moveToPosition(arg2);
 				_id = recentCursor.getInt(0);
-				deleteItem = recentCursor.getString(1);
+				deleteItem = recentCursor.getString(2);
 				return false;
 			}
 		});

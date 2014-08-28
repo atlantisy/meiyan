@@ -134,7 +134,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				for (int i = 0; i <= 9 - len; i++)
 					verse += " ";
 			// 将新增美言存入SQL数据库
-			dbRecent.insert(verse);
+			dbRecent.insert(verse.substring(0, 1),verse.substring(1));
 			// 将美言存入SharedPreferences
 			editor.putString(VERSE, verse);// 美言
 			// 将壁纸结果存入SharedPreferences

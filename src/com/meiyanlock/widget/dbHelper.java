@@ -14,7 +14,7 @@ public class dbHelper extends SQLiteOpenHelper {
 	private final static String TABLE_NAME="verse_table";
 	public final static String FIELD_ID="_id"; 
 	public final static String FIELD_TITLE="verse_title";
-	
+	public final static String FIELD_ITEM="verse_item";
 	
 	public dbHelper(Context context)
 	{
@@ -26,8 +26,8 @@ public class dbHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		String sql="Create table "+TABLE_NAME+"("+FIELD_ID+" integer primary key autoincrement,"
-		+FIELD_TITLE+" text );";
+		String sql="Create table " + TABLE_NAME + "(" + FIELD_ID + " integer primary key autoincrement,"
+		+ FIELD_TITLE + " text," + FIELD_ITEM + " text );";
 		db.execSQL(sql);
 		
 		 
@@ -48,11 +48,12 @@ public class dbHelper extends SQLiteOpenHelper {
 		return cursor;
 	}
 	
-	public long insert(String Title)
+	public long insert(String Title,String Item)
 	{
 		SQLiteDatabase db=this.getWritableDatabase();
 		ContentValues cv=new ContentValues(); 
 		cv.put(FIELD_TITLE, Title);
+		cv.put(FIELD_ITEM, Item);//
 		long row=db.insert(TABLE_NAME, null, cv);
 		return row;
 	}
@@ -65,13 +66,14 @@ public class dbHelper extends SQLiteOpenHelper {
 		db.delete(TABLE_NAME, where, whereValue);
 	}
 	
-	public void update(int id,String Title)
+	public void update(int id,String Title,String Item)
 	{
 		SQLiteDatabase db=this.getWritableDatabase();
 		String where=FIELD_ID+"=?";
 		String[] whereValue={Integer.toString(id)};
 		ContentValues cv=new ContentValues(); 
 		cv.put(FIELD_TITLE, Title);
+		cv.put(FIELD_ITEM, Item);//
 		db.update(TABLE_NAME, cv, where, whereValue);
 	}
 	

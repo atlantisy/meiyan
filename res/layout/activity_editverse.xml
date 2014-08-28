@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@color/gray_black"
+        android:background="@drawable/shape_background_grey"
         android:orientation="horizontal" >
 
         <ImageButton
@@ -49,11 +49,13 @@
         <Button
             android:id="@+id/edit_ok"
             android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@color/alpha"
-            android:text="发布"
+            android:layout_height="32dp"
+            android:background="@drawable/shape_background_ok"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="center"
+            android:text="发表"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
