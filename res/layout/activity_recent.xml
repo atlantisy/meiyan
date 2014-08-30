@@ -21,12 +21,26 @@
             android:src="@drawable/ic_return" />
 
         <TextView
+            android:id="@+id/recent_label"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
 			android:gravity="center_vertical"
             android:text="历史发言"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
+        
+        <TextView
+            android:id="@+id/recent_label"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        
+        <ImageButton
+            android:id="@+id/recent_random"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_random" />
     </LinearLayout>
 
     <ListView

@@ -61,7 +61,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp" >
+            android:padding="8dp" >
 
             <CheckBox
                 android:id="@+id/lock_switch"
@@ -80,7 +80,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@color/alpha"
+                android:background="@drawable/button_selector"
                 android:gravity="center_vertical"
                 android:text="关闭系统锁屏"
                 android:textColor="@color/gray_black"
@@ -95,7 +95,7 @@
                 android:id="@+id/setting_setpassword"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@color/alpha"
+                android:background="@drawable/button_selector"
                 android:gravity="center_vertical"
                 android:text="修改九宫格密码"
                 android:textColor="@color/gray_black"
@@ -109,7 +109,7 @@
 <!--             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@color/alpha"
+                android:background="@drawable/button_selector"
                 android:gravity="center_vertical"
                 android:text="美言投稿"
                 android:textColor="@color/gray_black"
@@ -123,7 +123,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@color/alpha"
+                android:background="@drawable/button_selector"
                 android:gravity="center_vertical"
                 android:text="意见反馈"
                 android:textColor="@color/gray_black"
@@ -137,7 +137,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@color/alpha"
+                android:background="@drawable/button_selector"
                 android:gravity="center_vertical"
                 android:text="版本"
                 android:textColor="@color/gray_black"
@@ -151,7 +151,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@color/alpha"
+                android:background="@drawable/button_selector"
                 android:gravity="center_vertical"
                 android:text="关于"
                 android:textColor="@color/gray_black"
@@ -171,7 +171,7 @@
                 android:id="@+id/setting_exit"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@color/alpha"
+                android:background="@drawable/button_selector"
                 android:gravity="center"
                 android:text="退出"
                 android:textColor="@color/gray_black"
