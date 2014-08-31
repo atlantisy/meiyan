@@ -39,8 +39,9 @@
             android:id="@+id/recent_random"
             android:layout_width="48dp"
             android:layout_height="match_parent"
+            android:scaleType="centerInside"
             android:background="@color/alpha"
-            android:src="@drawable/ic_random" />
+            android:src="@drawable/ic_random" />        
     </LinearLayout>
 
     <ListView

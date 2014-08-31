@@ -130,14 +130,18 @@ public class RecentActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				int random = (int)(Math.random()*verseQty);
-				recentCursor.moveToPosition(random);
-				_id = recentCursor.getInt(0);
-				String verse = recentCursor.getString(1) + recentCursor.getString(2);
-				// 将美言存入SharedPreferences				
-				editor.putString(VERSE, verse);// 美言
-				editor.commit();
+				if(verseQty>0){
+					recentCursor.moveToPosition(random);
+					_id = recentCursor.getInt(0);
+					String verse = recentCursor.getString(1) + recentCursor.getString(2);
+					// 将美言存入SharedPreferences				
+					editor.putString(VERSE, verse);// 美言
+					editor.commit();
 				
-				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
+					startActivity(new Intent(RecentActivity.this, HomeActivity.class));
+				}
+/*				else
+					random_btn.setClickable(false);*/
 			}
 		});
 	}

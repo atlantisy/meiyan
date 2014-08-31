@@ -8,10 +8,10 @@ package com.handmark.pulltorefresh.library;
 
 public final class R {
 	public static final class anim {
-		public static final int slide_in_from_bottom = 0x7f040000;
-		public static final int slide_in_from_top = 0x7f040001;
-		public static final int slide_out_to_bottom = 0x7f040002;
-		public static final int slide_out_to_top = 0x7f040003;
+		public static final int slide_in_from_bottom = 0x7f04000a;
+		public static final int slide_in_from_top = 0x7f04000b;
+		public static final int slide_out_to_bottom = 0x7f04000c;
+		public static final int slide_out_to_top = 0x7f04000d;
 	}
 	public static final class attr {
 		public static final int ptrAdapterViewBackground = 0x7f010010;
