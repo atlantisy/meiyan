@@ -116,7 +116,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		Button editok_btn = (Button) findViewById(R.id.edit_ok);
 		editok_btn.setOnClickListener(editOkOnClickListener);
 
-        //存入SQL数据库
+        // 存入SQL数据库
 		dbRecent = new dbHelper(this);
 		
 		// 自定义种类选择
@@ -149,8 +149,10 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			editor.putString(WALLPAPERPATH, wallpaperPath);// 壁纸路径
 			editor.commit();
 
-			startActivity(new Intent(EditVerseActivity.this, HomeActivity.class));
+			startActivity(new Intent(EditVerseActivity.this, HomeActivity.class));			
 			//finish();
+			//overridePendingTransition(R.anim.push_down_in,R.anim.alpha_action_out);
+			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 		}
 	};
 	

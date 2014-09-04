@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@drawable/shape_background_grey"
+        android:background="@color/gray_black"
         android:orientation="horizontal" >
 
         <ImageButton
@@ -79,7 +79,7 @@
                 android:background="@color/alpha"
                 android:ems="16"
                 android:gravity="center"
-                android:hint="写美言..."
+                android:hint="写美言"
                 android:inputType="textMultiLine"
                 android:maxLength="32"
                 android:paddingLeft="10dp"

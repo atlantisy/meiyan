@@ -7,14 +7,17 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -46,7 +49,14 @@ public class RecentActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recent);				
-        recentList = (ListView) findViewById(R.id.list_verse);        
+        recentList = (ListView) findViewById(R.id.list_verse);
+        //设置list为空时的提示
+        TextView emptyView = new TextView(this);
+        emptyView.setText("此地无言三百两");
+        emptyView.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);     
+        LayoutParams params = new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
+        addContentView(emptyView, params);
+        recentList.setEmptyView(emptyView);
         // 创建数据库
         dbRecent = new dbHelper(this);
         recentCursor = dbRecent.select();
@@ -73,6 +83,7 @@ public class RecentActivity extends Activity {
 				editor.commit();
 				
 				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
+				overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			}
 		});
         
@@ -114,12 +125,13 @@ public class RecentActivity extends Activity {
 			public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 				menu.setHeaderTitle(deleteItem.trim());   
 				menu.add(0, 0, 0, "删除");
-				//menu.add(0, 1, 0, "收藏");   
+				menu.add(0, 1, 0, "修改");
+				menu.add(0, 2, 0, "复制"); 
 			}
 		}); 
         
         //获取增删后的美言数量
-        String Qty = "历史发言(" + String.valueOf(verseQty) + ")";
+        String Qty = "历史美言(" + String.valueOf(verseQty) + ")";
         recent_label = (TextView) findViewById(R.id.recent_label);
         recent_label.setText(Qty);
         // 随机选取美言
@@ -139,6 +151,7 @@ public class RecentActivity extends Activity {
 					editor.commit();
 				
 					startActivity(new Intent(RecentActivity.this, HomeActivity.class));
+					overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 				}
 /*				else
 					random_btn.setClickable(false);*/
@@ -161,7 +174,13 @@ public class RecentActivity extends Activity {
 			editor.putInt(VERSEQTY, verseQty);// 美言数量
 			editor.commit();
 			
-			recent_label.setText("历史发言(" + String.valueOf(verseQty) + ")");
+			recent_label.setText("历史美言(" + String.valueOf(verseQty) + ")");
+			break;
+		case 1:
+			//operation("edit");
+			break;
+		case 2:
+			//operation("copy");
 			break;
 		default:
 			break;
@@ -172,7 +191,7 @@ public class RecentActivity extends Activity {
     private void operation(String cmd)
     {
     	setTitle("");
-/*    	if(cmd=="add")
+/*    	if(cmd=="copy")
     		dbRecent.insert( myEditText.getText().toString());
     	if(cmd=="edit")
     		dbRecent.update(_id,  myEditText.getText().toString());*/

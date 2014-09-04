@@ -7,22 +7,22 @@
 
     <TextView
         android:id="@+id/recent_title"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/shape_background_ok"
         android:layout_margin="8dp"
         android:gravity="center"
         android:text="美"
         android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/recent_item"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
         android:background="@drawable/button_selector"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:gravity="center_vertical"
         android:paddingRight="4dp"
         android:singleLine="true"
