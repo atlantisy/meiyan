@@ -102,7 +102,7 @@ public class PatternPassWordView extends View {
 				| Paint.DEV_KERN_TEXT_FLAG);
 		textPaint.setTextSize(40.0f);// 字体大小
 		textPaint.setTypeface(Typeface.SANS_SERIF);// 采用默认的宽度
-		textPaint.setColor(Color.WHITE);// 采用的颜色
+		textPaint.setColor(Color.WHITE);// 采用的白色
 /*		textPaint.setShadowLayer(1f, 0,
 		0,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
 */		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置		
@@ -118,6 +118,7 @@ public class PatternPassWordView extends View {
 				if (p.state == Point.STATE_CHECK) {
 					canvas.drawBitmap(pattern_round_click, p.x - r, p.y - r,
 							mPaint);
+					//textPaint.setColor(Color.argb(128, 128, 128, 128));//透明色
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				} else if (p.state == Point.STATE_CHECK_ERROR) {
 					canvas.drawBitmap(pattern_round_click_error, p.x - r,
@@ -125,6 +126,7 @@ public class PatternPassWordView extends View {
 				} else {
 					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r,
 							mPaint);
+					//textPaint.setColor(Color.WHITE);;//白色
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				}
 			}

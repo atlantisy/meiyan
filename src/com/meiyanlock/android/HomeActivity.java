@@ -298,7 +298,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		verse_line.setVisibility(View.VISIBLE);
 		verse_grid1.setVisibility(View.GONE);
 		setup_grid_button.setVisibility(View.GONE);
-		Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_LONG)
+		Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_SHORT)
 				.show();
 	}
 
@@ -350,6 +350,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));
 			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+			//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			break;
 		case R.id.home_text:
 			startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));

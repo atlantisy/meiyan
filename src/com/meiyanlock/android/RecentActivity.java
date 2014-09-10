@@ -1,10 +1,13 @@
 package com.meiyanlock.android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.ClipboardManager;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
@@ -16,11 +19,13 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.meiyanlock.widget.dbHelper;
 
@@ -53,6 +58,7 @@ public class RecentActivity extends Activity {
         //设置list为空时的提示
         TextView emptyView = new TextView(this);
         emptyView.setText("此地无言三百两");
+        emptyView.setTextSize(20.0f);
         emptyView.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);     
         LayoutParams params = new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
         addContentView(emptyView, params);
@@ -84,6 +90,7 @@ public class RecentActivity extends Activity {
 				
 				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
 				overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+				//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 			}
 		});
         
@@ -124,14 +131,14 @@ public class RecentActivity extends Activity {
         	@Override
 			public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 				menu.setHeaderTitle(deleteItem.trim());   
-				menu.add(0, 0, 0, "删除");
-				menu.add(0, 1, 0, "修改");
-				menu.add(0, 2, 0, "复制"); 
+				menu.add(0, 0, 0, "复制");				
+				menu.add(0, 1, 0, "删除");
+				//menu.add(0, 2, 0, "修改");
 			}
 		}); 
         
         //获取增删后的美言数量
-        String Qty = "历史美言(" + String.valueOf(verseQty) + ")";
+        String Qty = "我的美言(" + String.valueOf(verseQty) + ")";
         recent_label = (TextView) findViewById(R.id.recent_label);
         recent_label.setText(Qty);
         // 随机选取美言
@@ -152,6 +159,7 @@ public class RecentActivity extends Activity {
 				
 					startActivity(new Intent(RecentActivity.this, HomeActivity.class));
 					overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+					//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 				}
 /*				else
 					random_btn.setClickable(false);*/
@@ -165,7 +173,11 @@ public class RecentActivity extends Activity {
 		super.onOptionsItemSelected(item);
 		
 		switch (item.getItemId()) {
-		case 0:			
+		case 0:
+			operation("copy");
+			Toast.makeText(getApplicationContext(), "复制成功", Toast.LENGTH_SHORT).show();
+			break;
+		case 1:			
 			operation("delete");
 			if(verseQty>0)
 				verseQty = verseQty-1;
@@ -174,13 +186,12 @@ public class RecentActivity extends Activity {
 			editor.putInt(VERSEQTY, verseQty);// 美言数量
 			editor.commit();
 			
-			recent_label.setText("历史美言(" + String.valueOf(verseQty) + ")");
-			break;
-		case 1:
-			//operation("edit");
+			recent_label.setText("我的美言(" + String.valueOf(verseQty) + ")");
+			Toast.makeText(getApplicationContext(), "删除成功", Toast.LENGTH_SHORT).show();
 			break;
 		case 2:
-			//operation("copy");
+			operation("edit");
+			Toast.makeText(getApplicationContext(), "更新成功", Toast.LENGTH_SHORT).show();
 			break;
 		default:
 			break;
@@ -191,10 +202,27 @@ public class RecentActivity extends Activity {
     private void operation(String cmd)
     {
     	setTitle("");
-/*    	if(cmd=="copy")
-    		dbRecent.insert( myEditText.getText().toString());
-    	if(cmd=="edit")
-    		dbRecent.update(_id,  myEditText.getText().toString());*/
+    	if(cmd=="copy"){
+    		//dbRecent.insert( myEditText.getText().toString());    		
+    		ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+    		cbm.setText(deleteItem);     		
+    	}
+    	if(cmd=="edit"){
+    		final EditText myEditText = new EditText(this);
+    		//myEditText.setText(deleteItem.trim().toCharArray(), 0, deleteItem.trim().length());
+    		myEditText.setText(deleteItem);
+    		myEditText.setSelection(deleteItem.trim().length());//设置光标在末尾
+    		AlertDialog.Builder builder = new AlertDialog.Builder(this);   
+    		builder.setView(myEditText).setNegativeButton("取消", null);
+    		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+            		String str = myEditText.getText().toString();
+            		dbRecent.update(_id, str.substring(0, 1), str.substring(1));           		
+                 }
+            });
+    		builder.show();
+    	}
     	if(cmd=="delete")
     		dbRecent.delete(_id);    		
     	recentCursor.requery();

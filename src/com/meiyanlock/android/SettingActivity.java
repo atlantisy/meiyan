@@ -58,10 +58,10 @@ public class SettingActivity extends Activity {
 	private SharedPreferences prefs = null;
 	static public String customText = "";
 
-	private final String LOCK_VERSE = "verse";
+	//private final String LOCK_VERSE = "verse";
 	private final String LOCK_SWITCH = "lock_screen_switch";
 	
-	private boolean mIsLockScreenOn = true;
+	static public boolean mIsLockScreenOn = true;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
