@@ -18,11 +18,17 @@
             android:layout_height="match_parent"
             android:background="@color/alpha"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_return" />
+            android:src="@drawable/ic_return" />       
 
+        <View
+            android:layout_width="1.0px"
+            android:layout_height="36.0px"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:paddingLeft="8dp"
 			android:gravity="center_vertical"
             android:text="编辑锁屏"
             android:textAppearance="?android:textAppearanceMedium"

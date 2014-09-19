@@ -12,14 +12,15 @@
     <color name="gray_white">#bfbfbf</color>        
     <color name="gray_black">#404040</color>
     <color name="app_color">#25dbc2</color>
-    <color name="red">#fe4543</color>    
+    <color name="red">#fe4543</color>
+    <color name="pink">#f4169d</color>    
     <color name="orange">#f37633</color>
     <color name="orange1">#ffbb32</color>
     <color name="yellow">#ffe800</color>               
     <color name="green">#c1d522</color>    
-    <color name="green1">#0ccc99</color>
-    <color name="blue">#4782f8</color>    
-    <color name="blue1">#5999fb</color>
+    <color name="green1">#32d917</color>
+    <color name="blue">#2989f9</color>    
+    <color name="blue1">#39b5f5</color>
     <color name="violet">#cb70d7</color>
         
 </resources>

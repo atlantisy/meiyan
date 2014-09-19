@@ -185,19 +185,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int alpha_white=0x7f080003;
         public static final int app_color=0x7f08000a;
         public static final int black=0x7f080007;
-        public static final int blue=0x7f080011;
-        public static final int blue1=0x7f080012;
+        public static final int blue=0x7f080012;
+        public static final int blue1=0x7f080013;
         public static final int gray_black=0x7f080009;
         public static final int gray_white=0x7f080008;
-        public static final int green=0x7f08000f;
-        public static final int green1=0x7f080010;
+        public static final int green=0x7f080010;
+        public static final int green1=0x7f080011;
         public static final int light_yellow=0x7f080006;
-        public static final int orange=0x7f08000c;
-        public static final int orange1=0x7f08000d;
+        public static final int orange=0x7f08000d;
+        public static final int orange1=0x7f08000e;
+        public static final int pink=0x7f08000c;
         public static final int red=0x7f08000b;
-        public static final int violet=0x7f080013;
+        public static final int violet=0x7f080014;
         public static final int white=0x7f080005;
-        public static final int yellow=0x7f08000e;
+        public static final int yellow=0x7f08000f;
     }
     public static final class dimen {
         public static final int header_footer_left_right_padding=0x7f060003;
@@ -272,19 +273,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int wallpaper03=0x7f02003e;
         public static final int wallpaper04=0x7f02003f;
         public static final int wallpaper05=0x7f020040;
-        public static final int wallpaper06=0x7f020041;
-        public static final int wallpaper07=0x7f020042;
-        public static final int wallpaper08=0x7f020043;
-        public static final int wallpaper09=0x7f020044;
-        public static final int wallpaper10=0x7f020045;
-        public static final int wallpaper11=0x7f020046;
-        public static final int wallpaper12=0x7f020047;
-        public static final int wallpaper13=0x7f020048;
-        public static final int wallpaper14=0x7f020049;
-        public static final int wallpaper15=0x7f02004a;
-        public static final int wallpaper16=0x7f02004b;
-        public static final int wallpaper17=0x7f02004c;
-        public static final int welcome_bg=0x7f02004d;
+        public static final int welcome_bg=0x7f020041;
     }
     public static final class id {
         public static final int HomeLayout=0x7f050014;

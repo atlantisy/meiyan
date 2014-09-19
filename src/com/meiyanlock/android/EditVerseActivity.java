@@ -119,10 +119,24 @@ public class EditVerseActivity extends Activity implements OnClickListener,
         // 存入SQL数据库
 		dbRecent = new dbHelper(this);
 		
+		// 返回
+		ImageButton editreturn_btn = (ImageButton) findViewById(R.id.editverse_return);
+		editreturn_btn.setOnClickListener(editReturnOnClickListener);
+		
 		// 自定义种类选择
 		customOptionSetup();
 	}
-	
+	// 返回
+	private OnClickListener editReturnOnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			startActivity(new Intent(EditVerseActivity.this, HomeActivity.class));
+			finish();
+			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+		}
+	};	
 	// 发布美言及壁纸
 	private OnClickListener editOkOnClickListener = new OnClickListener() {
 

@@ -165,6 +165,19 @@ public class RecentActivity extends Activity {
 					random_btn.setClickable(false);*/
 			}
 		});
+        
+		// 返回
+		ImageButton return_btn = (ImageButton) findViewById(R.id.recent_return);
+		return_btn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
+				finish();
+				overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			}
+		});
 	}
 	
 	//长按菜单响应函数
