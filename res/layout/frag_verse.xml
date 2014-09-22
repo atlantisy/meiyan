@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/alpha0_black"
-        android:padding="8dp"
+        android:padding="0dp"
         android:src="@drawable/ic_right" />
 
     <TextView
@@ -19,9 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:shadowColor="#4F000000"
-        android:shadowDx="0"
-        android:shadowDy="3"
+        android:shadowColor="#33000000"
+        android:shadowDx="1"
+        android:shadowDy="0"
         android:shadowRadius="1"
         android:singleLine="true"
         android:text="每时每刻 美妙美言"

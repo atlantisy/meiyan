@@ -39,6 +39,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnPreDrawListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,6 +75,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	private LinearLayout mEditVerseLayout;
 	private WallpaperAdapter wpAdapter;
 	private GridView wpGridview;
+	private ImageButton clear_btn;
 	
 	dbHelper dbRecent;
 		
@@ -97,9 +99,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		}
 		// 获取保存的美言
 		verseQty = settings.getInt(VERSEQTY, 0);
-		String verse = settings.getString(VERSE, "");		
+		String verse = settings.getString(VERSE, "感觉自己萌萌哒  ");		
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
-		//verse_edit.setText(verse.trim().toCharArray(), 0, verse.trim().length());//设置默认美言
+		verse_edit.setText(verse.trim().toCharArray(), 0, verse.trim().length());//设置默认美言
 		//verse_edit.setSelection(verse.trim().length());//设置光标在末尾
 		// 选择应用自带颜色初始化
 		wpAdapter = new WallpaperAdapter(this);
@@ -122,10 +124,48 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 返回
 		ImageButton editreturn_btn = (ImageButton) findViewById(R.id.editverse_return);
 		editreturn_btn.setOnClickListener(editReturnOnClickListener);
+		// 清空当前美言
+		clear_btn = (ImageButton) findViewById(R.id.edit_clear);
+		clear_btn.setOnClickListener(clearOnClickListener);
+		// 监控写美言焦点
+		verse_edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {  
+		    @Override  
+		    public void onFocusChange(View v, boolean hasFocus) {  
+		        if(hasFocus) {
+		        	// 此处为得到焦点时的处理内容
+		        	clear_btn.setVisibility(View.VISIBLE);
+		        	int length = verse_edit.getText().toString().length();
+		        	verse_edit.setSelection(0, length);
+		        	verse_edit.setSelection(0);
+		        	verse_edit.setSelectAllOnFocus(true);
+		        } 
+		        else {
+		        	// 此处为失去焦点时的处理内容
+		        	clear_btn.setVisibility(View.GONE);
+		        	verse_edit.setSelectAllOnFocus(false);
+		        }
+		    }
+		});
 		
 		// 自定义种类选择
 		customOptionSetup();
 	}
+	// 清空当前美言
+	private OnClickListener clearOnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			verse_edit.setText("");//
+			// 获取编辑框焦点
+			//verse_edit.setFocusable(true);
+			//verse_edit.requestFocus();
+			//打开软键盘
+			//InputMethodManager imm = (InputMethodManager) verse_edit.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
+			//imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED); 			
+			//imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+		}
+	};	
 	// 返回
 	private OnClickListener editReturnOnClickListener = new OnClickListener() {
 
@@ -211,7 +251,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle("选壁纸");
-		builder.setItems(new String[] { "拍照", "从相册选取" },
+		builder.setItems(new String[] { "拍照", "从相册选取", "桌面壁纸"},
 				new DialogInterface.OnClickListener() {
 
 					@Override
