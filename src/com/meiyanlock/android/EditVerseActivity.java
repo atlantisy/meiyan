@@ -33,11 +33,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.Selection;
 import android.text.Spannable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -99,10 +103,10 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		}
 		// 获取保存的美言
 		verseQty = settings.getInt(VERSEQTY, 0);
-		String verse = settings.getString(VERSE, "感觉自己萌萌哒  ");		
+		String verse = settings.getString(VERSE, "感觉自己萌萌哒");		
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
-		verse_edit.setText(verse.trim().toCharArray(), 0, verse.trim().length());//设置默认美言
-		//verse_edit.setSelection(verse.trim().length());//设置光标在末尾
+		verse_edit.setText(verse);//设置默认美言
+		verse_edit.addTextChangedListener(textChangedWatcher);
 		// 选择应用自带颜色初始化
 		wpAdapter = new WallpaperAdapter(this);
 		wpGridview = (GridView) findViewById(R.id.wallpaper_grid);
@@ -117,39 +121,66 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 发布锁屏美言及壁纸
 		Button editok_btn = (Button) findViewById(R.id.edit_ok);
 		editok_btn.setOnClickListener(editOkOnClickListener);
-
+		
         // 存入SQL数据库
 		dbRecent = new dbHelper(this);
 		
-		// 返回
-		ImageButton editreturn_btn = (ImageButton) findViewById(R.id.editverse_return);
-		editreturn_btn.setOnClickListener(editReturnOnClickListener);
 		// 清空当前美言
 		clear_btn = (ImageButton) findViewById(R.id.edit_clear);
 		clear_btn.setOnClickListener(clearOnClickListener);
-		// 监控写美言焦点
+		// 监控写美言是否获得焦点
 		verse_edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {  
 		    @Override  
 		    public void onFocusChange(View v, boolean hasFocus) {  
 		        if(hasFocus) {
 		        	// 此处为得到焦点时的处理内容
 		        	clear_btn.setVisibility(View.VISIBLE);
-		        	int length = verse_edit.getText().toString().length();
-		        	verse_edit.setSelection(0, length);
-		        	verse_edit.setSelection(0);
-		        	verse_edit.setSelectAllOnFocus(true);
-		        } 
-		        else {
+		        } else {
 		        	// 此处为失去焦点时的处理内容
 		        	clear_btn.setVisibility(View.GONE);
-		        	verse_edit.setSelectAllOnFocus(false);
 		        }
 		    }
 		});
+		// 返回
+		ImageButton editreturn_btn = (ImageButton) findViewById(R.id.editverse_return);
+		editreturn_btn.setOnClickListener(editReturnOnClickListener);
 		
 		// 自定义种类选择
 		customOptionSetup();
 	}
+	
+	// 文本改变监控
+	private TextWatcher textChangedWatcher = new TextWatcher() {
+
+        //缓存上一次文本框内是否为空
+        private boolean isnull = true;
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (TextUtils.isEmpty(s)) {
+                if (!isnull) {
+                	clear_btn.setVisibility(View.GONE);
+                    isnull = true;
+                }
+            } else {
+                if (isnull) {
+                	clear_btn.setVisibility(View.VISIBLE);
+                    isnull = false;
+                }
+            }
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                int count) {
+            
+        }
+    };
 	// 清空当前美言
 	private OnClickListener clearOnClickListener = new OnClickListener() {
 
@@ -158,11 +189,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			// TODO Auto-generated method stub
 			verse_edit.setText("");//
 			// 获取编辑框焦点
-			//verse_edit.setFocusable(true);
 			//verse_edit.requestFocus();
 			//打开软键盘
-			//InputMethodManager imm = (InputMethodManager) verse_edit.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
-			//imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED); 			
+			//InputMethodManager imm = (InputMethodManager) verse_edit.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  			
 			//imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 		}
 	};	
