@@ -132,7 +132,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		verse_edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {  
 		    @Override  
 		    public void onFocusChange(View v, boolean hasFocus) {  
-		        if(hasFocus) {
+		        if(hasFocus & TextUtils.isEmpty(verse_edit.getText().toString())==false) {
 		        	// 此处为得到焦点时的处理内容
 		        	clear_btn.setVisibility(View.VISIBLE);
 		        } else {
@@ -298,7 +298,13 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							startActivityForResult(openAlbumIntent,CHOOSE_PICTURE);							
 							bIdOrPath = false;//壁纸来源为应用外路径
 							break;
-
+							
+						case DEFAULT_PAPER:
+							wallpaperId = R.drawable.wallpaper00;
+							mEditVerseLayout.setBackgroundResource(wallpaperId);
+							bIdOrPath = true;//壁纸来源为应用内ID
+							break;
+							
 						default:
 							break;
 						}
@@ -310,6 +316,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 
 	private static final int TAKE_PHOTO = 0;// 拍照
 	private static final int CHOOSE_PICTURE = 1;// 从相册选取
+	private static final int DEFAULT_PAPER = 2;// 默认壁纸
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

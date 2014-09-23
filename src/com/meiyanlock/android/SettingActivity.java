@@ -61,7 +61,7 @@ public class SettingActivity extends Activity {
 	//private final String LOCK_VERSE = "verse";
 	private final String LOCK_SWITCH = "lock_screen_switch";
 	
-	static public boolean mIsLockScreenOn = true;
+	private boolean mIsLockScreenOn = true;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -126,7 +126,6 @@ public class SettingActivity extends Activity {
 			//Æô¶¯ËøÆÁ
 			if (mIsLockScreenOn){
 				// keep on disabling the system Keyguard
-				//Æô¶¯ËøÆÁ
 				EnableSystemKeyguard(false);
 			}
 			else {
@@ -145,7 +144,19 @@ public class SettingActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		startService(new Intent(this, MyLockScreenService.class));
+		//startService(new Intent(this, MyLockScreenService.class));
+		//Æô¶¯ËøÆÁ
+		if (mIsLockScreenOn){
+			// keep on disabling the system Keyguard
+			//Æô¶¯ËøÆÁ
+			startService(new Intent(this, MyLockScreenService.class));
+			//EnableSystemKeyguard(false);
+		}
+		else {
+			stopService(new Intent(this, MyLockScreenService.class));
+			// recover original Keyguard
+			//EnableSystemKeyguard(true);
+		}
 	}
 
 	@Override

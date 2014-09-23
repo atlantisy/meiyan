@@ -33,6 +33,7 @@ import android.text.style.CharacterStyle;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -166,9 +167,9 @@ public class LockActivity extends FragmentActivity {
 				unLock();
 				break;
 			default:
-//				Intent cameraIntent = new Intent(
-//						MediaStore.ACTION_IMAGE_CAPTURE);
-//				startActivityForResult(cameraIntent, 1);
+/*				Intent cameraIntent = new Intent(
+						MediaStore.ACTION_IMAGE_CAPTURE);
+				startActivityForResult(cameraIntent, 1);*/
 				unLock();
 				break;
 			}
@@ -203,7 +204,36 @@ public class LockActivity extends FragmentActivity {
 			}
 		}
 	}
-
+	
+	// 屏蔽返回键、MENU键
+	public boolean onKeyDown(int keyCode, KeyEvent event) {  
+/*		if (keyCode==KeyEvent.KEYCODE_MENU) {
+			return true;
+		}
+		else if (keyCode==KeyEvent.KEYCODE_BACK) {
+			return true;
+		}*/
+		
+		switch(keyCode){
+		case KeyEvent.KEYCODE_MENU:return true;
+		case KeyEvent.KEYCODE_BACK:return true;
+/*		case KeyEvent.KEYCODE_CALL:return true;
+		case KeyEvent.KEYCODE_SYM: return true;
+		case KeyEvent.KEYCODE_VOLUME_DOWN: return true;
+		case KeyEvent.KEYCODE_VOLUME_UP: return true;
+		case KeyEvent.KEYCODE_STAR: return true;*/
+		}
+		
+		return super.onKeyDown(keyCode, event);
+    } 
+	
+	// 屏蔽home键，android4.0以上不可用
+/*    public void onAttachedToWindow() { 
+        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);  
+        super.onAttachedToWindow(); 
+    }*/
+    
+    //
 	public void unLock() {
 		finish();
 	}
