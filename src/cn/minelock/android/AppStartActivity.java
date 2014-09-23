@@ -2,7 +2,7 @@ package cn.minelock.android;
 
 import cn.minelock.android.HomeActivity;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 import android.app.Activity;
 import android.content.Intent;

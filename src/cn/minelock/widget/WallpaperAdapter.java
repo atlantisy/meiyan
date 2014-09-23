@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 /**
  * ±ÚÖ½
  * */

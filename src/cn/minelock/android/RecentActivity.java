@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import cn.minelock.widget.dbHelper;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 public class RecentActivity extends Activity {
 	

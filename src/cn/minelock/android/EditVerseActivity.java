@@ -17,7 +17,7 @@ import cn.minelock.widget.SpinerPopWindow;
 import cn.minelock.widget.WallpaperAdapter;
 import cn.minelock.widget.dbHelper;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -4,7 +4,7 @@ import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

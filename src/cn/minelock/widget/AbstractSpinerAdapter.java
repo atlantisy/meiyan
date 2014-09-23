@@ -3,7 +3,7 @@ package cn.minelock.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 
 import android.content.Context;

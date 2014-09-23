@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import cn.minelock.android.MyLockScreenService;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 
 import android.R.string;

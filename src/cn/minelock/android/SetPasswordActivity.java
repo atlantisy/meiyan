@@ -17,7 +17,7 @@ import cn.minelock.util.StringUtil;
 import cn.minelock.widget.PatternPassWordView;
 import cn.minelock.widget.PatternPassWordView.OnCompleteListener;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 public class SetPasswordActivity extends Activity {
 	private PatternPassWordView ppwv;

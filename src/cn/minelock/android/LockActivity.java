@@ -6,7 +6,7 @@ import cn.minelock.android.LockActivity.MyOnPageChangeListener;
 import cn.minelock.widget.PatternPassWordView;
 import cn.minelock.widget.PatternPassWordView.OnCompleteListener;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 
 

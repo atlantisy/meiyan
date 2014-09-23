@@ -28,7 +28,7 @@ import cn.minelock.util.Point;
 import cn.minelock.util.RoundUtil;
 import cn.minelock.util.StringUtil;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 /**
  * 

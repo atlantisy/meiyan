@@ -15,7 +15,7 @@ import cn.minelock.widget.dbHelper;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import cn.minelock.widget.AbstractSpinerAdapter.IOnItemSelectListener;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 
 import android.content.Context;

@@ -1,6 +1,6 @@
 package cn.minelock.android;
 
-import com.meiyanlock.android.R;
+import cn.minelock.android.R;
 
 import android.graphics.Color;
 import android.graphics.Paint;
