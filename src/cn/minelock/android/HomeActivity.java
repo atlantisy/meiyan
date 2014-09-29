@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import cn.minelock.util.StringUtil;
 import cn.minelock.widget.AbstractSpinerAdapter;
 import cn.minelock.widget.CustemObject;
 import cn.minelock.widget.CustemSpinerAdapter;
@@ -18,6 +19,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import cn.minelock.android.R;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -299,8 +301,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 		verse_line.setVisibility(View.VISIBLE);
 		verse_grid1.setVisibility(View.GONE);
 		setup_grid_button.setVisibility(View.GONE);
-		Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_SHORT)
-				.show();
+		//Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_SHORT).show();
+		StringUtil.showToast(this, "滑动解锁",  Toast.LENGTH_SHORT);
 	}
 
 	// 九宫锁屏
@@ -313,8 +315,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 			setup_grid_button.setVisibility(View.GONE);
 		else
 			setup_grid_button.setVisibility(View.VISIBLE);
-		Toast.makeText(this, R.string.grid_verse_style, Toast.LENGTH_LONG)
-				.show();
+		//Toast.makeText(this, R.string.grid_verse_style,  Toast.LENGTH_SHORT).show();
+		StringUtil.showToast(this, "九宫解锁",  Toast.LENGTH_SHORT);
 	}
 
 	// 当AdapterView被单击(触摸屏或者键盘)，则返回的Item单击事件
@@ -412,7 +414,5 @@ public class HomeActivity extends Activity implements OnClickListener,
 		mSpinerPopWindow.setWidth(mBtnDropDown.getWidth());
 		mSpinerPopWindow.showAsDropDown(mBtnDropDown);
 	}
-
-
 
 }

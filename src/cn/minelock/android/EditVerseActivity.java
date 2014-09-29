@@ -136,10 +136,10 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		    public void onFocusChange(View v, boolean hasFocus) {  
 		        if(hasFocus & TextUtils.isEmpty(verse_edit.getText().toString())==false) {
 		        	// 此处为得到焦点时的处理内容
-		        	clear_btn.setVisibility(View.VISIBLE);
+		        	//clear_btn.setVisibility(View.VISIBLE);
 		        } else {
 		        	// 此处为失去焦点时的处理内容
-		        	clear_btn.setVisibility(View.GONE);
+		        	//clear_btn.setVisibility(View.GONE);
 		        }
 		    }
 		});

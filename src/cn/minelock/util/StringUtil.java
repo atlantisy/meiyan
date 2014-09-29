@@ -1,9 +1,27 @@
 package cn.minelock.util;
 
-/**
- * 
- */
+import android.content.Context;
+import android.widget.Toast;
+
+
 public class StringUtil {
+
+	private static Toast mToast;
+	/**
+	 * 快速切换toast
+	 */
+    public static void showToast(Context context, String msg, int duration) {
+            // if (mToast != null) {
+            // mToast.cancel();
+            // }
+            // mToast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+            if (mToast == null) {
+                    mToast = Toast.makeText(context, msg, duration);
+            } else {
+                    mToast.setText(msg);
+            }
+            mToast.show();
+    }
 	/**
 	 * 是否不为空
 	 * 
