@@ -24,6 +24,8 @@
         android:shadowDy="0"
         android:shadowRadius="1"
         android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
         android:text="每时每刻 美妙美言"
         android:textColor="@color/white"
         android:textSize="20sp" />

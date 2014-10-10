@@ -21,6 +21,7 @@ import cn.minelock.android.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.WallpaperManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -80,6 +81,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	private boolean bControlEditColor = true;
 	private LinearLayout mEditVerseLayout;
 	private WallpaperAdapter wpAdapter;
+	private WallpaperManager wallpaperManager;
 	private GridView wpGridview;
 	private ImageButton clear_btn;
 	
@@ -93,6 +95,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 获取存储的pref数据
 		settings = getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
+		// 获取系统主屏幕壁纸
+		wallpaperManager = WallpaperManager.getInstance(this);
 		// 获取保存的壁纸
 		bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
 		wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
@@ -107,7 +111,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		verseQty = settings.getInt(VERSEQTY, 0);
 		String verse = settings.getString(VERSE, "感觉自己萌萌哒");		
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
-		verse_edit.setText(verse);//设置默认美言
+		//verse_edit.setText(verse);//设置默认美言
 		verse_edit.addTextChangedListener(textChangedWatcher);
 		// 选择应用自带颜色初始化
 		wpAdapter = new WallpaperAdapter(this);
@@ -222,7 +226,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				for (int i = 0; i <= 9 - len; i++)
 					verse += " ";			
 			// 将新增美言存入SQL数据库
-			dbRecent.insert(verse.substring(0, 1),verse.substring(1));
+			if (len>0)
+				dbRecent.insert(verse.substring(0, 1),verse.substring(1));
 			// 将美言总数存入SharedPreferences
 			verseQty = verseQty+1;
 			editor.putInt(VERSEQTY, verseQty);
@@ -281,8 +286,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	// 拍照或选取相册图片为锁屏壁纸
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		builder.setTitle("选壁纸");
-		builder.setItems(new String[] { "拍照", "从相册选取", "桌面壁纸"},
+		builder.setTitle("选锁屏壁纸");
+		builder.setItems(new String[] { "拍照", "从相册选取", "与桌面壁纸同步"},
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -302,9 +307,24 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							break;
 							
 						case DEFAULT_PAPER:
-							wallpaperId = R.drawable.wallpaper00;
+/*							wallpaperId = R.drawable.wallpaper00;
 							mEditVerseLayout.setBackgroundResource(wallpaperId);
 							bIdOrPath = true;//壁纸来源为应用内ID
+*/							
+							// 获取壁纸管理器  
+				            //WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);  
+				            // 获取当前壁纸  
+				            Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
+				            // 将Drawable,转成Bitmap  
+				            Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();  				  
+				            // 设置 背景  
+				            mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
+							// 保存到SD卡
+							String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
+							String photoName = "wallpaper";
+							ImageTools.savePhotoToSDCard(bm, dir, photoName);
+							wallpaperPath = dir + "/" + photoName + ".png";
+				            bIdOrPath = false;//壁纸来源为应用外路径
 							break;
 							
 						default:

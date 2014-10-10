@@ -105,7 +105,7 @@ public class SettingActivity extends Activity {
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
 			startActivity(new Intent(SettingActivity.this, HomeActivity.class));
-			finish();
+			//finish();
 		}
 	};
 	// ÍË³ö°´Å¥
@@ -145,7 +145,8 @@ public class SettingActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		startService(new Intent(this, MyLockScreenService.class));
+		//startService(new Intent(this, MyLockScreenService.class));
+		
 		//Æô¶¯ËøÆÁ
 /*		if (mIsLockScreenOn){
 			// keep on disabling the system Keyguard

@@ -60,7 +60,7 @@
             android:background="@drawable/shape_background_ok"
             android:layout_marginRight="8dp"
             android:layout_gravity="center"
-            android:text="发表"
+            android:text="确定"
             android:textColor="@color/white"
             android:textSize="14sp" />
     </LinearLayout>
