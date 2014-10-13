@@ -114,9 +114,15 @@ public class SettingActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			finish();				
+			//finish();
+			
 			//android.os.Process.killProcess(android.os.Process.myPid());
 			//System.exit(0);
+			
+			Intent i = new Intent(Intent.ACTION_MAIN);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			i.addCategory(Intent.CATEGORY_HOME);
+			startActivity(i);
 		}
 	};
 	

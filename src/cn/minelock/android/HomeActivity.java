@@ -238,10 +238,17 @@ public class HomeActivity extends Activity implements OnClickListener,
 				Toast.makeText(this, "再按一次退出美言锁屏", Toast.LENGTH_SHORT).show();
 				mExitTime = System.currentTimeMillis();
 			} 
-			else
-				finish();				
+			else{
+				//finish();
+			
 				//android.os.Process.killProcess(android.os.Process.myPid());
 				//System.exit(0);
+			
+				Intent i = new Intent(Intent.ACTION_MAIN);
+				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				i.addCategory(Intent.CATEGORY_HOME);
+				startActivity(i);
+			}
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
@@ -352,8 +359,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));
-			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
-			//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			break;
 		case R.id.home_text:
 			startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));
