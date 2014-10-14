@@ -6,7 +6,6 @@
     android:background="@drawable/wallpaper00"
     android:orientation="vertical" >
     
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"

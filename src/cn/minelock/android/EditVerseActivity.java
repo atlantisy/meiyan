@@ -287,8 +287,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	// 拍照或选取相册图片为锁屏壁纸
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		builder.setTitle("选锁屏壁纸");
-		builder.setItems(new String[] { "拍照", "从相册选取", "与桌面壁纸同步"},
+		builder.setTitle("锁屏壁纸");
+		builder.setItems(new String[] { "拍照", "从相册选取", "随机选取", "与桌面壁纸同步"},
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -307,11 +307,18 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							bIdOrPath = false;//壁纸来源为应用外路径
 							break;
 							
-						case DEFAULT_PAPER:
-/*							wallpaperId = R.drawable.wallpaper00;
+						case RANDOM_PAPER:							
+							int[] wallpaper = {
+									R.drawable.wallpaper00,R.drawable.wallpaper01,R.drawable.wallpaper02,
+									R.drawable.wallpaper03,R.drawable.wallpaper04,R.drawable.wallpaper05,									
+								};
+							int random = (int)(Math.random()*wallpaper.length);
+							wallpaperId = wallpaper[random];							
 							mEditVerseLayout.setBackgroundResource(wallpaperId);
-							bIdOrPath = true;//壁纸来源为应用内ID
-*/							
+							bIdOrPath = true;//壁纸来源为应用内ID		
+							break;
+							
+						case DEFAULT_PAPER:						
 							// 获取壁纸管理器  
 				            //WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);  
 				            // 获取当前壁纸  
@@ -339,7 +346,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 
 	private static final int TAKE_PHOTO = 0;// 拍照
 	private static final int CHOOSE_PICTURE = 1;// 从相册选取
-	private static final int DEFAULT_PAPER = 2;// 默认壁纸
+	private static final int RANDOM_PAPER = 2;// 随机壁纸
+	private static final int DEFAULT_PAPER = 3;// 默认壁纸
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
