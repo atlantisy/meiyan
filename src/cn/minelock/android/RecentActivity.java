@@ -92,7 +92,8 @@ public class RecentActivity extends Activity {
 				
 				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
 				//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
-				overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+				//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+				overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);
 			}
 		});
         
@@ -161,7 +162,7 @@ public class RecentActivity extends Activity {
 				
 					startActivity(new Intent(RecentActivity.this, HomeActivity.class));
 					//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
-					overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+					//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 				}
 /*				else
 					random_btn.setClickable(false);*/
@@ -178,7 +179,7 @@ public class RecentActivity extends Activity {
 				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
 				finish();
 				//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
-				overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+				//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 			}
 		});
 	}

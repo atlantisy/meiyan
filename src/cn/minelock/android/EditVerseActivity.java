@@ -112,7 +112,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		String verse = settings.getString(VERSE, "感觉自己萌萌哒");		
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
 		//verse_edit.setText(verse);//设置默认美言
-		verse_edit.addTextChangedListener(textChangedWatcher);
+		//verse_edit.addTextChangedListener(textChangedWatcher);//有字时显示清空按钮
 		// 选择应用自带颜色初始化
 		wpAdapter = new WallpaperAdapter(this);
 		wpGridview = (GridView) findViewById(R.id.wallpaper_grid);
@@ -259,7 +259,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			bIdOrPath = true;//壁纸来源为应用内ID
 		}
 	};	
-	// 选择颜色作为背景
+	// 点击控制颜色、壁纸选择项的显示
 	private OnClickListener editColorOnClickListener = new OnClickListener() {
 
 		@Override
@@ -288,7 +288,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle("锁屏壁纸");
-		builder.setItems(new String[] { "拍照", "从相册选取", "随机选取", "与桌面壁纸同步"},
+		builder.setItems(new String[] { "拍照", "从相册选取", "与桌面壁纸同步"},
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -346,8 +346,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 
 	private static final int TAKE_PHOTO = 0;// 拍照
 	private static final int CHOOSE_PICTURE = 1;// 从相册选取
-	private static final int RANDOM_PAPER = 2;// 随机壁纸
-	private static final int DEFAULT_PAPER = 3;// 默认壁纸
+	private static final int RANDOM_PAPER = 3;// 随机壁纸
+	private static final int DEFAULT_PAPER = 2;// 默认壁纸
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

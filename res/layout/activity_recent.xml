@@ -47,7 +47,8 @@
             android:layout_height="match_parent"
             android:scaleType="centerInside"
             android:background="@color/alpha"
-            android:src="@drawable/ic_random" />        
+            android:src="@drawable/ic_random" 
+            android:visibility="gone"/>        
     </LinearLayout>
 
     <ListView

@@ -201,7 +201,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 		startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));
 		// Call onRefreshComplete when the list has been refreshed.
 		mPullRefreshGridView.onRefreshComplete();
-
 	}
 
 	// 设置美言
@@ -233,22 +232,23 @@ public class HomeActivity extends Activity implements OnClickListener,
 	//按两次返回键退出
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+/*			if ((System.currentTimeMillis() - mExitTime) > 2000) {
 				Object mHelperUtils;
 				Toast.makeText(this, "再按一次退出美言锁屏", Toast.LENGTH_SHORT).show();
 				mExitTime = System.currentTimeMillis();
 			} 
-			else{
-				//finish();
-			
-				//android.os.Process.killProcess(android.os.Process.myPid());
-				//System.exit(0);
-			
+			else{					
 				Intent i = new Intent(Intent.ACTION_MAIN);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				i.addCategory(Intent.CATEGORY_HOME);
 				startActivity(i);
-			}
+			}*/
+			
+			Intent i = new Intent(Intent.ACTION_MAIN);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			i.addCategory(Intent.CATEGORY_HOME);
+			startActivity(i);
+			
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
@@ -350,7 +350,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 			Intent intent=new Intent(Intent.ACTION_SEND);  
 			intent.setType("text/plain");  
 			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");  
-			intent.putExtra(Intent.EXTRA_TEXT, verse);  
+			intent.putExtra(Intent.EXTRA_TEXT, verse+"#minelock#");  
 			startActivity(Intent.createChooser(intent, getTitle()));
 			break;
 		case R.id.home_setting1:
@@ -360,7 +360,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));
 			//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
-			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
 			break;
 		case R.id.home_text:
 			startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));

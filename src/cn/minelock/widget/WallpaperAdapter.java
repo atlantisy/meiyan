@@ -46,18 +46,24 @@ public class WallpaperAdapter extends BaseAdapter {
 		image.setLayoutParams(new GridView.LayoutParams(80, 80));
 		image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		//
-		image.setImageResource(wallpaper[position]);
+		image.setImageResource(_wallpaper[position]);
 		return image;				
 	}
 
 	public static int[] wallpaper = { 		
-/*		R.drawable.wallpaper00,R.drawable.wallpaper01,R.drawable.wallpaper02,
-		R.drawable.wallpaper03,R.drawable.wallpaper04,R.drawable.wallpaper05,
-		R.drawable.wallpaper06,R.drawable.wallpaper07,R.drawable.wallpaper08,*/
-		
 		R.color.red,R.color.orange,R.color.orange1,R.color.yellow,R.color.green1,
-		R.color.green,R.color.app_color,R.color.blue1,R.color.pink,R.color.violet
+		R.color.green,R.color.app_color,R.color.blue1,R.color.pink,R.color.violet,
 		
+		R.drawable.wallpaper00,R.drawable.wallpaper01,R.drawable.wallpaper02,
+		R.drawable.wallpaper03,R.drawable.wallpaper04,		
+	};
+	
+	public static int[] _wallpaper = { 		
+		R.color.red,R.color.orange,R.color.orange1,R.color.yellow,R.color.green1,
+		R.color.green,R.color.app_color,R.color.blue1,R.color.pink,R.color.violet,
+		
+		R.drawable._wallpaper00,R.drawable._wallpaper01,R.drawable._wallpaper02,
+		R.drawable._wallpaper03,R.drawable._wallpaper04,		
 	};
 
 }
