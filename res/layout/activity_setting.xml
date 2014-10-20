@@ -103,7 +103,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/button_selector"
                 android:gravity="center_vertical"
-                android:text="修改九宫格密码"
+                android:text="修改手势密码"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
 

@@ -166,7 +166,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 			homeLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		}
 		// 获取美言
-		verse = home_setting.getString(VERSE, "感觉自己萌萌哒  ");
+		verse = home_setting.getString(VERSE, "感觉自己萌萌哒   ");
 		// 设置美言，简言和九宫言
 		SetVerse();
 		// 切换锁屏方式

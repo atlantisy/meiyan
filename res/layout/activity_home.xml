@@ -84,7 +84,7 @@
         android:layout_gravity="top|center_horizontal"
         android:background="@color/light_yellow"
         android:padding="12dp"
-        android:text="九宫格密码未设置  >>"
+        android:text="手势密码未设置     >>"
         android:textColor="@android:color/black"
         android:visibility="gone" >
     </Button>

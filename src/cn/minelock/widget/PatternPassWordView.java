@@ -110,6 +110,24 @@ public class PatternPassWordView extends View {
 		//美言
 		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0);  
 		String verse = settings.getString(VERSE, "每时每刻 美妙美言");
+		
+		// 画连线
+		if (sPoints.size() > 0) {
+			int tmpAlpha = mPaint.getAlpha();
+			mPaint.setAlpha(lineAlpha);
+			Point tp = sPoints.get(0);
+			for (int i = 1; i < sPoints.size(); i++) {
+				Point p = sPoints.get(i);
+				drawLine(canvas, tp, p);
+				tp = p;
+			}
+			if (this.movingNoPoint) {
+				drawLine(canvas, tp, new Point((int) moveingX, (int) moveingY));
+			}
+			mPaint.setAlpha(tmpAlpha);
+			lineAlpha = mPaint.getAlpha();
+		}
+		
 		// 画所有点
 		for (int i = 0; i < mPoints.length; i++) {
 			for (int j = 0; j < mPoints[i].length; j++) {
@@ -138,7 +156,7 @@ public class PatternPassWordView extends View {
 		// canvas.drawLine(r1.left, r1.top+r1.height()/2, r1.right,
 		// r1.bottom-r1.height()/2, mPaint);
 
-		// 画连线
+/*		// 画连线
 		if (sPoints.size() > 0) {
 			int tmpAlpha = mPaint.getAlpha();
 			mPaint.setAlpha(lineAlpha);
@@ -153,7 +171,7 @@ public class PatternPassWordView extends View {
 			}
 			mPaint.setAlpha(tmpAlpha);
 			lineAlpha = mPaint.getAlpha();
-		}
+		}*/
 
 	}
 
