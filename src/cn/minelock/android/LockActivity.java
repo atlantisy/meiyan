@@ -104,7 +104,7 @@ public class LockActivity extends FragmentActivity {
 			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		}		
 		// 设置美言
-		sCustom = settings.getString(VERSE, "每时每刻 美妙美言");		
+		sCustom = settings.getString(VERSE, "感觉自己萌萌哒");		
 		sCustom = sCustom.trim();//去掉前后空格
 		Log.d(TAG, sCustom);
 		
@@ -117,10 +117,10 @@ public class LockActivity extends FragmentActivity {
 			public void onComplete(String mPassword) {
 				// 如果密码正确,则进入主页面。
 				if (ppwv.verifyPassword(mPassword)) {
-					showToast("解锁成功！");
+					//showToast("解锁成功！");
 					unLock();
 				} else {
-					showToast("密码输入错误,请重新输入");
+					showToast("手势错误,请重新输入");
 					ppwv.clearPassword();
 				}
 			}

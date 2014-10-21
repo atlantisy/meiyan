@@ -109,7 +109,7 @@ public class PatternPassWordView extends View {
 */		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置		
 		//美言
 		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0);  
-		String verse = settings.getString(VERSE, "每时每刻 美妙美言");
+		String verse = settings.getString(VERSE, "感觉自己萌萌哒  ");
 		
 		// 画连线
 		if (sPoints.size() > 0) {

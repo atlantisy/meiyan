@@ -52,14 +52,22 @@
             android:layout_weight="1"
             android:src="@drawable/blank" />
 
-        <ImageButton
+<!--         <ImageButton
             android:id="@+id/home_favorite1"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="@color/alpha"
             android:src="@drawable/ic_love"
-            android:visibility="gone"/>
+            android:visibility="gone"/> -->
 
+        <ImageButton
+            android:id="@+id/home_repeat_shuffle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/alpha"
+            android:src="@drawable/repeat_shuffle_button"
+            android:visibility="visible"/>
+        
         <ImageButton
             android:id="@+id/home_share1"
             android:layout_width="wrap_content"
@@ -333,7 +341,7 @@
             android:shadowDx="1"
             android:shadowDy="0"
             android:shadowRadius="1"
-            android:text="山不在高 有仙则名"
+            android:text="感觉自己萌萌哒  "
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -357,7 +365,7 @@
         android:id="@+id/home_bottombar"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@color/alpha"
+        android:background="@color/alpha_black"
         android:orientation="horizontal" >
 
         <ImageButton
