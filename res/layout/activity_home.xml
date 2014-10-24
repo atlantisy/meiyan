@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/wallpaper00"
     android:orientation="vertical" >
-
     <LinearLayout
         android:id="@+id/home_topbar"
         android:layout_width="fill_parent"
@@ -62,19 +61,19 @@
 
         <ImageButton
             android:id="@+id/home_repeat_shuffle"
-            android:layout_width="wrap_content"
+            android:layout_width="48dp"
             android:layout_height="match_parent"
             android:background="@color/alpha"
             android:src="@drawable/repeat_shuffle_button"
-            android:visibility="visible"/>
+            android:visibility="visible" />
         
         <ImageButton
             android:id="@+id/home_share1"
-            android:layout_width="wrap_content"
+            android:layout_width="48dp"
             android:layout_height="match_parent"
             android:background="@color/alpha"
             android:src="@drawable/ic_share" 
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/home_setting1"
@@ -332,10 +331,11 @@
             android:id="@+id/line_verse"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="bottom"
             android:background="@color/alpha"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:paddingBottom="8dp"
             android:gravity="center"
             android:shadowColor="#33000000"
             android:shadowDx="1"
@@ -380,7 +380,7 @@
             android:id="@+id/home_text"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@color/alpha"
             android:src="@drawable/ic_edit" />
 

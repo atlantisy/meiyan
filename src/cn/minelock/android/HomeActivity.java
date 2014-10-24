@@ -55,7 +55,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 	private GridView verse_grid = null;
 	private LinearLayout verse_grid1 = null;
 
-	private ImageButton lockbtn = null;// 锁屏按钮
+	private ImageButton lockbtn = null;// 锁屏方式按钮
+	private ImageButton show_verse_btn = null;// 美言显示方式按钮
 	private Button setup_grid_button = null;// 设置九宫手势按钮
 
 	private Button mBtnDropDown;
@@ -67,6 +68,10 @@ public class HomeActivity extends Activity implements OnClickListener,
 	private static final int STATE_LINE = 1;// 锁屏状态设为1
 	private static final int STATE_GRID = 2;// 锁屏状态设为2
 	private static int flag = 1;// 锁屏方式pref值
+	private static final int SINGLE_REPEAT = 1;// 单句循环
+	private static final int ORDER_REPEAT = 2;// 顺序循环
+	private static final int SHUFFLE = 3;// 随机显示
+	private static int showVerseFlag = 1;// 美言显示方式pref值
 	private static boolean bPassWord = false;// 九宫格是否设置
 	private static String verse = "";// 美言
 
@@ -76,6 +81,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	public static final String WALLPAPERID = "wallpaper_id";// 应用内壁纸资源ID的pref值名称
 	public static final String WALLPAPERPATH = "wallpaper_path";// 应用外壁纸Path的pref值名称	
 	public static final String LOCKFLAG = "lockFlag";// 锁屏方式pref值名称
+	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";// 九宫格是否设置pref值名称
 
 	static final int MENU_SET_MODE = 0;
@@ -134,6 +140,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 九宫格视图
 		// verse_grid = (PatternPassWordView)findViewById(R.id.mPatternPassWordView);
 		verse_grid1 = (LinearLayout) findViewById(R.id.verse_layout);
+		//
 		verse_grid = (GridView) findViewById(R.id.grid_verse);
 		char[] chVerse = strVerse.toCharArray();
 		// 生成动态数组，并且转入数据
@@ -150,10 +157,9 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 添加并且显示,添加消息处理
 		verse_grid.setAdapter(saVerses);
 		verse_grid.setOnItemClickListener(new ItemClickListener());
+		
 		// 获取存储的pref数据
-		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);
-		flag = home_setting.getInt(LOCKFLAG, 1);
-		bPassWord = home_setting.getBoolean(PWSETUP, false);
+		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);				
 		// 设置壁纸
 		LinearLayout homeLayout = (LinearLayout)findViewById(R.id.HomeLayout);		
 		boolean bIdOrPath = home_setting.getBoolean(BOOLIDPATH, true);
@@ -168,15 +174,20 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 获取美言
 		verse = home_setting.getString(VERSE, "感觉自己萌萌哒   ");
 		// 设置美言，简言和九宫言
-		SetVerse();
-		// 切换锁屏方式
+		SetVerse();		
+		// 切换锁屏方式初始化
+		lockbtn = (ImageButton) findViewById(R.id.home_lock);
+		flag = home_setting.getInt(LOCKFLAG, 1);
+		bPassWord = home_setting.getBoolean(PWSETUP, false);
 		switch (flag) {
 		case STATE_LINE:
+			lockbtn.setImageResource(R.drawable.ic_lock_grid);
 			verse_line.setVisibility(View.VISIBLE);
 			verse_grid1.setVisibility(View.GONE);
 			setup_grid_button.setVisibility(View.GONE);
 			break;
 		case STATE_GRID:
+			lockbtn.setImageResource(R.drawable.ic_lock_line);
 			verse_line.setVisibility(View.GONE);
 			verse_grid1.setVisibility(View.VISIBLE);
 			if (bPassWord == true)
@@ -185,8 +196,25 @@ public class HomeActivity extends Activity implements OnClickListener,
 				setup_grid_button.setVisibility(View.VISIBLE);
 			break;
 		}
-		// 切换显示锁屏方式按钮图标
-		ShowLockBtn();
+		// 切换锁屏方式按钮图标
+		ShowLockBtn();	
+		
+		// 切换美言显示方式初始化
+		show_verse_btn = (ImageButton) findViewById(R.id.home_repeat_shuffle);
+		showVerseFlag=home_setting.getInt(SHOWVERSEFLAG, 1);
+		switch (showVerseFlag) {
+		case SINGLE_REPEAT:
+			show_verse_btn.setImageResource(R.drawable.ic_single_repeat);
+			break;
+		case ORDER_REPEAT:
+			show_verse_btn.setImageResource(R.drawable.ic_order_repeat);
+			break;
+		case SHUFFLE:
+			show_verse_btn.setImageResource(R.drawable.ic_shuffle);
+			break;
+		}		
+		// 切换美言显示方式按钮图标		
+		ShowVerseBtn();
 	}
 
 	// 下拉
@@ -206,7 +234,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 设置美言
 	private void SetVerse() {
 		TextView line_verse = (TextView) findViewById(R.id.line_verse);
-		line_verse.setText(verse.trim());//清楚前后空格
+		line_verse.setText(verse.trim());//清除前后空格
 
 		String s = verse.replace("\n", " ");
 		TextView verse0 = (TextView) findViewById(R.id.verse0);
@@ -274,12 +302,60 @@ public class HomeActivity extends Activity implements OnClickListener,
 		mSpinerPopWindow.setAdatper(mAdapter);
 		mSpinerPopWindow.setItemListener(this);
 	}
-
+	
 	/**
-	 * 显示锁屏按钮
+	 * 切换美言显示方式按钮，次序为：单句循环=》顺序循环=》随机显示
+	 */
+	private void ShowVerseBtn() {		
+		show_verse_btn.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				switch (showVerseFlag) {
+				case SINGLE_REPEAT:
+					orderRepeat();
+					break;
+				case ORDER_REPEAT:
+					shuffle();					
+					break;
+				case SHUFFLE:					
+					singleRepeat();
+					break;
+				}
+				// 将美言显示方式设置存入SharedPreferences
+				SharedPreferences setting = getSharedPreferences(PREFS, 0);
+				SharedPreferences.Editor editor = setting.edit();
+				editor.putInt(SHOWVERSEFLAG, showVerseFlag);
+				editor.commit();
+			}
+		});
+
+	}
+	// 单句循环
+	protected void singleRepeat() {
+		showVerseFlag = SINGLE_REPEAT;
+		show_verse_btn.setImageResource(R.drawable.ic_single_repeat);
+
+		StringUtil.showToast(this, "单句循环",  Toast.LENGTH_SHORT);
+	}
+	// 顺序循环
+	protected void orderRepeat() {
+		showVerseFlag = ORDER_REPEAT;
+		show_verse_btn.setImageResource(R.drawable.ic_order_repeat);
+
+		StringUtil.showToast(this, "顺序循环",  Toast.LENGTH_SHORT);
+	}	
+	// 随机显示
+	protected void shuffle() {
+		showVerseFlag = SHUFFLE;
+		show_verse_btn.setImageResource(R.drawable.ic_shuffle);
+		
+		StringUtil.showToast(this, "随机显示",  Toast.LENGTH_SHORT);
+	}
+	
+	/**
+	 * 切换锁屏方式按钮
 	 */
 	private void ShowLockBtn() {
-		lockbtn = (ImageButton) findViewById(R.id.home_lock);
 		lockbtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -300,8 +376,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		});
 
 	}
-
-	// 简约锁屏
+	// 简单滑动锁屏
 	protected void line() {
 		flag = LINE;
 		lockbtn.setImageResource(R.drawable.ic_lock_grid);
@@ -311,8 +386,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		//Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_SHORT).show();
 		StringUtil.showToast(this, "简单滑动解锁",  Toast.LENGTH_SHORT);
 	}
-
-	// 九宫锁屏
+	// 九宫手势锁屏
 	protected void grid() {
 		flag = GRID;
 		lockbtn.setImageResource(R.drawable.ic_lock_line);
