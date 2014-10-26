@@ -38,11 +38,12 @@
             android:id="@+id/app_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:paddingLeft="16dp"
             android:gravity="center_vertical"
             android:text="@string/app_name"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/white" 
-            android:visibility="gone"/>
+            android:textColor="@color/white"
+            android:visibility="visible"/>
 
         <ImageView
             android:id="@+id/blank"
@@ -331,11 +332,11 @@
             android:id="@+id/line_verse"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:background="@color/alpha"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:paddingBottom="8dp"
+            android:paddingBottom="0dp"
             android:gravity="center"
             android:shadowColor="#33000000"
             android:shadowDx="1"

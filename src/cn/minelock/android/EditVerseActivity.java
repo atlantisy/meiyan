@@ -68,6 +68,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	private SharedPreferences.Editor editor = null;
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String VERSE = "verse";// 美言pref值名称
+	public static final String VERSEID = "verse_id";// 美言id pref值名称
 	public static final String VERSEQTY = "verse_quantity";// 美言数量pref值名称	
 	public static final String BOOLIDPATH = "wallpaper_idorpath";// 应用内or外壁纸bool的pref值名称,true为ID，false为path
 	public static final String WALLPAPERID = "wallpaper_id";// 应用内壁纸资源ID的pref值名称
@@ -227,10 +228,11 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 					verse += " ";			
 			// 将新增美言存入SQL数据库
 			if (len>0){
-				dbRecent.insert(verse.substring(0, 1),verse.substring(1));
+				long verseId = dbRecent.insert(verse.substring(0, 1),verse.substring(1));
 				// 将美言总数存入SharedPreferences
 				verseQty = verseQty+1;
 				editor.putInt(VERSEQTY, verseQty);
+				//editor.putLong(VERSEID, verseId);
 			}
 			// 将美言存入SharedPreferences
 			editor.putString(VERSE, verse);// 美言

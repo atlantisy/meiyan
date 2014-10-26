@@ -44,6 +44,7 @@ public class RecentActivity extends Activity {
 	
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String VERSE = "verse";// 美言pref值名称
+	public static final String VERSEID = "verse_id";// 美言id pref值名称
 	public static final String VERSEQTY = "verse_quantity";// 美言数量pref值名称
 	
 	private SharedPreferences settings;
@@ -88,6 +89,7 @@ public class RecentActivity extends Activity {
 				String verse = recentCursor.getString(1) + recentCursor.getString(2);
 				// 将美言存入SharedPreferences				
 				editor.putString(VERSE, verse);// 美言
+				//editor.putLong(VERSEID, (long)_id);// 美言id
 				editor.commit();
 				
 				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
@@ -144,6 +146,7 @@ public class RecentActivity extends Activity {
         String Qty = "我的美言(" + String.valueOf(verseQty) + ")";
         recent_label = (TextView) findViewById(R.id.recent_label);
         recent_label.setText(Qty);
+        
         // 随机选取美言
         random_btn = (ImageButton)findViewById(R.id.recent_random);
         random_btn.setOnClickListener(new OnClickListener() {

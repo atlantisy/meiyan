@@ -84,6 +84,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";// 九宫格是否设置pref值名称
 
+	private SharedPreferences home_setting;
+	
 	static final int MENU_SET_MODE = 0;
 
 	private PullToRefreshGridView mPullRefreshGridView;
@@ -159,7 +161,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		verse_grid.setOnItemClickListener(new ItemClickListener());
 		
 		// 获取存储的pref数据
-		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);				
+		home_setting = getSharedPreferences(PREFS, 0);				
 		// 设置壁纸
 		LinearLayout homeLayout = (LinearLayout)findViewById(R.id.HomeLayout);		
 		boolean bIdOrPath = home_setting.getBoolean(BOOLIDPATH, true);
@@ -171,8 +173,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
 			homeLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		}
-		// 获取美言
-		verse = home_setting.getString(VERSE, "感觉自己萌萌哒   ");
 		// 设置美言，简言和九宫言
 		SetVerse();		
 		// 切换锁屏方式初始化
@@ -216,7 +216,13 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 切换美言显示方式按钮图标		
 		ShowVerseBtn();
 	}
-
+	// 暂停时刷新美言的设置
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		SetVerse();
+	}
 	// 下拉
 	private void PullDown() {
 		// Call onRefreshComplete when the list has been refreshed.
@@ -233,9 +239,11 @@ public class HomeActivity extends Activity implements OnClickListener,
 
 	// 设置美言
 	private void SetVerse() {
-		TextView line_verse = (TextView) findViewById(R.id.line_verse);
-		line_verse.setText(verse.trim());//清除前后空格
-
+		TextView line_verse = (TextView) findViewById(R.id.line_verse);		
+		verse = home_setting.getString(VERSE, "感觉自己萌萌哒   ");// 获取美言
+		//设置简言
+		line_verse.setText(verse.trim());
+		//设置九宫言
 		String s = verse.replace("\n", " ");
 		TextView verse0 = (TextView) findViewById(R.id.verse0);
 		verse0.setText(s.substring(0, 1));

@@ -65,7 +65,7 @@ public class SetPasswordActivity extends Activity {
 				password = mPassword;
 				if (needverify) {
 					if (ppwv.verifyPassword(mPassword)) {
-						showToast("密码输入正确,请输入新密码!");
+						showToast("验证成功,请输入新密码!");
 						ppwv.clearPassword();
 						needverify = false;
 					} else {
@@ -85,7 +85,7 @@ public class SetPasswordActivity extends Activity {
 					if (StringUtil.isNotEmpty(password)) {
 						ppwv.resetPassWord(password);
 						ppwv.clearPassword();
-						showToast("密码修改成功,请记住密码.");
+						showToast("恭喜，密码设置成功.");
 						//返回九宫格已设置结果
 			            Intent data=new Intent();  
 			            data.putExtra("SetPassWord", true);   

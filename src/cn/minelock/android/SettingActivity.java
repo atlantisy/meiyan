@@ -168,9 +168,9 @@ public class SettingActivity extends Activity {
 	}
 
 	@Override
-	protected void onStop() {
+	protected void onPause() {
 		// TODO Auto-generated method stub
-		super.onStop();
+		super.onPause();
 		//Æô¶¯ËøÆÁ
 		if (mIsLockScreenOn){
 			// keep on disabling the system Keyguard

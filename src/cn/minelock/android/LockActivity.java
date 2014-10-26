@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import cn.minelock.android.LockActivity.MyOnPageChangeListener;
 import cn.minelock.widget.PatternPassWordView;
+import cn.minelock.widget.dbHelper;
 import cn.minelock.widget.PatternPassWordView.OnCompleteListener;
 
 import cn.minelock.android.R;
@@ -16,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -48,9 +50,10 @@ import android.text.style.ForegroundColorSpan;
 
 public class LockActivity extends FragmentActivity {
 	private static final String TAG = "MeiYan";
+	private static final int IDTAG = -1;
 	private ViewPager mPager;
 	private ArrayList<Fragment> fragmentsList;
-	private String sCustom;
+	private String sCustom = "";
 	private int currIndex = 1;
 	
 	public static final String PREFS = "lock_pref";//pref文件名
@@ -58,14 +61,19 @@ public class LockActivity extends FragmentActivity {
 	public static final String BOOLIDPATH = "wallpaper_idorpath";//应用内or外壁纸bool的pref值名称,true为ID，false为path
 	public static final String WALLPAPERID = "wallpaper_id";//应用内壁纸资源ID的pref值名称
 	public static final String WALLPAPERPATH = "wallpaper_path";//应用外壁纸Path的pref值名称
+	public static final String VERSEQTY = "verse_quantity";// 美言数量pref值名称
+	public static final String VERSEID = "verse_id";// 美言id pref值名称
 	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
+	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
 	private PatternPassWordView ppwv;
 	private Toast toast;
 	private ImageView viewRightArrow;
 	private ImageView viewLeftArrow;
-
+	
+	dbHelper dbRecent;
+	private Cursor lockCursor;
 	
 	private void showToast(CharSequence message) {
 		if (null == toast) {
@@ -87,12 +95,56 @@ public class LockActivity extends FragmentActivity {
 		setContentView(R.layout.activity_lock);
 		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
 		
-		// 获取随机诗词美言
-/*		String[] sArray = (String[]) this.getResources().getStringArray(R.array.Summer);
-		int index = (int)(Math.random()*sArray.length);
-		String str = sArray[index]; */
 		// 获取pref值			
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);
+		SharedPreferences.Editor editor = settings.edit();		
+		// SQL数据库
+		dbRecent = new dbHelper(this);
+		lockCursor = dbRecent.select();
+		// 获取保存的美言数量及美言显示方式
+		int verseQty = settings.getInt(VERSEQTY, 0);
+		int showVerseFlag = settings.getInt(SHOWVERSEFLAG, 1);
+		sCustom = settings.getString(VERSE, "         ");	
+		// 设置美言
+		switch (showVerseFlag) {
+		case 1:
+			// 单句循环
+			break;
+		case 2:
+			// 顺序循环
+			if(verseQty>0 & sCustom.trim()!=""){
+				// 获取当前美言id
+				int verseId = (int)settings.getLong(VERSEID,0);							
+				// 移动到下一位置
+				if(verseId+1==verseQty)
+					verseId=0;
+				else
+					verseId=verseId+1;
+				lockCursor.moveToPosition(verseId);	
+				sCustom = lockCursor.getString(1) + lockCursor.getString(2);	
+				// 将美言及id存入SharedPreferences				
+				editor.putString(VERSE, sCustom);// 美言
+				editor.putLong(VERSEID,(long)verseId);// 美言id
+				editor.commit();
+			}
+			break;	
+		case 3:
+			// 随机显示
+			if(verseQty>0 & sCustom.trim()!=""){
+				int random = (int)(Math.random()*verseQty);
+				lockCursor.moveToPosition(random);
+				sCustom = lockCursor.getString(1) + lockCursor.getString(2);
+				// 将美言存入SharedPreferences				
+				editor.putString(VERSE, sCustom);// 美言
+				editor.putLong(VERSEID, random);// 美言id
+				editor.commit();						
+			}
+			break;
+		default:
+			break;
+		}
+		sCustom = sCustom.trim();//去掉前后空格
+		Log.d(TAG, sCustom);
 		// 设置壁纸		
 		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
 		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
@@ -103,10 +155,6 @@ public class LockActivity extends FragmentActivity {
 			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
 			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		}		
-		// 设置美言
-		sCustom = settings.getString(VERSE, "感觉自己萌萌哒");		
-		sCustom = sCustom.trim();//去掉前后空格
-		Log.d(TAG, sCustom);
 		
 		// 初始化滑动解锁Viewpager，即锁屏方式1
 		InitViewPager();
@@ -168,9 +216,9 @@ public class LockActivity extends FragmentActivity {
 				unLock();
 				break;
 			default:
-/*				Intent cameraIntent = new Intent(
+				Intent cameraIntent = new Intent(
 						MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(cameraIntent, 1);*/
+				startActivityForResult(cameraIntent, 1);
 				unLock();
 				break;
 			}

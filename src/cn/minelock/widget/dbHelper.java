@@ -26,7 +26,7 @@ public class dbHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		String sql="Create table " + TABLE_NAME + "(" + FIELD_ID + " integer primary key autoincrement,"
+		String sql="Create table " + TABLE_NAME + " (" + FIELD_ID + " integer primary key autoincrement,"
 		+ FIELD_TITLE + " text," + FIELD_ITEM + " text );";
 		db.execSQL(sql);
 		
@@ -45,6 +45,17 @@ public class dbHelper extends SQLiteOpenHelper {
 	{
 		SQLiteDatabase db=this.getReadableDatabase();
 		Cursor cursor=db.query(TABLE_NAME, null, null, null, null, null,  " _id desc");
+		return cursor;
+	}
+	
+	public Cursor selectVerse(String verse)
+	{
+		SQLiteDatabase db=this.getReadableDatabase();
+		String title = verse.substring(0, 1);
+		String item = verse.substring(1);	
+		//String[] columns = new String[]{"FIELD_TITLE","FIELD_ITEM"};
+		Cursor cursor=db.query(TABLE_NAME, null, "FIELD_TITLE=?" + " AND FIELD_ITEM=?", new String[] {title,item}, null, null,  null);
+		//Cursor cursor=db.query(TABLE_NAME, null, "FIELD_TITLE='" + title + "'"+" AND FIELD_ITEM='" + item + "'", null, null, null,  null);
 		return cursor;
 	}
 	
