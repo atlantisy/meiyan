@@ -42,6 +42,7 @@ import android.text.Spannable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -94,6 +95,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editverse);
 		mEditVerseLayout = (LinearLayout) findViewById(R.id.editverse_layout);
+		wpGridview = (GridView) findViewById(R.id.wallpaper_grid);
 		// 获取存储的pref数据
 		settings = getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
@@ -110,14 +112,28 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		}
 		// 获取保存的美言
-		verseQty = settings.getInt(VERSEQTY, 0);
-		String verse = settings.getString(VERSE, "感觉自己萌萌哒");		
+		verseQty = settings.getInt(VERSEQTY, 0);			
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
+		//String verse = settings.getString(VERSE, "感觉自己萌萌哒");	
 		//verse_edit.setText(verse);//设置默认美言
 		//verse_edit.addTextChangedListener(textChangedWatcher);//有字时显示清空按钮
+		verse_edit.setOnTouchListener(new View.OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View arg0, MotionEvent arg1) {
+				// TODO Auto-generated method stub
+			    //如果输入法在窗口上已经显示，则隐藏，反之则显示
+			    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);  
+			    //imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+			    boolean bool = imm.isActive();
+			    if(bool){
+			    	wpGridview.setVisibility(View.GONE);
+			    }
+			    return false;
+			}
+		});
 		// 选择应用自带颜色初始化
 		wpAdapter = new WallpaperAdapter(this);
-		wpGridview = (GridView) findViewById(R.id.wallpaper_grid);
 		wpGridview.setAdapter(wpAdapter);
 		wpGridview.setOnItemClickListener(wallpaperListener);
 		// 选择应用内颜色作为壁纸点击事件
@@ -267,7 +283,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			bIdOrPath = true;//壁纸来源为应用内ID
 		}
 	};	
-	// 点击控制颜色、壁纸选择项的显示
+	// 点击实现颜色、壁纸选择项的显示/隐藏
 	private OnClickListener editColorOnClickListener = new OnClickListener() {
 
 		@Override
@@ -276,6 +292,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			if (bControlEditColor == true) {
 				bControlEditColor = false;
 				wpGridview.setVisibility(View.VISIBLE);
+				hideSoftKeyboard();
 			} else {
 				bControlEditColor = true;
 				wpGridview.setVisibility(View.GONE);
@@ -289,6 +306,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
+			hideSoftKeyboard();
 			showPicturePicker(EditVerseActivity.this);
 		}
 	};
@@ -399,6 +417,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			}			
 			
 		}
+	}
+	
+	// 隐藏软键盘
+	private void hideSoftKeyboard(){
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE); 
+		boolean isOpen=imm.isActive();//isOpen若返回true，则表示输入法打开
+		if(isOpen)
+			imm.hideSoftInputFromWindow(verse_edit.getWindowToken(), 0); //强制隐藏键盘		
 	}
 
 	private void customOptionSetup() {

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/wallpaper00"
     android:orientation="vertical" >
+    
     <LinearLayout
         android:id="@+id/home_topbar"
         android:layout_width="fill_parent"
