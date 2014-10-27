@@ -175,45 +175,11 @@ public class HomeActivity extends Activity implements OnClickListener,
 		}
 		// 设置美言，简言和九宫言
 		SetVerse();		
-		// 切换锁屏方式初始化
-		lockbtn = (ImageButton) findViewById(R.id.home_lock);
-		flag = home_setting.getInt(LOCKFLAG, 1);
-		bPassWord = home_setting.getBoolean(PWSETUP, false);
-		switch (flag) {
-		case STATE_LINE:
-			lockbtn.setImageResource(R.drawable.ic_lock_grid);
-			verse_line.setVisibility(View.VISIBLE);
-			verse_grid1.setVisibility(View.GONE);
-			setup_grid_button.setVisibility(View.GONE);
-			break;
-		case STATE_GRID:
-			lockbtn.setImageResource(R.drawable.ic_lock_line);
-			verse_line.setVisibility(View.GONE);
-			verse_grid1.setVisibility(View.VISIBLE);
-			if (bPassWord == true)
-				setup_grid_button.setVisibility(View.GONE);
-			else
-				setup_grid_button.setVisibility(View.VISIBLE);
-			break;
-		}
-		// 切换锁屏方式按钮图标
-		ShowLockBtn();	
-		
-		// 切换美言显示方式初始化
-		show_verse_btn = (ImageButton) findViewById(R.id.home_repeat_shuffle);
-		showVerseFlag=home_setting.getInt(SHOWVERSEFLAG, 1);
-		switch (showVerseFlag) {
-		case SINGLE_REPEAT:
-			show_verse_btn.setImageResource(R.drawable.ic_single_repeat);
-			break;
-		case ORDER_REPEAT:
-			show_verse_btn.setImageResource(R.drawable.ic_order_repeat);
-			break;
-		case SHUFFLE:
-			show_verse_btn.setImageResource(R.drawable.ic_shuffle);
-			break;
-		}		
-		// 切换美言显示方式按钮图标		
+		// 切换锁屏方式初始化及按钮图标切换事件
+		InitShowLockBtn();
+		ShowLockBtn();			
+		// 切换美言显示方式初始化及按钮图标切换事件
+		InitShowVerseBtn();	
 		ShowVerseBtn();
 	}
 	// 暂停时刷新美言的设置
@@ -222,6 +188,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 		super.onResume();
 		SetVerse();
+		InitShowVerseBtn();		
 	}
 	// 下拉
 	private void PullDown() {
@@ -240,7 +207,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 设置美言
 	private void SetVerse() {
 		TextView line_verse = (TextView) findViewById(R.id.line_verse);		
-		verse = home_setting.getString(VERSE, "感觉自己萌萌哒   ");// 获取美言
+		verse = home_setting.getString(VERSE, "感觉自己萌萌哒  ");// 获取美言
 		//设置简言
 		line_verse.setText(verse.trim());
 		//设置九宫言
@@ -311,6 +278,22 @@ public class HomeActivity extends Activity implements OnClickListener,
 		mSpinerPopWindow.setItemListener(this);
 	}
 	
+	// 美言显示方式按钮初始化
+	private void InitShowVerseBtn() {
+		show_verse_btn = (ImageButton) findViewById(R.id.home_repeat_shuffle);
+		showVerseFlag=home_setting.getInt(SHOWVERSEFLAG, 1);
+		switch (showVerseFlag) {
+		case SINGLE_REPEAT:
+			show_verse_btn.setImageResource(R.drawable.ic_single_repeat);
+			break;
+		case ORDER_REPEAT:
+			show_verse_btn.setImageResource(R.drawable.ic_order_repeat);
+			break;
+		case SHUFFLE:
+			show_verse_btn.setImageResource(R.drawable.ic_shuffle);
+			break;
+		}
+	}
 	/**
 	 * 切换美言显示方式按钮，次序为：单句循环=》顺序循环=》随机显示
 	 */
@@ -360,6 +343,29 @@ public class HomeActivity extends Activity implements OnClickListener,
 		StringUtil.showToast(this, "随机显示",  Toast.LENGTH_SHORT);
 	}
 	
+	// 切换锁屏方式按钮初始化
+	private void InitShowLockBtn() {
+		lockbtn = (ImageButton) findViewById(R.id.home_lock);
+		flag = home_setting.getInt(LOCKFLAG, 1);
+		bPassWord = home_setting.getBoolean(PWSETUP, false);
+		switch (flag) {
+		case STATE_LINE:
+			lockbtn.setImageResource(R.drawable.ic_lock_grid);
+			verse_line.setVisibility(View.VISIBLE);
+			verse_grid1.setVisibility(View.GONE);
+			setup_grid_button.setVisibility(View.GONE);
+			break;
+		case STATE_GRID:
+			lockbtn.setImageResource(R.drawable.ic_lock_line);
+			verse_line.setVisibility(View.GONE);
+			verse_grid1.setVisibility(View.VISIBLE);
+			if (bPassWord == true)
+				setup_grid_button.setVisibility(View.GONE);
+			else
+				setup_grid_button.setVisibility(View.VISIBLE);
+			break;
+		}
+	}
 	/**
 	 * 切换锁屏方式按钮
 	 */

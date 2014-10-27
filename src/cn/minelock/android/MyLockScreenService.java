@@ -17,7 +17,9 @@ public class MyLockScreenService extends Service {
 	
 	private SharedPreferences prefs = null;
 	private final String LOCK_SWITCH = "lock_screen_switch";
+	private final String LOCK_STATUS = "lock_status";
 	private boolean mIsLockScreenOn = true;
+	private boolean mLockStatus;
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -34,6 +36,7 @@ public class MyLockScreenService extends Service {
 		// 获取保存的prefs数据
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
+		
 		
 		// register Broadcast
 		Log.e("", "***********onCreate registerReceiver");
@@ -58,10 +61,18 @@ public class MyLockScreenService extends Service {
 			Log.e("", "***********onReceive Intent="+intent);
 			{
 				try{
-					Intent i = new Intent();  
-		            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
-		            i.setClass(context, LockActivity.class); 
-		            context.startActivity(i);
+					mLockStatus = prefs.getBoolean(LOCK_STATUS, false);
+					if(!mLockStatus){
+						mLockStatus = true;
+						SharedPreferences.Editor editor = prefs.edit();
+						editor.putBoolean(LOCK_STATUS, mLockStatus);
+						editor.commit();
+						
+						Intent i = new Intent();  
+						i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
+						i.setClass(context, LockActivity.class); 
+						context.startActivity(i);						
+					}												            
 				}catch (Exception e) {
 					// TODO: handle exception
 					Log.e("", "***********onReceive Error="+e);

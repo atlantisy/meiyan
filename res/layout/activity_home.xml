@@ -38,12 +38,13 @@
             android:id="@+id/app_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="16dp"
+            android:paddingLeft="12dp"
             android:gravity="center_vertical"
             android:text="@string/app_name"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/white"
-            android:visibility="visible"/>
+            android:visibility="visible"
+            android:textSize="18sp"/>
 
         <ImageView
             android:id="@+id/blank"
@@ -92,7 +93,7 @@
         android:layout_gravity="top|center_horizontal"
         android:background="@color/light_yellow"
         android:padding="12dp"
-        android:text="手势密码未设置     >>"
+        android:text="请设置手势密码  >>"
         android:textColor="@android:color/black"
         android:visibility="gone" >
     </Button>

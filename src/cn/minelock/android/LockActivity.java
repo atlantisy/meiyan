@@ -25,6 +25,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -75,6 +76,11 @@ public class LockActivity extends FragmentActivity {
 	dbHelper dbRecent;
 	private Cursor lockCursor;
 	
+	private SharedPreferences defaultPrefs = null;
+	SharedPreferences.Editor defaultEditor = null;
+	private final String LOCK_STATUS = "lock_status";
+	private boolean mLockStatus;
+	
 	private void showToast(CharSequence message) {
 		if (null == toast) {
 			toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
@@ -88,23 +94,26 @@ public class LockActivity extends FragmentActivity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);			
-		//Remove title bar
+		// Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//Remove notification bar
+		// Remove notification bar
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_lock);
 		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
 		
 		// 获取pref值			
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);
-		SharedPreferences.Editor editor = settings.edit();		
+		SharedPreferences.Editor editor = settings.edit();
+		// 获取默认的prefs数据
+		defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		defaultEditor = defaultPrefs.edit();
 		// SQL数据库
 		dbRecent = new dbHelper(this);
 		lockCursor = dbRecent.select();
 		// 获取保存的美言数量及美言显示方式
 		int verseQty = settings.getInt(VERSEQTY, 0);
 		int showVerseFlag = settings.getInt(SHOWVERSEFLAG, 1);
-		sCustom = settings.getString(VERSE, "         ");	
+		sCustom = settings.getString(VERSE, "感觉自己萌萌哒  ");	
 		// 设置美言
 		switch (showVerseFlag) {
 		case 1:
@@ -156,7 +165,7 @@ public class LockActivity extends FragmentActivity {
 			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		}		
 		
-		// 初始化滑动解锁Viewpager，即锁屏方式1
+		// 简单滑动解锁，即锁屏方式1
 		InitViewPager();
 		// 九宫手势解锁，即锁屏方式2
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
@@ -167,17 +176,19 @@ public class LockActivity extends FragmentActivity {
 				if (ppwv.verifyPassword(mPassword)) {
 					//showToast("解锁成功！");
 					unLock();
+					mLockStatus=false;
 				} else {
 					showToast("手势错误,请重新输入");
 					ppwv.clearPassword();
+					mLockStatus=true;
 				}
+				saveLockStatus();//保存锁屏状态
 			}
 		});
 		
-		// 获取存储的pref数据
-		SharedPreferences home_setting = getSharedPreferences(PREFS, 0);  
-		int flag = home_setting.getInt(LOCKFLAG, 1);
-		boolean setPassword = home_setting.getBoolean(PWSETUP, false);
+		// 获取存储的pref数据  
+		int flag = settings.getInt(LOCKFLAG, 1);
+		boolean setPassword = settings.getBoolean(PWSETUP, false);
 		// 控制锁屏方式的显示
 		if(flag==2 & setPassword==true){			
 			mPager.setVisibility(View.GONE);
@@ -214,15 +225,22 @@ public class LockActivity extends FragmentActivity {
 			switch (arg0) {
 			case 0:
 				unLock();
+				mLockStatus = false;
 				break;
-			default:
+			case 2:
 				Intent cameraIntent = new Intent(
 						MediaStore.ACTION_IMAGE_CAPTURE);
 				startActivityForResult(cameraIntent, 1);
 				unLock();
+				mLockStatus = false;
+				break;
+			default:
+				mLockStatus = true;				
 				break;
 			}
+			saveLockStatus();//保存锁屏状态
 			currIndex = arg0;
+			
 		}
 
 		@Override
@@ -282,9 +300,16 @@ public class LockActivity extends FragmentActivity {
         super.onAttachedToWindow(); 
     }*/
     
-    //
+    // 解锁，进入桌面
 	public void unLock() {
 		finish();
 	}
+	
+	// 保存锁屏状态
+	public void saveLockStatus(){
+		defaultEditor.putBoolean(LOCK_STATUS, mLockStatus);
+		defaultEditor.commit();
+	}
+	
 
 }

@@ -70,6 +70,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	public static final String VERSE = "verse";// 美言pref值名称
 	public static final String VERSEID = "verse_id";// 美言id pref值名称
 	public static final String VERSEQTY = "verse_quantity";// 美言数量pref值名称	
+	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String BOOLIDPATH = "wallpaper_idorpath";// 应用内or外壁纸bool的pref值名称,true为ID，false为path
 	public static final String WALLPAPERID = "wallpaper_id";// 应用内壁纸资源ID的pref值名称
 	public static final String WALLPAPERPATH = "wallpaper_path";// 应用外壁纸Path的pref值名称
@@ -213,7 +214,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 		}
 	};	
-	// 发布美言及壁纸
+	/** 发布美言及壁纸**/
 	private OnClickListener editOkOnClickListener = new OnClickListener() {
 
 		@Override
@@ -234,6 +235,11 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				editor.putInt(VERSEQTY, verseQty);
 				//editor.putLong(VERSEID, verseId);
 			}
+			else{
+				int showVerseFlag = 1;
+				editor.putInt(SHOWVERSEFLAG, showVerseFlag);
+			}
+				
 			// 将美言存入SharedPreferences
 			editor.putString(VERSE, verse);// 美言
 			// 将壁纸结果存入SharedPreferences
@@ -249,7 +255,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		}
 	};
 	
-	/** 选择应用内自带颜色或壁纸 **/
+	// 选择应用内自带颜色或壁纸 
 	OnItemClickListener wallpaperListener = new OnItemClickListener() {
 
 		@Override
