@@ -19,6 +19,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import cn.minelock.android.R;
 
 import android.app.Activity;
+import android.app.KeyguardManager;
+import android.app.KeyguardManager.KeyguardLock;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +29,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -182,7 +185,29 @@ public class HomeActivity extends Activity implements OnClickListener,
 		InitShowVerseBtn();	
 		ShowVerseBtn();
 	}
-	// 暂停时刷新美言的设置
+	
+	private final String LOCK_SWITCH = "lock_screen_switch";
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		// 获取的default prefs数据		
+		SharedPreferences defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		boolean isLockScreenOn = defaultPrefs.getBoolean(LOCK_SWITCH, true);
+		//启动锁屏
+		if (isLockScreenOn){
+			// keep on disabling the system Keyguard
+			//启动锁屏
+			startService(new Intent(this, MyLockScreenService.class));
+			EnableSystemKeyguard(false);
+		}
+		else {
+			stopService(new Intent(this, MyLockScreenService.class));
+			// recover original Keyguard
+			EnableSystemKeyguard(true);
+		}
+	}
+	// 界面在前端时刷新美言的设置
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -190,6 +215,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		SetVerse();
 		InitShowVerseBtn();		
 	}
+	
 	// 下拉
 	private void PullDown() {
 		// Call onRefreshComplete when the list has been refreshed.
@@ -493,6 +519,18 @@ public class HomeActivity extends Activity implements OnClickListener,
 	@Override
 	public void onItemClick(int pos) {
 		setVerse(pos);
+	}
+	// 控制系统锁屏
+	void EnableSystemKeyguard(boolean bEnable) {
+		KeyguardManager mKeyguardManager = null;
+		KeyguardLock mKeyguardLock = null;
+
+		mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+		mKeyguardLock = mKeyguardManager.newKeyguardLock("");
+		if (bEnable)
+			mKeyguardLock.reenableKeyguard();
+		else
+			mKeyguardLock.disableKeyguard();
 	}
 	
 	private void setVerse(int pos) {
