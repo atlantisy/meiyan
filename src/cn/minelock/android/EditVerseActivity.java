@@ -122,7 +122,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				// TODO Auto-generated method stub
-			    //如果输入法在窗口上已经显示，则隐藏，反之则显示
+			    // 如果输入法在窗口上已经显示，则隐藏，反之则显示
 			    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);  
 			    //imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 			    boolean bool = imm.isActive();
@@ -307,6 +307,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
 			hideSoftKeyboard();
+			wpGridview.setVisibility(View.GONE);
 			showPicturePicker(EditVerseActivity.this);
 		}
 	};

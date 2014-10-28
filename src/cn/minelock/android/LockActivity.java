@@ -68,7 +68,7 @@ public class LockActivity extends FragmentActivity {
 	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
-	private PatternPassWordView ppwv;
+	private PatternPassWordView ppwv=null;
 	private Toast toast;
 	private ImageView viewRightArrow;
 	private ImageView viewLeftArrow;

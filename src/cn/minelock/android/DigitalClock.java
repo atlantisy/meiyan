@@ -23,6 +23,8 @@ public class DigitalClock extends RelativeLayout {
 	private Calendar mCalendar;
 	private String mFormat;
 	private TextView mTimeDisplay;
+	private TextView mDateDisplay;
+	private TextView mWeekDisplay;
 	private AmPm mAmPm;
 	private ContentObserver mFormatChangeObserver;
 	private Context mContext;
@@ -33,7 +35,8 @@ public class DigitalClock extends RelativeLayout {
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(Intent.ACTION_TIMEZONE_CHANGED)) {
 				mCalendar = Calendar.getInstance();
-			} else if (intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
+			} 
+			else if (intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
 				mAmPm.reloadStringResource();
 			}
 			// Post a runnable to avoid blocking the broadcast.
@@ -44,6 +47,40 @@ public class DigitalClock extends RelativeLayout {
 			});
 		}
 	};
+	
+	public void updateTime() {
+		mCalendar = Calendar.getInstance();
+		setDateFormat();
+		mAmPm.reloadStringResource();
+		// 年月日
+		String year = String.valueOf(mCalendar.get(Calendar.YEAR));
+		String month = String.valueOf(mCalendar.get(Calendar.MONTH)+1);
+		String day = String.valueOf(mCalendar.get(Calendar.DAY_OF_MONTH));				
+		mDateDisplay.setText("  " + month + "月" + day + "日");
+		// 周
+		String week = String.valueOf(mCalendar.get(Calendar.DAY_OF_WEEK));
+	    if("1".equals(week)){ 	    		    
+	    	week = "日";  
+	    }else if("2".equals(week)){  
+	    	week = "一";  
+	    }else if("3".equals(week)){  
+	    	week = "二";  
+	    }else if("4".equals(week)){  
+	    	week = "三";  
+	    }else if("5".equals(week)){  
+	    	week = "四";  
+	    }else if("6".equals(week)){  
+	    	week = "五";  
+	    }else if("7".equals(week)){  
+	    	week = "六";  
+	    } 
+		mWeekDisplay.setText("周"+week);
+		// 时间
+		CharSequence newTime = new SimpleDateFormat(mFormat).format(mCalendar.getTime());
+		mTimeDisplay.setText(newTime);
+		
+		mAmPm.setIsMorning(mCalendar.get(Calendar.AM_PM) == 0);
+	}
 
 	static class AmPm {
 		private TextView mAmPm;
@@ -98,11 +135,16 @@ public class DigitalClock extends RelativeLayout {
 
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-
+		
+		mDateDisplay = (TextView) findViewById(R.id.dateDisplay);
+		mDateDisplay.setTypeface(Typeface.createFromFile("/system/fonts/DroidSans.ttf"));
+		mWeekDisplay = (TextView) findViewById(R.id.weekDisplay);
+		mWeekDisplay.setTypeface(Typeface.createFromFile("/system/fonts/DroidSans.ttf"));
+		
 		mTimeDisplay = (TextView) findViewById(R.id.timeDisplay);
 		mTimeDisplay.setTypeface(Typeface.createFromFile("/system/fonts/DroidSans.ttf"));//DroidSansMono
 		//mTimeDisplay.setTypeface(Typeface.createFromFile("/system/fonts/SegoeWP.ttf"));
-		// mAmPm = new AmPm(this, Typeface.createFromFile("/system/fonts/DroidSansFallback.ttf"));
+		//mAmPm = new AmPm(this, Typeface.createFromFile("/system/fonts/DroidSansFallback.ttf"));
 		mAmPm = new AmPm(this, null);
 		mCalendar = Calendar.getInstance();
 
@@ -133,21 +175,10 @@ public class DigitalClock extends RelativeLayout {
 		mContext.getContentResolver().unregisterContentObserver(mFormatChangeObserver);
 	}
 
-	public void updateTime() {
-		mCalendar = Calendar.getInstance();
-		setDateFormat();
-		mAmPm.reloadStringResource();
-
-		CharSequence newTime = new SimpleDateFormat(mFormat).format(mCalendar.getTime());
-		mTimeDisplay.setText(newTime);
-		mAmPm.setIsMorning(mCalendar.get(Calendar.AM_PM) == 0);
-	}
-
 	private void setDateFormat() {
 		boolean is24Format = android.text.format.DateFormat.is24HourFormat(getContext());
 		// int fommatStringId = is24Format ? R.string.twenty_four_hour_time_format : R.string.twelve_hour_time_format;
-
-		//		String format = getContext().getString(fommatStringId);
+		// String format = getContext().getString(fommatStringId);
 		String format = "HH:mm";
 		mAmPm.setShowAmPm(!is24Format);
 		int a = -1;
@@ -164,7 +195,8 @@ public class DigitalClock extends RelativeLayout {
 		}
 		if (a == 0) {
 			format = format.substring(1);
-		} else if (a > 0) {
+		} 
+		else if (a > 0) {
 			format = format.substring(0, a - 1) + format.substring(a + 1);
 		}
 		format = format.trim();

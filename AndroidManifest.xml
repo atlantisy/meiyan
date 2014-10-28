@@ -45,8 +45,11 @@
             android:name="cn.minelock.android.HomeActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        <activity android:name="cn.minelock.android.LockActivity" />
-
+        <activity 
+            android:name="cn.minelock.android.LockActivity"            
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        
         <receiver android:name="cn.minelock.android.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
