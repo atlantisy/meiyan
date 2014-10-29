@@ -56,7 +56,7 @@ public class DigitalClock extends RelativeLayout {
 		String year = String.valueOf(mCalendar.get(Calendar.YEAR));
 		String month = String.valueOf(mCalendar.get(Calendar.MONTH)+1);
 		String day = String.valueOf(mCalendar.get(Calendar.DAY_OF_MONTH));				
-		mDateDisplay.setText("  " + month + "月" + day + "日");
+		mDateDisplay.setText(month + "月" + day + "日");
 		// 周
 		String week = String.valueOf(mCalendar.get(Calendar.DAY_OF_WEEK));
 	    if("1".equals(week)){ 	    		    

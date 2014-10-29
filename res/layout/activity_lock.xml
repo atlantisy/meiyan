@@ -28,7 +28,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:paddingTop="0dp"
+                    android:layout_marginTop="0dp"
                     android:textColor="@color/white"
                     android:textSize="56sp" />
                 <TextView
@@ -42,7 +43,8 @@
                 <LinearLayout
                     android:layout_below="@id/timeDisplay"
                     android:layout_width="fill_parent"
-                    android:layout_height="48dp"                    
+                    android:layout_height="48dp"
+                    android:paddingBottom="0dp"                   
                     android:orientation="horizontal"
                     android:gravity="center">
                 	<TextView
@@ -58,6 +60,7 @@
                     	android:layout_width="wrap_content"
                     	android:layout_height="wrap_content"
                     	android:layout_gravity="center"
+                    	android:paddingLeft="8dp"
                     	android:text="年月日"
                     	android:textSize="14sp" 
                     	android:textColor="@color/white"/> 
@@ -71,14 +74,14 @@
             android:layout_weight="3"
             android:orientation="vertical" >
 
-            <!-- <TextView
+            <TextView
                 android:id="@+id/login_toast"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:text=""
-                android:textColor="@android:color/white" /> -->
+                android:textColor="@android:color/white" />
 
             <cn.minelock.widget.PatternPassWordView
                 android:id="@+id/mPatternPassWordView"

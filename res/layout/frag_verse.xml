@@ -19,6 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:gravity="center"
+        android:text="每时每刻 美好美言"
+        android:textColor="@color/white"
+        android:textSize="20sp" 
         android:shadowColor="#33000000"
         android:shadowDx="1"
         android:shadowDy="0"
@@ -26,9 +29,13 @@
         android:singleLine="true"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
-        android:text="每时每刻 美妙美言"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:focusable="true"    
+    	android:selectAllOnFocus="true"    
+    	android:clickable="true"   
+    	android:focusableInTouchMode="true"   
+    	android:freezesText="true" >
+    	<requestFocus/>  
+    </TextView>
 
     <ImageView
         android:id="@+id/iv_arrow_left"

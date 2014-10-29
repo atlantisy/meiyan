@@ -176,6 +176,7 @@ public class LockActivity extends FragmentActivity {
 				if (ppwv.verifyPassword(mPassword)) {
 					//showToast("解锁成功！");
 					unLock();
+					returnHome();
 					mLockStatus=false;
 				} else {
 					showToast("手势错误,请重新输入");
@@ -225,13 +226,14 @@ public class LockActivity extends FragmentActivity {
 			switch (arg0) {
 			case 0:
 				unLock();
+				returnHome();
 				mLockStatus = false;
 				break;
 			case 2:
 				Intent cameraIntent = new Intent(
 						MediaStore.ACTION_IMAGE_CAPTURE);
 				startActivityForResult(cameraIntent, 1);
-				unLock();
+				unLock();				
 				mLockStatus = false;
 				break;
 			default:
@@ -300,9 +302,16 @@ public class LockActivity extends FragmentActivity {
         super.onAttachedToWindow(); 
     }*/
     
-    // 解锁，进入桌面
+    // 解锁
 	public void unLock() {
 		finish();
+	}
+	// 进入桌面
+	public void returnHome(){
+		Intent i = new Intent(Intent.ACTION_MAIN);
+		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		i.addCategory(Intent.CATEGORY_HOME);
+		startActivity(i);
 	}
 	
 	// 保存锁屏状态
