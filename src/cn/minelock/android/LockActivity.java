@@ -13,6 +13,7 @@ import cn.minelock.android.R;
 
 import android.R.string;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -97,7 +98,7 @@ public class LockActivity extends FragmentActivity {
 		// Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// Remove notification bar
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_lock);
 		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
 		
@@ -163,9 +164,9 @@ public class LockActivity extends FragmentActivity {
 		else{
 			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
 			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
-		}		
-		
+		}				
 		// 简单滑动解锁，即锁屏方式1
+		mPager = (ViewPager) findViewById(R.id.viewpager);
 		InitViewPager();
 		// 九宫手势解锁，即锁屏方式2
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
@@ -175,13 +176,13 @@ public class LockActivity extends FragmentActivity {
 				// 如果密码正确,则进入主页面。
 				if (ppwv.verifyPassword(mPassword)) {
 					//showToast("解锁成功！");
-					unLock();
-					returnHome();
 					mLockStatus=false;
+					unLock();
+					//returnHome();					
 				} else {
-					showToast("手势错误,请重新输入");
-					ppwv.clearPassword();
 					mLockStatus=true;
+					showToast("手势错误,请重新输入");
+					ppwv.clearPassword();					
 				}
 				saveLockStatus();//保存锁屏状态
 			}
@@ -199,11 +200,10 @@ public class LockActivity extends FragmentActivity {
 			mPager.setVisibility(View.VISIBLE);
 			ppwv.setVisibility(View.GONE);			
 		}
+		mPager.setSelected(true);
 	}
 
-	private void InitViewPager() {
-		mPager = (ViewPager) findViewById(R.id.viewpager);
-
+	private void InitViewPager() {		
 		fragmentsList = new ArrayList<Fragment>();
 		UnlockFragment unlockFragment = new UnlockFragment();
 		Fragment homeFragment = VerseFragment.newString(sCustom);
@@ -225,19 +225,18 @@ public class LockActivity extends FragmentActivity {
 		public void onPageSelected(int arg0) {
 			switch (arg0) {
 			case 0:
+				mLockStatus = false;
 				unLock();
-				returnHome();
-				mLockStatus = false;
+				//returnHome();				
 				break;
-			case 2:
-				Intent cameraIntent = new Intent(
-						MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(cameraIntent, 1);
-				unLock();				
+			case 2:				
 				mLockStatus = false;
+				launchCamera();
+				finish();								
 				break;
 			default:
-				mLockStatus = true;				
+				mLockStatus = true;	
+				//unLock();
 				break;
 			}
 			saveLockStatus();//保存锁屏状态
@@ -286,10 +285,10 @@ public class LockActivity extends FragmentActivity {
 		switch(keyCode){
 		case KeyEvent.KEYCODE_MENU:return true;
 		case KeyEvent.KEYCODE_BACK:return true;
-/*		case KeyEvent.KEYCODE_CALL:return true;
-		case KeyEvent.KEYCODE_SYM: return true;
 		case KeyEvent.KEYCODE_VOLUME_DOWN: return true;
 		case KeyEvent.KEYCODE_VOLUME_UP: return true;
+/*		case KeyEvent.KEYCODE_CALL:return true;
+		case KeyEvent.KEYCODE_SYM: return true;
 		case KeyEvent.KEYCODE_STAR: return true;*/
 		}
 		
@@ -298,14 +297,61 @@ public class LockActivity extends FragmentActivity {
 	
 	// 屏蔽home键，android4.0以上不可用
 /*    public void onAttachedToWindow() { 
+        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);  
         this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);  
         super.onAttachedToWindow(); 
     }*/
     
-    // 解锁
+	//启动短信应用  
+    private void launchSms() {    
+        //mFocusView.setVisibility(View.GONE);  
+        Intent intent = new Intent();  
+        ComponentName comp = new ComponentName("com.android.mms",  
+                "com.android.mms.ui.ConversationList");  
+        intent.setComponent(comp);  
+        intent.setAction("android.intent.action.VIEW");  
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  
+                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);  
+        startActivity(intent);  
+    }       
+    //启动拨号应用  
+    private void launchDial() {  
+        Intent intent = new Intent(Intent.ACTION_DIAL);  
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  
+                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);  
+        startActivity(intent);  
+    }
+    //启动相机应用  
+    private void launchCamera() {      	
+    	Intent intent = new Intent(); 
+        
+    	// 4.0以下的系统开启相机
+/*        ComponentName comp = new ComponentName("com.android.camera",  
+                "com.android.camera.Camera");  
+        intent.setComponent(comp);  
+        intent.setAction("android.intent.action.VIEW");  
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK   | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);*/ 
+        
+        // 4.0以上的系统开启相机1    	
+        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);  
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+        
+    	// 4.0以上的系统开启相机2，可切换摄像
+/*		intent.setAction(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);  
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); */ 
+		
+        startActivity(intent); 
+    }	
+	
+	// 解锁
 	public void unLock() {
 		finish();
+		Intent i = new Intent(Intent.ACTION_MAIN);
+		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		i.addCategory(Intent.CATEGORY_HOME);
+		startActivity(i);
 	}
+	
 	// 进入桌面
 	public void returnHome(){
 		Intent i = new Intent(Intent.ACTION_MAIN);

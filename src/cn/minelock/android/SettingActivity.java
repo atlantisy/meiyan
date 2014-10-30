@@ -190,7 +190,7 @@ public class SettingActivity extends Activity {
 		KeyguardLock mKeyguardLock = null;
 
 		mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-		mKeyguardLock = mKeyguardManager.newKeyguardLock("");
+		mKeyguardLock = mKeyguardManager.newKeyguardLock("MineLock");
 		if (bEnable)
 			mKeyguardLock.reenableKeyguard();
 		else

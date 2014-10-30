@@ -526,7 +526,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		KeyguardLock mKeyguardLock = null;
 
 		mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-		mKeyguardLock = mKeyguardManager.newKeyguardLock("");
+		mKeyguardLock = mKeyguardManager.newKeyguardLock("MineLock");
 		if (bEnable)
 			mKeyguardLock.reenableKeyguard();
 		else

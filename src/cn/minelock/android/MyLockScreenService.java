@@ -1,5 +1,7 @@
 package cn.minelock.android;
 
+import android.app.KeyguardManager;
+import android.app.KeyguardManager.KeyguardLock;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -36,8 +38,7 @@ public class MyLockScreenService extends Service {
 		// 获取保存的prefs数据
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
-		
-		
+				
 		// register Broadcast
 		Log.e("", "***********onCreate registerReceiver");
         if(mIsLockScreenOn){
@@ -51,6 +52,11 @@ public class MyLockScreenService extends Service {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		unregisterReceiver(mScreenBCR);
+		//被销毁时启动自身，保持自身在后台存活
+        if(mIsLockScreenOn){
+        	IntentFilter intentFilter= new IntentFilter(ACT_SCREEN_OFF);
+        	registerReceiver(mScreenBCR, intentFilter);
+        }
 	}
 	
 	private BroadcastReceiver mScreenBCR = new BroadcastReceiver() {
@@ -68,6 +74,11 @@ public class MyLockScreenService extends Service {
 						editor.putBoolean(LOCK_STATUS, mLockStatus);
 						editor.commit();
 						
+						KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);    
+						KeyguardLock kl = km.newKeyguardLock("MineLock");
+						//屏蔽手机内置的锁屏  
+			            kl.disableKeyguard();
+			            
 						Intent i = new Intent();  
 						i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
 						i.setClass(context, LockActivity.class); 

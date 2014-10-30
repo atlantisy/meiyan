@@ -29,7 +29,7 @@ public class VerseFragment extends Fragment {
 	// private String text;
 	static private int len;
 	private Handler handler = new Handler();
-	private TextView viewhello;
+	private TextView viewVerse;
 	private ImageView viewRightArrow;
 	private ImageView viewLeftArrow;
 
@@ -59,16 +59,18 @@ public class VerseFragment extends Fragment {
 			Bundle savedInstanceState) {
 		Log.d(TAG, "VerseFragment-----onCreateView");
 		View view = inflater.inflate(R.layout.frag_verse, container, false);
-		viewhello = (TextView) view.findViewById(R.id.tv_verse);
-		viewhello.setText(hello);
+		viewVerse = (TextView) view.findViewById(R.id.tv_verse);
+		viewVerse.setText(hello);
 
 		viewRightArrow = (ImageView) view.findViewById(R.id.iv_arrow_right);
 		viewLeftArrow = (ImageView) view.findViewById(R.id.iv_arrow_left);
 		viewRightArrow.setVisibility(0);// 0:VISIBILITY 4:INVISIBILITY
 		viewLeftArrow.setVisibility(4);
 
-		viewhello.setOnTouchListener(textViewTouchListener);
-
+		viewVerse.setOnTouchListener(textViewTouchListener);
+		
+		//启动美言跑马灯功能  
+		viewVerse.setSelected(true);
 		//循环逐字黑白显示美言
 		//startIndicateAnimation();
 		return view;
@@ -122,14 +124,14 @@ public class VerseFragment extends Fragment {
 						Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 
-			viewhello.setText(spannable);
+			viewVerse.setText(spannable);
 			index++;
 
 			if (index == len) {
 				ss = new ForegroundColorSpan(Color.argb(0xff, 0xff, 0xff, 0xff));
 				spannable.setSpan(ss, len - 1, len,
 						Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				viewhello.setText(spannable);
+				viewVerse.setText(spannable);
 				handler.postDelayed(this, 800);
 			} else
 				handler.postDelayed(this, 300);
