@@ -98,7 +98,7 @@ public class LockActivity extends FragmentActivity {
 		// Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// Remove notification bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_lock);
 		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
 		
@@ -248,13 +248,14 @@ public class LockActivity extends FragmentActivity {
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
 			viewRightArrow = (ImageView) findViewById(R.id.iv_arrow_right);
 			viewLeftArrow = (ImageView) findViewById(R.id.iv_arrow_left);
+			//arg0 :当前页面，即你点击滑动的页面，arg1:当前页面偏移的百分比，arg2:当前页面偏移的像素位置   
 			if (arg1>0.0 | arg2>0){
-				viewRightArrow.setVisibility(0);//0:VISIBILITY 4:INVISIBILITY
-				viewLeftArrow.setVisibility(4);
+				viewRightArrow.setVisibility(0);//0:VISIBILITY
+				viewLeftArrow.setVisibility(4);//4:INVISIBILITY
 			}
 			else{
-				viewRightArrow.setVisibility(0);//
-				viewLeftArrow.setVisibility(4);
+				viewRightArrow.setVisibility(0);//0:VISIBILITY
+				viewLeftArrow.setVisibility(4);//4:INVISIBILITY
 			}
 		}
 
@@ -262,13 +263,14 @@ public class LockActivity extends FragmentActivity {
 		public void onPageScrollStateChanged(int arg0) {
 			viewRightArrow = (ImageView) findViewById(R.id.iv_arrow_right);
 			viewLeftArrow = (ImageView) findViewById(R.id.iv_arrow_left);	
+			//arg0 ==1的时辰默示正在滑动，arg0==2的时辰默示滑动完毕了，arg0==0的时辰默示什么都没做。
 			if (arg0==1){
-				viewRightArrow.setVisibility(0);//0:VISIBILITY 4:INVISIBILITY
-				viewLeftArrow.setVisibility(4);
+				viewRightArrow.setVisibility(0);//0:VISIBILITY
+				viewLeftArrow.setVisibility(4);//4:INVISIBILITY
 			}
 			else{
-				viewRightArrow.setVisibility(0);//
-				viewLeftArrow.setVisibility(4);
+				viewRightArrow.setVisibility(0);//0:VISIBILITY
+				viewLeftArrow.setVisibility(4);//4:INVISIBILITY
 			}
 		}
 	}
@@ -295,10 +297,9 @@ public class LockActivity extends FragmentActivity {
 		return super.onKeyDown(keyCode, event);
     } 
 	
-	// 屏蔽home键，android4.0以上不可用
+	// 屏蔽home键，android 2.2和2.3适用，4.0及以上不适用
 /*    public void onAttachedToWindow() { 
-        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);  
-        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);  
+        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD); //TYPE_KEYGUARD_DIALOG 
         super.onAttachedToWindow(); 
     }*/
     

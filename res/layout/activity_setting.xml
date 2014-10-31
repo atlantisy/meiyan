@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@drawable/shape_background_grey"
+        android:background="@drawable/shape_bg_grey"
         android:orientation="horizontal" >
 
         <ImageButton
@@ -86,7 +86,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/button_selector"
+                android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:text="关闭系统锁屏"
                 android:textColor="@color/gray_black"
@@ -101,7 +101,7 @@
                 android:id="@+id/setting_setpassword"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/button_selector"
+                android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:text="修改手势密码"
                 android:textColor="@color/gray_black"
@@ -143,7 +143,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/button_selector"
+                android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:text="版本"
                 android:textColor="@color/gray_black"
@@ -157,7 +157,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/button_selector"
+                android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:text="关于"
                 android:textColor="@color/gray_black"
@@ -176,7 +176,7 @@
                 android:id="@+id/setting_exit"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/shape_background_ok"
+                android:background="@drawable/shape_bg_editok"
                 android:gravity="center"
                 android:paddingLeft="30dip"
         		android:paddingRight="30dip"

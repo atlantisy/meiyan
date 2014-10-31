@@ -9,7 +9,7 @@
         android:id="@+id/recent_top"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@drawable/shape_background_grey"
+        android:background="@drawable/shape_bg_grey"
         android:orientation="horizontal" >
 
         <ImageButton

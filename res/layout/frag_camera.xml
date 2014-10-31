@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center"
+    android:gravity="top"
     android:background="@color/alpha0_black"
     android:orientation="vertical" >
 
@@ -23,9 +23,9 @@
     <ImageView
         android:id="@+id/iv_camera"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:background="@color/alpha0_black"
-        android:src="@drawable/blank" />
+        android:src="@drawable/ic_camera" />
 
 </LinearLayout>

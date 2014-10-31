@@ -33,7 +33,7 @@ public class UnlockFragment extends Fragment {
         Log.d(TAG, "UnlockFragment-----onCreate");
 
         Resources res = getResources();  
-        unlockImage = BitmapFactory.decodeResource(res, R.drawable.blank);
+        unlockImage = BitmapFactory.decodeResource(res, R.drawable.ic_unlock);
     }
 
     @Override

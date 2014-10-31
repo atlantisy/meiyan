@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@drawable/shape_background_grey"
+        android:background="@drawable/shape_bg_grey"
         android:orientation="horizontal" >
 
         <ImageButton
@@ -56,7 +56,7 @@
             android:id="@+id/edit_ok"
             android:layout_width="48dp"
             android:layout_height="32dp"
-            android:background="@drawable/shape_background_ok"
+            android:background="@drawable/editok_button_selector"
             android:layout_marginRight="8dp"
             android:layout_gravity="center"
             android:text="完成"

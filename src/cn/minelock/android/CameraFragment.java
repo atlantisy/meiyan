@@ -34,7 +34,7 @@ public class CameraFragment extends Fragment {
         Log.d(TAG, "CameraFragment-----onCreate");
 
         Resources res = getResources();  
-        cameraImage = BitmapFactory.decodeResource(res, R.drawable.blank);
+        cameraImage = BitmapFactory.decodeResource(res, R.drawable.ic_camera);
     }
 
     @Override
@@ -43,7 +43,6 @@ public class CameraFragment extends Fragment {
         View view = inflater.inflate(R.layout.frag_camera, container, false);
         ImageView viewCamera = (ImageView) view.findViewById(R.id.iv_camera);               
         viewCamera.setImageBitmap(cameraImage);
-        //viewhello.setBackgroundColor(Color.argb(0xff, 0xff, 0xff, 0xff));
         return view;
     }
 

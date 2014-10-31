@@ -85,7 +85,7 @@ public class SetPasswordActivity extends Activity {
 					if (StringUtil.isNotEmpty(password)) {
 						ppwv.resetPassWord(password);
 						ppwv.clearPassword();
-						showToast("恭喜，密码设置成功.");
+						showToast("恭喜,设置成功!");
 						//返回九宫格已设置结果
 			            Intent data=new Intent();  
 			            data.putExtra("SetPassWord", true);   
@@ -94,7 +94,7 @@ public class SetPasswordActivity extends Activity {
 						finish();
 					} else {
 						ppwv.clearPassword();
-						showToast("密码不能为空,请输入密码.");
+						showToast("密码不能为空,请输入密码!");
 					}
 					break;
 				case R.id.tvReset:

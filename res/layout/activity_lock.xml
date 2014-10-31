@@ -28,8 +28,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingTop="0dp"
-                    android:layout_marginTop="0dp"
                     android:textColor="@color/white"
                     android:textSize="56sp" />
                 <TextView
@@ -47,23 +45,23 @@
                     android:paddingBottom="0dp"                   
                     android:orientation="horizontal"
                     android:gravity="center">
-                	<TextView
+                    <TextView
+                    	android:id="@+id/dateDisplay"
+                    	android:layout_width="wrap_content"
+                    	android:layout_height="wrap_content"
+                    	android:layout_gravity="center"                    	
+                    	android:text="年月日"
+                    	android:textSize="14sp" 
+                    	android:textColor="@color/white"/> 
+                    <TextView
                     	android:id="@+id/weekDisplay"                   	
                     	android:layout_width="wrap_content"
                     	android:layout_height="wrap_content"
                     	android:layout_gravity="center"
-                    	android:text="周"
+                    	android:paddingLeft="8dp"
+                    	android:text="星期"
                     	android:textSize="14sp" 
                     	android:textColor="@color/white"/>
-                	<TextView
-                    	android:id="@+id/dateDisplay"
-                    	android:layout_width="wrap_content"
-                    	android:layout_height="wrap_content"
-                    	android:layout_gravity="center"
-                    	android:paddingLeft="8dp"
-                    	android:text="年月日"
-                    	android:textSize="14sp" 
-                    	android:textColor="@color/white"/> 
                 </LinearLayout>                 
             </cn.minelock.android.DigitalClock>
         </LinearLayout>

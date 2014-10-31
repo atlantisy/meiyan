@@ -74,7 +74,7 @@ public class DigitalClock extends RelativeLayout {
 	    }else if("7".equals(week)){  
 	    	week = "六";  
 	    } 
-		mWeekDisplay.setText("周"+week);
+		mWeekDisplay.setText("星期"+week);
 		// 时间
 		CharSequence newTime = new SimpleDateFormat(mFormat).format(mCalendar.getTime());
 		mTimeDisplay.setText(newTime);

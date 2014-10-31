@@ -64,8 +64,8 @@ public class VerseFragment extends Fragment {
 
 		viewRightArrow = (ImageView) view.findViewById(R.id.iv_arrow_right);
 		viewLeftArrow = (ImageView) view.findViewById(R.id.iv_arrow_left);
-		viewRightArrow.setVisibility(0);// 0:VISIBILITY 4:INVISIBILITY
-		viewLeftArrow.setVisibility(4);
+		viewRightArrow.setVisibility(0);// 0:VISIBILITY
+		viewLeftArrow.setVisibility(4);// 4:INVISIBILITY
 
 		viewVerse.setOnTouchListener(textViewTouchListener);
 		
@@ -143,13 +143,13 @@ public class VerseFragment extends Fragment {
 			// TODO Auto-generated method stub
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN: {
-				viewRightArrow.setVisibility(0);//0:VISIBILITY 4:INVISIBILITY
-				viewLeftArrow.setVisibility(4);
+/*				viewRightArrow.setVisibility(0);
+				viewLeftArrow.setVisibility(4);*/
 				break;
 			}
 			case MotionEvent.ACTION_UP: {
-				viewRightArrow.setVisibility(0);//
-				viewLeftArrow.setVisibility(4);
+/*				viewRightArrow.setVisibility(0);
+				viewLeftArrow.setVisibility(4);*/
 				break;
 			}
 			default:

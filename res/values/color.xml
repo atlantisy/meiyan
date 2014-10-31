@@ -12,6 +12,7 @@
     <color name="gray_white">#bfbfbf</color>        
     <color name="gray_black">#404040</color>
     <color name="app_color">#25dbc2</color>
+    <color name="app_color_pressed">#1eaf9b</color>    
     <color name="red">#fe4543</color>
     <color name="pink">#f4169d</color>    
     <color name="orange">#f37633</color>
