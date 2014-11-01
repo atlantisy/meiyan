@@ -366,7 +366,7 @@
         android:id="@+id/home_bottombar"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@color/alpha"
+        android:background="@drawable/shape_bg_alpha"
         android:orientation="horizontal" >
 
         <ImageButton
