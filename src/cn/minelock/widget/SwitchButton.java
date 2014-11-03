@@ -106,7 +106,7 @@ public class SwitchButton extends View implements android.view.View.OnClickListe
 			| Canvas.CLIP_TO_LAYER_SAVE_FLAG);
 
 		canvas.drawBitmap(mSwitchBottom, mSrc, mDest, null);
-		canvas.drawBitmap(mSwitchThumb, mSrc, mDest, null);
+		canvas.drawBitmap(mSwitchThumb, mSrc, mDest, null);		
 		canvas.drawBitmap(mSwitchFrame, 0, 0, null);
 		canvas.drawBitmap(mSwitchMask, 0, 0, mPaint);
 		canvas.restoreToCount(count);

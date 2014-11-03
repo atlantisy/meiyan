@@ -78,10 +78,23 @@
                 android:textColor="@color/gray_black" 
                 android:textSize="16sp" 
                 android:visibility="gone"/>
-            
+                        
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="基本设置"
+                android:textColor="@color/app_color" 
+                android:textSize="14sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2.0px"
+                android:background="@color/app_color" />
             <LinearLayout
             	android:layout_width="fill_parent"
-            	android:layout_height="48dp"
+            	android:layout_height="wrap_content"
+            	android:paddingTop="8dp"
+            	android:paddingBottom="8dp"
             	android:orientation="horizontal">
             	
             	<TextView
@@ -96,8 +109,7 @@
             	<cn.minelock.widget.SwitchButton
                 	android:id="@+id/lock_switchbtn"
                 	android:layout_width="wrap_content"
-                	android:layout_height="match_parent"
-                	android:gravity="center_vertical"/>
+                	android:layout_height="match_parent"/>
             </LinearLayout>
 
             <View
@@ -111,7 +123,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
-                android:text="关闭默认锁屏"
+                android:text="关闭系统锁屏"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
 
@@ -130,10 +142,17 @@
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
 
+           <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="其他"
+                android:textColor="@color/app_color" 
+                android:textSize="14sp" />
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:background="@drawable/shape_line" />            
+                android:layout_height="2.0px"
+                android:background="@color/app_color" />            
 
             <Button
                 android:id="@+id/setting_help"
