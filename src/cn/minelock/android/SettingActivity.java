@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import cn.minelock.android.MyLockScreenService;
 
 import cn.minelock.android.R;
+import cn.minelock.util.StringUtil;
+import cn.minelock.widget.SwitchButton;
+import cn.minelock.widget.SwitchButton.OnChangeListener;
 
 
 import android.R.string;
@@ -40,6 +43,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.text.style.ForegroundColorSpan;
 import android.app.Activity;
 import android.app.KeyguardManager;
@@ -53,13 +57,16 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class SettingActivity extends Activity {
+public class SettingActivity extends Activity  implements OnClickListener{
 
 	private CheckBox lock_checkbox = null;
-	private SharedPreferences prefs = null;
+	private SwitchButton lock_switchbtn = null;
+	
 	static public String customText = "";
 
 	//private final String LOCK_VERSE = "verse";
+	
+	private SharedPreferences prefs = null;
 	private final String LOCK_SWITCH = "lock_screen_switch";
 	
 	private boolean mIsLockScreenOn = true;
@@ -72,22 +79,58 @@ public class SettingActivity extends Activity {
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
 
-		// 锁屏开关
-		lock_checkbox = (CheckBox) findViewById(R.id.lock_switch);
+		// 锁屏开关switch
+		lock_switchbtn = (SwitchButton) findViewById(R.id.lock_switchbtn);
+		lock_switchbtn.setSwitch(mIsLockScreenOn);
+		lock_switchbtn.setOnChangeListener(new OnChangeListener() {  
+              
+	            @Override  
+	            public void onChange(SwitchButton sb, boolean state) {  
+	                // TODO Auto-generated method stub
+	    			mIsLockScreenOn = state;
+	    			//启动锁屏
+	    			if (mIsLockScreenOn){
+	    				// keep on disabling the system Keyguard
+	    				EnableSystemKeyguard(false);
+	    			}
+	    			else {
+	    				// recover original Keyguard
+	    				EnableSystemKeyguard(true);
+	    			}
+	    			//将锁屏开关check值存入pref中
+	    			SharedPreferences.Editor editor = prefs.edit();
+	    			editor.putBoolean(LOCK_SWITCH, mIsLockScreenOn);
+	    			editor.commit();
+	            }  
+	        });
+		// 锁屏开关checkbox
+/*		lock_checkbox = (CheckBox) findViewById(R.id.lock_checkbox);
 		lock_checkbox.setChecked(mIsLockScreenOn);
-		lock_checkbox.setOnClickListener(new OnCheckedListener());
+		lock_checkbox.setOnClickListener(new OnCheckedListener());	*/
+		// 关闭系统默认锁屏
+		Button closedefaultlock_btn = (Button) findViewById(R.id.setting_closedefaultlock);
+		closedefaultlock_btn.setOnClickListener(this);
 		// 设置九宫密码按钮
-		Button setpassword_button = (Button) findViewById(R.id.setting_setpassword);
-		setpassword_button.setOnClickListener(setPasswordOnClickListener);		
+		Button setpassword_btn = (Button) findViewById(R.id.setting_setpassword);
+		setpassword_btn.setOnClickListener(setPasswordOnClickListener);	
 		// 返回按钮
-		ImageButton return_button = (ImageButton) findViewById(R.id.setting_return);
-		return_button.setOnClickListener(returnOnClickListener);
+		ImageButton return_btn = (ImageButton) findViewById(R.id.setting_return);
+		return_btn.setOnClickListener(returnOnClickListener);
 		// 退出按钮
-		Button exit_button = (Button) findViewById(R.id.setting_exit);
-		exit_button.setOnClickListener(exitOnClickListener);
+		Button exit_btn = (Button) findViewById(R.id.setting_exit);
+		exit_btn.setOnClickListener(exitOnClickListener);
 		
 	}
-	
+
+	@Override
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.setting_closedefaultlock:
+			EnableSystemKeyguard(false);
+			StringUtil.showToast(this, "系统锁屏已关闭",  Toast.LENGTH_SHORT);
+			break;
+		}
+	}
 	// 设置九宫密码按钮
 	private OnClickListener setPasswordOnClickListener = new OnClickListener() {
 
@@ -126,7 +169,7 @@ public class SettingActivity extends Activity {
 		}
 	};
 	
-	class OnCheckedListener implements OnClickListener {
+/*	class OnCheckedListener implements OnClickListener {
 		public void onClick(View v) {
 			// TODO
 			mIsLockScreenOn = lock_checkbox.isChecked();
@@ -144,7 +187,7 @@ public class SettingActivity extends Activity {
 			editor.putBoolean(LOCK_SWITCH, mIsLockScreenOn);
 			editor.commit();
 		}
-	}
+	}*/
 
 	/**/
 	@Override

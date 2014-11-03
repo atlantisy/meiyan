@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:src="@drawable/blank" />
          
-         <Button
+         <!-- <Button
             android:id="@+id/setting_feedback"
             android:layout_height="32dp"
             android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
             android:gravity="center"
             android:text="意见反馈"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp" /> -->
     </LinearLayout>
 
     <ScrollView
@@ -70,13 +70,35 @@
             android:padding="8dp" >
 
             <CheckBox
-                android:id="@+id/lock_switch"
+                android:id="@+id/lock_checkbox"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="是否开启美言锁屏"
+                android:text="开启美言锁屏"
                 android:textColor="@color/gray_black" 
-                android:textSize="16sp" />
+                android:textSize="16sp" 
+                android:visibility="gone"/>
+            
+            <LinearLayout
+            	android:layout_width="fill_parent"
+            	android:layout_height="48dp"
+            	android:orientation="horizontal">
+            	
+            	<TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="开启美言锁屏"
+                    android:textColor="@color/gray_black" 
+                    android:textSize="16sp" />
+
+            	<cn.minelock.widget.SwitchButton
+                	android:id="@+id/lock_switchbtn"
+                	android:layout_width="wrap_content"
+                	android:layout_height="match_parent"
+                	android:gravity="center_vertical"/>
+            </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
@@ -84,11 +106,12 @@
                 android:background="@drawable/shape_line" />
             
             <Button
+                android:id="@+id/setting_closedefaultlock"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
-                android:text="关闭系统锁屏"
+                android:text="关闭默认锁屏"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
 
@@ -110,42 +133,29 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
-                android:background="@drawable/shape_line" />
-            
-<!--             <Button
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/button_selector"
-                android:gravity="center_vertical"
-                android:text="美言投稿"
-                android:textColor="@color/gray_black"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:background="@drawable/shape_line" />
+                android:background="@drawable/shape_line" />            
 
             <Button
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/button_selector"
-                android:gravity="center_vertical"
-                android:text="意见反馈"
-                android:textColor="@color/gray_black"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:background="@drawable/shape_line" /> -->
-
-            <Button
+                android:id="@+id/setting_help"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
-                android:text="版本"
+                android:text="使用帮助"
+                android:textColor="@color/gray_black"
+                android:textSize="16sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />
+
+            <Button
+                android:id="@+id/setting_feedback"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:gravity="center_vertical"
+                android:text="意见反馈"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
 

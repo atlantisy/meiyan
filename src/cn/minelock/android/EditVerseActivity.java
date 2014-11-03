@@ -315,7 +315,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle("锁屏壁纸");
-		builder.setItems(new String[] { "拍一张", "从相册选取", "与桌面壁纸同步"},
+		builder.setItems(new String[] { "拍照", "从相册选取", "与桌面壁纸同步"},
 				new DialogInterface.OnClickListener() {
 
 					@Override
