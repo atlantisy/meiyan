@@ -22,7 +22,7 @@
 
         <View
             android:layout_width="1.0px"
-            android:layout_height="36.0px"
+            android:layout_height="40.0px"
             android:layout_gravity="center_vertical"
             android:background="@color/black" />
         <TextView
@@ -111,7 +111,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@color/alpha"
-            android:src="@drawable/ic_camera" />
+            android:src="@drawable/ic_photo" />
 
         <ImageView
             android:layout_width="0dp"

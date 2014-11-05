@@ -180,9 +180,9 @@ public class RecentActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
-				finish();
 				//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 				//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+				overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);
 			}
 		});
 	}

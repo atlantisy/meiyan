@@ -59,15 +59,7 @@
             android:background="@color/alpha"
             android:src="@drawable/ic_love"
             android:visibility="gone"/> -->
-
-        <ImageButton
-            android:id="@+id/home_repeat_shuffle"
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:background="@color/alpha"
-            android:src="@drawable/repeat_shuffle_btn_selector"
-            android:visibility="visible" />
-        
+            
         <ImageButton
             android:id="@+id/home_share1"
             android:layout_width="48dp"
@@ -75,7 +67,18 @@
             android:background="@color/alpha"
             android:src="@drawable/ic_share" 
             android:visibility="gone"/>
-
+        
+        <ImageButton
+            android:id="@+id/home_repeat_shuffle"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:background="@color/alpha"
+            android:src="@drawable/repeat_shuffle_btn_selector"/>             
+        <ImageButton
+            android:layout_width="8dp"
+            android:layout_height="fill_parent"
+            android:background="@color/alpha"
+            android:src="@color/alpha" />                           
         <ImageButton
             android:id="@+id/home_setting1"
             android:layout_width="48dp"
@@ -368,7 +371,11 @@
         android:layout_height="48dp"
         android:background="@drawable/shape_bg_alpha"
         android:orientation="horizontal" >
-
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="fill_parent"
+            android:background="@color/alpha"
+            android:src="@color/alpha" />        
         <ImageButton
             android:id="@+id/home_recent"
             android:layout_width="0dp"
@@ -376,7 +383,12 @@
             android:layout_weight="1"
             android:background="@color/alpha"
             android:src="@drawable/ic_mine" />
-
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="fill_parent"
+            android:background="@color/alpha"
+            android:src="@color/alpha" />
+        
         <ImageButton
             android:id="@+id/home_text"
             android:layout_width="0dp"
@@ -384,6 +396,11 @@
             android:layout_weight="1"
             android:background="@color/alpha"
             android:src="@drawable/ic_edit" />
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="fill_parent"
+            android:background="@color/alpha"
+            android:src="@color/alpha" />
 
         <ImageButton
             android:id="@+id/home_lock"
@@ -392,6 +409,11 @@
             android:layout_weight="1"
             android:background="@color/alpha"
             android:src="@drawable/lock_button_selector" />
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="fill_parent"
+            android:background="@color/alpha"
+            android:src="@color/alpha" />        
     </LinearLayout>
 
 </LinearLayout>

@@ -366,7 +366,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		showVerseFlag = SHUFFLE;
 		show_verse_btn.setImageResource(R.drawable.ic_shuffle);
 		
-		StringUtil.showToast(this, "随机显示",  Toast.LENGTH_SHORT);
+		StringUtil.showToast(this, "随机美言",  Toast.LENGTH_SHORT);
 	}
 	
 	// 切换锁屏方式按钮初始化
@@ -376,13 +376,13 @@ public class HomeActivity extends Activity implements OnClickListener,
 		bPassWord = home_setting.getBoolean(PWSETUP, false);
 		switch (flag) {
 		case STATE_LINE:
-			lockbtn.setImageResource(R.drawable.ic_lock_grid);
+			lockbtn.setImageResource(R.drawable.ic_lock_line);
 			verse_line.setVisibility(View.VISIBLE);
 			verse_grid1.setVisibility(View.GONE);
 			setup_grid_button.setVisibility(View.GONE);
 			break;
 		case STATE_GRID:
-			lockbtn.setImageResource(R.drawable.ic_lock_line);
+			lockbtn.setImageResource(R.drawable.ic_lock_grid);
 			verse_line.setVisibility(View.GONE);
 			verse_grid1.setVisibility(View.VISIBLE);
 			if (bPassWord == true)
@@ -419,7 +419,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 简单滑动锁屏
 	protected void line() {
 		flag = LINE;
-		lockbtn.setImageResource(R.drawable.ic_lock_grid);
+		lockbtn.setImageResource(R.drawable.ic_lock_line);
 		verse_line.setVisibility(View.VISIBLE);
 		verse_grid1.setVisibility(View.GONE);
 		setup_grid_button.setVisibility(View.GONE);
@@ -429,7 +429,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 九宫手势锁屏
 	protected void grid() {
 		flag = GRID;
-		lockbtn.setImageResource(R.drawable.ic_lock_line);
+		lockbtn.setImageResource(R.drawable.ic_lock_grid);
 		verse_line.setVisibility(View.GONE);
 		verse_grid1.setVisibility(View.VISIBLE);
 		if (bPassWord == true)
@@ -467,15 +467,15 @@ public class HomeActivity extends Activity implements OnClickListener,
 			intent.putExtra(Intent.EXTRA_TEXT, verse+"#minelock#");  
 			startActivity(Intent.createChooser(intent, getTitle()));
 			break;
-		case R.id.home_setting1:
-			startActivity(new Intent(HomeActivity.this, SettingActivity.class));
-			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
-			break;
 		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));
 			//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 			//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
+			break;
+		case R.id.home_setting1:
+			startActivity(new Intent(HomeActivity.this, SettingActivity.class));
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			break;
 		case R.id.home_text:
 			startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));

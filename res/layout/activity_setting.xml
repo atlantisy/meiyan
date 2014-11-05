@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/gray_white"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -21,7 +21,7 @@
 
         <View
             android:layout_width="1.0px"
-            android:layout_height="36.0px"
+            android:layout_height="40.0px"
             android:layout_gravity="center_vertical"
             android:background="@color/black" />
         <TextView
@@ -39,21 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/blank" />
-         
-         <!-- <Button
-            android:id="@+id/setting_feedback"
-            android:layout_height="32dp"
-            android:layout_width="wrap_content"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="8dp"
-            android:background="@color/alpha"
-            android:gravity="center"
-            android:text="意见反馈"
-            android:textColor="@color/white"
-            android:textSize="14sp" /> -->
+            android:src="@drawable/blank" />         
     </LinearLayout>
 
     <ScrollView
@@ -61,13 +47,17 @@
         android:layout_height="match_parent"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:scrollbarThumbVertical="@drawable/scrollbar_handle_vertical" >
+        android:scrollbarThumbVertical="@drawable/scrollbar_handle_vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content"           
             android:orientation="vertical"
-            android:padding="8dp" >
+            android:background="@color/white"
+            android:layout_marginTop="16dp"           
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="12dp">
 
             <CheckBox
                 android:id="@+id/lock_checkbox"
@@ -79,22 +69,11 @@
                 android:textSize="16sp" 
                 android:visibility="gone"/>
                         
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="基本设置"
-                android:textColor="@color/app_color" 
-                android:textSize="14sp" />
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2.0px"
-                android:background="@color/app_color" />
             <LinearLayout
             	android:layout_width="fill_parent"
-            	android:layout_height="wrap_content"
-            	android:paddingTop="8dp"
-            	android:paddingBottom="8dp"
+            	android:layout_height="48dp"
+            	android:paddingTop="4dp"
+            	android:paddingBottom="4dp"
             	android:orientation="horizontal">
             	
             	<TextView
@@ -141,18 +120,10 @@
                 android:text="修改手势密码"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
-
-           <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="其他"
-                android:textColor="@color/app_color" 
-                android:textSize="14sp" />
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="2.0px"
-                android:background="@color/app_color" />            
+                android:layout_height="1.0px"
+                android:background="@drawable/shape_line" />            
 
             <Button
                 android:id="@+id/setting_help"
@@ -198,7 +169,7 @@
                 android:background="@drawable/shape_line" />
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="30dp"
+                android:layout_height="12dp"
                 android:background="@color/alpha" />
 
             <Button

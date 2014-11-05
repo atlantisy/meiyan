@@ -297,11 +297,18 @@ public class LockActivity extends FragmentActivity {
 		return super.onKeyDown(keyCode, event);
     } 
 	
+	// 获取android版本号
+	public static int getSDKVersion() { 
+		int version = Integer.valueOf(android.os.Build.VERSION.SDK_INT);
+		return version; 
+	}
+	
 	// 屏蔽home键，android 2.2和2.3适用，4.0及以上不适用
-/*    public void onAttachedToWindow() { 
-        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD); //TYPE_KEYGUARD_DIALOG 
+    public void onAttachedToWindow() { 
+    	if (getSDKVersion()<=10)
+    		this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD); //TYPE_KEYGUARD_DIALOG 
         super.onAttachedToWindow(); 
-    }*/
+    }
     
 	//启动短信应用  
     private void launchSms() {    
