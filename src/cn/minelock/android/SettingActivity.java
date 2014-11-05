@@ -138,7 +138,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
 			startActivity(new Intent(SettingActivity.this, SetPasswordActivity.class));
-			finish();
+			//finish();
 		}
 	};
 	// ·µ»Ø°´Å¥

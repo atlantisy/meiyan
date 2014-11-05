@@ -57,6 +57,8 @@
     <string-array name="Snow"></string-array>
     <string-array name="Wind"></string-array>
 
+    <string name="slogan">锁定美好的一句話</string>
+    <string name="copyright">© Minelock.com</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setting">SettingActivity</string>

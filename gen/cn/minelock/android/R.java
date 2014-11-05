@@ -188,6 +188,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int black=0x7f080007;
         public static final int blue=0x7f080013;
         public static final int blue1=0x7f080014;
+        public static final int brown=0x7f080016;
         public static final int gray_black=0x7f080009;
         public static final int gray_white=0x7f080008;
         public static final int green=0x7f080011;
@@ -279,7 +280,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shape_bg_editok_pressed=0x7f020043;
         public static final int shape_bg_grey=0x7f020044;
         public static final int shape_line=0x7f020045;
-        public static final int start_wallpaper=0x7f020046;
+        public static final int start_logo=0x7f020046;
         public static final int switch_bottom=0x7f020047;
         public static final int switch_btn_pressed=0x7f020048;
         public static final int switch_frame=0x7f020049;
@@ -409,33 +410,34 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class string {
         public static final int app_name=0x7f070007;
-        public static final int app_verse=0x7f07000b;
-        public static final int app_verse_cn=0x7f070015;
-        public static final int charging=0x7f070018;
-        public static final int charging_full=0x7f070019;
-        public static final int custom_check=0x7f07001e;
-        public static final int custom_text=0x7f07001d;
-        public static final int grid_verse_style=0x7f070017;
-        public static final int hello_world=0x7f070009;
-        public static final int history=0x7f07002a;
-        public static final int left_slide_camera=0x7f07001b;
-        public static final int line_verse_style=0x7f070016;
+        public static final int app_verse=0x7f07000d;
+        public static final int app_verse_cn=0x7f070017;
+        public static final int charging=0x7f07001a;
+        public static final int charging_full=0x7f07001b;
+        public static final int copyright=0x7f070009;
+        public static final int custom_check=0x7f070020;
+        public static final int custom_text=0x7f07001f;
+        public static final int grid_verse_style=0x7f070019;
+        public static final int hello_world=0x7f07000b;
+        public static final int history=0x7f07002c;
+        public static final int left_slide_camera=0x7f07001d;
+        public static final int line_verse_style=0x7f070018;
         public static final int lock_client_name=0x7f070006;
-        public static final int lockpattern_error=0x7f07000f;
-        public static final int lockpattern_recording_incorrect_too_short=0x7f07000e;
+        public static final int lockpattern_error=0x7f070011;
+        public static final int lockpattern_recording_incorrect_too_short=0x7f070010;
         /**  Accessibility description sent when user adds a cell to the pattern. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_cell_added=0x7f070012;
+        public static final int lockscreen_access_pattern_cell_added=0x7f070014;
         /**  Accessibility description sent when the pattern times out and is cleared. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_cleared=0x7f070011;
+        public static final int lockscreen_access_pattern_cleared=0x7f070013;
         /**  Accessibility description sent when user completes drawing a pattern. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_detected=0x7f070013;
+        public static final int lockscreen_access_pattern_detected=0x7f070015;
         /**  Accessibility description sent when user starts drawing a lock pattern. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_start=0x7f070010;
-        public static final int meiyan_check=0x7f07001c;
+        public static final int lockscreen_access_pattern_start=0x7f070012;
+        public static final int meiyan_check=0x7f07001e;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -443,28 +445,29 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_from_bottom_refreshing_label=0x7f070005;
         public static final int pull_to_refresh_from_bottom_release_label=0x7f070004;
         public static final int pull_to_refresh_pull_label=0x7f070000;
-        public static final int pull_to_refresh_pull_label1=0x7f07002b;
+        public static final int pull_to_refresh_pull_label1=0x7f07002d;
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
-        public static final int pull_to_refresh_refreshing_label1=0x7f07002d;
+        public static final int pull_to_refresh_refreshing_label1=0x7f07002f;
         public static final int pull_to_refresh_release_label=0x7f070001;
-        public static final int pull_to_refresh_release_label1=0x7f07002c;
-        public static final int right_slide_unlock=0x7f07001a;
-        public static final int setting=0x7f070025;
-        public static final int text_album=0x7f070029;
-        public static final int text_edit=0x7f070026;
-        public static final int text_photograph=0x7f070028;
-        public static final int title_activity_home=0x7f070008;
-        public static final int title_activity_recent=0x7f070014;
-        public static final int title_activity_setting=0x7f07000a;
-        public static final int title_activity_text_edit=0x7f07000c;
-        public static final int title_activity_wallpaper_edit=0x7f07000d;
-        public static final int verse0=0x7f07001f;
-        public static final int verse1=0x7f070020;
-        public static final int verse2=0x7f070021;
-        public static final int verse3=0x7f070022;
-        public static final int verse4=0x7f070023;
-        public static final int verse5=0x7f070024;
-        public static final int wallpaper_edit=0x7f070027;
+        public static final int pull_to_refresh_release_label1=0x7f07002e;
+        public static final int right_slide_unlock=0x7f07001c;
+        public static final int setting=0x7f070027;
+        public static final int slogan=0x7f070008;
+        public static final int text_album=0x7f07002b;
+        public static final int text_edit=0x7f070028;
+        public static final int text_photograph=0x7f07002a;
+        public static final int title_activity_home=0x7f07000a;
+        public static final int title_activity_recent=0x7f070016;
+        public static final int title_activity_setting=0x7f07000c;
+        public static final int title_activity_text_edit=0x7f07000e;
+        public static final int title_activity_wallpaper_edit=0x7f07000f;
+        public static final int verse0=0x7f070021;
+        public static final int verse1=0x7f070022;
+        public static final int verse2=0x7f070023;
+        public static final int verse3=0x7f070024;
+        public static final int verse4=0x7f070025;
+        public static final int verse5=0x7f070026;
+        public static final int wallpaper_edit=0x7f070029;
     }
     public static final class style {
         public static final int AppTheme=0x7f0a0000;

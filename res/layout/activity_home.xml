@@ -96,7 +96,7 @@
         android:background="@color/light_yellow"
         android:padding="12dp"
         android:text="请设置手势密码  >>"
-        android:textColor="@android:color/black"
+        android:textColor="@color/brown"
         android:visibility="gone" >
     </Button>
 
