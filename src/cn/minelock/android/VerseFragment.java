@@ -64,9 +64,9 @@ public class VerseFragment extends Fragment {
 
 		viewRightArrow = (ImageView) view.findViewById(R.id.iv_arrow_right);
 		viewLeftArrow = (ImageView) view.findViewById(R.id.iv_arrow_left);
-		viewRightArrow.setVisibility(0);// 0:VISIBILITY
+/*		viewRightArrow.setVisibility(0);// 0:VISIBILITY
 		viewLeftArrow.setVisibility(8);// 4:INVISIBILITY，8:GONE
-
+*/
 		viewVerse.setOnTouchListener(textViewTouchListener);
 		
 		//启动美言跑马灯功能  

@@ -19,14 +19,14 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:gravity="center"
-	    android:padding="8dp"
+	    android:paddingTop="16dp"
 	    android:text="@string/slogan"
 	    android:textSize="24sp" 
-	    android:textColor="@color/gray_black"/>	
+	    android:textColor="@color/gray"/>	
 	<ImageView 
 	    android:layout_width="fill_parent"
 		android:layout_height="0dp"
-		android:layout_weight="1" 
+		android:layout_weight="2" 
 		android:background="@color/alpha"/>
 
 	<TextView

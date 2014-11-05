@@ -250,13 +250,13 @@ public class LockActivity extends FragmentActivity {
 			viewLeftArrow = (ImageView) findViewById(R.id.iv_arrow_left);
 			//arg0 :当前页面，即你点击滑动的页面，arg1:当前页面偏移的百分比，arg2:当前页面偏移的像素位置   
 			if (arg1>0.0 | arg2>0){
-				viewRightArrow.setVisibility(0);//0:VISIBILITY
+/*				viewRightArrow.setVisibility(0);//0:VISIBILITY
 				viewLeftArrow.setVisibility(8);//4:INVISIBILITY，8:GONE
-			}
+*/			}
 			else{
-				viewRightArrow.setVisibility(0);//0:VISIBILITY
+/*				viewRightArrow.setVisibility(0);//0:VISIBILITY
 				viewLeftArrow.setVisibility(8);//4:INVISIBILITY，8:GONE
-			}
+*/			}
 		}
 
 		@Override
@@ -265,13 +265,13 @@ public class LockActivity extends FragmentActivity {
 			viewLeftArrow = (ImageView) findViewById(R.id.iv_arrow_left);	
 			//arg0 ==1的时辰默示正在滑动，arg0==2的时辰默示滑动完毕了，arg0==0的时辰默示什么都没做。
 			if (arg0==1){
-				viewRightArrow.setVisibility(0);//0:VISIBILITY
+/*				viewRightArrow.setVisibility(0);//0:VISIBILITY
 				viewLeftArrow.setVisibility(8);//4:INVISIBILITY，8:GONE
-			}
+*/			}
 			else{
-				viewRightArrow.setVisibility(0);//0:VISIBILITY
+/*				viewRightArrow.setVisibility(0);//0:VISIBILITY
 				viewLeftArrow.setVisibility(8);//4:INVISIBILITY，8:GONE
-			}
+*/			}
 		}
 	}
 	
