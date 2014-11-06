@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="@color/alpha_white">
+    android:background="@color/white">
     
 	<ImageView 
 	    android:layout_width="fill_parent"
@@ -35,5 +35,5 @@
 	    android:gravity="center"
 	    android:text="@string/copyright"
 	    android:textSize="18sp" 
-	    android:textColor="@color/gray_black"/>	
+	    android:textColor="@color/gray_white"/>	
 </LinearLayout>

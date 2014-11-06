@@ -80,7 +80,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
 
 		// 锁屏开关switch
-		lock_switchbtn = (SwitchButton) findViewById(R.id.lock_switchbtn);
+/*		lock_switchbtn = (SwitchButton) findViewById(R.id.lock_switchbtn);
 		lock_switchbtn.setSwitch(mIsLockScreenOn);
 		lock_switchbtn.setOnChangeListener(new OnChangeListener() {  
               
@@ -102,11 +102,11 @@ public class SettingActivity extends Activity  implements OnClickListener{
 	    			editor.putBoolean(LOCK_SWITCH, mIsLockScreenOn);
 	    			editor.commit();
 	            }  
-	        });
+	        });*/
 		// 锁屏开关checkbox
-/*		lock_checkbox = (CheckBox) findViewById(R.id.lock_checkbox);
+		lock_checkbox = (CheckBox) findViewById(R.id.lock_checkbox);
 		lock_checkbox.setChecked(mIsLockScreenOn);
-		lock_checkbox.setOnClickListener(new OnCheckedListener());	*/
+		lock_checkbox.setOnClickListener(new OnCheckedListener());	
 		// 关闭系统默认锁屏
 		Button closedefaultlock_btn = (Button) findViewById(R.id.setting_closedefaultlock);
 		closedefaultlock_btn.setOnClickListener(this);
@@ -172,7 +172,8 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		}
 	};
 	
-/*	class OnCheckedListener implements OnClickListener {
+	// 锁屏开关
+	class OnCheckedListener implements OnClickListener {
 		public void onClick(View v) {
 			// TODO
 			mIsLockScreenOn = lock_checkbox.isChecked();
@@ -190,7 +191,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			editor.putBoolean(LOCK_SWITCH, mIsLockScreenOn);
 			editor.commit();
 		}
-	}*/
+	}
 
 	/**/
 	@Override
