@@ -195,7 +195,7 @@ public class RecentActivity extends Activity {
 		switch (item.getItemId()) {
 		case 0:
 			operation("copy");
-			Toast.makeText(getApplicationContext(), "复制成功", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "已复制", Toast.LENGTH_SHORT).show();
 			break;
 		case 1:			
 			operation("delete");
@@ -207,7 +207,7 @@ public class RecentActivity extends Activity {
 			editor.commit();
 			
 			recent_label.setText("我的美言(" + String.valueOf(verseQty) + ")");
-			Toast.makeText(getApplicationContext(), "删除成功", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "已删除", Toast.LENGTH_SHORT).show();
 			break;
 		case 2:
 			operation("edit");

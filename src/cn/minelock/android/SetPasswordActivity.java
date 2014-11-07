@@ -65,11 +65,11 @@ public class SetPasswordActivity extends Activity {
 				password = mPassword;
 				if (needverify) {
 					if (ppwv.verifyPassword(mPassword)) {
-						showToast("验证成功,请输入新密码!");
+						showToast("验证成功，请输入新手势");
 						ppwv.clearPassword();
 						needverify = false;
 					} else {
-						showToast("错误的密码,请重新输入!");
+						showToast("手势错误，请重新输入！");
 						ppwv.clearPassword();
 						password = "";
 					}
@@ -85,7 +85,7 @@ public class SetPasswordActivity extends Activity {
 					if (StringUtil.isNotEmpty(password)) {
 						ppwv.resetPassWord(password);
 						ppwv.clearPassword();
-						showToast("恭喜,设置成功!");
+						showToast("恭喜，设置成功");
 						//返回九宫格已设置结果
 			            Intent data=new Intent();  
 			            data.putExtra("SetPassWord", true);   
@@ -94,7 +94,7 @@ public class SetPasswordActivity extends Activity {
 						finish();
 					} else {
 						ppwv.clearPassword();
-						showToast("密码不能为空,请输入密码!");
+						showToast("手势不能为空，请输入！");
 					}
 					break;
 				case R.id.tvReset:
@@ -110,7 +110,7 @@ public class SetPasswordActivity extends Activity {
 		// 如果密码为空,直接输入密码
 		if (ppwv.isPasswordEmpty()) {
 			this.needverify = false;
-			showToast("请输入密码");
+			showToast("请输入密码！");
 		}
 	}
 

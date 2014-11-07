@@ -22,7 +22,7 @@
 
         <View
             android:layout_width="1.0px"
-            android:layout_height="40.0px"
+            android:layout_height="48.0px"
             android:layout_gravity="center_vertical"
             android:background="@color/black" />
         <TextView
@@ -85,13 +85,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/alpha"
-                android:ems="15"
+                android:padding="16dp"
+                android:ems="16"
                 android:gravity="center"
-                android:hint="写美言"
+                android:hint="写美言..."
                 android:inputType="textMultiLine"
-                android:maxLength="32"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:maxLines="3"
                 android:textColor="@color/white"
                 android:textColorHint="@color/alpha_white"
                 android:textSize="20sp" 

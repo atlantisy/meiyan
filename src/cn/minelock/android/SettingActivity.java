@@ -127,7 +127,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		switch (view.getId()) {
 		case R.id.setting_closedefaultlock:
 			EnableSystemKeyguard(false);
-			StringUtil.showToast(this, "系统锁屏已关闭",  Toast.LENGTH_SHORT);
+			StringUtil.showToast(this, "已关闭",  Toast.LENGTH_SHORT);
 			break;
 		}
 	}

@@ -11,27 +11,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
-        android:gravity="top"
         android:background="@color/alpha0_black"       
         android:padding="0dp"
         android:src="@drawable/ic_right" 
         android:visibility="gone"/>
-    <TextView 
+
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="〉 "
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="〉"
+        android:paddingLeft="4dp"
+        android:textColor="@color/white"
+        android:textSize="20sp" 
         android:shadowColor="#33000000"
         android:shadowDx="1"
         android:shadowDy="0"
         android:shadowRadius="1"
-        android:textColor="@color/white"
-       android:textSize="20sp"/>
+        android:singleLine="true">
+    </TextView>     
 
+<!--     <TextView
+        android:id="@+id/tv_verse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="每时每刻 美好美言"
+        android:textColor="@color/white"
+        android:textSize="20sp" 
+        android:shadowColor="#33000000"
+        android:shadowDx="1"
+        android:shadowDy="0"
+        android:shadowRadius="1"
+        android:maxLines="3">
+    	<requestFocus/>  
+    </TextView> -->
     <TextView
         android:id="@+id/tv_verse"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:gravity="top"
+        android:layout_height="48dp"
+        android:gravity="center"
         android:text="每时每刻 美好美言"
         android:textColor="@color/white"
         android:textSize="20sp" 
@@ -41,14 +60,12 @@
         android:shadowRadius="1"
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:focusable="true"    
-    	android:selectAllOnFocus="true"    
-    	android:clickable="true"   
+        android:marqueeRepeatLimit="2"
+        android:focusable="true"     
     	android:focusableInTouchMode="true"   
     	android:freezesText="true" >
     	<requestFocus/>  
-    </TextView>
+    </TextView>    
 
     <ImageView
         android:id="@+id/iv_arrow_left"

@@ -4,7 +4,7 @@
     android:layout_height="48dp"
     android:background="@color/white"
     android:orientation="horizontal" 
-    android:padding="4dp">
+    android:padding="0dp">
 
     <TextView
         android:id="@+id/recent_title"
@@ -14,7 +14,8 @@
         android:gravity="center"
         android:text="美"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp" 
+        android:layout_margin="4dp"/>
 
     <TextView
         android:id="@+id/recent_item"
@@ -24,7 +25,6 @@
         android:background="@drawable/default_button_selector"
         android:gravity="center_vertical"
         android:paddingLeft="6dp"
-        android:paddingRight="4dp"
         android:singleLine="true"
         android:text="言锁屏"
         android:textColor="@color/gray_black"
