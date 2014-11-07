@@ -160,7 +160,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			//finish();
+			finish();
 			
 			//android.os.Process.killProcess(android.os.Process.myPid());
 			//System.exit(0);

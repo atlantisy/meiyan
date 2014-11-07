@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="48dp"
-    android:background="@color/white"
+    android:background="@drawable/default_button_selector"
     android:orientation="horizontal" 
     android:padding="0dp">
 
@@ -10,7 +10,7 @@
         android:id="@+id/recent_title"
         android:layout_width="40dp"
         android:layout_height="fill_parent"
-        android:background="@drawable/shape_bg_editok"
+        android:background="@drawable/editok_button_selector"
         android:gravity="center"
         android:text="美"
         android:textColor="@color/white"
@@ -24,7 +24,7 @@
         android:layout_weight="1"
         android:background="@drawable/default_button_selector"
         android:gravity="center_vertical"
-        android:paddingLeft="6dp"
+        android:paddingLeft="0dp"
         android:singleLine="true"
         android:text="言锁屏"
         android:textColor="@color/gray_black"

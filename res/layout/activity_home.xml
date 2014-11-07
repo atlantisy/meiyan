@@ -43,8 +43,7 @@
             android:gravity="center_vertical"
             android:text="@string/app_name"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:textColor="@color/white"/>
 
         <ImageView
             android:id="@+id/blank"
@@ -96,7 +95,7 @@
         android:layout_gravity="top|center_horizontal"
         android:background="@color/light_yellow"
         android:padding="12dp"
-        android:text="请设置手势密码  〉"
+        android:text="请设置手势密码 〉"
         android:textColor="@color/brown"
         android:visibility="gone" >
     </Button>

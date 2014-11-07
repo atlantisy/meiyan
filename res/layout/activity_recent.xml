@@ -58,7 +58,7 @@
         android:cacheColorHint="#000000"
         android:fadingEdge="none"
         android:background="@color/white"
-        android:divider="@color/gray_white"
+        android:divider="@color/gray_gray"
         android:dividerHeight="1.0px"
         android:layout_below="@+id/recent_top"/>
 

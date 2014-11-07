@@ -60,7 +60,7 @@
         android:shadowRadius="1"
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:marqueeRepeatLimit="2"
+        android:marqueeRepeatLimit="marquee_forever"
         android:focusable="true"     
     	android:focusableInTouchMode="true"   
     	android:freezesText="true" >

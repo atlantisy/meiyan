@@ -58,13 +58,13 @@
             android:background="@color/white"
             android:orientation="vertical"
             android:paddingBottom="0dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp" >
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:background="@color/white"
+                android:background="@drawable/default_button_selector"
                 android:orientation="horizontal"
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp" >
@@ -75,6 +75,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="开启美言锁屏"
+                    android:paddingLeft="8dp"
                     android:textColor="@color/gray_black"
                     android:textSize="16sp" />
 
@@ -82,14 +83,14 @@
                  	<cn.minelock.widget.SwitchButton
                 	android:id="@+id/lock_switchbtn"
                 	android:layout_width="wrap_content"
-                	android:layout_height="match_parent"/>
-                -->
+                	android:layout_height="match_parent"/>                -->
 
                 <CheckBox
                     android:id="@+id/lock_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/checkbox_selector"
+                    android:layout_marginRight="8dp"
                     android:button="@null"
                     android:checked="true" />
             </LinearLayout>
@@ -105,6 +106,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
+                android:paddingLeft="8dp"
                 android:text="关闭系统锁屏"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
@@ -120,6 +122,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
+                android:paddingLeft="8dp"
                 android:text="修改手势密码"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
@@ -135,6 +138,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
+                android:paddingLeft="8dp"
                 android:text="使用帮助"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
@@ -150,6 +154,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
+                android:paddingLeft="8dp"
                 android:text="意见反馈"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
@@ -164,6 +169,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
+                android:paddingLeft="8dp"
                 android:text="关于"
                 android:textColor="@color/gray_black"
                 android:textSize="16sp" />
@@ -174,17 +180,14 @@
         android:layout_width="fill_parent"
         android:layout_height="24dp"
         android:background="@color/gray_white" />
-
     <Button
         android:id="@+id/setting_exit"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:background="@color/white"
+        android:background="@drawable/default_button_selector"
         android:gravity="center_vertical"
+        android:paddingLeft="8dp"
         android:text="退出"
         android:textColor="@color/gray_black"
-        android:textSize="16sp" />
-
+        android:textSize="16sp" />  
 </LinearLayout>
