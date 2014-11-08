@@ -74,30 +74,33 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
                     android:text="开启美言锁屏"
-                    android:paddingLeft="8dp"
-                    android:textColor="@color/gray_black"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <!--
                  	<cn.minelock.widget.SwitchButton
                 	android:id="@+id/lock_switchbtn"
                 	android:layout_width="wrap_content"
-                	android:layout_height="match_parent"/>                -->
+                	android:layout_height="match_parent"/>
+                -->
 
                 <CheckBox
                     android:id="@+id/lock_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:background="@drawable/checkbox_selector"
-                    android:layout_marginRight="8dp"
                     android:button="@null"
-                    android:checked="true" />
+                    android:checked="false" />
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/shape_line" />
 
             <Button
@@ -106,14 +109,15 @@
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
-                android:paddingLeft="8dp"
+                android:paddingLeft="16dp"
                 android:text="关闭系统锁屏"
-                android:textColor="@color/gray_black"
                 android:textSize="16sp" />
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/shape_line" />
 
             <Button
@@ -122,72 +126,75 @@
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
-                android:paddingLeft="8dp"
+                android:paddingLeft="16dp"
                 android:text="修改手势密码"
-                android:textColor="@color/gray_black"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:background="@drawable/shape_line" />
-
-            <Button
-                android:id="@+id/setting_help"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/default_button_selector"
-                android:gravity="center_vertical"
-                android:paddingLeft="8dp"
-                android:text="使用帮助"
-                android:textColor="@color/gray_black"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:background="@drawable/shape_line" />
-
-            <Button
-                android:id="@+id/setting_feedback"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/default_button_selector"
-                android:gravity="center_vertical"
-                android:paddingLeft="8dp"
-                android:text="意见反馈"
-                android:textColor="@color/gray_black"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:background="@drawable/shape_line" />
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/default_button_selector"
-                android:gravity="center_vertical"
-                android:paddingLeft="8dp"
-                android:text="关于"
-                android:textColor="@color/gray_black"
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 
     <View
         android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/shape_line" />
+
+    <Button
+        android:id="@+id/setting_help"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/default_button_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="使用帮助"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/shape_line" />
+
+    <Button
+        android:id="@+id/setting_feedback"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/default_button_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="意见反馈"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/shape_line" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/default_button_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="关于我们"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="fill_parent"
         android:layout_height="24dp"
         android:background="@color/gray_white" />
+
     <Button
         android:id="@+id/setting_exit"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:background="@drawable/default_button_selector"
         android:gravity="center_vertical"
-        android:paddingLeft="8dp"
+        android:paddingLeft="16dp"
         android:text="退出"
-        android:textColor="@color/gray_black"
-        android:textSize="16sp" />  
+        android:textSize="16sp" />
+
 </LinearLayout>

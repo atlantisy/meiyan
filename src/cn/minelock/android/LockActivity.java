@@ -78,9 +78,12 @@ public class LockActivity extends FragmentActivity {
 	private Cursor lockCursor;
 	
 	private SharedPreferences defaultPrefs = null;
-	SharedPreferences.Editor defaultEditor = null;
+	private SharedPreferences.Editor defaultEditor = null;
 	private final String LOCK_STATUS = "lock_status";
 	private boolean mLockStatus;
+	
+	private SharedPreferences settings;
+	private SharedPreferences.Editor editor;
 	
 	private void showToast(CharSequence message) {
 		if (null == toast) {
@@ -100,11 +103,10 @@ public class LockActivity extends FragmentActivity {
 		// Remove notification bar
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_lock);
-		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
-		
+		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);		
 		// 获取pref值			
-		SharedPreferences settings = getSharedPreferences(PREFS, 0);
-		SharedPreferences.Editor editor = settings.edit();
+		settings = getSharedPreferences(PREFS, 0);
+		editor = settings.edit();
 		// 获取默认的prefs数据
 		defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		defaultEditor = defaultPrefs.edit();
@@ -112,10 +114,61 @@ public class LockActivity extends FragmentActivity {
 		dbRecent = new dbHelper(this);
 		lockCursor = dbRecent.select();
 		// 获取保存的美言数量及美言显示方式
-		int verseQty = settings.getInt(VERSEQTY, 0);
 		int showVerseFlag = settings.getInt(SHOWVERSEFLAG, 1);
 		sCustom = settings.getString(VERSE, "感觉自己萌萌哒  ");	
-		// 设置美言
+		// 设置美言显示
+		SetVerseShow(showVerseFlag);
+		sCustom = sCustom.trim();//去掉前后空格
+		Log.d(TAG, sCustom);
+		// 设置壁纸		
+		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
+		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
+		String wallpaperPath = settings.getString(WALLPAPERPATH, "");	
+		if(bIdOrPath==true)//设置壁纸			
+			lockLayout.setBackgroundResource(wallpaperId);
+		else{
+			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
+			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+		}				
+		// 简单滑动解锁，即锁屏方式1
+		mPager = (ViewPager) findViewById(R.id.viewpager);
+		InitViewPager();
+		// 九宫手势解锁，即锁屏方式2
+		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
+		ppwv.setOnCompleteListener(new OnCompleteListener() {
+			@Override
+			public void onComplete(String mPassword) {
+				// 如果密码正确,则进入主页面。
+				if (ppwv.verifyPassword(mPassword)) {
+					//showToast("解锁成功！");
+					mLockStatus=false;
+					unLock();
+					//returnHome();					
+				} else {
+					mLockStatus=true;
+					showToast("手势错误,请重新输入");
+					ppwv.clearPassword();					
+				}
+				saveLockStatus();//保存锁屏状态
+			}
+		});		
+		// 获取存储的pref数据  
+		int flag = settings.getInt(LOCKFLAG, 1);
+		boolean setPassword = settings.getBoolean(PWSETUP, false);
+		// 控制锁屏方式的显示
+		if(flag==2 & setPassword==true){			
+			mPager.setVisibility(View.GONE);
+			ppwv.setVisibility(View.VISIBLE);			
+		}
+		else{
+			mPager.setVisibility(View.VISIBLE);
+			ppwv.setVisibility(View.GONE);			
+		}
+		mPager.setSelected(true);
+	}
+
+	private void SetVerseShow(int showVerseFlag){
+		int verseQty = settings.getInt(VERSEQTY, 0);
 		switch (showVerseFlag) {
 		case 1:
 			// 单句循环
@@ -153,56 +206,8 @@ public class LockActivity extends FragmentActivity {
 		default:
 			break;
 		}
-		sCustom = sCustom.trim();//去掉前后空格
-		Log.d(TAG, sCustom);
-		// 设置壁纸		
-		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
-		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
-		String wallpaperPath = settings.getString(WALLPAPERPATH, "");	
-		if(bIdOrPath==true)//设置壁纸			
-			lockLayout.setBackgroundResource(wallpaperId);
-		else{
-			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
-			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
-		}				
-		// 简单滑动解锁，即锁屏方式1
-		mPager = (ViewPager) findViewById(R.id.viewpager);
-		InitViewPager();
-		// 九宫手势解锁，即锁屏方式2
-		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
-		ppwv.setOnCompleteListener(new OnCompleteListener() {
-			@Override
-			public void onComplete(String mPassword) {
-				// 如果密码正确,则进入主页面。
-				if (ppwv.verifyPassword(mPassword)) {
-					//showToast("解锁成功！");
-					mLockStatus=false;
-					unLock();
-					//returnHome();					
-				} else {
-					mLockStatus=true;
-					showToast("手势错误,请重新输入");
-					ppwv.clearPassword();					
-				}
-				saveLockStatus();//保存锁屏状态
-			}
-		});
-		
-		// 获取存储的pref数据  
-		int flag = settings.getInt(LOCKFLAG, 1);
-		boolean setPassword = settings.getBoolean(PWSETUP, false);
-		// 控制锁屏方式的显示
-		if(flag==2 & setPassword==true){			
-			mPager.setVisibility(View.GONE);
-			ppwv.setVisibility(View.VISIBLE);			
-		}
-		else{
-			mPager.setVisibility(View.VISIBLE);
-			ppwv.setVisibility(View.GONE);			
-		}
-		mPager.setSelected(true);
 	}
-
+	
 	private void InitViewPager() {		
 		fragmentsList = new ArrayList<Fragment>();
 		UnlockFragment unlockFragment = new UnlockFragment();
