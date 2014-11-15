@@ -21,17 +21,16 @@ public class BootReceiver extends BroadcastReceiver {
 		final Intent mIntent = new Intent(context, MyLockScreenService.class);
 		final Context mContext = context;
 		
-		if (intent.getAction().equals(ACTION)) {
-//			Toast.makeText(context, "OlympicsReminder service has started!",
-//					Toast.LENGTH_LONG).show();
+		if (intent.getAction().equals(ACTION)) {	
 			
-//			Timer timer = new Timer();
-//				timer.schedule(new TimerTask() {
-//				public void run() {
-//					mContext.startService(mIntent);
-//					this.cancel();
-//				}
-//			}, 30000);
+/*			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				public void run() {
+					mContext.startService(mIntent);
+					this.cancel();
+				}
+			}, 30000);*/
+			
 			mContext.startService(mIntent);
 		}
 	}

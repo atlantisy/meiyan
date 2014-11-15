@@ -21,7 +21,7 @@ public class MyLockScreenService extends Service {
 	private final String LOCK_SWITCH = "lock_screen_switch";
 	private final String LOCK_STATUS = "lock_status";
 	private boolean mIsLockScreenOn = true;
-	private boolean mLockStatus;
+	private boolean mLockStatus = false;
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -74,9 +74,9 @@ public class MyLockScreenService extends Service {
 						editor.putBoolean(LOCK_STATUS, mLockStatus);
 						editor.commit();
 						
+						//屏蔽手机内置的锁屏 
 						KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);    
-						KeyguardLock kl = km.newKeyguardLock("MineLock");
-						//屏蔽手机内置的锁屏  
+						KeyguardLock kl = km.newKeyguardLock("MineLock");						 
 			            kl.disableKeyguard();
 			            
 						Intent i = new Intent();  

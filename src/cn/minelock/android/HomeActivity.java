@@ -179,11 +179,11 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 设置美言，简言和九宫言
 		SetVerse();		
 		// 切换锁屏方式初始化及按钮图标切换事件
-		InitShowLockBtn();
-		ShowLockBtn();			
+		InitShowLock();
+		ShowLock();			
 		// 切换美言显示方式初始化及按钮图标切换事件
-		InitShowVerseBtn();	
-		ShowVerseBtn();
+		InitShowVerse();	
+		ShowVerse();
 	}
 	
 	private final String LOCK_SWITCH = "lock_screen_switch";
@@ -213,7 +213,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 		super.onResume();
 		SetVerse();
-		InitShowVerseBtn();		
+		InitShowVerse();		
 	}
 	
 	// 下拉
@@ -305,7 +305,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	}
 	
 	// 美言显示方式按钮初始化
-	private void InitShowVerseBtn() {
+	private void InitShowVerse() {
 		show_verse_btn = (ImageButton) findViewById(R.id.home_repeat_shuffle);
 		showVerseFlag=home_setting.getInt(SHOWVERSEFLAG, 1);
 		switch (showVerseFlag) {
@@ -323,7 +323,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	/**
 	 * 切换美言显示方式按钮，次序为：单句循环=》顺序循环=》随机显示
 	 */
-	private void ShowVerseBtn() {		
+	private void ShowVerse() {		
 		show_verse_btn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -370,19 +370,19 @@ public class HomeActivity extends Activity implements OnClickListener,
 	}
 	
 	// 切换锁屏方式按钮初始化
-	private void InitShowLockBtn() {
+	private void InitShowLock() {
 		lockbtn = (ImageButton) findViewById(R.id.home_lock);
 		flag = home_setting.getInt(LOCKFLAG, 1);
 		bPassWord = home_setting.getBoolean(PWSETUP, false);
 		switch (flag) {
 		case STATE_LINE:
-			lockbtn.setImageResource(R.drawable.ic_lock_line);
+			lockbtn.setImageResource(R.drawable.ic_lock_grid);
 			verse_line.setVisibility(View.VISIBLE);
 			verse_grid1.setVisibility(View.GONE);
 			setup_grid_button.setVisibility(View.GONE);
 			break;
 		case STATE_GRID:
-			lockbtn.setImageResource(R.drawable.ic_lock_grid);
+			lockbtn.setImageResource(R.drawable.ic_lock_line);
 			verse_line.setVisibility(View.GONE);
 			verse_grid1.setVisibility(View.VISIBLE);
 			if (bPassWord == true)
@@ -395,7 +395,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	/**
 	 * 切换锁屏方式按钮
 	 */
-	private void ShowLockBtn() {
+	private void ShowLock() {
 		lockbtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -419,7 +419,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 简单滑动锁屏
 	protected void line() {
 		flag = LINE;
-		lockbtn.setImageResource(R.drawable.ic_lock_line);
+		lockbtn.setImageResource(R.drawable.ic_lock_grid);
 		verse_line.setVisibility(View.VISIBLE);
 		verse_grid1.setVisibility(View.GONE);
 		setup_grid_button.setVisibility(View.GONE);
@@ -429,7 +429,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 九宫手势锁屏
 	protected void grid() {
 		flag = GRID;
-		lockbtn.setImageResource(R.drawable.ic_lock_grid);
+		lockbtn.setImageResource(R.drawable.ic_lock_line);
 		verse_line.setVisibility(View.GONE);
 		verse_grid1.setVisibility(View.VISIBLE);
 		if (bPassWord == true)

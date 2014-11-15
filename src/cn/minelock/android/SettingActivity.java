@@ -113,6 +113,9 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		// 设置九宫密码按钮
 		Button setpassword_btn = (Button) findViewById(R.id.setting_setpassword);
 		setpassword_btn.setOnClickListener(setPasswordOnClickListener);	
+		// 关于按钮
+		Button about_btn = (Button) findViewById(R.id.setting_about);
+		about_btn.setOnClickListener(aboutOnClickListener);	
 		// 返回按钮
 		ImageButton return_btn = (ImageButton) findViewById(R.id.setting_return);
 		return_btn.setOnClickListener(returnOnClickListener);
@@ -131,6 +134,16 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			break;
 		}
 	}
+	// 关于按钮
+	private OnClickListener aboutOnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			startActivity(new Intent(SettingActivity.this, AboutActivity.class));
+			//finish();
+		}
+	};
 	// 设置九宫密码按钮
 	private OnClickListener setPasswordOnClickListener = new OnClickListener() {
 

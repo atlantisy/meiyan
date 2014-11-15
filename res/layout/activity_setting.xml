@@ -99,8 +99,8 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
                 android:background="@drawable/shape_line" />
 
             <Button
@@ -116,8 +116,8 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
                 android:background="@drawable/shape_line" />
 
             <Button
@@ -127,7 +127,7 @@
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="修改手势密码"
+                android:text="设置手势密码"
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
@@ -139,7 +139,7 @@
         android:layout_marginRight="8dp"
         android:background="@drawable/shape_line" />
 
-    <Button
+<!--     <Button
         android:id="@+id/setting_help"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
@@ -171,22 +171,27 @@
         android:layout_height="1.0px"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/shape_line" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/default_button_selector"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:text="关于我们"
-        android:textSize="16sp" />
+        android:background="@drawable/shape_line" /> -->
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="24dp"
         android:background="@color/gray_white" />
-
+    <Button
+        android:id="@+id/setting_about"        
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/default_button_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="关于"
+        android:textSize="16sp" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/shape_line" />    
     <Button
         android:id="@+id/setting_exit"
         android:layout_width="fill_parent"

@@ -4,12 +4,11 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk
-        android:minSdkVersion="9"/>
-
+    <uses-sdk android:minSdkVersion="9" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
@@ -45,11 +44,11 @@
             android:name="cn.minelock.android.HomeActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        <activity 
-            android:name="cn.minelock.android.LockActivity"            
+        <activity
+            android:name="cn.minelock.android.LockActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        
+
         <receiver android:name="cn.minelock.android.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -62,8 +61,8 @@
         </activity>
         <activity
             android:name="cn.minelock.android.EditVerseActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar" 
-            android:windowSoftInputMode="stateHidden">
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="cn.minelock.android.WallpaperEditActivity"
@@ -75,6 +74,10 @@
         </activity>
         <activity
             android:name="cn.minelock.android.RecentActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="cn.minelock.android.AboutActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
     </application>
