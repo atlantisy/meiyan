@@ -68,7 +68,9 @@ public class SettingActivity extends Activity  implements OnClickListener{
 	
 	private SharedPreferences prefs = null;
 	private final String LOCK_SWITCH = "lock_screen_switch";
-	
+	private final String LOCK_STATUS = "lock_status";
+
+	private boolean mLockStatus = false;	
 	private boolean mIsLockScreenOn = true;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -194,14 +196,17 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			if (mIsLockScreenOn){
 				// keep on disabling the system Keyguard
 				EnableSystemKeyguard(false);
+				mLockStatus = false;
 			}
 			else {
 				// recover original Keyguard
 				EnableSystemKeyguard(true);
+				mLockStatus = true;
 			}
 			//将锁屏开关check值存入pref中
-			SharedPreferences.Editor editor = prefs.edit();
+			SharedPreferences.Editor editor = prefs.edit();						
 			editor.putBoolean(LOCK_SWITCH, mIsLockScreenOn);
+			editor.putBoolean(LOCK_STATUS, mLockStatus);
 			editor.commit();
 		}
 	}

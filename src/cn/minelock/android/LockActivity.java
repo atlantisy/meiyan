@@ -175,7 +175,7 @@ public class LockActivity extends FragmentActivity {
 			break;
 		case 2:
 			// 顺序循环
-			if(verseQty>0 & sCustom.trim()!=""){
+			if(verseQty>0 && sCustom.trim()!=""){
 				// 获取当前美言id
 				int verseId = (int)settings.getLong(VERSEID,0);							
 				// 移动到下一位置
@@ -193,7 +193,7 @@ public class LockActivity extends FragmentActivity {
 			break;	
 		case 3:
 			// 随机显示
-			if(verseQty>0 & sCustom.trim()!=""){
+			if(verseQty>0 && sCustom.trim()!=""){
 				int random = (int)(Math.random()*verseQty);
 				lockCursor.moveToPosition(random);
 				sCustom = lockCursor.getString(1) + lockCursor.getString(2);

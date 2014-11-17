@@ -43,11 +43,11 @@
 
     <ImageView
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="20dp"
         android:background="@color/alpha" />
     <ImageView
-        android:layout_width="144dp"
-        android:layout_height="144dp"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
         android:layout_gravity="center"
         android:background="@drawable/start_logo" />
     <TextView
@@ -79,12 +79,12 @@
         android:layout_gravity="center"
         android:padding="16dp"
         android:background="@drawable/editok_button_selector"
-        android:text="使用帮助"
+        android:text="官方微博"
         android:textColor="@color/white"
         android:textSize="18sp" />
 	<View
         android:layout_width="fill_parent"
-        android:layout_height="8dp"
+        android:layout_height="10dp"
         android:background="@color/white" />    
     <Button
         android:id="@+id/about_feedback"
@@ -93,12 +93,12 @@
         android:layout_gravity="center"
         android:padding="16dp"
         android:background="@drawable/editok_button_selector"
-        android:text="意见反馈"
+        android:text="官方微信"
         android:textColor="@color/white"
         android:textSize="18sp" />    
 	<View
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="20dp"
         android:background="@color/white" />  
 	<TextView
         android:layout_width="fill_parent"
