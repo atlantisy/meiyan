@@ -74,26 +74,26 @@
         android:background="@color/alpha" />
 	<Button
         android:id="@+id/about_help"
-        android:layout_width="200dp"
+        android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="16dp"
         android:background="@drawable/editok_button_selector"
-        android:text="官方微博"
+        android:text="新浪微博"
         android:textColor="@color/white"
         android:textSize="18sp" />
 	<View
         android:layout_width="fill_parent"
-        android:layout_height="10dp"
+        android:layout_height="16dp"
         android:background="@color/white" />    
     <Button
         android:id="@+id/about_feedback"
-        android:layout_width="200dp"
+        android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="16dp"
         android:background="@drawable/editok_button_selector"
-        android:text="官方微信"
+        android:text="微信公众号"
         android:textColor="@color/white"
         android:textSize="18sp" />    
 	<View

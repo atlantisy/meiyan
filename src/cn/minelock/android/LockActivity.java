@@ -208,6 +208,14 @@ public class LockActivity extends FragmentActivity {
 		}
 	}
 	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		mLockStatus = false;
+		saveLockStatus();//±£´æËøÆÁ×´Ì¬
+	}
+	
 	private void InitViewPager() {		
 		fragmentsList = new ArrayList<Fragment>();
 		UnlockFragment unlockFragment = new UnlockFragment();
