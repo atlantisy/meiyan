@@ -74,7 +74,7 @@
         android:background="@color/alpha" />
 	<Button
         android:id="@+id/about_help"
-        android:layout_width="128dp"
+        android:layout_width="144dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="16dp"
@@ -88,7 +88,7 @@
         android:background="@color/white" />    
     <Button
         android:id="@+id/about_feedback"
-        android:layout_width="128dp"
+        android:layout_width="144dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="16dp"

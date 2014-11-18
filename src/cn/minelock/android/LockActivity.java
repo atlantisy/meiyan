@@ -102,8 +102,7 @@ public class LockActivity extends FragmentActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// Remove notification bar
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.activity_lock);
-		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);		
+		setContentView(R.layout.activity_lock);		
 		// 获取pref值			
 		settings = getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
@@ -124,6 +123,7 @@ public class LockActivity extends FragmentActivity {
 		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
 		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
 		String wallpaperPath = settings.getString(WALLPAPERPATH, "");	
+		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
 		if(bIdOrPath==true)//设置壁纸			
 			lockLayout.setBackgroundResource(wallpaperId);
 		else{
@@ -165,6 +165,9 @@ public class LockActivity extends FragmentActivity {
 			ppwv.setVisibility(View.GONE);			
 		}
 		mPager.setSelected(true);
+		
+		// 屏蔽home键
+		//BanHomeKey();
 	}
 
 	private void SetVerseShow(int showVerseFlag){
@@ -316,6 +319,15 @@ public class LockActivity extends FragmentActivity {
 		return version; 
 	}
 	
+	public void BanHomeKey(){		
+		View view = View.inflate(getApplicationContext(), R.layout.activity_lock, null);  
+		WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);  
+		WindowManager.LayoutParams params = new WindowManager.LayoutParams();  
+		params.type = 2003;  
+		params.width = -1;  
+		params.height = -1;  
+		wm.addView(view, params); 
+	}
 	// 屏蔽home键，android 2.2和2.3适用，4.0及以上不适用
     public void onAttachedToWindow() { 
     	if (getSDKVersion()<=10)

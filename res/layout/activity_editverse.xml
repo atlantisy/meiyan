@@ -88,7 +88,7 @@
                 android:padding="16dp"
                 android:ems="16"
                 android:gravity="center"
-                android:hint="写美言..."
+                android:hint="写美言"
                 android:inputType="textMultiLine"
                 android:maxLines="3"
                 android:textColor="@color/white"
