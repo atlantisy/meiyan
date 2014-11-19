@@ -2,6 +2,8 @@ package cn.minelock.android;
 
 import java.util.ArrayList;
 
+import cn.minelock.widget.LockLayer;
+
 import cn.minelock.android.LockActivity.MyOnPageChangeListener;
 import cn.minelock.widget.PatternPassWordView;
 import cn.minelock.widget.dbHelper;
@@ -85,24 +87,23 @@ public class LockActivity extends FragmentActivity {
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
 	
-	private void showToast(CharSequence message) {
-		if (null == toast) {
-			toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-			// toast.setGravity(Gravity.CENTER, 0, 0);
-		} else {
-			toast.setText(message);
-		}
-
-		toast.show();
-	}
+	public static final int FLAG_HOMEKEY_DISPATCHED = 0x80000000;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);			
-		// Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// Remove notification bar
+		// 隐藏标题栏
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // 隐藏通知栏
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.activity_lock);		
+		// 悬浮错误框屏蔽home键		
+/*	    View lock = View.inflate(this, R.layout.activity_lock, null);
+	    LockLayer lockLayer = LockLayer.getInstance(this);
+	    lockLayer.setLockView(lock);
+	    lockLayer.lock();*/
+        // 屏蔽home键
+        //this.getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED, FLAG_HOMEKEY_DISPATCHED);
+	    // 设置布局文件
+	    setContentView(R.layout.activity_lock);
 		// 获取pref值			
 		settings = getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
@@ -211,6 +212,12 @@ public class LockActivity extends FragmentActivity {
 		}
 	}
 	
+/*	@Override  
+    protected void onUserLeaveHint() {  
+        Log.d("aeon","onUserLeaveHint");  
+        super.onUserLeaveHint();  
+    }*/
+	
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -304,12 +311,13 @@ public class LockActivity extends FragmentActivity {
 		case KeyEvent.KEYCODE_MENU:return true;
 		case KeyEvent.KEYCODE_BACK:return true;
 		case KeyEvent.KEYCODE_VOLUME_DOWN: return true;
-		case KeyEvent.KEYCODE_VOLUME_UP: return true;
+		case KeyEvent.KEYCODE_VOLUME_UP: return true;		
+		case KeyEvent.KEYCODE_HOME: return true;// 屏蔽home键		
 /*		case KeyEvent.KEYCODE_CALL:return true;
 		case KeyEvent.KEYCODE_SYM: return true;
 		case KeyEvent.KEYCODE_STAR: return true;*/
-		}
-		
+		}			
+			
 		return super.onKeyDown(keyCode, event);
     } 
 	
@@ -319,13 +327,19 @@ public class LockActivity extends FragmentActivity {
 		return version; 
 	}
 	
+	//apktool value，这个值用于实现全屏
+	private final static int FLAG_APKTOOL_VALUE = 1280;	
 	public void BanHomeKey(){		
 		View view = View.inflate(getApplicationContext(), R.layout.activity_lock, null);  
 		WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);  
-		WindowManager.LayoutParams params = new WindowManager.LayoutParams();  
-		params.type = 2003;  
-		params.width = -1;  
-		params.height = -1;  
+		WindowManager.LayoutParams params = new WindowManager.LayoutParams();   
+		params.width = WindowManager.LayoutParams.MATCH_PARENT;  
+		params.height = WindowManager.LayoutParams.MATCH_PARENT; 
+		
+		//params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+		params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;//实现屏蔽Home
+		params.flags = FLAG_APKTOOL_VALUE;
+		
 		wm.addView(view, params); 
 	}
 	// 屏蔽home键，android 2.2和2.3适用，4.0及以上不适用
@@ -399,5 +413,14 @@ public class LockActivity extends FragmentActivity {
 		defaultEditor.commit();
 	}
 	
+	private void showToast(CharSequence message) {
+		if (null == toast) {
+			toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+			// toast.setGravity(Gravity.CENTER, 0, 0);
+		} else {
+			toast.setText(message);
+		}
 
+		toast.show();
+	}
 }

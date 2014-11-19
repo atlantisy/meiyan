@@ -30,17 +30,6 @@ public class SetPasswordActivity extends Activity {
 	public static final String WALLPAPERID = "wallpaper_id";//应用内壁纸资源ID的pref值名称
 	public static final String WALLPAPERPATH = "wallpaper_path";//应用外壁纸Path的pref值名称
 	
-	private void showToast(CharSequence message) {
-		if (null == toast) {
-			toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-//			toast.setGravity(Gravity.CENTER, 0, 0);
-		} else {
-			toast.setText(message);
-		}
-
-		toast.show();
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -94,7 +83,7 @@ public class SetPasswordActivity extends Activity {
 						finish();
 					} else {
 						ppwv.clearPassword();
-						showToast("手势不能为空，请输入！");
+						showToast("手势为空，请重新输入！");
 					}
 					break;
 				case R.id.tvReset:
@@ -113,7 +102,18 @@ public class SetPasswordActivity extends Activity {
 			showToast("请输入手势！");
 		}
 	}
+	
+	private void showToast(CharSequence message) {
+		if (null == toast) {
+			toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+//			toast.setGravity(Gravity.CENTER, 0, 0);
+		} else {
+			toast.setText(message);
+		}
 
+		toast.show();
+	}
+	
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -123,5 +123,6 @@ public class SetPasswordActivity extends Activity {
 	protected void onStop() {
 		super.onStop();
 	}
+	
 
 }

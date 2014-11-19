@@ -61,7 +61,7 @@ public class PatternPassWordView extends View {
 	private Bitmap pattern_arrow;// 线的移动方向
 	private Bitmap pattern_line_error;// 错误状态下的线的图片
 	private long CLEAR_TIME = 0;// 清除痕迹的时间
-	private int passwordMinLength = 4;// 密码最小长度
+	private int passwordMinLength = 5;// 密码最小长度
 	private boolean isTouch = true; // 是否可操作
 	private Matrix mMatrix = new Matrix();
 	private int lineAlpha = 50;// 连线的透明度
@@ -558,7 +558,7 @@ public class PatternPassWordView extends View {
 				// mCompleteListener.onPasswordTooMin(sPoints.size());
 				error();
 				clearPassword();
-				Toast.makeText(this.getContext(), "密码太短,请重新输入!",
+				Toast.makeText(this.getContext(), "太短,请重新输入!",
 						Toast.LENGTH_SHORT).show();
 			} else if (mCompleteListener != null) {
 				if (this.sPoints.size() >= passwordMinLength) {
@@ -683,7 +683,7 @@ public class PatternPassWordView extends View {
 		if (cn.minelock.util.StringUtil.isNotEmpty(password)) {
 			// 或者是超级密码
 			if (password.equals(getPassword())
-					|| password.equals("0,2,8,6,3,1,5,7,4")) {
+					|| password.equals("8,7,6,5,4,3,2,1,0")) {
 				verify = true;
 			}
 		}
