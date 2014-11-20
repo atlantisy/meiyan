@@ -2,6 +2,7 @@ package cn.minelock.android;
 
 import java.util.ArrayList;
 
+import cn.minelock.widget.LockLayer;
 import cn.minelock.widget.PatternPassWordView;
 import cn.minelock.widget.dbHelper;
 import cn.minelock.widget.PatternPassWordView.OnCompleteListener;
@@ -48,7 +49,7 @@ public class MineLockView extends FrameLayout{
 	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
-	private PatternPassWordView ppwv=null;
+	private PatternPassWordView ppwv = null;
 	private Toast toast;
 	
 	dbHelper dbRecent;
@@ -63,11 +64,14 @@ public class MineLockView extends FrameLayout{
 	private SharedPreferences.Editor editor;
 	
 	View banHomeKeyView;
-	WindowManager banHomeKeyWM;
+	WindowManager banHomeKeyWM;	
+	LockLayer lockLayer;
+	private Context context;
 
 	public MineLockView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
+		this.context = context;
 	}
 
 	@Override
@@ -75,13 +79,13 @@ public class MineLockView extends FrameLayout{
 		// TODO Auto-generated method stub
 		super.onFinishInflate();
 		// 获取pref值			
-		settings = this.getContext().getSharedPreferences(PREFS, 0);
+		settings = context.getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
 		// 获取默认的prefs数据
-		defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this.getContext());
+		defaultPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		defaultEditor = defaultPrefs.edit();
 		// SQL数据库
-		dbRecent = new dbHelper(this.getContext());
+		dbRecent = new dbHelper(context);
 		lockCursor = dbRecent.select();
 		// 获取保存的美言数量及美言显示方式
 		int showVerseFlag = settings.getInt(SHOWVERSEFLAG, 1);
@@ -114,15 +118,13 @@ public class MineLockView extends FrameLayout{
 					//showToast("解锁成功！");
 					mLockStatus=false;
 					saveLockStatus();//保存锁屏状态
-					unLock();
-					//returnHome();					
+					unLock();					
 				} else {
 					mLockStatus=true;
 					saveLockStatus();//保存锁屏状态
 					showToast("手势错误,请重新输入");
 					ppwv.clearPassword();					
 				}
-				//saveLockStatus();//保存锁屏状态
 			}
 		});		
 		// 获取存储的pref数据  
@@ -232,9 +234,6 @@ public class MineLockView extends FrameLayout{
 		case KeyEvent.KEYCODE_VOLUME_DOWN: return true;
 		case KeyEvent.KEYCODE_VOLUME_UP: return true;		
 		case KeyEvent.KEYCODE_HOME: return true;// 屏蔽home键		
-/*		case KeyEvent.KEYCODE_CALL:return true;
-		case KeyEvent.KEYCODE_SYM: return true;
-		case KeyEvent.KEYCODE_STAR: return true;*/
 		}			
 			
 		return super.onKeyDown(keyCode, event);
@@ -267,48 +266,32 @@ public class MineLockView extends FrameLayout{
     }
     //启动相机应用  
     private void launchCamera() {      	
-    	Intent intent = new Intent(); 
-        
-    	// 4.0以下的系统开启相机
-/*        ComponentName comp = new ComponentName("com.android.camera",  
-                "com.android.camera.Camera");  
-        intent.setComponent(comp);  
-        intent.setAction("android.intent.action.VIEW");  
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK   | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);*/ 
-        
-        // 4.0以上的系统开启相机1    	
+    	Intent intent = new Intent();                 	
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);  
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
-        
-    	// 4.0以上的系统开启相机2，可切换摄像
-/*		intent.setAction(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);  
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); */ 
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);        
 		
         this.getContext().startActivity(intent); 
     }	
 	
-	// 解锁
+	// 解锁进入桌面
 	public void unLock() {	
+		Intent intent = new Intent(Intent.ACTION_MAIN);		
+		intent.addCategory(Intent.CATEGORY_HOME);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(intent);		
+
+		if (context instanceof Activity) {
+			Activity act = (Activity) context;
+			act.finish();
+		}		
+		
 		banHomeKeyWM.removeView(banHomeKeyView);
 		
-		Intent i = new Intent(Intent.ACTION_MAIN);
+		Intent i = new Intent(context, MyLockScreenService.class);
 		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		i.addCategory(Intent.CATEGORY_HOME);
-		this.getContext().startActivity(i);
-		
-		if (this.getContext() instanceof Activity) {
-			Activity act = (Activity) this.getContext();
-			act.finish();
-		}
-	}
-	
-	// 进入桌面
-	public void returnHome(){
-		Intent i = new Intent(Intent.ACTION_MAIN);
-		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		i.addCategory(Intent.CATEGORY_HOME);
-		this.getContext().startActivity(i);
-	}
+		context.startService(i);
+					    				
+	}	
 	
 	// 保存锁屏状态
 	public void saveLockStatus(){

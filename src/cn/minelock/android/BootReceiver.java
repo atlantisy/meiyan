@@ -7,13 +7,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
 public class BootReceiver extends BroadcastReceiver {
 
-	static final String ACTION = "android.intent.action.BOOT_COMPLETED";
-	
+	private final String LOCK_STATUS = "lock_status";
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
@@ -21,7 +21,12 @@ public class BootReceiver extends BroadcastReceiver {
 		final Intent mIntent = new Intent(context, MyLockScreenService.class);
 		final Context mContext = context;
 		
-		if (intent.getAction().equals(ACTION)) {	
+		SharedPreferences defaultPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+		SharedPreferences.Editor defaultEditor = defaultPrefs.edit();
+		defaultEditor.putBoolean(LOCK_STATUS, false);// ÷ÿ∆Ù∫Û…Ë÷√À¯∆¡◊¥Ã¨
+		defaultEditor.commit();
+		
+		if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {	
 			
 /*			Timer timer = new Timer();
 			timer.schedule(new TimerTask() {

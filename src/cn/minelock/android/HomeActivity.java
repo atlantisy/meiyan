@@ -469,8 +469,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));
-			//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
-			//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
 			break;
 		case R.id.home_setting1:
@@ -480,8 +478,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 		case R.id.home_text:
 			startActivity(new Intent(HomeActivity.this, EditVerseActivity.class));
 			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
-			//overridePendingTransition(R.anim.push_up_in,R.anim.alpha_action_out);
-			//overridePendingTransition(R.anim.scale_action_in,R.anim.alpha_action_out);
 			break;
 		case R.id.home_setup_grid:
 			startActivityForResult(new Intent(HomeActivity.this,SetPasswordActivity.class), 100);
