@@ -408,12 +408,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int frag_unlock=0x7f030008;
         public static final int frag_verse=0x7f030009;
         public static final int gridview_verse=0x7f03000a;
-        public static final int pull_to_refresh_header_horizontal=0x7f03000b;
-        public static final int pull_to_refresh_header_vertical=0x7f03000c;
-        public static final int spiner_item_layout=0x7f03000d;
-        public static final int spiner_window_layout=0x7f03000e;
-        public static final int start=0x7f03000f;
-        public static final int view_recent=0x7f030010;
+        public static final int minelock_layout=0x7f03000b;
+        public static final int pull_to_refresh_header_horizontal=0x7f03000c;
+        public static final int pull_to_refresh_header_vertical=0x7f03000d;
+        public static final int spiner_item_layout=0x7f03000e;
+        public static final int spiner_window_layout=0x7f03000f;
+        public static final int start=0x7f030010;
+        public static final int view_recent=0x7f030011;
     }
     public static final class string {
         public static final int app_name=0x7f070007;
