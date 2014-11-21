@@ -714,7 +714,6 @@ public class PatternPassWordView extends View {
 	/**
 	 * 轨迹球画完成事件
 	 * 
-	 * @author way
 	 */
 	public interface OnCompleteListener {
 		/**

@@ -104,13 +104,40 @@
             android:paddingRight="8dp"
             android:layout_weight="1" >
 
-            <android.support.v4.view.ViewPager
+<!--             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:flipInterval="100"
-                android:persistentDrawingCache="animation" />
+                android:persistentDrawingCache="animation" /> -->
+                
+                <cn.minelock.widget.MyScrollLayout
+                	xmlns:android="http://schemas.android.com/apk/res/android"    
+	  				android:id="@+id/mMyScrollLayout"    
+	  				android:layout_width="fill_parent"    
+	  				android:layout_height="wrap_content"> 
+	  					<FrameLayout    
+	    					android:background="@color/alpha"
+	  						android:layout_width="fill_parent"    
+	  						android:layout_height="wrap_content">
+ 	     		 			<include layout="@layout/frag_unlock"/>
+	  					</FrameLayout> 
+	  					
+	  					<FrameLayout    
+	    					android:background="@color/alpha"
+	  						android:layout_width="fill_parent"    
+	  						android:layout_height="wrap_content">
+ 	     		 			<include layout="@layout/frag_verse"/>
+	  					</FrameLayout> 
+	  					 
+	  					<FrameLayout    
+	    					android:background="@color/alpha"
+	  						android:layout_width="fill_parent"    
+	  						android:layout_height="wrap_content">
+ 	     		 			<include layout="@layout/frag_camera"/>
+	  					</FrameLayout>  	  						  					                   
+                </cn.minelock.widget.MyScrollLayout>
         </LinearLayout>
     </LinearLayout>
 

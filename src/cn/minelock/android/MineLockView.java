@@ -2,7 +2,11 @@ package cn.minelock.android;
 
 import java.util.ArrayList;
 
+
+import cn.minelock.widget.MyScrollLayout;
+
 import cn.minelock.widget.LockLayer;
+import cn.minelock.widget.MyScrollLayout.OnViewChangeListener;
 import cn.minelock.widget.PatternPassWordView;
 import cn.minelock.widget.dbHelper;
 import cn.minelock.widget.PatternPassWordView.OnCompleteListener;
@@ -27,16 +31,20 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MineLockView extends FrameLayout{
 
 	private static final String TAG = "MeiYan";
 	private static final int IDTAG = -1;
+	private String sCustom = "";
 	private ViewPager mPager;
 	private ArrayList<Fragment> fragmentsList;
 	private int currIndex = 1;
-	private String sCustom = "";	
+	
+	private MyScrollLayout mScrollLayout;	
 	
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String VERSE = "verse";//锁屏方式pref值名称
@@ -63,11 +71,13 @@ public class MineLockView extends FrameLayout{
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
 	
+	private TextView viewVerse;
+	private Context context;
+	
 	View banHomeKeyView;
 	WindowManager banHomeKeyWM;	
 	LockLayer lockLayer;
-	private Context context;
-
+		
 	public MineLockView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
@@ -106,8 +116,39 @@ public class MineLockView extends FrameLayout{
 			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		}				
 		// 简单滑动解锁，即锁屏方式1
-		mPager = (ViewPager) findViewById(R.id.viewpager);
+		//mPager = (ViewPager) findViewById(R.id.viewpager);
 		//InitViewPager();
+		viewVerse = (TextView) findViewById(R.id.tv_verse);
+		viewVerse.setText(sCustom);
+    	mScrollLayout = (MyScrollLayout) this.findViewById(R.id.mMyScrollLayout); 	  	 	
+    	mScrollLayout.SetOnViewChangeListener(new OnViewChangeListener() {
+			
+			@Override
+			public void OnViewChange(int view) {
+				// TODO Auto-generated method stub
+				switch (view) {
+				case 0:
+					mLockStatus = false;
+					saveLockStatus();//保存锁屏状态
+					unLock();
+					//returnHome();				
+					break;
+				case 2:				
+					mLockStatus = false;
+					saveLockStatus();//保存锁屏状态
+					launchCamera();
+					//finish();								
+					break;
+				default:
+					mLockStatus = true;
+					saveLockStatus();//保存锁屏状态
+					unLock();
+					break;
+				}
+				//saveLockStatus();//保存锁屏状态
+				currIndex = view;				
+			}
+		});
 		// 九宫手势解锁，即锁屏方式2
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
 		ppwv.setOnCompleteListener(new OnCompleteListener() {
@@ -132,12 +173,13 @@ public class MineLockView extends FrameLayout{
 		boolean setPassword = settings.getBoolean(PWSETUP, false);
 		// 控制锁屏方式的显示
 		if(flag==2 & setPassword==true){			
-			mPager.setVisibility(View.GONE);
+			//mPager.setVisibility(View.GONE);
+			mScrollLayout.setVisibility(View.GONE);			
 			ppwv.setVisibility(View.VISIBLE);			
 		}
 		else{
-			mPager.setVisibility(View.VISIBLE);
-			mPager.setSelected(true);
+			//mPager.setVisibility(View.VISIBLE);
+			mScrollLayout.setVisibility(View.VISIBLE);			
 			ppwv.setVisibility(View.GONE);			
 		}
 				
@@ -184,48 +226,6 @@ public class MineLockView extends FrameLayout{
 		}
 	}
 	
-/*	private void InitViewPager() {		
-		fragmentsList = new ArrayList<Fragment>();
-		UnlockFragment unlockFragment = new UnlockFragment();
-		Fragment homeFragment = VerseFragment.newString(sCustom);
-		CameraFragment cameraFragment = new CameraFragment();
-
-		fragmentsList.add(unlockFragment);
-		fragmentsList.add(homeFragment);
-		fragmentsList.add(cameraFragment);
-
-		mPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentsList));
-		mPager.setCurrentItem(currIndex);
-		mPager.setOnPageChangeListener(new MyOnPageChangeListener());
-
-	}*/
-
-/*	public class MyOnPageChangeListener implements OnPageChangeListener {
-
-		@Override
-		public void onPageSelected(int arg0) {
-			switch (arg0) {
-			case 0:
-				mLockStatus = false;
-				unLock();
-				//returnHome();				
-				break;
-			case 2:				
-				mLockStatus = false;
-				launchCamera();
-				//finish();								
-				break;
-			default:
-				mLockStatus = true;	
-				//unLock();
-				break;
-			}
-			saveLockStatus();//保存锁屏状态
-			currIndex = arg0;
-			
-		}	
-	}*/
-	
 	// 屏蔽返回键、MENU键
 	public boolean onKeyDown(int keyCode, KeyEvent event) {  		
 		switch(keyCode){
@@ -255,41 +255,44 @@ public class MineLockView extends FrameLayout{
         intent.setAction("android.intent.action.VIEW");  
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  
                 | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);  
-        this.getContext().startActivity(intent);  
+        context.startActivity(intent);  
     }       
     //启动拨号应用  
     private void launchDial() {  
         Intent intent = new Intent(Intent.ACTION_DIAL);  
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  
                 | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);  
-        this.getContext().startActivity(intent);  
+        context.startActivity(intent);  
     }
     //启动相机应用  
     private void launchCamera() {      	
     	Intent intent = new Intent();                 	
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);  
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);        
-		
-        this.getContext().startActivity(intent); 
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);        		
+        context.startActivity(intent); 
+        
+        banHomeKeyWM.removeView(banHomeKeyView);
     }	
 	
 	// 解锁进入桌面
 	public void unLock() {	
+		//banHomeKeyWM.removeView(banHomeKeyView);
+		
 		Intent intent = new Intent(Intent.ACTION_MAIN);		
 		intent.addCategory(Intent.CATEGORY_HOME);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(intent);		
 
-		if (context instanceof Activity) {
+/*		if (context instanceof Activity) {
 			Activity act = (Activity) context;
 			act.finish();
-		}		
-		
-		banHomeKeyWM.removeView(banHomeKeyView);
-		
+		}	*/	
+						
 		Intent i = new Intent(context, MyLockScreenService.class);
 		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startService(i);
+		
+		banHomeKeyWM.removeView(banHomeKeyView);
 					    				
 	}	
 	

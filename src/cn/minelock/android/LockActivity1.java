@@ -346,6 +346,8 @@ public class LockActivity1 extends FragmentActivity {
     public void onAttachedToWindow() { 
     	if (getSDKVersion()<=10)
     		this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD); //TYPE_KEYGUARD_DIALOG 
+    	else
+    		this.getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED, FLAG_HOMEKEY_DISPATCHED);
         super.onAttachedToWindow(); 
     }
     
