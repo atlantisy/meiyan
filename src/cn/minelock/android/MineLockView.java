@@ -123,7 +123,7 @@ public class MineLockView extends FrameLayout{
 		viewVerse = (TextView) findViewById(R.id.tv_verse);
 		viewVerse.setText(sCustom);
     	mScrollLayout = (MyScrollLayout) this.findViewById(R.id.mMyScrollLayout); 	  	 	
-    	mScrollLayout.SetOnViewChangeListener(new OnViewChangeListener() {
+ /*   	mScrollLayout.SetOnViewChangeListener(new OnViewChangeListener() {
 			
 			@Override
 			public void OnViewChange(int view) {
@@ -131,43 +131,43 @@ public class MineLockView extends FrameLayout{
 				switch (view) {
 				case 0:
 					mLockStatus = false;
-					saveLockStatus();//保存锁屏状态
+					//saveLockStatus();//保存锁屏状态
 					unLock();			
 					break;
 				case 2:				
 					mLockStatus = false;
-					saveLockStatus();//保存锁屏状态
-					launchCamera();							
+					//saveLockStatus();//保存锁屏状态
+					//launchCamera();							
 					break;
 				default:
 					mLockStatus = true;
-					saveLockStatus();//保存锁屏状态
+					//saveLockStatus();//保存锁屏状态
 					unLock();
 					break;
 				}
 				//saveLockStatus();//保存锁屏状态
 				currIndex = view;				
 			}
-		});
+		});*/
 		// 九宫手势解锁，即锁屏方式2
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
-		ppwv.setOnCompleteListener(new OnCompleteListener() {
+/*		ppwv.setOnCompleteListener(new OnCompleteListener() {
 			@Override
 			public void onComplete(String mPassword) {
 				// 如果密码正确,则进入主页面。
 				if (ppwv.verifyPassword(mPassword)) {
 					//showToast("解锁成功！");
 					mLockStatus=false;
-					saveLockStatus();//保存锁屏状态
+					//saveLockStatus();//保存锁屏状态
 					unLock();					
 				} else {
 					mLockStatus=true;
-					saveLockStatus();//保存锁屏状态
-					showToast("手势错误,请重新输入");
+					//saveLockStatus();//保存锁屏状态
+					//showToast("手势错误,请重新输入");
 					ppwv.clearPassword();					
 				}
 			}
-		});		
+		});	*/	
 		// 获取存储的pref数据  
 		int flag = settings.getInt(LOCKFLAG, 1);
 		boolean setPassword = settings.getBoolean(PWSETUP, false);
@@ -224,8 +224,7 @@ public class MineLockView extends FrameLayout{
 		default:
 			break;
 		}
-	}
-	
+	}	
 	// 屏蔽返回键、MENU键
 	public boolean onKeyDown(int keyCode, KeyEvent event) {  		
 		switch(keyCode){
@@ -233,85 +232,20 @@ public class MineLockView extends FrameLayout{
 		case KeyEvent.KEYCODE_BACK:return true;
 		case KeyEvent.KEYCODE_VOLUME_DOWN: return true;
 		case KeyEvent.KEYCODE_VOLUME_UP: return true;		
-		case KeyEvent.KEYCODE_HOME: return true;// 屏蔽home键		
+		//case KeyEvent.KEYCODE_HOME: return true;// 屏蔽home键		
 		}			
 			
 		return super.onKeyDown(keyCode, event);
-    } 
-	
-	// 获取android版本号
-	public static int getSDKVersion() { 
-		int version = Integer.valueOf(android.os.Build.VERSION.SDK_INT);
-		return version; 
-	}
-	
-	//启动短信应用  
-    private void launchSms() {    
-        //mFocusView.setVisibility(View.GONE);  
-        Intent intent = new Intent();  
-        ComponentName comp = new ComponentName("com.android.mms",  
-                "com.android.mms.ui.ConversationList");  
-        intent.setComponent(comp);  
-        intent.setAction("android.intent.action.VIEW");  
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  
-                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);  
-        context.startActivity(intent);  
-    }       
-    //启动拨号应用  
-    private void launchDial() {  
-        Intent intent = new Intent(Intent.ACTION_DIAL);  
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  
-                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);  
-        context.startActivity(intent);  
-    }
-    //启动相机应用  
-    private void launchCamera() {      	
-    	Intent intent = new Intent();                 	
-        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);  
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);        		
-        context.startActivity(intent); 
-        
-        //banHomeKeyWM.removeView(banHomeKeyView);
     }	
-	
 	// 解锁进入桌面
-	public void unLock() {	
-		//banHomeKeyWM.removeView(banHomeKeyView);
-		
+	public void unLock() {			
 		Intent intent = new Intent(Intent.ACTION_MAIN);		
 		intent.addCategory(Intent.CATEGORY_HOME);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(intent);		
 
-/*		if (context instanceof Activity) {
-			Activity act = (Activity) context;
-			act.finish();
-		}	*/	
-						
-/*		Intent i = new Intent(context, MyLockScreenService.class);
-		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		context.startService(i);*/
-				
-		//banHomeKeyWM.addView(banHomeKeyView, params);
-		if(banHomeKeyView.getParent()!=null)
-			banHomeKeyWM.removeView(banHomeKeyView);				
+/*		if(banHomeKeyView.getParent()!=null)
+			banHomeKeyWM.removeView(banHomeKeyView);	*/			
 	}	
 	
-	// 保存锁屏状态
-	public void saveLockStatus(){
-		defaultEditor.putBoolean(LOCK_STATUS, mLockStatus);
-		defaultEditor.commit();
-	}
-	
-	private void showToast(CharSequence message) {
-		if (null == toast) {
-			toast = Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT);
-			// toast.setGravity(Gravity.CENTER, 0, 0);
-		} else {
-			toast.setText(message);
-		}
-
-		toast.show();
-	}
-
 }

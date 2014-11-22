@@ -16,6 +16,7 @@ import cn.minelock.widget.dbHelper;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+
 import cn.minelock.android.R;
 
 import android.app.Activity;
@@ -198,11 +199,11 @@ public class HomeActivity extends Activity implements OnClickListener,
 		if (isLockScreenOn){
 			// keep on disabling the system Keyguard
 			//Æô¶¯ËøÆÁ
-			startService(new Intent(this, MyLockScreenService.class));
+			startService(new Intent(getApplicationContext(), MyLockScreenService.class));
 			EnableSystemKeyguard(false);
 		}
 		else {
-			stopService(new Intent(this, MyLockScreenService.class));
+			stopService(new Intent(getApplicationContext(), MyLockScreenService.class));
 			// recover original Keyguard
 			EnableSystemKeyguard(true);
 		}
