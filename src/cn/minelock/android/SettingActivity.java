@@ -80,31 +80,6 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		// 获取保存的prefs数据
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
-
-		// 锁屏开关switch
-/*		lock_switchbtn = (SwitchButton) findViewById(R.id.lock_switchbtn);
-		lock_switchbtn.setSwitch(mIsLockScreenOn);
-		lock_switchbtn.setOnChangeListener(new OnChangeListener() {  
-              
-	            @Override  
-	            public void onChange(SwitchButton sb, boolean state) {  
-	                // TODO Auto-generated method stub
-	    			mIsLockScreenOn = state;
-	    			//启动锁屏
-	    			if (mIsLockScreenOn){
-	    				// keep on disabling the system Keyguard
-	    				EnableSystemKeyguard(false);
-	    			}
-	    			else {
-	    				// recover original Keyguard
-	    				EnableSystemKeyguard(true);
-	    			}
-	    			//将锁屏开关check值存入pref中
-	    			SharedPreferences.Editor editor = prefs.edit();
-	    			editor.putBoolean(LOCK_SWITCH, mIsLockScreenOn);
-	    			editor.commit();
-	            }  
-	        });*/
 		// 锁屏开关checkbox
 		lock_checkbox = (CheckBox) findViewById(R.id.lock_checkbox);
 		lock_checkbox.setChecked(mIsLockScreenOn);
@@ -163,9 +138,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
 			startActivity(new Intent(SettingActivity.this, HomeActivity.class));
-			//overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
-			//overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);
 			//finish();
 		}
 	};
@@ -246,7 +219,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		else {
 			stopService(new Intent(this, MyLockScreenService.class));
 			// recover original Keyguard
-			EnableSystemKeyguard(true);
+			//EnableSystemKeyguard(true);
 		}
 	}
 

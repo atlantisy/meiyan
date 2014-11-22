@@ -54,6 +54,7 @@ import android.text.style.ForegroundColorSpan;
 public class LockActivity extends FragmentActivity {	
 	View banHomeKeyView;
 	WindowManager banHomeKeyWM;	
+	WindowManager.LayoutParams params;
 	LockLayer lockLayer;
 		
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,12 +69,12 @@ public class LockActivity extends FragmentActivity {
 	public void BanHomeKey(){		
 		banHomeKeyView = View.inflate(getApplicationContext(), R.layout.minelock_layout, null);  
 		banHomeKeyWM = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);  
-		WindowManager.LayoutParams params = new WindowManager.LayoutParams();   
+		params = new WindowManager.LayoutParams();   
 		params.width = WindowManager.LayoutParams.MATCH_PARENT;  
 		params.height = WindowManager.LayoutParams.MATCH_PARENT; 
 		
-		params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;//实现屏蔽Home
-		//params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;//实现屏蔽Home
+		//params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;//实现屏蔽Home
+		params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;//实现屏蔽Home
 		//params.flags = 1280;//不显示状态栏
 		
 		banHomeKeyWM.addView(banHomeKeyView, params); 
@@ -84,5 +85,11 @@ public class LockActivity extends FragmentActivity {
 	    lockLayer = LockLayer.getInstance(this);
 	    lockLayer.setLockView(banHomeKeyView);
 	    lockLayer.lock();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
 	}
 }

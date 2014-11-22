@@ -21,10 +21,10 @@ public class BootReceiver extends BroadcastReceiver {
 		final Intent mIntent = new Intent(context, MyLockScreenService.class);
 		final Context mContext = context;
 		
-		SharedPreferences defaultPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-		SharedPreferences.Editor defaultEditor = defaultPrefs.edit();
-		defaultEditor.putBoolean(LOCK_STATUS, false);// ÷ÿ∆Ù∫Û…Ë÷√À¯∆¡◊¥Ã¨
-		defaultEditor.commit();
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putBoolean(LOCK_STATUS, false);// ÷ÿ∆Ù∫Û…Ë÷√À¯∆¡◊¥Ã¨
+		editor.commit();
 		
 		if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {	
 			

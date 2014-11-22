@@ -74,15 +74,17 @@ public class MineLockView extends FrameLayout{
 	private TextView viewVerse;
 	private Context context;
 	
+	LockLayer lockLayer;
 	View banHomeKeyView;
 	WindowManager banHomeKeyWM;	
-	LockLayer lockLayer;
+	WindowManager.LayoutParams params;
+	
 		
 	public MineLockView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
 		this.context = context;
-	}
+	}	
 
 	@Override
 	protected void onFinishInflate() {
@@ -130,14 +132,12 @@ public class MineLockView extends FrameLayout{
 				case 0:
 					mLockStatus = false;
 					saveLockStatus();//±£´æËøÆÁ×´Ì¬
-					unLock();
-					//returnHome();				
+					unLock();			
 					break;
 				case 2:				
 					mLockStatus = false;
 					saveLockStatus();//±£´æËøÆÁ×´Ì¬
-					launchCamera();
-					//finish();								
+					launchCamera();							
 					break;
 				default:
 					mLockStatus = true;
@@ -271,7 +271,7 @@ public class MineLockView extends FrameLayout{
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);        		
         context.startActivity(intent); 
         
-        banHomeKeyWM.removeView(banHomeKeyView);
+        //banHomeKeyWM.removeView(banHomeKeyView);
     }	
 	
 	// ½âËø½øÈë×ÀÃæ
@@ -288,12 +288,13 @@ public class MineLockView extends FrameLayout{
 			act.finish();
 		}	*/	
 						
-		Intent i = new Intent(context, MyLockScreenService.class);
+/*		Intent i = new Intent(context, MyLockScreenService.class);
 		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		context.startService(i);
-		
-		banHomeKeyWM.removeView(banHomeKeyView);
-					    				
+		context.startService(i);*/
+				
+		//banHomeKeyWM.addView(banHomeKeyView, params);
+		if(banHomeKeyView.getParent()!=null)
+			banHomeKeyWM.removeView(banHomeKeyView);				
 	}	
 	
 	// ±£´æËøÆÁ×´Ì¬

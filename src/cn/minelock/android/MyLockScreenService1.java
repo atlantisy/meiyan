@@ -13,7 +13,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.CheckBox;
 
-public class MyLockScreenService extends Service {
+public class MyLockScreenService1 extends Service {
 	private final String ACT_SCREEN_OFF = "android.intent.action.SCREEN_OFF";
 	private final String ACT_SCREEN_ON = "android.intent.action.SCREEN_ON";
 	

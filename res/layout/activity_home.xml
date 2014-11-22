@@ -66,16 +66,15 @@
             android:layout_height="match_parent"
             android:background="@color/alpha"
             android:src="@drawable/ic_share" 
-            android:visibility="gone"/>
-        
+            android:visibility="gone"/>        
         <ImageButton
             android:id="@+id/home_repeat_shuffle"
             android:layout_width="48dp"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:background="@color/alpha"
-            android:src="@drawable/repeat_shuffle_btn_selector"/>             
+            android:src="@drawable/repeat_shuffle_btn_selector"/>                
         <ImageButton
-            android:layout_width="8dp"
+            android:layout_width="4dp"
             android:layout_height="fill_parent"
             android:background="@color/alpha"
             android:src="@color/alpha" />                           
@@ -369,7 +368,7 @@
         android:id="@+id/home_bottombar"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:background="@drawable/shape_bg_alpha"
+        android:background="@drawable/shape_bg_alpha1"
         android:orientation="horizontal" >
         <ImageButton
             android:layout_width="32dp"
@@ -379,10 +378,10 @@
         <ImageButton
             android:id="@+id/home_recent"
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/alpha"
-            android:src="@drawable/ic_mine" />
+            android:src="@drawable/ic_mine" /> 
         <ImageButton
             android:layout_width="32dp"
             android:layout_height="fill_parent"

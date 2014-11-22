@@ -469,7 +469,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));
-			overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
+			//overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			break;
 		case R.id.home_setting1:
 			startActivity(new Intent(HomeActivity.this, SettingActivity.class));
