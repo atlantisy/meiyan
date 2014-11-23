@@ -54,7 +54,7 @@ public class SetPasswordActivity extends Activity {
 				password = mPassword;
 				if (needverify) {
 					if (ppwv.verifyPassword(mPassword)) {
-						showToast("验证通过，请输入新手势并保存");
+						showToast("通过，请输入新手势并保存");
 						ppwv.clearPassword();
 						needverify = false;
 					} else {

@@ -1,5 +1,9 @@
 package cn.minelock.android;
 
+
+
+import cn.minelock.android.BatteryObserver;
+import cn.minelock.android.BatteryObserver.OnBatteryChange;
 import cn.minelock.widget.MyScrollLayout;
 import cn.minelock.widget.MyScrollLayout.OnViewChangeListener;
 import cn.minelock.widget.PatternPassWordView;
@@ -13,12 +17,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.BatteryManager;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 public class MyLockScreenService extends Service {
 	private final String ACT_SCREEN_OFF = "android.intent.action.SCREEN_OFF";
@@ -38,6 +46,7 @@ public class MyLockScreenService extends Service {
 	WindowManager mWindowManager;
 	
 	PatternPassWordView mGridView;
+	TextView errorView;
 	MyScrollLayout mLineView;
 	
 	@Override
@@ -64,7 +73,7 @@ public class MyLockScreenService extends Service {
         	registerReceiver(mScreenBCR, intentFilter);
         }
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
@@ -85,6 +94,8 @@ public class MyLockScreenService extends Service {
         	IntentFilter intentFilter= new IntentFilter(ACT_SCREEN_OFF);
         	registerReceiver(mScreenBCR, intentFilter);        	
         }
+        
+        batteryObserver.unRegister();
 	}
 	
 	private BroadcastReceiver mScreenBCR = new BroadcastReceiver() {
@@ -103,12 +114,7 @@ public class MyLockScreenService extends Service {
 						//屏蔽手机内置的锁屏 
 						KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);    
 						KeyguardLock kl = km.newKeyguardLock("MineLock");						 
-			            kl.disableKeyguard();
-			            
-/*						Intent i = new Intent();  
-						i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
-						i.setClass(context, LockActivity.class); 
-						context.startActivity(i);	*/	
+			            kl.disableKeyguard();			            
 			            
 			            CreateFloatView();
 					}												            
@@ -120,6 +126,8 @@ public class MyLockScreenService extends Service {
 		}
 	};
 	
+	BatteryObserver batteryObserver;
+	MineLockView root;
 	// 创建全屏悬浮锁屏窗口
 	public void CreateFloatView(){
 		mFloatLayout = View.inflate(getApplicationContext(), R.layout.minelock_layout, null);  
@@ -128,12 +136,23 @@ public class MyLockScreenService extends Service {
 		wmParams.width = WindowManager.LayoutParams.MATCH_PARENT;  
 		wmParams.height = WindowManager.LayoutParams.MATCH_PARENT; 
 		
-		//params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;//实现屏蔽Home
-		wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;//实现屏蔽Home
-		//params.flags = 1280;//不显示状态栏
-		
+		wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+		wmParams.flags = 1280;//不显示状态栏
+		// 显示锁屏界面
 		mWindowManager.addView(mFloatLayout, wmParams); 
-		
+		// 充电量显示
+		root = (MineLockView)mFloatLayout.findViewById(R.id.LockLayout);
+		batteryObserver = BatteryObserver.getInstance(this);
+		batteryObserver.register();
+		batteryObserver.setOnBatteryChange(new OnBatteryChange() {
+			
+			@Override
+			public void onChange(int status, int level, int scale) {
+				// TODO Auto-generated method stub
+				root.onBattery(status, level, scale);
+				root.onUpdate();
+			}
+		});
 		// 简单滑动解锁
 		mLineView = (MyScrollLayout)mFloatLayout.findViewById(R.id.mMyScrollLayout);
 		mLineView.SetOnViewChangeListener(new OnViewChangeListener() {
@@ -159,6 +178,7 @@ public class MyLockScreenService extends Service {
 			}
 		});
 		// 九宫格解锁
+		errorView = (TextView)mFloatLayout.findViewById(R.id.error_view);
 		mGridView = (PatternPassWordView)mFloatLayout.findViewById(R.id.mPatternPassWordView);
 		mGridView.setOnCompleteListener(new OnCompleteListener() {
 			@Override
@@ -169,13 +189,15 @@ public class MyLockScreenService extends Service {
 					unLock();					
 				} else {
 					mLockStatus=true;
-					mGridView.clearPassword();					
+					mGridView.clearPassword();	
+					errorView.setVisibility(View.VISIBLE);
 				}
 				saveLockStatus();//保存锁屏状态
 			}
 		});		
 		
 	}
+	
 	// 解锁
 	public void unLock(){
 		// 移除悬浮窗
@@ -189,7 +211,8 @@ public class MyLockScreenService extends Service {
 	public void saveLockStatus(){
 		editor.putBoolean(LOCK_STATUS, mLockStatus);
 		editor.commit();
-	}	 	
+	}
+
 	// 获取android SDK版本号
 	public static int getSDKVersion() { 
 		int version = Integer.valueOf(android.os.Build.VERSION.SDK_INT);

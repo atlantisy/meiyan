@@ -2,7 +2,6 @@ package cn.minelock.android;
 
 import java.util.ArrayList;
 
-
 import cn.minelock.widget.MyScrollLayout;
 
 import cn.minelock.widget.LockLayer;
@@ -19,6 +18,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.BatteryManager;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -72,12 +74,8 @@ public class MineLockView extends FrameLayout{
 	private SharedPreferences.Editor editor;
 	
 	private TextView viewVerse;
-	private Context context;
-	
-	LockLayer lockLayer;
-	View banHomeKeyView;
-	WindowManager banHomeKeyWM;	
-	WindowManager.LayoutParams params;
+	private TextView batteryValue;
+	private Context context;	
 	
 		
 	public MineLockView(Context context, AttributeSet attrs) {
@@ -118,73 +116,141 @@ public class MineLockView extends FrameLayout{
 			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		}				
 		// 简单滑动解锁，即锁屏方式1
-		//mPager = (ViewPager) findViewById(R.id.viewpager);
-		//InitViewPager();
 		viewVerse = (TextView) findViewById(R.id.tv_verse);
 		viewVerse.setText(sCustom);
     	mScrollLayout = (MyScrollLayout) this.findViewById(R.id.mMyScrollLayout); 	  	 	
- /*   	mScrollLayout.SetOnViewChangeListener(new OnViewChangeListener() {
-			
-			@Override
-			public void OnViewChange(int view) {
-				// TODO Auto-generated method stub
-				switch (view) {
-				case 0:
-					mLockStatus = false;
-					//saveLockStatus();//保存锁屏状态
-					unLock();			
-					break;
-				case 2:				
-					mLockStatus = false;
-					//saveLockStatus();//保存锁屏状态
-					//launchCamera();							
-					break;
-				default:
-					mLockStatus = true;
-					//saveLockStatus();//保存锁屏状态
-					unLock();
-					break;
-				}
-				//saveLockStatus();//保存锁屏状态
-				currIndex = view;				
-			}
-		});*/
 		// 九宫手势解锁，即锁屏方式2
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
-/*		ppwv.setOnCompleteListener(new OnCompleteListener() {
-			@Override
-			public void onComplete(String mPassword) {
-				// 如果密码正确,则进入主页面。
-				if (ppwv.verifyPassword(mPassword)) {
-					//showToast("解锁成功！");
-					mLockStatus=false;
-					//saveLockStatus();//保存锁屏状态
-					unLock();					
-				} else {
-					mLockStatus=true;
-					//saveLockStatus();//保存锁屏状态
-					//showToast("手势错误,请重新输入");
-					ppwv.clearPassword();					
-				}
-			}
-		});	*/	
 		// 获取存储的pref数据  
 		int flag = settings.getInt(LOCKFLAG, 1);
 		boolean setPassword = settings.getBoolean(PWSETUP, false);
 		// 控制锁屏方式的显示
 		if(flag==2 & setPassword==true){			
-			//mPager.setVisibility(View.GONE);
 			mScrollLayout.setVisibility(View.GONE);			
 			ppwv.setVisibility(View.VISIBLE);			
 		}
 		else{
-			//mPager.setVisibility(View.VISIBLE);
 			mScrollLayout.setVisibility(View.VISIBLE);			
 			ppwv.setVisibility(View.GONE);			
 		}
-				
+		// 电池充电量显示
+		batteryValue = (TextView) this.findViewById(R.id.battery_value);	
+		onBattery(status, level, scale);
 	}
 	
+	public void onResume() {
+		onBattery(status, level, scale);
+	}
+
+	public void onPause() {
+		batteryHandler.sendEmptyMessage(MSG_STOP_ANIM);
+	}
+
+	public void onUpdate() {
+		onBattery(status, level, scale);
+	}	
+	// 电池
+	public void onBattery(int status, int level, int scale) {
+		this.status = status;
+		this.level = level;
+		this.scale = scale;
+		if (level == -1 || scale == -1 || status == -1) {
+			return;
+		}
+		//animStart = getAnimStart(getBatteryPrecent(level, scale));
+		if (isBatteryCharging(status)) {
+			batteryHandler.sendEmptyMessage(MSG_START_ANIM);
+		} else {
+			batteryHandler.sendEmptyMessage(MSG_STOP_ANIM);
+		}
+	}
+	public static boolean isBatteryCharging(int state) {
+		boolean isCharing = false;
+		switch (state) {
+			case BatteryManager.BATTERY_STATUS_CHARGING:
+				isCharing = true;
+				break;
+			case BatteryManager.BATTERY_STATUS_DISCHARGING:
+				isCharing = false;
+				break;
+			case BatteryManager.BATTERY_STATUS_FULL:
+				isCharing = true;
+				break;
+			case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
+				isCharing = false;
+				break;
+			case BatteryManager.BATTERY_STATUS_UNKNOWN:
+				isCharing = false;
+				break;
+		}
+		return isCharing;
+	}
+	static final int ANIM_IMAGE_LEN = 17;
+	static final int MSG_START_ANIM = 100;
+	static final int MSG_STOP_ANIM = 200;
+	static final int MSG_RUN_AIM = 300;	
+	private boolean isAnim = false;
+	private int status = -1;
+	private int level = -1;
+	private int scale = -1;
+	private Handler batteryHandler = new BatteryHandler(this);
+	
+	static class BatteryHandler extends Handler {
+		MineLockView lockView;
+
+		public BatteryHandler(MineLockView lockView) {
+			this.lockView = lockView;
+		}
+
+		public void handleMessage(Message msg) {
+			int what = msg.what;
+			if (what == MSG_START_ANIM) {
+				lockView.batteryHandler.sendEmptyMessage(MSG_RUN_AIM);
+			} else if (what == MSG_STOP_ANIM) {
+				lockView.isAnim = false;
+				//lockView.batteryImage.setVisibility(View.GONE);
+				lockView.batteryValue.setVisibility(View.GONE);
+				//lockView.animStart = 0;
+				//lockView.animIndex = 0;
+			} else if (what == MSG_RUN_AIM) {
+				if (!lockView.isAnim) {
+					lockView.isAnim = true;
+					//lockView.batteryImage.setVisibility(View.VISIBLE);
+					lockView.batteryValue.setVisibility(View.VISIBLE);
+					lockView.batteryHandler.post(lockView.batteryAnim);
+				}
+			}
+		}
+	}
+	private Runnable batteryAnim = new Runnable() {
+		public void run() {
+			if (isAnim) {
+/*				if (animIndex < animStart) {
+					animIndex = animStart;
+				}
+				if (animIndex > animEnd) {
+					animIndex = animStart;
+				}
+				batteryImage.setBackgroundResource(animImages[animIndex]);*/
+				int value = (int) (100.0F * level / scale);
+				String text = "";
+				if (value == 100) {
+					text = getResources().getString(R.string.charging_full);
+				} else {
+					text = getResources().getString(R.string.charging) + "(" + value + "%)";
+				}
+				batteryValue.setText(text);
+/*				animIndex++;
+				if (animIndex == ANIM_IMAGE_LEN) {
+					// 最后一个，延迟一点
+					batteryHandler.postDelayed(this, 1000);
+				} else {
+					batteryHandler.postDelayed(this, 1000);
+				}*/
+			}
+		}
+	};
+	//
 	private void SetVerseShow(int showVerseFlag){
 		int verseQty = settings.getInt(VERSEQTY, 0);
 		switch (showVerseFlag) {
