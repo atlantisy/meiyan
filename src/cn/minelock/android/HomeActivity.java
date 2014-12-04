@@ -425,7 +425,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		verse_grid1.setVisibility(View.GONE);
 		setup_grid_button.setVisibility(View.GONE);
 		//Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_SHORT).show();
-		StringUtil.showToast(this, "简单滑动解锁",  Toast.LENGTH_SHORT);
+		StringUtil.showToast(this, "滑动解锁",  Toast.LENGTH_SHORT);
 	}
 	// 九宫手势锁屏
 	protected void grid() {
@@ -438,7 +438,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		else
 			setup_grid_button.setVisibility(View.VISIBLE);
 		//Toast.makeText(this, R.string.grid_verse_style,  Toast.LENGTH_SHORT).show();
-		StringUtil.showToast(this, "手势密码解锁",  Toast.LENGTH_SHORT);
+		StringUtil.showToast(this, "手势解锁",  Toast.LENGTH_SHORT);
 	}
 
 	// 当AdapterView被单击(触摸屏或者键盘)，则返回的Item单击事件

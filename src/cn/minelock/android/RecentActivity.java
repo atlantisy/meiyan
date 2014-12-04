@@ -134,10 +134,10 @@ public class RecentActivity extends Activity {
 			
         	@Override
 			public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-				menu.setHeaderTitle(deleteItem.trim());   
-				menu.add(0, 0, 0, "复制");				
-				menu.add(0, 1, 0, "删除");
-				//menu.add(0, 2, 0, "修改");
+				//menu.setHeaderTitle(deleteItem.trim());   
+				menu.add(0, 0, 0, "分享");				
+				menu.add(0, 1, 0, "复制");
+				menu.add(0, 2, 0, "删除");
 			}
 		}); 
         
@@ -190,10 +190,13 @@ public class RecentActivity extends Activity {
 		
 		switch (item.getItemId()) {
 		case 0:
+			operation("share");
+			break;
+		case 1:
 			operation("copy");
 			Toast.makeText(getApplicationContext(), "已复制", Toast.LENGTH_SHORT).show();
-			break;
-		case 1:			
+			break;			
+		case 2:			
 			operation("delete");
 			if(verseQty>0)
 				verseQty = verseQty-1;
@@ -205,9 +208,9 @@ public class RecentActivity extends Activity {
 			recent_label.setText("我的美言(" + String.valueOf(verseQty) + ")");
 			Toast.makeText(getApplicationContext(), "已删除", Toast.LENGTH_SHORT).show();
 			break;
-		case 2:
+		case 3:
 			operation("edit");
-			Toast.makeText(getApplicationContext(), "更新成功", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), "更新成功", Toast.LENGTH_SHORT).show();
 			break;
 		default:
 			break;
@@ -218,6 +221,13 @@ public class RecentActivity extends Activity {
     private void operation(String cmd)
     {
     	setTitle("");
+    	if(cmd=="share"){
+			Intent intent=new Intent(Intent.ACTION_SEND);  
+			intent.setType("text/plain");  
+			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");  
+			intent.putExtra(Intent.EXTRA_TEXT, deleteItem+"#minelock#");  
+			startActivity(Intent.createChooser(intent, getTitle()));
+    	}
     	if(cmd=="copy"){
     		//dbRecent.insert( myEditText.getText().toString());    		
     		ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);

@@ -110,7 +110,7 @@
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="关闭系统锁屏"
+                android:text="初始引导设置"
                 android:textSize="16sp" />
 
             <View

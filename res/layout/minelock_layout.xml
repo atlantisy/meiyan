@@ -31,6 +31,7 @@
                     android:layout_centerInParent="true"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white"
+                    android:paddingBottom="0dp"
                     android:textSize="60sp" />
                 <TextView
                     android:id="@+id/am_pm"
@@ -41,17 +42,17 @@
                     android:textColor="@color/alpha"/>
                 
                 <LinearLayout
+                    android:id="@+id/date_week"
                     android:layout_below="@id/timeDisplay"
                     android:layout_width="fill_parent"
-                    android:layout_height="48dp"
-                    android:paddingBottom="0dp"                   
+                    android:layout_height="wrap_content"                
                     android:orientation="horizontal"
                     android:gravity="center">
                     <TextView
                     	android:id="@+id/dateDisplay"
                     	android:layout_width="wrap_content"
                     	android:layout_height="wrap_content"
-                    	android:layout_gravity="center"                    	
+                    	android:layout_gravity="center"                  	
                     	android:text="年月日"
                     	android:textSize="16sp" 
                     	android:textColor="@color/white"/> 
@@ -60,37 +61,57 @@
                     	android:layout_width="wrap_content"
                     	android:layout_height="wrap_content"
                     	android:layout_gravity="center"
-                    	android:paddingLeft="8dp"
+                    	android:paddingLeft="4dp"
                     	android:text="星期"
                     	android:textSize="16sp" 
                     	android:textColor="@color/white"/>
-                </LinearLayout>                 
-            </cn.minelock.android.DigitalClock>
+                </LinearLayout>
+                
+<!--                 <TextView
+                	android:id="@+id/battery_value"
+                	android:layout_below="@+id/date_week"
+                	android:layout_width="fill_parent"
+                	android:layout_height="wrap_content"
+                	android:gravity="center"
+                	android:text=" "
+                	android:textColor="@color/white" 
+                	android:textSize="16sp" />   -->                              
+            </cn.minelock.android.DigitalClock>           
         </LinearLayout>
-
+        
+        <TextView
+            android:id="@+id/battery_value"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="@color/white" 
+            android:textSize="16sp" />  
+             
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
             android:orientation="vertical" >
 
-            <TextView
+<!--             <TextView
                 android:id="@+id/battery_value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
+                android:text=" "
                 android:textColor="@color/white" 
-                android:textSize="16sp" />
+                android:textSize="16sp" /> -->
             <TextView
                 android:id="@+id/error_view"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:text="错误，请重新输入"
-                android:textColor="@color/light_yellow" 
-                android:textSize="14sp" 
+                android:text="手势错误，请重新输入"
+                android:textColor="@color/orange" 
+                android:textSize="16sp" 
                 android:visibility="invisible"/>
             
             <cn.minelock.widget.PatternPassWordView
