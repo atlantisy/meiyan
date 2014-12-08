@@ -98,20 +98,20 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1.0px"
+                android:layout_height="24dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
-                android:background="@drawable/shape_line" />
+                android:background="@color/gray_white" />
 
             <Button
-                android:id="@+id/setting_closedefaultlock"
+                android:id="@+id/setting_initialguide"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
                 android:text="初始引导设置"
-                android:textSize="16sp" />
+                android:textSize="16sp" />            
 
             <View
                 android:layout_width="fill_parent"

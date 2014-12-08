@@ -45,11 +45,15 @@
 
         <activity
             android:name="cn.minelock.android.HomeActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         
         <activity
-            android:name="cn.minelock.android.LockActivity"            
+            android:name="cn.minelock.android.LockActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"            
             android:theme="@android:style/Theme.Black.NoTitleBar" > 
 <!--             <intent-filter>
                 <category android:name="android.intent.category.HOME" /> 
@@ -65,27 +69,33 @@
 
         <activity
             android:name="cn.minelock.android.SettingActivity"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="cn.minelock.android.EditVerseActivity"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="cn.minelock.android.WallpaperEditActivity"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="cn.minelock.android.SetPasswordActivity"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="cn.minelock.android.RecentActivity"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="cn.minelock.android.AboutActivity"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
     </application>

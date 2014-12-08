@@ -65,17 +65,7 @@
                     	android:text="星期"
                     	android:textSize="16sp" 
                     	android:textColor="@color/white"/>
-                </LinearLayout>
-                
-<!--                 <TextView
-                	android:id="@+id/battery_value"
-                	android:layout_below="@+id/date_week"
-                	android:layout_width="fill_parent"
-                	android:layout_height="wrap_content"
-                	android:gravity="center"
-                	android:text=" "
-                	android:textColor="@color/white" 
-                	android:textSize="16sp" />   -->                              
+                </LinearLayout>                                            
             </cn.minelock.android.DigitalClock>           
         </LinearLayout>
         
@@ -109,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:text="手势错误，请重新输入"
+                android:text="密码错误，请重新输入"
                 android:textColor="@color/orange" 
                 android:textSize="16sp" 
                 android:visibility="invisible"/>

@@ -84,9 +84,9 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		lock_checkbox = (CheckBox) findViewById(R.id.lock_checkbox);
 		lock_checkbox.setChecked(mIsLockScreenOn);
 		lock_checkbox.setOnClickListener(new OnCheckedListener());	
-		// 关闭系统默认锁屏
-		Button closedefaultlock_btn = (Button) findViewById(R.id.setting_closedefaultlock);
-		closedefaultlock_btn.setOnClickListener(this);
+		// 初始引导设置
+		Button initialguide_btn = (Button) findViewById(R.id.setting_initialguide);
+		initialguide_btn.setOnClickListener(this);
 		// 设置九宫密码按钮
 		Button setpassword_btn = (Button) findViewById(R.id.setting_setpassword);
 		setpassword_btn.setOnClickListener(setPasswordOnClickListener);	
@@ -105,9 +105,9 @@ public class SettingActivity extends Activity  implements OnClickListener{
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
-		case R.id.setting_closedefaultlock:
-			EnableSystemKeyguard(false);
-			StringUtil.showToast(this, "已关闭",  Toast.LENGTH_SHORT);
+		case R.id.setting_initialguide:
+			//EnableSystemKeyguard(false);
+			StringUtil.showToast(this, "设置成功",  Toast.LENGTH_SHORT);
 			break;
 		}
 	}
@@ -118,6 +118,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
 			startActivity(new Intent(SettingActivity.this, AboutActivity.class));
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			//finish();
 		}
 	};

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.minelock.util.FileUtils;
+import cn.minelock.util.StringUtil;
 import cn.minelock.widget.AbstractSpinerAdapter;
 import cn.minelock.widget.CustemObject;
 import cn.minelock.widget.CustemSpinerAdapter;
@@ -35,6 +36,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Selection;
@@ -42,6 +44,7 @@ import android.text.Spannable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -53,7 +56,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 
@@ -87,6 +92,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	private WallpaperManager wallpaperManager;
 	private GridView wpGridview;
 	private ImageButton clear_btn;
+	//private ProgressBar pb;
 	
 	dbHelper dbRecent;
 		
@@ -96,6 +102,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_editverse);
 		mEditVerseLayout = (LinearLayout) findViewById(R.id.editverse_layout);
 		wpGridview = (GridView) findViewById(R.id.wallpaper_grid);
+		//pb = (ProgressBar) findViewById(R.id.editverse_progressbar);
 		// 获取存储的pref数据
 		settings = getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
@@ -311,6 +318,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			showPicturePicker(EditVerseActivity.this);
 		}
 	};
+	
+	final Handler handler = new Handler();
 	// 拍照或选取相册图片为锁屏壁纸
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -345,21 +354,15 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							bIdOrPath = true;//壁纸来源为应用内ID		
 							break;
 							
-						case DEFAULT_PAPER:						
-							// 获取壁纸管理器  
-				            //WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);  
-				            // 获取当前壁纸  
-				            Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
-				            // 将Drawable,转成Bitmap  
-				            Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();  				  
-				            // 设置 背景  
-				            mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
-							// 保存到SD卡
-							String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
-							String photoName = "wallpaper";
-							ImageTools.savePhotoToSDCard(bm, dir, photoName);
-							wallpaperPath = dir + "/" + photoName + ".png";
-				            bIdOrPath = false;//壁纸来源为应用外路径
+						case DEFAULT_PAPER:
+							verse_edit.setHint("正在同步...");
+							new Thread(new Runnable() {
+								
+								@Override
+								public void run() {
+									handler.post(runnableDefaultPaper);
+								}
+							}).start();
 							break;
 							
 						default:
@@ -370,7 +373,25 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				});
 		builder.create().show();
 	}
-
+	
+	// 构建Runnable对象，在runnable中更新界面  
+    Runnable runnableDefaultPaper = new  Runnable(){  
+        @Override  
+        public void run() { 
+			// 获取当前壁纸 ,转成Bitmap，并设置 背景 
+			Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
+			Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
+			mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
+			// 保存到SD卡
+			String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
+			String photoName = "wallpaper";
+			ImageTools.savePhotoToSDCard(bm, dir, photoName);
+			wallpaperPath = dir + "/" + photoName + ".png";
+            bIdOrPath = false;//壁纸来源为应用外路径
+			verse_edit.setHint("写美言");
+        }           
+    };
+    
 	private static final int TAKE_PHOTO = 0;// 拍照
 	private static final int CHOOSE_PICTURE = 1;// 从相册选取
 	private static final int RANDOM_PAPER = 3;// 随机壁纸

@@ -137,8 +137,9 @@ public class MyLockScreenService extends Service {
 		wmParams.height = WindowManager.LayoutParams.MATCH_PARENT; 
 		
 		wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
-		//LayoutParams.FLAG_FULLSCREEN|LayoutParams.FLAG_LYOUT_IN_SCREEN
+		//LayoutParams.FLAG_FULLSCREEN|LayoutParams.FLAG_LAYOUT_IN_SCREEN
 		//wmParams.flags = 1280;//不显示状态栏
+		wmParams.flags = WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN;
 		// 显示锁屏界面
 		mWindowManager.addView(mFloatLayout, wmParams); 
 		// 充电量显示

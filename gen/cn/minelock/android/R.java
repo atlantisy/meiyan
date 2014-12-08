@@ -373,8 +373,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int scrollview=0x7f05000b;
         public static final int setting=0x7f05004b;
         public static final int setting_about=0x7f05004f;
-        public static final int setting_closedefaultlock=0x7f05004d;
         public static final int setting_exit=0x7f050050;
+        public static final int setting_initialguide=0x7f05004d;
         public static final int setting_return=0x7f05004a;
         public static final int setting_setpassword=0x7f05004e;
         public static final int textView=0x7f050060;
