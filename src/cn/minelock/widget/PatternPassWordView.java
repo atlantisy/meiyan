@@ -558,7 +558,7 @@ public class PatternPassWordView extends View {
 				// mCompleteListener.onPasswordTooMin(sPoints.size());
 				error();
 				clearPassword();
-				Toast.makeText(this.getContext(), "Ì«¶Ì,ÇëÖØÐÂÊäÈë!",
+				Toast.makeText(this.getContext(), "ÃÜÂëÌ«¶Ì,ÇëÖØÐÂÊäÈë!",
 						Toast.LENGTH_SHORT).show();
 			} else if (mCompleteListener != null) {
 				if (this.sPoints.size() >= passwordMinLength) {

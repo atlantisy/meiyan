@@ -388,6 +388,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			ImageTools.savePhotoToSDCard(bm, dir, photoName);
 			wallpaperPath = dir + "/" + photoName + ".png";
             bIdOrPath = false;//壁纸来源为应用外路径
+            verse_edit.setHint("同步成功");
 			verse_edit.setHint("写美言");
         }           
     };

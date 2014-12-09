@@ -5,15 +5,14 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="9" />
-    
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
- 
-	<uses-permission android:name="android.permission.DISABLE_STATUS_BAR"/>     
+    <uses-permission android:name="android.permission.DISABLE_STATUS_BAR" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -27,12 +26,13 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="cn.minelock.android.AppStartActivity"
+            android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar" 
-            android:excludeFromRecents="true">
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -45,20 +45,22 @@
 
         <activity
             android:name="cn.minelock.android.HomeActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        
         <activity
             android:name="cn.minelock.android.LockActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"            
-            android:theme="@android:style/Theme.Black.NoTitleBar" > 
-<!--             <intent-filter>
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+
+            <!--
+                 <intent-filter>
                 <category android:name="android.intent.category.HOME" /> 
                 <category android:name="android.intent.category.DEFAULT" /> 
-            </intent-filter>  -->  
+            </intent-filter>
+            -->
         </activity>
 
         <receiver android:name="cn.minelock.android.BootReceiver" >
@@ -70,33 +72,45 @@
         <activity
             android:name="cn.minelock.android.SettingActivity"
             android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="cn.minelock.android.EditVerseActivity"
             android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="cn.minelock.android.WallpaperEditActivity"
             android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="cn.minelock.android.SetPasswordActivity"
             android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="cn.minelock.android.RecentActivity"
             android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="cn.minelock.android.AboutActivity"
             android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="cn.minelock.android.InitialGuideActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
     </application>
 

@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
 			android:gravity="center_vertical"
-			android:paddingLeft="8dp"
+			android:paddingLeft="16dp"
             android:text="我的美言"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />

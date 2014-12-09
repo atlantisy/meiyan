@@ -188,6 +188,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	}
 	
 	private final String LOCK_SWITCH = "lock_screen_switch";
+	private final String LOCK_STATUS = "lock_status";
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
@@ -199,14 +200,20 @@ public class HomeActivity extends Activity implements OnClickListener,
 		if (isLockScreenOn){
 			// keep on disabling the system Keyguard
 			//启动锁屏
-			startService(new Intent(getApplicationContext(), MyLockScreenService.class));
+			startService(new Intent(this, MyLockScreenService.class));
+			//startService(new Intent(getApplicationContext(), MyLockScreenService.class));
 			EnableSystemKeyguard(false);
 		}
 		else {
-			stopService(new Intent(getApplicationContext(), MyLockScreenService.class));
+			stopService(new Intent(this, MyLockScreenService.class));
+			//stopService(new Intent(getApplicationContext(), MyLockScreenService.class));
 			// recover original Keyguard
 			EnableSystemKeyguard(true);
 		}
+		// 重置锁屏状态
+		SharedPreferences.Editor editor = defaultPrefs.edit();	
+		editor.putBoolean(LOCK_STATUS, false);
+		editor.commit();
 	}
 	// 界面在前端时刷新美言的设置
 	@Override

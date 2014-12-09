@@ -107,7 +107,9 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		switch (view.getId()) {
 		case R.id.setting_initialguide:
 			//EnableSystemKeyguard(false);
-			StringUtil.showToast(this, "设置成功",  Toast.LENGTH_SHORT);
+			//StringUtil.showToast(this, "设置成功",  Toast.LENGTH_SHORT);
+			startActivity(new Intent(SettingActivity.this, InitialGuideActivity.class));
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			break;
 		}
 	}

@@ -54,11 +54,11 @@ public class SetPasswordActivity extends Activity {
 				password = mPassword;
 				if (needverify) {
 					if (ppwv.verifyPassword(mPassword)) {
-						showToast("通过，请输入新手势并保存");
+						showToast("通过，请输入新密码并保存");
 						ppwv.clearPassword();
 						needverify = false;
 					} else {
-						showToast("错误，请重新输入！");
+						showToast("密码错误，请重新输入！");
 						ppwv.clearPassword();
 						password = "";
 					}
@@ -83,7 +83,7 @@ public class SetPasswordActivity extends Activity {
 						finish();
 					} else {
 						ppwv.clearPassword();
-						showToast("手势为空，请重新输入！");
+						showToast("密码为空，请重新输入！");
 					}
 					break;
 				case R.id.tvReset:
@@ -99,7 +99,7 @@ public class SetPasswordActivity extends Activity {
 		// 如果密码为空,直接输入密码
 		if (ppwv.isPasswordEmpty()) {
 			this.needverify = false;
-			showToast("请输入手势！");
+			showToast("没有密码，请设置");
 		}
 	}
 	

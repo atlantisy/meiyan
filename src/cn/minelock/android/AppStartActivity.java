@@ -25,7 +25,7 @@ public class AppStartActivity extends Activity {
 
 		// 渐变展示启动屏,这里通过动画来设置了开启应用程序的界面
 		AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
-		aa.setDuration(2000);
+		aa.setDuration(1200);
 		view.startAnimation(aa);
 		//给动画添加监听方法
 		aa.setAnimationListener(new AnimationListener() {

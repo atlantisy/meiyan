@@ -51,16 +51,16 @@ public class WallpaperAdapter extends BaseAdapter {
 	}
 
 	public static int[] wallpaper = { 		
-		R.color.red,R.color.orange,R.color.orange1,R.color.yellow,R.color.green1,
-		R.color.green,R.color.app_color,R.color.blue1,R.color.pink,R.color.violet,
+		R.color.red2,R.color.orange2,R.color.yellow2,R.color.green3,R.color.green2,
+		R.color.app_color,R.color.blue1,R.color.blue,R.color.pink,R.color.violet,
 		
 		R.drawable.wallpaper00,R.drawable.wallpaper01,R.drawable.wallpaper02,
 		R.drawable.wallpaper03,R.drawable.wallpaper04,		
 	};
 	
 	public static int[] _wallpaper = { 		
-		R.color.red,R.color.orange,R.color.orange1,R.color.yellow,R.color.green1,
-		R.color.green,R.color.app_color,R.color.blue1,R.color.pink,R.color.violet,
+		R.color.red2,R.color.orange2,R.color.yellow2,R.color.green3,R.color.green2,
+		R.color.app_color,R.color.blue1,R.color.blue,R.color.pink,R.color.violet,
 		
 		R.drawable._wallpaper00,R.drawable._wallpaper01,R.drawable._wallpaper02,
 		R.drawable._wallpaper03,R.drawable._wallpaper04,		

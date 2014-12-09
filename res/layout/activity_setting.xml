@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:paddingLeft="8dp"
+            android:paddingLeft="16dp"
             android:text="设置"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
@@ -110,7 +110,7 @@
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="初始引导设置"
+                android:text="初始设置"
                 android:textSize="16sp" />            
 
             <View
@@ -127,7 +127,7 @@
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="设置手势密码"
+                android:text="手势密码"
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>

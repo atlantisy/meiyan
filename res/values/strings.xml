@@ -78,5 +78,6 @@
     <string name="lockscreen_access_pattern_detected">Pattern completed</string>
     <string name="title_activity_recent">RecentActivity</string>
     <string name="title_activity_feed_back">FeedBackActivity</string>
+    <string name="title_activity_initial_guide">InitialGuideActivity</string>
 
 </resources>
