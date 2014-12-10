@@ -29,17 +29,18 @@ public final class R {
         public static final int slide_out_to_top=0x7f040011;
     }
     public static final class array {
-        public static final int Autumn=0x7f090002;
-        public static final int Overcast=0x7f090005;
-        public static final int Rain=0x7f090006;
-        public static final int Shine=0x7f090004;
-        public static final int Snow=0x7f090007;
-        public static final int Spring=0x7f090000;
-        public static final int Summer=0x7f090001;
-        public static final int Wind=0x7f090008;
-        public static final int Winter=0x7f090003;
-        public static final int customize=0x7f09000a;
-        public static final int verse_option_name=0x7f090009;
+        public static final int Autumn=0x7f090003;
+        public static final int Overcast=0x7f090006;
+        public static final int Rain=0x7f090007;
+        public static final int Shine=0x7f090005;
+        public static final int Snow=0x7f090008;
+        public static final int Spring=0x7f090001;
+        public static final int Summer=0x7f090002;
+        public static final int Wind=0x7f090009;
+        public static final int Winter=0x7f090004;
+        public static final int customize=0x7f09000b;
+        public static final int tips=0x7f090000;
+        public static final int verse_option_name=0x7f09000a;
     }
     public static final class attr {
         /**  BELOW HERE ARE DEPRECEATED. DO NOT USE. 
@@ -322,11 +323,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int am_pm=0x7f050040;
         public static final int app_name=0x7f05001d;
         public static final int battery_toast=0x7f050044;
-        public static final int battery_value=0x7f05005d;
+        public static final int battery_value=0x7f05005e;
         public static final int blank=0x7f05001e;
         public static final int both=0x7f050003;
         public static final int dateDisplay=0x7f050041;
-        public static final int date_week=0x7f05005c;
+        public static final int date_week=0x7f05005d;
         public static final int disabled=0x7f050000;
         public static final int edit_camera=0x7f050015;
         public static final int edit_clear=0x7f050016;
@@ -336,8 +337,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int edit_verse=0x7f050014;
         public static final int editverse_layout=0x7f050010;
         public static final int editverse_return=0x7f050011;
-        public static final int error_view=0x7f05005e;
-        public static final int fl_inner=0x7f050060;
+        public static final int error_view=0x7f05005f;
+        public static final int fl_inner=0x7f050061;
         public static final int flip=0x7f050008;
         public static final int grid_verse=0x7f050033;
         public static final int gridview=0x7f050009;
@@ -359,16 +360,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int initialguide3=0x7f05003b;
         public static final int initialguide_ok=0x7f05003c;
         public static final int initialguide_return=0x7f050038;
-        public static final int iv_arrow_left=0x7f05005a;
-        public static final int iv_arrow_right=0x7f050058;
-        public static final int iv_camera=0x7f050056;
-        public static final int iv_unlock=0x7f050057;
+        public static final int iv_arrow_left=0x7f05005b;
+        public static final int iv_arrow_right=0x7f050059;
+        public static final int iv_camera=0x7f050057;
+        public static final int iv_unlock=0x7f050058;
         public static final int line_verse=0x7f050032;
         public static final int list_verse=0x7f05004b;
-        public static final int listview=0x7f050066;
+        public static final int listview=0x7f050067;
         public static final int lock_checkbox=0x7f050051;
         public static final int login_toast=0x7f050043;
-        public static final int mMyScrollLayout=0x7f05005f;
+        public static final int mMyScrollLayout=0x7f050060;
         public static final int mPatternPassWordView=0x7f050045;
         public static final int manualOnly=0x7f050004;
         public static final int pullDownFromTop=0x7f050005;
@@ -376,15 +377,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pullFromStart=0x7f050001;
         public static final int pullUpFromBottom=0x7f050006;
         public static final int pull_refresh_grid=0x7f050027;
-        public static final int pull_to_refresh_image=0x7f050061;
-        public static final int pull_to_refresh_progress=0x7f050062;
-        public static final int pull_to_refresh_sub_text=0x7f050064;
-        public static final int pull_to_refresh_text=0x7f050063;
-        public static final int recent_item=0x7f050068;
+        public static final int pull_to_refresh_image=0x7f050062;
+        public static final int pull_to_refresh_progress=0x7f050063;
+        public static final int pull_to_refresh_sub_text=0x7f050065;
+        public static final int pull_to_refresh_text=0x7f050064;
+        public static final int recent_item=0x7f050069;
         public static final int recent_label=0x7f050049;
         public static final int recent_random=0x7f05004a;
         public static final int recent_return=0x7f050048;
-        public static final int recent_title=0x7f050067;
+        public static final int recent_title=0x7f050068;
         public static final int recent_top=0x7f050047;
         public static final int rotate=0x7f050007;
         public static final int scrollview=0x7f05000b;
@@ -394,12 +395,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int setting_initialguide=0x7f050052;
         public static final int setting_return=0x7f05004f;
         public static final int setting_setpassword=0x7f050053;
-        public static final int textView=0x7f050065;
+        public static final int setting_tips=0x7f050056;
+        public static final int textView=0x7f050066;
         public static final int time=0x7f05003e;
         public static final int timeDisplay=0x7f05003f;
         public static final int tvReset=0x7f05004d;
         public static final int tvSave=0x7f05004e;
-        public static final int tv_verse=0x7f050059;
+        public static final int tv_verse=0x7f05005a;
         public static final int verse0=0x7f050029;
         public static final int verse1=0x7f05002a;
         public static final int verse2=0x7f05002b;
@@ -409,7 +411,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int verse6=0x7f05002f;
         public static final int verse7=0x7f050030;
         public static final int verse8=0x7f050031;
-        public static final int verse_content=0x7f05005b;
+        public static final int verse_content=0x7f05005c;
         public static final int verse_layout=0x7f050028;
         public static final int verse_logo=0x7f05001b;
         public static final int verse_option=0x7f05001c;

@@ -16,8 +16,7 @@ public class AboutActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_about);
-		
+		setContentView(R.layout.activity_about);		
 		// ·µ»Ø
 		ImageButton return_btn = (ImageButton) findViewById(R.id.about_return);
 		return_btn.setOnClickListener(returnOnClickListener);		

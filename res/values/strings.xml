@@ -3,6 +3,11 @@
 
     <string name="app_name">美言锁屏</string>
 
+    <string-array name="tips">
+        <item>Tips: 初始设置完成后才能正常使用锁屏。</item>
+        <item>Tips: 写美言时擅用空格可得到美观的九宫文字样式。</item>
+        <item>Tips: 编辑锁屏时不写美言可得到简洁的锁屏界面。</item>
+    </string-array>
     <string-array name="Spring">
         <item>面朝大海 春暖花开</item>
         <item>春眠不觉晓</item>
