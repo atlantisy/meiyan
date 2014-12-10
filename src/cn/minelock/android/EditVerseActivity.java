@@ -323,7 +323,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	// 拍照或选取相册图片为锁屏壁纸
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		builder.setTitle("锁屏壁纸");
+		builder.setTitle("更换锁屏壁纸");
 		builder.setItems(new String[] { "拍照", "从相册选取", "与桌面壁纸同步"},
 				new DialogInterface.OnClickListener() {
 
@@ -355,7 +355,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							break;
 							
 						case DEFAULT_PAPER:
-							verse_edit.setHint("正在同步...");
+							verse_edit.setHint("正在同步...");							
 							new Thread(new Runnable() {
 								
 								@Override
@@ -379,6 +379,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
         @Override  
         public void run() { 
 			// 获取当前壁纸 ,转成Bitmap，并设置 背景 
+        	//StringUtil.showToast(getApplication(), "正在同步...", Toast.LENGTH_SHORT);
 			Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
 			Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
 			mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
@@ -388,8 +389,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			ImageTools.savePhotoToSDCard(bm, dir, photoName);
 			wallpaperPath = dir + "/" + photoName + ".png";
             bIdOrPath = false;//壁纸来源为应用外路径
-            verse_edit.setHint("同步成功");
-			verse_edit.setHint("写美言");
+            //verse_edit.setHint("同步完成");
+            StringUtil.showToast(getApplication(), "已同步", Toast.LENGTH_SHORT);
+			verse_edit.setHint("点此写美言");			
         }           
     };
     

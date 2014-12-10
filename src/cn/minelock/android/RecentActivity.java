@@ -46,6 +46,7 @@ public class RecentActivity extends Activity {
 	public static final String VERSE = "verse";// 美言pref值名称
 	public static final String VERSEID = "verse_id";// 美言id pref值名称
 	public static final String VERSEQTY = "verse_quantity";// 美言数量pref值名称
+	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
@@ -90,6 +91,7 @@ public class RecentActivity extends Activity {
 				// 将美言存入SharedPreferences				
 				editor.putString(VERSE, verse);// 美言
 				//editor.putLong(VERSEID, (long)_id);// 美言id
+				editor.putInt(SHOWVERSEFLAG, 1);// 单句循环				
 				editor.commit();
 				
 				startActivity(new Intent(RecentActivity.this, HomeActivity.class));

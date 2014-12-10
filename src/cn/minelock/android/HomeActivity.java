@@ -440,6 +440,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		lockbtn.setImageResource(R.drawable.ic_lock_line);
 		verse_line.setVisibility(View.GONE);
 		verse_grid1.setVisibility(View.VISIBLE);
+		bPassWord = home_setting.getBoolean(PWSETUP, false);
 		if (bPassWord == true)
 			setup_grid_button.setVisibility(View.GONE);
 		else

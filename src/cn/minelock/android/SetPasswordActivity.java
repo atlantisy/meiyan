@@ -25,10 +25,12 @@ public class SetPasswordActivity extends Activity {
 	private boolean needverify = true;
 	private Toast toast;
 	
+	public static SharedPreferences settings;
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String BOOLIDPATH = "wallpaper_idorpath";//应用内or外壁纸bool的pref值名称,true为ID，false为path
 	public static final String WALLPAPERID = "wallpaper_id";//应用内壁纸资源ID的pref值名称
 	public static final String WALLPAPERPATH = "wallpaper_path";//应用外壁纸Path的pref值名称
+	public static final String PWSETUP = "passWordSetUp";// 九宫格是否设置pref值名称
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class SetPasswordActivity extends Activity {
 		setContentView(R.layout.activity_setpassword);
 		RelativeLayout setPasswordLayout = (RelativeLayout)findViewById(R.id.SetPasswordLayout);
 		//获取pref值
-		SharedPreferences settings = getSharedPreferences(PREFS, 0);
+		settings = getSharedPreferences(PREFS, 0);
 		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
 		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
 		String wallpaperPath = settings.getString(WALLPAPERPATH, "");	
@@ -54,7 +56,7 @@ public class SetPasswordActivity extends Activity {
 				password = mPassword;
 				if (needverify) {
 					if (ppwv.verifyPassword(mPassword)) {
-						showToast("通过，请输入新密码并保存");
+						showToast("通过，输入新密码并保存");
 						ppwv.clearPassword();
 						needverify = false;
 					} else {
@@ -74,7 +76,10 @@ public class SetPasswordActivity extends Activity {
 					if (StringUtil.isNotEmpty(password)) {
 						ppwv.resetPassWord(password);
 						ppwv.clearPassword();
-						showToast("恭喜，设置成功");
+						showToast("设置成功，请牢记");
+						SharedPreferences.Editor editor = settings.edit();
+						editor.putBoolean(PWSETUP, true);
+						editor.commit();
 						//返回九宫格已设置结果
 			            Intent data=new Intent();  
 			            data.putExtra("SetPassWord", true);   

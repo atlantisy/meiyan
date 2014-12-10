@@ -55,6 +55,7 @@
         android:paddingLeft="16dp"
         android:gravity="left|center_vertical"           
         android:textColor="@color/gray_black"
+        android:textSize="16sp"
         android:text="1.关闭系统锁屏(所有系统)" />   
     <Button
         android:id="@+id/initialguide2"
@@ -65,6 +66,7 @@
         android:paddingLeft="16dp"
         android:gravity="left|center_vertical"        
         android:textColor="@color/gray_black"
+        android:textSize="16sp"
         android:text="2.显示悬浮窗(仅限MIUI)" /> 
              
 	<Button
@@ -76,8 +78,9 @@
         android:paddingLeft="16dp"
         android:gravity="left|center_vertical"        
         android:textColor="@color/gray_black"
-        android:text="3.信任该程序，自启动(仅限MIUI)" />
-	<Button
+        android:textSize="16sp"
+        android:text="3.信任该程序，允许自启动(仅限MIUI)" />
+	<!-- <Button
         android:id="@+id/initialguide4"
         android:layout_width="fill_parent"
         android:layout_height="56dp"
@@ -86,7 +89,7 @@
         android:paddingLeft="16dp"
         android:gravity="left|center_vertical"        
         android:textColor="@color/gray_black"
-        android:text="4.开启开发者，直接进入系统(仅限MIUI)" />
+        android:text="4.开启开发者，直接进入系统(仅限MIUI)" /> -->
  		   
 	<Button
         android:id="@+id/initialguide_ok"
@@ -96,7 +99,8 @@
         android:layout_margin="16dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="设置完成"
-        android:textColor="@android:color/white" />
+        android:text="完成"
+        android:textColor="@android:color/white" 
+        android:textSize="18sp"/>
    
 </LinearLayout>
