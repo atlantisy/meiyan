@@ -135,8 +135,8 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1.0px"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:background="@drawable/shape_line" />
 
 <!--     <Button
@@ -191,7 +191,8 @@
         android:layout_height="1.0px"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/shape_line" />    
+        android:background="@drawable/shape_line" />
+        
     <Button
         android:id="@+id/setting_exit"
         android:layout_width="fill_parent"

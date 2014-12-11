@@ -4,9 +4,11 @@
     <string name="app_name">美言锁屏</string>
 
     <string-array name="tips">
-        <item>Tips: 初始设置完成后才能正常使用锁屏。</item>
-        <item>Tips: 写美言时擅用空格可得到美观的九宫文字样式。</item>
-        <item>Tips: 编辑锁屏时不写美言可得到简洁的锁屏界面。</item>
+        <item>完成初始设置才可正常使用。</item>
+        <item>美言中加空格，会有美观的手势密码。</item>
+        <item>编辑锁屏时，可以不写美言。</item>
+        <item>建议美言不超过32个字。</item>
+        <item>若锁屏不成功，尝试重启应用。</item>
     </string-array>
     <string-array name="Spring">
         <item>面朝大海 春暖花开</item>

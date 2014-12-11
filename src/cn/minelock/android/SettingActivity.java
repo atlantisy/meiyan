@@ -103,7 +103,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		String[] tips = getResources().getStringArray(R.array.tips);
 		int random = (int)(Math.random()*tips.length);
 		TextView tipView = (TextView)findViewById(R.id.setting_tips);
-		tipView.setText(tips[random]);		
+		tipView.setText("ע: "+tips[random]);		
 	}
 
 	@Override
