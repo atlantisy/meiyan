@@ -25,6 +25,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class InitialGuideActivity extends Activity {
@@ -35,18 +37,20 @@ public class InitialGuideActivity extends Activity {
 		setContentView(R.layout.activity_initialguide);
 
 		// 引导1
-		Button ig1_btn = (Button) findViewById(R.id.initialguide1);
+		Button ig1_btn = (Button) findViewById(R.id.igBtn1);
 		ig1_btn.setOnClickListener(ig1OnClickListener);	
 		// 引导2
-		Button ig2_btn = (Button) findViewById(R.id.initialguide2);
+		Button ig2_btn = (Button) findViewById(R.id.igBtn2);
 		ig2_btn.setOnClickListener(ig2OnClickListener);
 		// 引导3
-		Button ig3_btn = (Button) findViewById(R.id.initialguide3);
+		Button ig3_btn = (Button) findViewById(R.id.igBtn3);
 		ig3_btn.setOnClickListener(ig3OnClickListener);
-		// 判断系统
+		// 判断是否MIUI
+		LinearLayout ig2 = (LinearLayout) findViewById(R.id.ig2);
+		LinearLayout ig3 = (LinearLayout) findViewById(R.id.ig3);
 		if(MIUIUtil.isMIUI()){
-			ig2_btn.setVisibility(View.VISIBLE);
-			ig3_btn.setVisibility(View.VISIBLE);
+			ig2.setVisibility(View.VISIBLE);
+			ig3.setVisibility(View.VISIBLE);
 		}
 		// 返回
 		ImageButton return_btn = (ImageButton) findViewById(R.id.initialguide_return);
@@ -62,7 +66,7 @@ public class InitialGuideActivity extends Activity {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub			
 			String closeDefaultLock = "";
 			Intent intent = null;
 			if(MIUIUtil.isMIUI()){
@@ -91,6 +95,9 @@ public class InitialGuideActivity extends Activity {
             Toast toast = Toast.makeText(getApplicationContext(),closeDefaultLock, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
+            
+			ImageView igCheck1 = (ImageView)findViewById(R.id.igCheck1);
+			igCheck1.setVisibility(View.VISIBLE);
 		}
 	};
 	// 引导2
@@ -98,7 +105,7 @@ public class InitialGuideActivity extends Activity {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub            
+			// TODO Auto-generated method stub  			
             Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
             Intent intent =  new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,packageURI);  
             startActivity(intent);
@@ -106,6 +113,9 @@ public class InitialGuideActivity extends Activity {
             Toast toast = Toast.makeText(getApplicationContext(),"开启「显示悬浮窗」", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
+            
+			ImageView igCheck2 = (ImageView)findViewById(R.id.igCheck2);
+			igCheck2.setVisibility(View.VISIBLE);
 		}
 	};
 	// 引导3
@@ -113,7 +123,7 @@ public class InitialGuideActivity extends Activity {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub						
 			PackageManager pm = getPackageManager();
             PackageInfo info = null;
             try {
@@ -133,6 +143,9 @@ public class InitialGuideActivity extends Activity {
             Toast toast = Toast.makeText(getApplicationContext(),"开启「我信任该程序」\n开启「自动启动」", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
+            
+			ImageView igCheck3 = (ImageView)findViewById(R.id.igCheck3);
+			igCheck3.setVisibility(View.VISIBLE);
 		}
 	};
 	// 返回及完成按钮
