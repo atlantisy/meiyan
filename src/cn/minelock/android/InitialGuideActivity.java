@@ -48,9 +48,13 @@ public class InitialGuideActivity extends Activity {
 		// 判断是否MIUI
 		LinearLayout ig2 = (LinearLayout) findViewById(R.id.ig2);
 		LinearLayout ig3 = (LinearLayout) findViewById(R.id.ig3);
+		ImageView igDown2 = (ImageView)findViewById(R.id.igDown2);		
+		ImageView igDown3 = (ImageView)findViewById(R.id.igDown3);
 		if(MIUIUtil.isMIUI()){
 			ig2.setVisibility(View.VISIBLE);
 			ig3.setVisibility(View.VISIBLE);
+			igDown2.setVisibility(View.VISIBLE);
+			igDown3.setVisibility(View.VISIBLE);
 		}
 		// 返回
 		ImageButton return_btn = (ImageButton) findViewById(R.id.initialguide_return);
@@ -97,7 +101,7 @@ public class InitialGuideActivity extends Activity {
             toast.show();
             
 			ImageView igCheck1 = (ImageView)findViewById(R.id.igCheck1);
-			igCheck1.setVisibility(View.VISIBLE);
+			igCheck1.setBackgroundResource(R.drawable.ic_check);
 		}
 	};
 	// 引导2
@@ -115,7 +119,7 @@ public class InitialGuideActivity extends Activity {
             toast.show();
             
 			ImageView igCheck2 = (ImageView)findViewById(R.id.igCheck2);
-			igCheck2.setVisibility(View.VISIBLE);
+			igCheck2.setBackgroundResource(R.drawable.ic_check);
 		}
 	};
 	// 引导3
@@ -145,7 +149,7 @@ public class InitialGuideActivity extends Activity {
             toast.show();
             
 			ImageView igCheck3 = (ImageView)findViewById(R.id.igCheck3);
-			igCheck3.setVisibility(View.VISIBLE);
+			igCheck3.setBackgroundResource(R.drawable.ic_check);
 		}
 	};
 	// 返回及完成按钮

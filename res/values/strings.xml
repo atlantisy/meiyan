@@ -5,10 +5,10 @@
 
     <string-array name="tips">
         <item>完成初始设置才可正常使用。</item>
-        <item>美言中加空格，手势密码可能更好看。</item>
+        <item>美言中加空格，手势密码有时更好看。</item>
         <item>编辑锁屏时，可以不写美言。</item>
         <item>建议美言不超过32个字。</item>
-        <item>若锁屏不成功，尝试重启应用。</item>
+        <item>若锁屏不成功，可尝试重启应用。</item>
     </string-array>
     <string-array name="Spring">
         <item>面朝大海 春暖花开</item>
@@ -65,7 +65,7 @@
     <string-array name="Wind"></string-array>
 
     <string name="slogan">锁定美好的一句話</string>
-    <string name="copyright">©2014 minelock.com. All rights reserved.</string>
+    <string name="copyright">Wallpaper by Smartisan OS and Flyme.\n©2014 minelock.com. All rights reserved.</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setting">SettingActivity</string>

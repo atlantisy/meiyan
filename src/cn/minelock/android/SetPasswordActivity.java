@@ -104,7 +104,7 @@ public class SetPasswordActivity extends Activity {
 		// 如果密码为空,直接输入密码
 		if (ppwv.isPasswordEmpty()) {
 			this.needverify = false;
-			showToast("没有密码，请设置");
+			showToast("没有密码，请设置并保存");
 		}
 	}
 	

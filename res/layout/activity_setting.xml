@@ -213,7 +213,7 @@
         android:background="@color/alpha"
         android:layout_margin="8dp"
         android:gravity="center"
-        android:textColor="@color/gray_black"
+        android:textColor="@color/gray"
         android:textSize="12sp"/>	
 
 </LinearLayout>

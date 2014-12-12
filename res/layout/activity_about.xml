@@ -98,13 +98,13 @@
         android:textSize="18sp" />    
 	<View
         android:layout_width="fill_parent"
-        android:layout_height="16dp"
+        android:layout_height="8dp"
         android:background="@color/white" />  
 	<TextView
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="48dp"
         android:gravity="center"
         android:text="@string/copyright"
-        android:textColor="@color/gray_black"
-        android:textSize="14sp" />
+        android:textColor="@color/gray_gray"
+        android:textSize="12sp" />
 </LinearLayout>
