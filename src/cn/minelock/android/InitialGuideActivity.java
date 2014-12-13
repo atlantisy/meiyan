@@ -12,6 +12,7 @@ import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -31,6 +32,11 @@ import android.widget.Toast;
 
 public class InitialGuideActivity extends Activity {
 
+	public static final String PREFS = "lock_pref";// pref文件名
+	public static final String INITIALGUIDE = "initial_guide";// 初始设置pref值名称
+	private static boolean bIntialGuide = false;// 初始设置是否完成
+	
+	private SharedPreferences settings;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,16 +59,28 @@ public class InitialGuideActivity extends Activity {
 		if(MIUIUtil.isMIUI()){
 			ig2.setVisibility(View.VISIBLE);
 			ig3.setVisibility(View.VISIBLE);
-			igDown2.setVisibility(View.VISIBLE);
-			igDown3.setVisibility(View.VISIBLE);
+			igDown2.setVisibility(View.INVISIBLE);
+			igDown3.setVisibility(View.INVISIBLE);
 		}
 		// 返回
 		ImageButton return_btn = (ImageButton) findViewById(R.id.initialguide_return);
-		return_btn.setOnClickListener(returnOnClickListener);
-		// 完成
+		return_btn.setOnClickListener(returnOnClickListener);			
+		// 设置完毕
 		Button finish_btn = (Button) findViewById(R.id.initialguide_ok);
-		finish_btn.setOnClickListener(returnOnClickListener);
-				
+		finish_btn.setOnClickListener(finishOnClickListener);
+		// 初始引导设置
+		settings = getSharedPreferences(PREFS, 0);
+		bIntialGuide = settings.getBoolean(INITIALGUIDE, false);		
+		if(!bIntialGuide){
+			View igDivide = (View)findViewById(R.id.igDivide);
+			igDivide.setVisibility(View.GONE);
+			return_btn.setVisibility(View.GONE);
+			finish_btn.setVisibility(View.VISIBLE);
+			
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean(INITIALGUIDE, true);
+			editor.commit();
+		}											
 	}
 
 	// 引导1
@@ -152,7 +170,7 @@ public class InitialGuideActivity extends Activity {
 			igCheck3.setBackgroundResource(R.drawable.ic_check);
 		}
 	};
-	// 返回及完成按钮
+	// 返回按钮
 	private OnClickListener returnOnClickListener = new OnClickListener() {
 
 		@Override
@@ -161,6 +179,20 @@ public class InitialGuideActivity extends Activity {
 			finish();
 		}
 	};
+	
+	// 设置完毕按钮
+	private OnClickListener finishOnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			startActivity(new Intent(InitialGuideActivity.this, HomeActivity.class));
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			
+			finish();
+		}
+	};
+		
 	
 
 }

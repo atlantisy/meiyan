@@ -21,6 +21,7 @@
             android:src="@drawable/ic_return" />
 
         <View
+            android:id="@+id/igDivide"
             android:layout_width="1.0px"
             android:layout_height="48.0px"
             android:layout_gravity="center_vertical"
@@ -53,23 +54,34 @@
         android:background="@drawable/initialguide_button_selector"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:orientation="horizontal">     	
+        android:orientation="horizontal">
+		
+		<TextView
+        	android:layout_width="24dp"
+        	android:layout_height="24dp"
+        	android:background="@drawable/editok_button_selector"
+        	android:gravity="center"
+        	android:layout_margin="10dp"
+        	android:layout_gravity="center_vertical"
+        	android:text="1"
+        	android:textColor="@color/white"
+        	android:textSize="16sp" />   		 		  		             	
      	<Button
         	android:id="@+id/igBtn1"
         	android:layout_width="0dp"
         	android:layout_height="56dp"
         	android:layout_weight="1"
         	android:background="@drawable/initialguide_button_selector"        
-        	android:paddingLeft="16dp"
+        	android:paddingLeft="4dp"
         	android:gravity="center_vertical"           
         	android:textColor="@color/gray_black"
         	android:textSize="14sp"
-        	android:text="关闭系统自带锁屏" />        
+        	android:text="关闭系统默认锁屏\n（避免双锁屏）" />        
         <ImageView 
             android:id="@+id/igCheck1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="4dp"
+            android:layout_marginRight="0dp"
             android:background="@drawable/ic_right"
             android:layout_gravity="center"/>              
     </LinearLayout>    
@@ -90,23 +102,34 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:orientation="horizontal"
-        android:visibility="gone" >   
+        android:visibility="gone" >
+        
+        <TextView
+        	android:layout_width="24dp"
+        	android:layout_height="24dp"
+        	android:background="@drawable/editok_button_selector"
+        	android:gravity="center"
+        	android:layout_margin="10dp"
+        	android:layout_gravity="center_vertical"
+        	android:text="2"
+        	android:textColor="@color/white"
+        	android:textSize="16sp" />   
     	<Button
         	android:id="@+id/igBtn2"
      		android:layout_width="0dp"
         	android:layout_height="56dp"
         	android:layout_weight="1"
         	android:background="@drawable/initialguide_button_selector"        
-        	android:paddingLeft="16dp"
+        	android:paddingLeft="4dp"
         	android:gravity="center_vertical"           
         	android:textColor="@color/gray_black"
         	android:textSize="14sp"
-        	android:text="开启「显示悬浮窗」"/>
+        	android:text="开启「显示悬浮窗」\n（避免锁屏失败）"/>
         <ImageView 
             android:id="@+id/igCheck2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="4dp"
+            android:layout_marginRight="0dp"
             android:background="@drawable/ic_right"
             android:layout_gravity="center"/>              
     </LinearLayout> 
@@ -128,36 +151,49 @@
         android:layout_marginRight="8dp"
         android:orientation="horizontal"
         android:visibility="gone">                                
+		<TextView
+        	android:layout_width="24dp"
+        	android:layout_height="24dp"
+        	android:background="@drawable/editok_button_selector"
+        	android:gravity="center"
+        	android:layout_margin="10dp"
+        	android:layout_gravity="center_vertical"
+        	android:text="3"
+        	android:textColor="@color/white"
+       		android:textSize="16sp" /> 
 		<Button
         	android:id="@+id/igBtn3"
    			android:layout_width="0dp"
         	android:layout_height="56dp"
         	android:layout_weight="1"
         	android:background="@drawable/initialguide_button_selector"        
-        	android:paddingLeft="16dp"
+        	android:paddingLeft="4dp"
         	android:gravity="center_vertical"           
         	android:textColor="@color/gray_black"
         	android:textSize="14sp"
-        	android:text="开启「我信任该程序」和「自动启动」"/>
+        	android:text="开启「我信任该程序」和「自动启动」\n（确保锁屏运行）"/>
         <ImageView 
             android:id="@+id/igCheck3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="4dp"
+            android:layout_marginRight="0dp"
             android:background="@drawable/ic_right"
             android:layout_gravity="center"/>              
     </LinearLayout>
       		   
+	<View 
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"/>
 	<Button
         android:id="@+id/initialguide_ok"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:background="@drawable/editok_button_selector"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_margin="32dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="完成"
+        android:text="设置完毕"
         android:textColor="@android:color/white" 
         android:textSize="18sp"
         android:visibility="gone"/>	
