@@ -323,7 +323,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	// 拍照或选取相册图片为锁屏壁纸
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		builder.setTitle("更换锁屏壁纸");
+		//builder.setTitle("更换锁屏壁纸");
 		builder.setItems(new String[] { "拍照", "从相册选取", "与桌面壁纸同步"},
 				new DialogInterface.OnClickListener() {
 

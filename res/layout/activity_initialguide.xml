@@ -61,7 +61,7 @@
         	android:layout_height="24dp"
         	android:background="@drawable/editok_button_selector"
         	android:gravity="center"
-        	android:layout_margin="10dp"
+        	android:layout_margin="8dp"
         	android:layout_gravity="center_vertical"
         	android:text="1"
         	android:textColor="@color/white"
@@ -81,7 +81,7 @@
             android:id="@+id/igCheck1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="0dp"
+            android:layout_marginRight="4dp"
             android:background="@drawable/ic_right"
             android:layout_gravity="center"/>              
     </LinearLayout>    
@@ -109,7 +109,7 @@
         	android:layout_height="24dp"
         	android:background="@drawable/editok_button_selector"
         	android:gravity="center"
-        	android:layout_margin="10dp"
+        	android:layout_margin="8dp"
         	android:layout_gravity="center_vertical"
         	android:text="2"
         	android:textColor="@color/white"
@@ -129,7 +129,7 @@
             android:id="@+id/igCheck2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="0dp"
+            android:layout_marginRight="4dp"
             android:background="@drawable/ic_right"
             android:layout_gravity="center"/>              
     </LinearLayout> 
@@ -156,7 +156,7 @@
         	android:layout_height="24dp"
         	android:background="@drawable/editok_button_selector"
         	android:gravity="center"
-        	android:layout_margin="10dp"
+        	android:layout_margin="8dp"
         	android:layout_gravity="center_vertical"
         	android:text="3"
         	android:textColor="@color/white"
@@ -176,7 +176,7 @@
             android:id="@+id/igCheck3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="0dp"
+            android:layout_marginRight="4dp"
             android:background="@drawable/ic_right"
             android:layout_gravity="center"/>              
     </LinearLayout>

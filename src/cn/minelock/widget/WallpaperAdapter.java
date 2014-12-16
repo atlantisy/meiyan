@@ -43,7 +43,7 @@ public class WallpaperAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		ImageView image = new ImageView(context);
-		image.setLayoutParams(new GridView.LayoutParams(80, 80));
+		image.setLayoutParams(new GridView.LayoutParams(96, 96));
 		image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		//
 		image.setImageResource(_wallpaper[position]);
@@ -51,19 +51,19 @@ public class WallpaperAdapter extends BaseAdapter {
 	}
 
 	public static int[] wallpaper = { 		
-		R.color.red2,R.color.orange,R.color.yellow2,R.color.green3,R.color.green2,
-		R.color.app_color,R.color.blue1,R.color.blue,R.color.pink,R.color.violet,
+		R.color.red3,R.color.orange3,R.color.yellow2,R.color.green3,R.color.green2,
+		R.color.app_color,R.color.green4,R.color.blue2,R.color.pink,R.color.violet,
 		
-		R.drawable.wallpaper00,R.drawable.wallpaper01,R.drawable.wallpaper02,
-		R.drawable.wallpaper03,R.drawable.wallpaper04,		
+		R.drawable.wallpaper00,R.drawable.wallpaper05,R.drawable.wallpaper03,
+		R.drawable.wallpaper04,R.drawable.wallpaper02,		
 	};
 	
 	public static int[] _wallpaper = { 		
-		R.color.red2,R.color.orange,R.color.yellow2,R.color.green3,R.color.green2,
-		R.color.app_color,R.color.blue1,R.color.blue,R.color.pink,R.color.violet,
+		R.color.red3,R.color.orange3,R.color.yellow2,R.color.green3,R.color.green2,
+		R.color.app_color,R.color.green4,R.color.blue2,R.color.pink,R.color.violet,
 		
-		R.drawable._wallpaper00,R.drawable._wallpaper01,R.drawable._wallpaper02,
-		R.drawable._wallpaper03,R.drawable._wallpaper04,		
+		R.drawable._wallpaper00,R.drawable._wallpaper05,R.drawable._wallpaper03,
+		R.drawable._wallpaper04,R.drawable._wallpaper02,		
 	};
 
 }

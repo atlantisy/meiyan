@@ -11,6 +11,7 @@
         android:layout_height="48dp"
         android:layout_gravity="right"
         android:background="@color/alpha"
-        android:src="@drawable/ic_unlock" />
+        android:src="@drawable/ic_unlock" 
+        android:visibility="gone"/>
 
 </LinearLayout>

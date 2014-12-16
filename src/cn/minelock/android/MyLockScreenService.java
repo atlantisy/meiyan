@@ -169,7 +169,7 @@ public class MyLockScreenService extends Service {
 				case 2:				
 					mLockStatus = false;
 					unLock();
-					launchCamera();							
+					//launchCamera();							
 					break;
 				default:
 					mLockStatus = true;
