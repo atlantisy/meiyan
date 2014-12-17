@@ -22,12 +22,14 @@ import cn.minelock.android.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.WallpaperManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.DialogInterface.OnKeyListener;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -45,6 +47,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -320,6 +323,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	};
 	
 	final Handler handler = new Handler();
+	private String verse_hint;
 	// 拍照或选取相册图片为锁屏壁纸
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -355,7 +359,11 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							break;
 							
 						case DEFAULT_PAPER:
-							verse_edit.setHint("正在同步...");							
+							//verse_edit.setHint("正在同步...");
+							//showRoundProcessDialog(R.layout.process_dialog);
+					    	verse_hint = verse_edit.getText().toString();
+					    	verse_edit.setText("正在同步...");
+					    	//verse_edit.setSelection(verse_hint.length());
 							new Thread(new Runnable() {
 								
 								@Override
@@ -378,22 +386,53 @@ public class EditVerseActivity extends Activity implements OnClickListener,
     Runnable runnableDefaultPaper = new  Runnable(){  
         @Override  
         public void run() { 
-			// 获取当前壁纸 ,转成Bitmap，并设置 背景 
-        	//StringUtil.showToast(getApplication(), "正在同步...", Toast.LENGTH_SHORT);
-			Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
-			Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
-			mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
-			// 保存到SD卡
-			String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
-			String photoName = "wallpaper";
-			ImageTools.savePhotoToSDCard(bm, dir, photoName);
-			wallpaperPath = dir + "/" + photoName + ".png";
-            bIdOrPath = false;//壁纸来源为应用外路径
-            //verse_edit.setHint("同步成功");
-            StringUtil.showToast(getApplication(), "同步成功", Toast.LENGTH_SHORT);
-			verse_edit.setHint("点此写美言");			
+        	getDefaultWallpaper();
         }           
     };
+    
+    public void getDefaultWallpaper(){
+		// 获取当前壁纸 ,转成Bitmap，并设置 背景 
+    	//verse_edit.setHint("正在同步...");
+    	//verse_edit.setText("正在同步...");
+		Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
+		Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
+		mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
+		// 保存到SD卡
+		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
+		String photoName = "wallpaper";
+		ImageTools.savePhotoToSDCard(bm, dir, photoName);
+		wallpaperPath = dir + "/" + photoName + ".png";
+        bIdOrPath = false;//壁纸来源为应用外路径
+        //verse_edit.setHint("同步成功");
+        StringUtil.showToast(getApplication(), "同步成功", Toast.LENGTH_SHORT);
+		//verse_edit.setHint("点此写美言");
+        verse_edit.setText(verse_hint);
+        verse_edit.setSelection(verse_hint.length());
+    }
+    
+    private Dialog mDialog;
+    public void showRoundProcessDialog(int layout)//(Context mContext, int layout)
+    {
+        OnKeyListener keyListener = new OnKeyListener()
+        {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event)
+            {
+                if (keyCode == KeyEvent.KEYCODE_HOME || keyCode == KeyEvent.KEYCODE_SEARCH)
+                {
+                    return true;
+                }
+                return false;
+            }
+        };
+        
+        //mDialog = new AlertDialog.Builder(mContext).create();
+        mDialog = new AlertDialog.Builder(this).create();
+        //mDialog.setOnKeyListener(keyListener);
+        mDialog.show();
+        // 注意此处要放在show之后 否则会报异常
+        mDialog.setContentView(layout);
+    }
     
 	private static final int TAKE_PHOTO = 0;// 拍照
 	private static final int CHOOSE_PICTURE = 1;// 从相册选取
