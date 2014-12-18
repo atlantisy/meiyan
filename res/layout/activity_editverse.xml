@@ -11,14 +11,11 @@
         android:layout_height="48dp"
         android:background="@drawable/shape_bg_grey"
         android:orientation="horizontal" >
-
         <ImageButton
             android:id="@+id/editverse_return"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="@color/alpha"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_return" />       
+            android:layout_width="48dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/ic_return_selector"/>      
 
         <View
             android:layout_width="1.0px"

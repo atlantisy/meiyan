@@ -84,7 +84,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@color/alpha"
-            android:src="@drawable/ic_setting" />        
+            android:src="@drawable/ic_setting_selector" />        
     </LinearLayout>
 
     <Button
@@ -381,7 +381,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@color/alpha"
-            android:src="@drawable/ic_mine" />         
+            android:src="@drawable/ic_mine_selector" />         
         <ImageButton
             android:layout_width="32dp"
             android:layout_height="fill_parent"
@@ -394,7 +394,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@color/alpha"
-            android:src="@drawable/ic_edit" />
+            android:src="@drawable/ic_edit_selector" />
         <ImageButton
             android:layout_width="32dp"
             android:layout_height="fill_parent"

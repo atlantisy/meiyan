@@ -136,9 +136,9 @@ public class MyLockScreenService extends Service {
 		wmParams.width = WindowManager.LayoutParams.MATCH_PARENT;  
 		wmParams.height = WindowManager.LayoutParams.MATCH_PARENT; 
 		
-		wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
-		wmParams.flags = 1280;//Òþ²Ø×´Ì¬À¸    FLAG_FULLSCREEN|LayoutParams.FLAG_LAYOUT_IN_SCREEN
-		//wmParams.flags = WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN;
+		wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;//
+		wmParams.flags = 1280;//Òþ²Ø×´Ì¬À¸    FLAG_FULLSCREEN|FLAG_LAYOUT_IN_SCREEN						
+		//wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 		// ÏÔÊ¾ËøÆÁ½çÃæ
 		mWindowManager.addView(mFloatLayout, wmParams); 
 		// ³äµçÁ¿ÏÔÊ¾

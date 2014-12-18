@@ -38,7 +38,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name="cn.minelock.android.MyLockScreenService" >
+        <service 
+            android:name="cn.minelock.android.MyLockScreenService" 
+            android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.SCREEN_OFF" />
             </intent-filter>

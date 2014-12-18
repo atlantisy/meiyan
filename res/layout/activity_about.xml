@@ -13,11 +13,9 @@
 
         <ImageButton
             android:id="@+id/about_return"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="@color/alpha"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_return" />
+            android:layout_width="48dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/ic_return_selector"/>
 
         <View
             android:layout_width="1.0px"
