@@ -167,16 +167,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 获取存储的pref数据
 		home_setting = getSharedPreferences(PREFS, 0);				
 		// 设置壁纸
-		LinearLayout homeLayout = (LinearLayout)findViewById(R.id.HomeLayout);		
-		boolean bIdOrPath = home_setting.getBoolean(BOOLIDPATH, true);
-		int wallpaperId = home_setting.getInt(WALLPAPERID, R.drawable.wallpaper00);
-		String wallpaperPath = home_setting.getString(WALLPAPERPATH, "");	
-		if(bIdOrPath==true)//设置壁纸			
-			homeLayout.setBackgroundResource(wallpaperId);
-		else{
-			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
-			homeLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
-		}
+		SetWallpaper();		
 		// 设置美言，简言和九宫言
 		SetVerse();		
 		// 切换锁屏方式初始化及按钮图标切换事件
@@ -220,8 +211,14 @@ public class HomeActivity extends Activity implements OnClickListener,
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		SetWallpaper();
 		SetVerse();
-		InitShowVerse();		
+		InitShowVerse();
+		bPassWord = home_setting.getBoolean(PWSETUP, true);
+		if (bPassWord == true)
+			setup_grid_button.setVisibility(View.GONE);
+		else
+			setup_grid_button.setVisibility(View.VISIBLE);
 	}
 	
 	// 下拉
@@ -238,6 +235,20 @@ public class HomeActivity extends Activity implements OnClickListener,
 		mPullRefreshGridView.onRefreshComplete();
 	}
 
+	// 设置壁纸
+	private void SetWallpaper(){
+		LinearLayout homeLayout = (LinearLayout)findViewById(R.id.HomeLayout);		
+		boolean bIdOrPath = home_setting.getBoolean(BOOLIDPATH, true);
+		int wallpaperId = home_setting.getInt(WALLPAPERID, R.drawable.wallpaper00);
+		String wallpaperPath = home_setting.getString(WALLPAPERPATH, "");	
+		if(bIdOrPath==true)//设置壁纸			
+			homeLayout.setBackgroundResource(wallpaperId);
+		else{
+			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
+			homeLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+		}
+	}
+	
 	// 设置美言
 	private void SetVerse() {
 		TextView line_verse = (TextView) findViewById(R.id.line_verse);		

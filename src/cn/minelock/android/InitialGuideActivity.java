@@ -8,9 +8,11 @@ import cn.minelock.util.MIUIUtil;
 import cn.minelock.util.StringUtil;
 import android.app.Activity;
 import android.app.KeyguardManager;
+import android.app.KeyguardManager.KeyguardLock;
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -89,6 +91,9 @@ public class InitialGuideActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub			
+			// 4.0前版本关闭系统锁屏
+			EnableSystemKeyguard(false);
+			
 			String closeDefaultLock = "";
 			Intent intent = null;
 			if(MIUIUtil.isMIUI()){
@@ -113,8 +118,8 @@ public class InitialGuideActivity extends Activity {
 	            intent =  new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);*/  	            	            
 			}					     
 			startActivity(intent);
-			
-            Toast toast = Toast.makeText(getApplicationContext(),closeDefaultLock, Toast.LENGTH_LONG);
+						
+			Toast toast = Toast.makeText(getApplicationContext(),closeDefaultLock, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             
@@ -193,6 +198,16 @@ public class InitialGuideActivity extends Activity {
 		}
 	};
 		
-	
+	void EnableSystemKeyguard(boolean bEnable) {
+		KeyguardManager mKeyguardManager = null;
+		KeyguardLock mKeyguardLock = null;
+
+		mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+		mKeyguardLock = mKeyguardManager.newKeyguardLock("MineLock");
+		if (bEnable)
+			mKeyguardLock.reenableKeyguard();
+		else
+			mKeyguardLock.disableKeyguard();
+	}
 
 }

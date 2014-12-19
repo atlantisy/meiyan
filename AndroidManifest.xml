@@ -50,20 +50,21 @@
             android:name="cn.minelock.android.HomeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-        </activity>
-        <activity
-            android:name="cn.minelock.android.LockActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            android:launchMode="singleTask">
             <!--
                  <intent-filter>
                 <category android:name="android.intent.category.HOME" /> 
                 <category android:name="android.intent.category.DEFAULT" /> 
             </intent-filter>
-            -->
+            -->            
+        </activity>
+        <activity
+            android:name="cn.minelock.android.LockActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            android:launchMode="singleTask">
         </activity>
 
         <receiver android:name="cn.minelock.android.BootReceiver" >
@@ -76,44 +77,44 @@
             android:name="cn.minelock.android.SettingActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name="cn.minelock.android.EditVerseActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar"
-            android:windowSoftInputMode="stateHidden" >
-        </activity>
-        <activity
-            android:name="cn.minelock.android.WallpaperEditActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:windowSoftInputMode="stateHidden" 
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name="cn.minelock.android.SetPasswordActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name="cn.minelock.android.RecentActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name="cn.minelock.android.AboutActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="cn.minelock.android.InitialGuideActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Black.NoTitleBar">
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:launchMode="singleTask">
         </activity>
     </application>
 

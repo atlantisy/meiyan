@@ -13,9 +13,8 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_weight="1.5"
             android:background="@drawable/empty" >
 
             <cn.minelock.android.DigitalClock
@@ -69,22 +68,23 @@
             </cn.minelock.android.DigitalClock>           
         </LinearLayout>
         
-        <TextView
+<!--         <TextView
             android:id="@+id/battery_value"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text=""
+            android:text=" "
             android:textColor="@color/white" 
-            android:textSize="16sp" />  
-             
+            android:textSize="14sp" />  --> 		
+	                
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:orientation="vertical" >
+            android:layout_height="0dp"           
+            android:orientation="vertical" 
+            android:layout_margin="16dp"
+            android:layout_weight="1">
 
-<!--             <TextView
+            <TextView
                 android:id="@+id/battery_value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                 android:gravity="center"
                 android:text=" "
                 android:textColor="@color/white" 
-                android:textSize="16sp" /> -->
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/error_view"
                 android:layout_width="fill_parent"
@@ -101,21 +101,20 @@
                 android:gravity="center"
                 android:text="密码错误，请重新输入"
                 android:textColor="@color/orange" 
-                android:textSize="16sp" 
+                android:textSize="14sp" 
                 android:visibility="invisible"/>
             
             <cn.minelock.widget.PatternPassWordView
                 android:id="@+id/mPatternPassWordView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
+                android:layout_height="wrap_content" 
+                android:layout_margin="0dp"/>
+        </LinearLayout>		
+	     
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:layout_weight="1" >
+            android:layout_height="80dp"
+            android:padding="8dp">
 
 <!--             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
