@@ -1,5 +1,6 @@
 package cn.minelock.util;
 
+import cn.minelock.android.R;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -22,6 +23,19 @@ public class StringUtil {
             }
             mToast.show();
     }
+	/**
+	 * 字符长度不足9位，补足
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public static String getNineStr(String s) {		
+		int len = s.length();
+		for(int i=0; i<9-len; i++){
+			s = s+" ";
+		}
+		return s;
+	}    
 	/**
 	 * 是否不为空
 	 * 

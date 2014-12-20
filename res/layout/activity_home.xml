@@ -3,7 +3,7 @@
     android:id="@+id/HomeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wallpaper00"
+    android:background="@drawable/wallpaper02"
     android:orientation="vertical" >
     
     <LinearLayout
@@ -39,7 +39,7 @@
             android:id="@+id/app_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="12dp"
+            android:paddingLeft="16dp"
             android:gravity="center_vertical"
             android:text="@string/app_name"
             android:textAppearance="?android:textAppearanceMedium"
@@ -69,10 +69,10 @@
             android:visibility="gone"/>        
         <ImageButton
             android:id="@+id/home_repeat_shuffle"
-            android:layout_width="48dp"
+            android:layout_width="56dp"
             android:layout_height="fill_parent"
             android:background="@color/alpha"
-            android:src="@drawable/repeat_shuffle_btn_selector"/>                
+            android:src="@drawable/repeat_shuffle_btn_selector"/>                           
         <ImageButton
             android:layout_width="4dp"
             android:layout_height="fill_parent"
@@ -80,7 +80,7 @@
             android:src="@color/alpha" />                           
         <ImageButton
             android:id="@+id/home_setting1"
-            android:layout_width="48dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@color/alpha"
@@ -347,7 +347,7 @@
             android:shadowDx="1"
             android:shadowDy="0"
             android:shadowRadius="1"
-            android:text="感觉自己萌萌哒  "
+            android:text="@string/initial_verse"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -370,7 +370,7 @@
     <LinearLayout
         android:id="@+id/home_bottombar"
         android:layout_width="fill_parent"
-        android:layout_height="48dp"
+        android:layout_height="96dp"
         android:background="@drawable/shape_bg_alpha1"
         android:orientation="horizontal" >
         <ImageButton
@@ -384,7 +384,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@color/alpha"
-            android:src="@drawable/ic_mine_selector" />         
+            android:src="@drawable/ic_recent_selector" />         
         <ImageButton
             android:layout_width="32dp"
             android:layout_height="fill_parent"
@@ -398,6 +398,7 @@
             android:layout_weight="1"
             android:background="@color/alpha"
             android:src="@drawable/ic_edit_selector" />
+        
         <ImageButton
             android:layout_width="32dp"
             android:layout_height="fill_parent"

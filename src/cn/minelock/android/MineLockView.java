@@ -100,7 +100,7 @@ public class MineLockView extends FrameLayout{
 		lockCursor = dbRecent.select();
 		// 获取保存的美言数量及美言显示方式
 		int showVerseFlag = settings.getInt(SHOWVERSEFLAG, 1);
-		sCustom = settings.getString(VERSE, "感觉自己萌萌哒  ");	
+		sCustom = settings.getString(VERSE, getResources().getString(R.string.initial_verse));	
 		// 设置美言显示
 		SetVerseShow(showVerseFlag);
 		sCustom = sCustom.trim();//去掉前后空格

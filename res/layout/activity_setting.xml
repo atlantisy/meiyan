@@ -15,7 +15,7 @@
             android:id="@+id/setting_return"
             android:layout_width="48dp"
             android:layout_height="fill_parent"
-            android:background="@drawable/ic_return_selector"/>
+            android:background="@drawable/ic_return_selector" />
 
         <View
             android:layout_width="1.0px"
@@ -109,14 +109,14 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
                 android:text="初始设置"
-                android:textSize="16sp" />            
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:background="@drawable/shape_line" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_white" />
 
             <Button
                 android:id="@+id/setting_setpassword"
@@ -127,91 +127,54 @@
                 android:paddingLeft="16dp"
                 android:text="手势密码"
                 android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="24dp"
+                android:background="@color/gray_white" />
+
+            <Button
+                android:id="@+id/setting_about"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="关于"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_white" />
+
+            <Button
+                android:id="@+id/setting_exit"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="退出"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1.0px"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:background="@drawable/shape_line" />
-
-<!--     <Button
-        android:id="@+id/setting_help"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/default_button_selector"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:text="使用帮助"
-        android:textSize="16sp" />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1.0px"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/shape_line" />
-
-    <Button
-        android:id="@+id/setting_feedback"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/default_button_selector"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:text="意见反馈"
-        android:textSize="16sp" />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1.0px"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/shape_line" /> -->
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="24dp"
-        android:background="@color/gray_white" />
-    <Button
-        android:id="@+id/setting_about"        
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/default_button_selector"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:text="关于"
-        android:textSize="16sp" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1.0px"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/shape_line" />
-        
-    <Button
-        android:id="@+id/setting_exit"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/default_button_selector"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:text="退出"
-        android:textSize="16sp" />
-    <View
-        android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
-	<TextView
-	    android:id="@+id/setting_tips"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/setting_tips"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/alpha"
         android:layout_margin="8dp"
+        android:background="@color/alpha"
         android:gravity="center"
         android:textColor="@color/gray"
-        android:textSize="12sp"/>	
+        android:textSize="12sp" />
 
 </LinearLayout>

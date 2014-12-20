@@ -76,7 +76,7 @@ public class SetPasswordActivity extends Activity {
 					if (StringUtil.isNotEmpty(password)) {
 						ppwv.resetPassWord(password);
 						ppwv.clearPassword();
-						showToast("设置成功，请牢记");
+						showToast("设置成功，请牢记密码");
 						SharedPreferences.Editor editor = settings.edit();
 						editor.putBoolean(PWSETUP, true);
 						editor.commit();

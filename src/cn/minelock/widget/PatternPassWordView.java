@@ -107,9 +107,10 @@ public class PatternPassWordView extends View {
 /*		textPaint.setShadowLayer(1f, 0,
 		0,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
 */		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置		
-		//美言
-		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0);  
-		String verse = settings.getString(VERSE, "感觉自己萌萌哒  ");
+		// 获取美言
+		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0); 
+		String initial_verse = getResources().getString(R.string.initial_verse);
+		String verse = settings.getString(VERSE, StringUtil.getNineStr(initial_verse));
 		
 		// 画连线
 		if (sPoints.size() > 0) {

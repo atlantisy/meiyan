@@ -81,8 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="4dp"
             android:background="@drawable/ic_right"
-            android:layout_gravity="center"/>   
-                                   
+            android:layout_gravity="center"/>                                     
     </LinearLayout>    
 
     <ImageView

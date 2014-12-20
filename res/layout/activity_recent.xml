@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
 			android:gravity="center_vertical"
 			android:paddingLeft="16dp"
-            android:text="我的美言"
+            android:text="美言记录"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
         
@@ -56,7 +56,7 @@
         android:cacheColorHint="#000000"
         android:fadingEdge="none"
         android:background="@color/white"
-        android:divider="@color/gray_gray"
+        android:divider="@color/gray_white"
         android:dividerHeight="1.0px"
         android:layout_below="@+id/recent_top"/>
 

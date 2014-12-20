@@ -10,7 +10,15 @@ public final class FlymeUtil {
 		try {
 			// Invoke Build.hasSmartBar()
 			final Method method = Build.class.getMethod("hasSmartBar");
-			return method != null;
+			//final Method method = Class.forName("android.os.Build").getMethod("hasSmartBar");
+			if(method != null){
+				return true;
+			}
+			else if(Build.DEVICE.equals("mx2")||Build.DEVICE.equals("mx")||Build.DEVICE.equals("m9")){
+				return true;
+			}
+			
+			return false;
 		} catch (final Exception e) {
 			return false;
 		}

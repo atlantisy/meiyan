@@ -92,32 +92,32 @@ public class InitialGuideActivity extends Activity {
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub			
 			// 4.0前版本关闭系统锁屏
-			EnableSystemKeyguard(false);
+			EnableSystemKeyguard(false);					
 			
 			String closeDefaultLock = "";
 			Intent intent = null;
 			if(MIUIUtil.isMIUI()){
 				closeDefaultLock = "开启「开启开发者选项」\n开启「直接进入系统」";
 				intent =  new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);	
+				startActivity(intent);
 			}
 			else if(FlymeUtil.isFlyme()){
 				closeDefaultLock = "请选择「无」"; 
 				intent = new Intent();
 				ComponentName cm = new ComponentName("com.android.settings","com.android.settings.ChooseLockGeneric");  
 				intent.setComponent(cm);  
-				intent.setAction("android.intent.action.VIEW");  				 				
+				intent.setAction("android.intent.action.VIEW"); 
+				startActivity(intent);
 			}
-			else{
-				closeDefaultLock = "请选择「无」"; 
-				intent = new Intent();
+			else{					
+				closeDefaultLock = "已关闭"; 
+/*				intent = new Intent();
 				ComponentName cm = new ComponentName("com.android.settings","com.android.settings.ChooseLockGeneric");  
 				intent.setComponent(cm);  
 				intent.setAction("android.intent.action.VIEW"); 
-				
-/*				closeDefaultLock = "已关闭"; 
-	            intent =  new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);*/  	            	            
+				startActivity(intent);*/
 			}					     
-			startActivity(intent);
+			//startActivity(intent);
 						
 			Toast toast = Toast.makeText(getApplicationContext(),closeDefaultLock, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);

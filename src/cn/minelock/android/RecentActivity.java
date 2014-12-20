@@ -53,6 +53,7 @@ public class RecentActivity extends Activity {
 	
 	private int verseQty;
 	private TextView recent_label;
+	private String title = "美言记录";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +145,7 @@ public class RecentActivity extends Activity {
 		}); 
         
         //获取增删后的美言数量
-        String Qty = "我的美言(" + String.valueOf(verseQty) + ")";
+        String Qty = title + "(" + String.valueOf(verseQty) + ")";
         recent_label = (TextView) findViewById(R.id.recent_label);
         recent_label.setText(Qty);
         
@@ -207,7 +208,7 @@ public class RecentActivity extends Activity {
 			editor.putInt(VERSEQTY, verseQty);// 美言数量
 			editor.commit();
 			
-			recent_label.setText("我的美言(" + String.valueOf(verseQty) + ")");
+			recent_label.setText(title + "(" + String.valueOf(verseQty) + ")");
 			Toast.makeText(getApplicationContext(), "已删除", Toast.LENGTH_SHORT).show();
 			break;
 		case 3:

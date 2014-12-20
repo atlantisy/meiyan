@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:gravity="center"
-        android:text="每时每刻 美好美言"
+        android:text="@string/initial_verse"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:paddingRight="8dp" 

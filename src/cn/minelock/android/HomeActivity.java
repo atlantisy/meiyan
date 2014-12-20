@@ -214,11 +214,11 @@ public class HomeActivity extends Activity implements OnClickListener,
 		SetWallpaper();
 		SetVerse();
 		InitShowVerse();
-		bPassWord = home_setting.getBoolean(PWSETUP, true);
-		if (bPassWord == true)
-			setup_grid_button.setVisibility(View.GONE);
-		else
+		bPassWord = home_setting.getBoolean(PWSETUP, false);
+		if (flag==GRID && !bPassWord)
 			setup_grid_button.setVisibility(View.VISIBLE);
+		else
+			setup_grid_button.setVisibility(View.GONE);
 	}
 	
 	// 下拉
@@ -241,7 +241,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		boolean bIdOrPath = home_setting.getBoolean(BOOLIDPATH, true);
 		int wallpaperId = home_setting.getInt(WALLPAPERID, R.drawable.wallpaper00);
 		String wallpaperPath = home_setting.getString(WALLPAPERPATH, "");	
-		if(bIdOrPath==true)//设置壁纸			
+		if(bIdOrPath)//设置壁纸			
 			homeLayout.setBackgroundResource(wallpaperId);
 		else{
 			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
@@ -251,8 +251,9 @@ public class HomeActivity extends Activity implements OnClickListener,
 	
 	// 设置美言
 	private void SetVerse() {
-		TextView line_verse = (TextView) findViewById(R.id.line_verse);		
-		verse = home_setting.getString(VERSE, "感觉自己萌萌哒  ");// 获取美言
+		TextView line_verse = (TextView) findViewById(R.id.line_verse);
+		String initial_verse = getResources().getString(R.string.initial_verse);
+		verse = home_setting.getString(VERSE, StringUtil.getNineStr(initial_verse));// 获取美言
 		//设置简言
 		line_verse.setText(verse.trim());
 		//设置九宫言
@@ -404,7 +405,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 			lockbtn.setImageResource(R.drawable.ic_lock_line);
 			verse_line.setVisibility(View.GONE);
 			verse_grid1.setVisibility(View.VISIBLE);
-			if (bPassWord == true)
+			if (bPassWord)
 				setup_grid_button.setVisibility(View.GONE);
 			else
 				setup_grid_button.setVisibility(View.VISIBLE);
@@ -452,7 +453,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		verse_line.setVisibility(View.GONE);
 		verse_grid1.setVisibility(View.VISIBLE);
 		bPassWord = home_setting.getBoolean(PWSETUP, false);
-		if (bPassWord == true)
+		if (bPassWord)
 			setup_grid_button.setVisibility(View.GONE);
 		else
 			setup_grid_button.setVisibility(View.VISIBLE);
