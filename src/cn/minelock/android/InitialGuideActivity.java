@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class InitialGuideActivity extends Activity {
@@ -58,7 +59,9 @@ public class InitialGuideActivity extends Activity {
 		LinearLayout ig3 = (LinearLayout) findViewById(R.id.ig3);
 		ImageView igDown2 = (ImageView)findViewById(R.id.igDown2);		
 		ImageView igDown3 = (ImageView)findViewById(R.id.igDown3);
+		TextView igCloseDefaultLock = (TextView)findViewById(R.id.igCloseDefaultLock);
 		if(MIUIUtil.isMIUI()){
+			igCloseDefaultLock.setVisibility(View.GONE);
 			ig2.setVisibility(View.VISIBLE);
 			ig3.setVisibility(View.VISIBLE);
 			igDown2.setVisibility(View.INVISIBLE);

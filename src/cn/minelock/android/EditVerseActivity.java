@@ -113,7 +113,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		wallpaperManager = WallpaperManager.getInstance(this);
 		// 获取保存的壁纸
 		bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
-		wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
+		wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper02);
 		wallpaperPath = settings.getString(WALLPAPERPATH, "");	
 		if(bIdOrPath==true)//设置壁纸			
 			mEditVerseLayout.setBackgroundResource(wallpaperId);

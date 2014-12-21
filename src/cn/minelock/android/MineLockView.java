@@ -107,7 +107,7 @@ public class MineLockView extends FrameLayout{
 		Log.d(TAG, sCustom);
 		// …Ë÷√±⁄÷Ω		
 		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
-		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
+		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper02);
 		String wallpaperPath = settings.getString(WALLPAPERPATH, "");	
 		FrameLayout lockLayout = (FrameLayout)findViewById(R.id.LockLayout);
 		if(bIdOrPath==true)//…Ë÷√±⁄÷Ω			

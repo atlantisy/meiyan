@@ -82,8 +82,20 @@
             android:layout_marginRight="4dp"
             android:background="@drawable/ic_right"
             android:layout_gravity="center"/>                                     
-    </LinearLayout>    
-
+    </LinearLayout> 
+       	
+	<TextView
+	    android:id="@+id/igCloseDefaultLock"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/alpha"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:text="@string/close_default_lock"
+        android:textColor="@color/gray"
+        android:textSize="12sp" />
+	 
     <ImageView
         android:id="@+id/igDown2"
         android:layout_width="fill_parent"

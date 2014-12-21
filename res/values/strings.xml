@@ -18,6 +18,8 @@
         <item>自定义壁纸</item>
     </string-array>
     
+    <string name="setpassword_hint">验证当前密码再设置新密码</string>
+    <string name="close_default_lock">* 若未能关闭，请进入系统设置-安全-屏幕锁定-选择「无」进行关闭。</string>
     <string-array name="tips">
         <item>完成初始设置才可正常使用。</item>
         <item>美言中加空格，手势密码有时更好看。</item>

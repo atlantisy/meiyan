@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.minelock.util.StringUtil;
@@ -40,7 +41,7 @@ public class SetPasswordActivity extends Activity {
 		//获取pref值
 		settings = getSharedPreferences(PREFS, 0);
 		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
-		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper00);
+		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper02);
 		String wallpaperPath = settings.getString(WALLPAPERPATH, "");	
 		if(bIdOrPath==true)//设置壁纸			
 			setPasswordLayout.setBackgroundResource(wallpaperId);
@@ -105,6 +106,10 @@ public class SetPasswordActivity extends Activity {
 		if (ppwv.isPasswordEmpty()) {
 			this.needverify = false;
 			showToast("没有密码，请设置并保存");
+		}
+		else{
+			TextView setPasswordHint = (TextView)findViewById(R.id.SetPasswordHint);
+			setPasswordHint.setText(R.string.setpassword_hint);			
 		}
 	}
 	
