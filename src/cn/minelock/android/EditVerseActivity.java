@@ -124,8 +124,10 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 获取保存的美言
 		verseQty = settings.getInt(VERSEQTY, 0);			
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
-		//String verse = settings.getString(VERSE, "感觉自己萌萌哒");	
-		//verse_edit.setText(verse);//设置默认美言
+		String verse = getResources().getString(R.string.initial_verse);		
+		verse_edit.setText(settings.getString(VERSE, verse).trim());//设置默认美言
+		verse_edit.setHighlightColor(getResources().getColor(R.color.alpha_black1));
+		verse_edit.selectAll();
 		//verse_edit.addTextChangedListener(textChangedWatcher);//有字时显示清空按钮
 		verse_edit.setOnTouchListener(new View.OnTouchListener() {
 			
@@ -362,6 +364,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							//verse_edit.setHint("正在同步...");
 							//showRoundProcessDialog(R.layout.process_dialog);
 					    	verse_hint = verse_edit.getText().toString();
+					    	verse_edit.setCursorVisible(false);
 					    	verse_edit.setText("正在同步...");
 					    	//verse_edit.setSelection(verse_hint.length());
 							new Thread(new Runnable() {
@@ -408,6 +411,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		//verse_edit.setHint("点此写美言");
         verse_edit.setText(verse_hint);
         verse_edit.setSelection(verse_hint.length());
+        verse_edit.setCursorVisible(true);
     }
     
     private Dialog mDialog;

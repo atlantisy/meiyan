@@ -65,7 +65,8 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1.0"
-        android:gravity="center"
+        android:layout_marginTop="120dp"
+        android:gravity="top"
         android:focusable="true"  
         android:focusableInTouchMode="true"
         android:orientation="horizontal" >
@@ -81,25 +82,26 @@
                 android:id="@+id/edit_verse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/alpha"
+                android:background="@color/alpha"                
                 android:padding="16dp"
                 android:ems="16"
                 android:gravity="center"
-                android:hint="点此写美言"
+                android:hint="写美言"
                 android:inputType="textMultiLine"
-                android:maxLines="3"
+                android:maxLines="4"
                 android:textColor="@color/white"
-                android:textColorHint="@color/alpha_white"
+                android:textColorHint="@color/alpha_white1"
                 android:textSize="20sp" 
-                android:selectAllOnFocus="true" >
-            </EditText>            
-        </ScrollView>
-                
+                android:selectAllOnFocus="true" > 
+                <requestFocus></requestFocus>           
+            </EditText>                                	
+        </ScrollView>                
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
+        android:background="@color/alpha"
         android:orientation="horizontal" >
 
         <ImageButton
