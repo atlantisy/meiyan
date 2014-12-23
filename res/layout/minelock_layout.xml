@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="100dp"
+            android:layout_height="108dp"
             android:layout_gravity="center"
             android:background="@drawable/empty" >
 
@@ -66,16 +66,7 @@
                     	android:textColor="@color/white"/>
                 </LinearLayout>                                            
             </cn.minelock.android.DigitalClock>           
-        </LinearLayout>
-        
-<!--         <TextView
-            android:id="@+id/battery_value"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text=" "
-            android:textColor="@color/white" 
-            android:textSize="14sp" />  --> 		
+        </LinearLayout>        		
 	                
         <LinearLayout
             android:layout_width="fill_parent"
@@ -88,7 +79,7 @@
                 android:id="@+id/battery_value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center_horizontal|top"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="@color/white" 
@@ -99,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
+                android:layout_marginBottom="0dp"
                 android:text="密码错误，请重新输入"
                 android:textColor="@color/orange" 
                 android:textSize="14sp" 
@@ -106,17 +98,18 @@
             
             <cn.minelock.widget.PatternPassWordView
                 android:id="@+id/mPatternPassWordView"
-                android:layout_width="250dp"
-                android:layout_height="250dp" 
+                android:layout_width="240dp"
+                android:layout_height="240dp" 
                 android:layout_gravity="center"/>
         </LinearLayout>		
 	     
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:padding="4dp">
+            android:layout_height="96dp"            
+            android:orientation="vertical">
 
 <!--             <android.support.v4.view.ViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android" 
                 android:id="@+id/viewpager"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -124,11 +117,11 @@
                 android:flipInterval="100"
                 android:persistentDrawingCache="animation" /> -->
                 
-                <cn.minelock.widget.MyScrollLayout
-                	xmlns:android="http://schemas.android.com/apk/res/android"    
+                <cn.minelock.widget.MyScrollLayout               	   
 	  				android:id="@+id/mMyScrollLayout"    
 	  				android:layout_width="fill_parent"    
-	  				android:layout_height="wrap_content"> 
+	  				android:layout_height="wrap_content"
+	  				android:layout_marginLeft="16dp"> 
 	  					<FrameLayout    
 	    					android:background="@color/alpha"
 	  						android:layout_width="fill_parent"    

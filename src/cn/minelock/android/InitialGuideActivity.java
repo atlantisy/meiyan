@@ -3,8 +3,7 @@ package cn.minelock.android;
 import java.io.IOException;
 import java.security.Policy;
 
-import cn.minelock.util.FlymeUtil;
-import cn.minelock.util.MIUIUtil;
+import cn.minelock.util.PhoneUtil;
 import cn.minelock.util.StringUtil;
 import android.app.Activity;
 import android.app.KeyguardManager;
@@ -19,6 +18,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Gravity;
@@ -39,6 +39,10 @@ public class InitialGuideActivity extends Activity {
 	public static final String INITIALGUIDE = "initial_guide";// 初始设置pref值名称
 	private static boolean bIntialGuide = false;// 初始设置是否完成
 	
+	private Button ig1_btn;
+	private Button ig2_btn;
+	private Button ig3_btn;
+	
 	private SharedPreferences settings;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +50,13 @@ public class InitialGuideActivity extends Activity {
 		setContentView(R.layout.activity_initialguide);
 
 		// 引导1
-		Button ig1_btn = (Button) findViewById(R.id.igBtn1);
+		ig1_btn = (Button) findViewById(R.id.igBtn1);
 		ig1_btn.setOnClickListener(ig1OnClickListener);	
 		// 引导2
-		Button ig2_btn = (Button) findViewById(R.id.igBtn2);
+		ig2_btn = (Button) findViewById(R.id.igBtn2);		
 		ig2_btn.setOnClickListener(ig2OnClickListener);
 		// 引导3
-		Button ig3_btn = (Button) findViewById(R.id.igBtn3);
+		ig3_btn = (Button) findViewById(R.id.igBtn3);
 		ig3_btn.setOnClickListener(ig3OnClickListener);
 		// 判断是否MIUI
 		LinearLayout ig2 = (LinearLayout) findViewById(R.id.ig2);
@@ -60,12 +64,19 @@ public class InitialGuideActivity extends Activity {
 		ImageView igDown2 = (ImageView)findViewById(R.id.igDown2);		
 		ImageView igDown3 = (ImageView)findViewById(R.id.igDown3);
 		TextView igCloseDefaultLock = (TextView)findViewById(R.id.igCloseDefaultLock);
-		if(MIUIUtil.isMIUI()){
+		if(PhoneUtil.isMIUI()){
 			igCloseDefaultLock.setVisibility(View.GONE);
+			ig2_btn.setText("开启「我信任该程序」和「自动启动」\n（确保锁屏运行）");
 			ig2.setVisibility(View.VISIBLE);
 			ig3.setVisibility(View.VISIBLE);
 			igDown2.setVisibility(View.INVISIBLE);
 			igDown3.setVisibility(View.INVISIBLE);
+		}
+		else if(PhoneUtil.isHuawei()){
+			igCloseDefaultLock.setVisibility(View.GONE);
+			ig2_btn.setText("设置受保护的后台应用\n（确保锁屏运行）");
+			ig2.setVisibility(View.VISIBLE);
+			igDown2.setVisibility(View.INVISIBLE);
 		}
 		// 返回
 		ImageButton return_btn = (ImageButton) findViewById(R.id.initialguide_return);
@@ -95,34 +106,35 @@ public class InitialGuideActivity extends Activity {
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub			
 			// 4.0前版本关闭系统锁屏
-			EnableSystemKeyguard(false);					
+			//EnableSystemKeyguard(false);					
 			
-			String closeDefaultLock = "";
+			String closeLockToast = "屏幕锁定选择「无」";
 			Intent intent = null;
-			if(MIUIUtil.isMIUI()){
-				closeDefaultLock = "开启「开启开发者选项」\n开启「直接进入系统」";
+			if(PhoneUtil.isMIUI()){
+				closeLockToast = "开启「开启开发者选项」\n开启「直接进入系统」";
 				intent =  new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);	
 				startActivity(intent);
 			}
-			else if(FlymeUtil.isFlyme()){
-				closeDefaultLock = "请选择「无」"; 
+			else if(PhoneUtil.isFlyme()){
+				closeLockToast = "请选择「无」"; 
 				intent = new Intent();
 				ComponentName cm = new ComponentName("com.android.settings","com.android.settings.ChooseLockGeneric");  
 				intent.setComponent(cm);  
 				intent.setAction("android.intent.action.VIEW"); 
 				startActivity(intent);
 			}
-			else{					
-				closeDefaultLock = "已关闭"; 
-/*				intent = new Intent();
-				ComponentName cm = new ComponentName("com.android.settings","com.android.settings.ChooseLockGeneric");  
-				intent.setComponent(cm);  
-				intent.setAction("android.intent.action.VIEW"); 
-				startActivity(intent);*/
-			}					     
+			else if((PhoneUtil.isHuawei())){				
+				closeLockToast = "解锁样式选择「不锁屏」"; 
+				intent = new Intent(Settings.ACTION_SECURITY_SETTINGS);	
+				startActivity(intent);
+			}
+			else{		
+				intent = new Intent(Settings.ACTION_SECURITY_SETTINGS);	
+				startActivity(intent);
+			}	
 			//startActivity(intent);
 						
-			Toast toast = Toast.makeText(getApplicationContext(),closeDefaultLock, Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(getApplicationContext(),closeLockToast, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             
@@ -136,11 +148,31 @@ public class InitialGuideActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub  			
-            Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
-            Intent intent =  new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,packageURI);  
-            startActivity(intent);
-            
-            Toast toast = Toast.makeText(getApplicationContext(),"开启「显示悬浮窗」", Toast.LENGTH_LONG);
+			String ig2Toast = "";
+			if(PhoneUtil.isMIUI()){
+				PackageManager pm = getPackageManager();
+	            PackageInfo info = null;
+	            try {
+	            	info = pm.getPackageInfo(getPackageName(), 0);
+	            } catch (NameNotFoundException e) {
+	            	e.printStackTrace();
+	            }
+	            Intent i = new Intent("miui.intent.action.APP_PERM_EDITOR");
+	            i.setClassName("com.android.settings", "com.miui.securitycenter.permission.AppPermissionsEditor");
+	            i.putExtra("extra_package_uid", info.applicationInfo.uid);			
+	            try {
+	            	startActivity(i);
+	            } catch (Exception e) {
+	            	e.printStackTrace();
+	            }
+	            ig2Toast = "开启「我信任该程序」\n开启「自动启动」";	            
+			}
+			else if(PhoneUtil.isHuawei()){
+				Intent intent =  new Intent(Settings.ACTION_SETTINGS);	
+				startActivity(intent);
+	            ig2Toast = "在「受保护的后台应用」中\n开启美言锁屏";	            			
+			}				           
+            Toast toast = Toast.makeText(getApplicationContext(),ig2Toast, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             
@@ -153,29 +185,17 @@ public class InitialGuideActivity extends Activity {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub						
-			PackageManager pm = getPackageManager();
-            PackageInfo info = null;
-            try {
-            	info = pm.getPackageInfo(getPackageName(), 0);
-            } catch (NameNotFoundException e) {
-            	e.printStackTrace();
-            }
-            Intent i = new Intent("miui.intent.action.APP_PERM_EDITOR");
-            i.setClassName("com.android.settings", "com.miui.securitycenter.permission.AppPermissionsEditor");
-            i.putExtra("extra_package_uid", info.applicationInfo.uid);			
-            try {
-            	startActivity(i);
-            } catch (Exception e) {
-            	e.printStackTrace();
-            }
+			// TODO Auto-generated method stub	
+            Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
+            Intent intent =  new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,packageURI);  
+            startActivity(intent);
             
-            Toast toast = Toast.makeText(getApplicationContext(),"开启「我信任该程序」\n开启「自动启动」", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getApplicationContext(),"开启「显示悬浮窗」", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             
 			ImageView igCheck3 = (ImageView)findViewById(R.id.igCheck3);
-			igCheck3.setBackgroundResource(R.drawable.ic_check);
+			igCheck3.setBackgroundResource(R.drawable.ic_check);			
 		}
 	};
 	// 返回按钮

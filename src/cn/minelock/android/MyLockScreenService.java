@@ -10,6 +10,8 @@ import cn.minelock.widget.PatternPassWordView;
 import cn.minelock.widget.PatternPassWordView.OnCompleteListener;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -18,6 +20,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -26,6 +29,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 public class MyLockScreenService extends Service {
@@ -40,14 +44,14 @@ public class MyLockScreenService extends Service {
 	private boolean mLockStatus = false;
 		
 	//定义浮动窗口布局
-    WindowManager.LayoutParams wmParams;
-    View mFloatLayout;
+	private WindowManager.LayoutParams wmParams;
+    private View mFloatLayout;
     //创建浮动窗口设置布局参数的对象
-	WindowManager mWindowManager;
+    private WindowManager mWindowManager;
 	
-	PatternPassWordView mGridView;
-	TextView errorView;
-	MyScrollLayout mLineView;
+    private PatternPassWordView mGridView;
+    private TextView errorView;
+    private MyScrollLayout mLineView;
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -60,6 +64,29 @@ public class MyLockScreenService extends Service {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
+		
+		startForegroundCompat();
+					
+		// 获取保存的prefs数据
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		editor = prefs.edit();
+		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
+				
+		// register Broadcast
+		Log.e("", "***********onCreate registerReceiver");
+        if(mIsLockScreenOn){
+        	IntentFilter intentFilter= new IntentFilter(ACT_SCREEN_OFF);
+        	registerReceiver(mScreenBCR, intentFilter);
+        }
+	}
+	
+	@Override
+	@Deprecated
+	public void onStart(Intent intent, int startId) {
+		// TODO Auto-generated method stub
+		super.onStart(intent, startId);
+		
+		startForegroundCompat();
 		
 		// 获取保存的prefs数据
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -85,7 +112,7 @@ public class MyLockScreenService extends Service {
 			mFloatLayout = null;
 		}
 		// 解除熄屏广播service
-		unregisterReceiver(mScreenBCR);
+		unregisterReceiver(mScreenBCR);		
 		// 还原锁屏状态并保存
 		editor.putBoolean(LOCK_STATUS, false);
 		editor.commit();
@@ -96,6 +123,9 @@ public class MyLockScreenService extends Service {
         }
         
         batteryObserver.unRegister();
+        
+        stopForeground(true);
+        //startForegroundCompat();
 	}
 	
 	private BroadcastReceiver mScreenBCR = new BroadcastReceiver() {
@@ -195,18 +225,18 @@ public class MyLockScreenService extends Service {
 				}
 				saveLockStatus();//保存锁屏状态
 			}
-		});		
+		});	
 		
 	}
 	
 	// 解锁
 	public void unLock(){
 		// 移除悬浮窗
-		if(mFloatLayout != null)
-		{
+/*		if(mFloatLayout != null)
+		{*/
 			mWindowManager.removeView(mFloatLayout);
 			mFloatLayout = null;
-		}
+/*		}*/
 	}	
 	// 保存锁屏状态
 	public void saveLockStatus(){
@@ -246,5 +276,25 @@ public class MyLockScreenService extends Service {
         this.startActivity(intent); 
         
     }	
+    
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+    	// TODO Auto-generated method stub    	
+    	//startForeground(1120, new Notification());
+    	startForegroundCompat();
+    	
+    	return super.onStartCommand(intent, flags, startId);   	  	
+    }
+    
+    private void startForegroundCompat() {
+        try {
+            if (Build.VERSION.SDK_INT < 18) {
+                //Log.v(TAG, "startForgroundCompat");
+                startForeground(1235, new Notification());// 1120
+            }
+        } catch (Exception e) {
+            //if (DEBUG) Log.e(TAG, "", e);
+        }
+    }
 
 }

@@ -44,6 +44,15 @@
             <intent-filter>
                 <action android:name="android.intent.action.SCREEN_OFF" />
             </intent-filter>
+            <intent-filter>
+        		<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+    		</intent-filter>
+    		<intent-filter>
+        		<action android:name="android.intent.action.TIME_SET" />
+    		</intent-filter>
+    		<intent-filter>
+        		<action android:name="android.intent.action.DATE_CHANGED" />
+    		</intent-filter>            
         </service>
 
         <activity
@@ -66,11 +75,32 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" 
             android:launchMode="singleTask">
         </activity>
-
+        
+		<receiver android:name="cn.minelock.android.UserPresentReceiver" >  
+            <intent-filter>  
+                <action android:name="android.intent.action.USER_PRESENT" />  
+            </intent-filter>  
+        </receiver> 
+                
         <receiver android:name="cn.minelock.android.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
+    	<intent-filter>
+        	<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+    	</intent-filter>
+    	<intent-filter>
+        	<action android:name="android.intent.action.TIME_SET" />
+    	</intent-filter>
+    	<intent-filter>
+        	<action android:name="android.intent.action.DATE_CHANGED" />
+    	</intent-filter>
+    	<intent-filter>
+        	<action android:name="android.intent.action.TIMEZONE_CHANGED" />
+    	</intent-filter> 
+    	<intent-filter>
+        	<action android:name="android.intent.action.BATTERY_CHANGED" />
+    	</intent-filter>     	         
         </receiver>
 
         <activity

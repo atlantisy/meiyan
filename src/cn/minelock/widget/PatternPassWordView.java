@@ -129,7 +129,7 @@ public class PatternPassWordView extends View {
 			lineAlpha = mPaint.getAlpha();
 		}
 		
-		// 画所有点
+		// 画所有圆和字
 		for (int i = 0; i < mPoints.length; i++) {
 			for (int j = 0; j < mPoints[i].length; j++) {
 				Point p = mPoints[i][j];
@@ -137,16 +137,16 @@ public class PatternPassWordView extends View {
 				float textY=(textPaint.descent()-textPaint.ascent())/2;
 				if (p.state == Point.STATE_CHECK) {
 					canvas.drawBitmap(pattern_round_click, p.x - r, p.y - r,
-							mPaint);
-					//textPaint.setColor(Color.argb(128, 128, 128, 128));//透明色
+							mPaint);//画圆
+					//textPaint.setColor(Color.argb(255, 37, 219, 194));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				} else if (p.state == Point.STATE_CHECK_ERROR) {
 					canvas.drawBitmap(pattern_round_click_error, p.x - r,
 							p.y - r, mPaint);
 				} else {
 					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r,
-							mPaint);
-					//textPaint.setColor(Color.WHITE);;//白色
+							mPaint);//画圆
+					//textPaint.setColor(Color.argb(255, 255, 255, 255));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				}
 			}
@@ -559,7 +559,7 @@ public class PatternPassWordView extends View {
 				// mCompleteListener.onPasswordTooMin(sPoints.size());
 				error();
 				clearPassword();
-				Toast.makeText(this.getContext(), "密码太短,至少4位!",
+				Toast.makeText(this.getContext(), "密码太短,至少 4 位",
 						Toast.LENGTH_SHORT).show();
 			} else if (mCompleteListener != null) {
 				if (this.sPoints.size() >= passwordMinLength) {

@@ -18,8 +18,8 @@
         <item>自定义壁纸</item>
     </string-array>
     
-    <string name="setpassword_hint">验证当前密码，再设置新密码</string>
-    <string name="close_default_lock">* 若未能关闭，请进入系统设置-安全-屏幕锁定-选择「无」进行关闭。</string>
+    <string name="setpassword_hint">验证原密码，再设置新密码</string>
+    <string name="close_default_lock">1、若未能关闭系统锁屏，打开系统设置-\n安全-解锁方式，选择「不锁屏」。\n\n2、若锁屏不成功，打开系统设置，将美言锁屏设置为受保护的后台应用和开机自动启动。</string>
     <string-array name="tips">
         <item>完成初始设置才可正常使用。</item>
         <item>美言中加空格，手势密码有时更好看。</item>

@@ -19,12 +19,14 @@ import cn.minelock.widget.PatternPassWordView;
 import cn.minelock.widget.PatternPassWordView.OnCompleteListener;
 
 import cn.minelock.android.R;
+import cn.minelock.android.R.color;
 
 public class SetPasswordActivity extends Activity {
 	private PatternPassWordView ppwv;
 	private String password;
 	private boolean needverify = true;
 	private Toast toast;
+	private TextView setPasswordHint;
 	
 	public static SharedPreferences settings;
 	public static final String PREFS = "lock_pref";//pref文件名
@@ -50,6 +52,7 @@ public class SetPasswordActivity extends Activity {
 			setPasswordLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		}
 		//
+		setPasswordHint = (TextView)findViewById(R.id.SetPasswordHint);
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
 		ppwv.setOnCompleteListener(new OnCompleteListener() {
 			@Override
@@ -57,11 +60,15 @@ public class SetPasswordActivity extends Activity {
 				password = mPassword;
 				if (needverify) {
 					if (ppwv.verifyPassword(mPassword)) {
-						showToast("通过，输入新密码并保存");
+						setPasswordHint.setText("请设置新密码并保存");
+						setPasswordHint.setTextColor(getResources().getColor(R.color.white));
+						//showToast("验证通过");
 						ppwv.clearPassword();
 						needverify = false;
 					} else {
-						showToast("密码错误，请重新输入！");
+						setPasswordHint.setText("密码错误，请重新输入");
+						setPasswordHint.setTextColor(getResources().getColor(R.color.orange));
+						//showToast("密码错误，请重新输入");
 						ppwv.clearPassword();
 						password = "";
 					}
@@ -77,7 +84,7 @@ public class SetPasswordActivity extends Activity {
 					if (StringUtil.isNotEmpty(password)) {
 						ppwv.resetPassWord(password);
 						ppwv.clearPassword();
-						showToast("设置成功，请牢记密码");
+						showToast("恭喜，设置成功");
 						SharedPreferences.Editor editor = settings.edit();
 						editor.putBoolean(PWSETUP, true);
 						editor.commit();
@@ -89,7 +96,7 @@ public class SetPasswordActivity extends Activity {
 						finish();
 					} else {
 						ppwv.clearPassword();
-						showToast("密码为空，请重新输入！");
+						showToast("密码为空，请重新输入");
 					}
 					break;
 				case R.id.tvReset:
@@ -105,11 +112,10 @@ public class SetPasswordActivity extends Activity {
 		// 如果密码为空,直接输入密码
 		if (ppwv.isPasswordEmpty()) {
 			this.needverify = false;
-			showToast("没有密码，请设置并保存");
+			//showToast("没有密码，请设置");
 		}
-		else{
-			TextView setPasswordHint = (TextView)findViewById(R.id.SetPasswordHint);
-			setPasswordHint.setText(R.string.setpassword_hint);			
+		else{			
+			setPasswordHint.setText("请验证原密码以修改");			
 		}
 	}
 	

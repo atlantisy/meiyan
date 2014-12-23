@@ -364,8 +364,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int gridview=0x7f050009;
         public static final int home_bottombar=0x7f050034;
         public static final int home_favorite=0x7f050025;
-        public static final int home_lock=0x7f050037;
-        public static final int home_recent=0x7f050035;
+        public static final int home_lock=0x7f050035;
+        public static final int home_recent=0x7f050037;
         public static final int home_repeat_shuffle=0x7f050020;
         public static final int home_setting1=0x7f050021;
         public static final int home_setup_grid=0x7f050022;

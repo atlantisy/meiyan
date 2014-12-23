@@ -126,6 +126,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
 		String verse = getResources().getString(R.string.initial_verse);		
 		verse_edit.setText(settings.getString(VERSE, verse).trim());//设置默认美言
+		verse_hint = verse_edit.getText().toString();
 		verse_edit.setHighlightColor(getResources().getColor(R.color.alpha_black1));
 		verse_edit.selectAll();
 		//verse_edit.addTextChangedListener(textChangedWatcher);//有字时显示清空按钮
@@ -168,7 +169,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		verse_edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {  
 		    @Override  
 		    public void onFocusChange(View v, boolean hasFocus) {  
-		        if(hasFocus & TextUtils.isEmpty(verse_edit.getText().toString())==false) {
+		        if(hasFocus && TextUtils.isEmpty(verse_edit.getText().toString())==false) {
 		        	// 此处为得到焦点时的处理内容
 		        	//clear_btn.setVisibility(View.VISIBLE);
 		        } else {
@@ -184,7 +185,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 自定义种类选择
 		customOptionSetup();
 	}
-	
+
 	// 文本改变监控
 	private TextWatcher textChangedWatcher = new TextWatcher() {
 
@@ -257,11 +258,13 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 					verse += " ";			
 			// 将新增美言存入SQL数据库
 			if (len>0){
-				long verseId = dbRecent.insert(verse.substring(0, 1),verse.substring(1));
-				// 将美言总数存入SharedPreferences
-				verseQty = verseQty+1;
-				editor.putInt(VERSEQTY, verseQty);
-				//editor.putLong(VERSEID, verseId);
+/*				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
+*/					long verseId = dbRecent.insert(verse.substring(0, 1),verse.substring(1));
+					// 将美言总数存入SharedPreferences
+					verseQty = verseQty+1;
+					editor.putInt(VERSEQTY, verseQty);
+					//editor.putLong(VERSEID, verseId);
+/*				}*/
 			}
 			else{
 				int showVerseFlag = 1;
@@ -490,8 +493,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	// 隐藏软键盘
 	private void hideSoftKeyboard(){
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE); 
-		boolean isOpen=imm.isActive();//isOpen若返回true，则表示输入法打开
-		if(isOpen)
+		if(imm.isActive())// isOpen若返回true，则表示输入法打开
 			imm.hideSoftInputFromWindow(verse_edit.getWindowToken(), 0); //强制隐藏键盘		
 	}
 

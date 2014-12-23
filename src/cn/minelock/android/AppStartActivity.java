@@ -66,7 +66,7 @@ public class AppStartActivity extends Activity {
 	private void redirectToHome() {
 		Intent intent = new Intent(this, HomeActivity.class);
 		startActivity(intent);
-		finish();
+		//finish();
 	}
 	
 	/**
