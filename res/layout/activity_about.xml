@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="4dp"
-        android:text="V1.0"
+        android:text="V1.1"
         android:textColor="@color/gray_black"
         android:textSize="14sp" />
     <ImageView
@@ -100,7 +100,8 @@
         android:background="@color/white" />  
 	<TextView
         android:layout_width="fill_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:gravity="center"
         android:text="@string/copyright"
         android:textColor="@color/gray_gray"

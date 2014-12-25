@@ -113,7 +113,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		wallpaperManager = WallpaperManager.getInstance(this);
 		// 获取保存的壁纸
 		bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
-		wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper02);
+		wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
 		wallpaperPath = settings.getString(WALLPAPERPATH, "");	
 		if(bIdOrPath==true)//设置壁纸			
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
@@ -405,7 +405,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
 		// 保存到SD卡
 		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
-		String photoName = "wallpaper";
+		String photoName = "wallpaper" + StringUtil.makeFileName();
 		ImageTools.savePhotoToSDCard(bm, dir, photoName);
 		wallpaperPath = dir + "/" + photoName + ".png";
         bIdOrPath = false;//壁纸来源为应用外路径
@@ -460,7 +460,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(photo));
 				// 保存到SD卡
 				String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
-				String photoName = "wallpaper";
+				String photoName = "photo" + StringUtil.makeFileName();
 				ImageTools.savePhotoToSDCard(photo, dir, photoName);
 				wallpaperPath = dir + "/" + photoName + ".png";
 				break;

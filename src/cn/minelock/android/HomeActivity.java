@@ -239,7 +239,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	private void SetWallpaper(){
 		LinearLayout homeLayout = (LinearLayout)findViewById(R.id.HomeLayout);		
 		boolean bIdOrPath = home_setting.getBoolean(BOOLIDPATH, true);
-		int wallpaperId = home_setting.getInt(WALLPAPERID, R.drawable.wallpaper02);
+		int wallpaperId = home_setting.getInt(WALLPAPERID, R.drawable.wallpaper01);
 		String wallpaperPath = home_setting.getString(WALLPAPERPATH, "");	
 		if(bIdOrPath)//…Ë÷√±⁄÷Ω			
 			homeLayout.setBackgroundResource(wallpaperId);

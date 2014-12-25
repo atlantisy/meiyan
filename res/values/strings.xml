@@ -2,31 +2,22 @@
 <resources>
 
     <string name="app_name">美言锁屏</string>
-    <string name="initial_verse">永远相信美好的事情即将发生</string>
-        
-    <string name="charging">正在充电</string>
-    <string name="charging_full">已经充满</string>
-    
-    <string-array name="verse_option_name">
-        <item>每日美言</item>
-        <item>每日壁纸</item>
-        <item>我的收藏</item>
+    <string name="initial_verse">美好人生 由我书写</string>
+
+    <string-array name="none_verse">
+        <item>此地无言三百两</item>
+        <item>竟无言以对</item>       
     </string-array>
     
-    <string-array name="customize">
-        <item>自定义美言</item>
-        <item>自定义壁纸</item>
-    </string-array>
-    
-    <string name="setpassword_hint">验证原密码，再设置新密码</string>
-    <string name="close_default_lock">1、若未能关闭系统锁屏，打开系统设置-\n安全-解锁方式，选择「不锁屏」。\n\n2、若锁屏不成功，打开系统设置，将美言锁屏设置为受保护的后台应用和开机自动启动。</string>
     <string-array name="tips">
         <item>完成初始设置才可正常使用。</item>
-        <item>美言中加空格，手势密码有时更好看。</item>
+        <item>善用空格，手势密码可能更好看。</item>
         <item>编辑锁屏时，可以不写美言。</item>
         <item>建议美言不超过32个字。</item>
         <item>若锁屏不成功，可尝试重启应用。</item>
+		<item>应用内部分壁纸来自Smartisan.</item>        
     </string-array>
+                   
     <string-array name="Spring">
         <item>面朝大海 春暖花开</item>
         <item>春眠不觉晓</item>
@@ -82,7 +73,7 @@
     <string-array name="Wind"></string-array>
 
     <string name="slogan">锁定美好的一句話</string>
-    <string name="copyright">Lockscreen wallpaper by Smartisan OS.\n©2014 minelock.com. All rights reserved.</string>
+    <string name="copyright">©2014 minelock.com. All rights reserved.</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setting">SettingActivity</string>
@@ -107,5 +98,21 @@
     <string name="pull_to_refresh_pull_label1">上拉编辑美言…</string>
     <string name="pull_to_refresh_release_label1">放开以编辑…</string>
     <string name="pull_to_refresh_refreshing_label1">正在载入…</string>
-
+    
+    <string name="charging">充电中</string>
+    <string name="charging_full">已充满</string>
+    
+<!--     <string name="setpassword_hint">验证原密码，再设置新密码</string> -->
+    <string name="close_default_lock">1、若未能关闭系统锁屏，打开系统设置-\n安全-解锁方式，选择「不锁屏」。\n\n2、若锁屏不成功，打开系统设置，将美言锁屏设置为受保护的后台应用和开机自动启动。</string>
+    
+    <string-array name="verse_option_name">
+        <item>每日美言</item>
+        <item>每日壁纸</item>
+        <item>我的收藏</item>
+    </string-array>
+    
+    <string-array name="customize">
+        <item>自定义美言</item>
+        <item>自定义壁纸</item>
+    </string-array>
 </resources>

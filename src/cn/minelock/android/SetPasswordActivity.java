@@ -43,7 +43,7 @@ public class SetPasswordActivity extends Activity {
 		//获取pref值
 		settings = getSharedPreferences(PREFS, 0);
 		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
-		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper02);
+		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
 		String wallpaperPath = settings.getString(WALLPAPERPATH, "");	
 		if(bIdOrPath==true)//设置壁纸			
 			setPasswordLayout.setBackgroundResource(wallpaperId);
@@ -67,7 +67,7 @@ public class SetPasswordActivity extends Activity {
 						needverify = false;
 					} else {
 						setPasswordHint.setText("密码错误，请重新输入");
-						setPasswordHint.setTextColor(getResources().getColor(R.color.orange));
+						setPasswordHint.setTextColor(getResources().getColor(R.color.red));
 						//showToast("密码错误，请重新输入");
 						ppwv.clearPassword();
 						password = "";

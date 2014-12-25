@@ -3,7 +3,7 @@
     android:id="@+id/LockLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wallpaper00"
+    android:background="@drawable/wallpaper01"
     android:gravity="center_horizontal" >
 
     <LinearLayout
@@ -31,7 +31,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white"
                     android:paddingBottom="0dp"
-                    android:textSize="60sp" />
+                    android:textSize="56sp" />
                 <TextView
                     android:id="@+id/am_pm"
                     android:layout_width="fill_parent"
@@ -52,8 +52,9 @@
                     	android:layout_width="wrap_content"
                     	android:layout_height="wrap_content"
                     	android:layout_gravity="center"                  	
-                    	android:text="年月日"
-                    	android:textSize="16sp" 
+                    	android:paddingLeft="4dp"
+                    	android:text="月日"
+                    	android:textSize="14sp" 
                     	android:textColor="@color/white"/> 
                     <TextView
                     	android:id="@+id/weekDisplay"                   	
@@ -62,7 +63,7 @@
                     	android:layout_gravity="center"
                     	android:paddingLeft="4dp"
                     	android:text="星期"
-                    	android:textSize="16sp" 
+                    	android:textSize="14sp" 
                     	android:textColor="@color/white"/>
                 </LinearLayout>                                            
             </cn.minelock.android.DigitalClock>           
@@ -79,8 +80,8 @@
                 android:id="@+id/battery_value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|top"
-                android:gravity="center"
+                android:layout_gravity="top"
+				android:gravity="center"				
                 android:text=" "
                 android:textColor="@color/white" 
                 android:textSize="14sp" />
@@ -90,9 +91,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
+        		android:shadowColor="#33ffffff"
+        		android:shadowDx="1"
+        		android:shadowDy="0"
+        		android:shadowRadius="1"                
                 android:layout_marginBottom="0dp"
                 android:text="密码错误，请重新输入"
-                android:textColor="@color/orange" 
+                android:textColor="@color/red" 
                 android:textSize="14sp" 
                 android:visibility="invisible"/>
             
@@ -105,7 +110,7 @@
 	     
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="96dp"            
+            android:layout_height="72dp"            
             android:orientation="vertical">
 
 <!--             <android.support.v4.view.ViewPager
@@ -121,7 +126,8 @@
 	  				android:id="@+id/mMyScrollLayout"    
 	  				android:layout_width="fill_parent"    
 	  				android:layout_height="wrap_content"
-	  				android:layout_marginLeft="16dp"> 
+	  				android:layout_marginLeft="8dp"
+	  				android:layout_marginRight="8dp"> 
 	  					<FrameLayout    
 	    					android:background="@color/alpha"
 	  						android:layout_width="fill_parent"    

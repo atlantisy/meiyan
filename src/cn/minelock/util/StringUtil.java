@@ -1,5 +1,8 @@
 package cn.minelock.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import cn.minelock.android.R;
 import android.content.Context;
 import android.widget.Toast;
@@ -24,6 +27,24 @@ public class StringUtil {
             mToast.show();
     }
 	/**
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public static String makeFileName() {		
+		Calendar mCalendar = Calendar.getInstance();
+		// 年月日
+		String year = String.valueOf(mCalendar.get(Calendar.YEAR));
+		String month = String.valueOf(mCalendar.get(Calendar.MONTH)+1);
+		String day = String.valueOf(mCalendar.get(Calendar.DAY_OF_MONTH));				
+		// 时分秒
+		String hour = String.valueOf(mCalendar.get(Calendar.HOUR_OF_DAY));
+		String minute = String.valueOf(mCalendar.get(Calendar.MINUTE));
+		String second = String.valueOf(mCalendar.get(Calendar.SECOND));
+
+		return year + month + day + hour + minute + second;
+	} 
+    /**
 	 * 字符长度不足9位，补足
 	 * 
 	 * @param s

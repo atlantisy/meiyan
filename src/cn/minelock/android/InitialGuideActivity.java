@@ -74,7 +74,7 @@ public class InitialGuideActivity extends Activity {
 		}
 		else if(PhoneUtil.isHuawei()){
 			igCloseDefaultLock.setVisibility(View.GONE);
-			ig2_btn.setText("设置受保护的后台应用\n（确保锁屏运行）");
+			ig2_btn.setText("设置「受保护的后台应用」\n（确保锁屏运行）");
 			ig2.setVisibility(View.VISIBLE);
 			igDown2.setVisibility(View.INVISIBLE);
 		}

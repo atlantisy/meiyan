@@ -137,12 +137,12 @@ public class DigitalClock extends RelativeLayout {
 		super.onFinishInflate();
 		
 		mDateDisplay = (TextView) findViewById(R.id.dateDisplay);
-		mDateDisplay.setTypeface(Typeface.createFromFile("/system/fonts/DroidSans.ttf"));
+		//mDateDisplay.setTypeface(Typeface.createFromFile("/system/fonts/DroidSans.ttf"));
 		mWeekDisplay = (TextView) findViewById(R.id.weekDisplay);
-		mWeekDisplay.setTypeface(Typeface.createFromFile("/system/fonts/DroidSans.ttf"));
+		//mWeekDisplay.setTypeface(Typeface.createFromFile("/system/fonts/DroidSans.ttf"));
 		
 		mTimeDisplay = (TextView) findViewById(R.id.timeDisplay);
-		mTimeDisplay.setTypeface(Typeface.createFromFile("/system/fonts/DroidSans.ttf"));//DroidSansMono
+		//mTimeDisplay.setTypeface(Typeface.createFromFile("/system/fonts/DroidSans.ttf"));//DroidSansMono
 		//mTimeDisplay.setTypeface(Typeface.createFromFile("/system/fonts/SegoeWP.ttf"));
 		//mAmPm = new AmPm(this, Typeface.createFromFile("/system/fonts/DroidSansFallback.ttf"));
 		mAmPm = new AmPm(this, null);

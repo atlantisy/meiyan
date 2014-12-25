@@ -29,18 +29,19 @@ public final class R {
         public static final int slide_out_to_top=0x7f040011;
     }
     public static final class array {
-        public static final int Autumn=0x7f090005;
-        public static final int Overcast=0x7f090008;
-        public static final int Rain=0x7f090009;
-        public static final int Shine=0x7f090007;
-        public static final int Snow=0x7f09000a;
-        public static final int Spring=0x7f090003;
-        public static final int Summer=0x7f090004;
-        public static final int Wind=0x7f09000b;
-        public static final int Winter=0x7f090006;
-        public static final int customize=0x7f090001;
-        public static final int tips=0x7f090002;
-        public static final int verse_option_name=0x7f090000;
+        public static final int Autumn=0x7f090004;
+        public static final int Overcast=0x7f090007;
+        public static final int Rain=0x7f090008;
+        public static final int Shine=0x7f090006;
+        public static final int Snow=0x7f090009;
+        public static final int Spring=0x7f090002;
+        public static final int Summer=0x7f090003;
+        public static final int Wind=0x7f09000a;
+        public static final int Winter=0x7f090005;
+        public static final int customize=0x7f09000c;
+        public static final int none_verse=0x7f090000;
+        public static final int tips=0x7f090001;
+        public static final int verse_option_name=0x7f09000b;
     }
     public static final class attr {
         /**  BELOW HERE ARE DEPRECEATED. DO NOT USE. 
@@ -189,36 +190,37 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int app_color=0x7f08000e;
         public static final int app_color_pressed=0x7f08000f;
         public static final int black=0x7f080009;
-        public static final int blue=0x7f080022;
-        public static final int blue1=0x7f080023;
-        public static final int blue2=0x7f080024;
-        public static final int blue3=0x7f080025;
-        public static final int brown=0x7f080027;
+        public static final int blue=0x7f080023;
+        public static final int blue1=0x7f080024;
+        public static final int blue2=0x7f080025;
+        public static final int blue3=0x7f080026;
+        public static final int brown=0x7f080028;
         public static final int gray=0x7f08000b;
         public static final int gray_black=0x7f08000a;
         public static final int gray_gray=0x7f08000c;
         public static final int gray_white=0x7f08000d;
-        public static final int green=0x7f08001d;
-        public static final int green1=0x7f08001e;
-        public static final int green2=0x7f08001f;
-        public static final int green3=0x7f080020;
-        public static final int green4=0x7f080021;
+        public static final int green=0x7f08001e;
+        public static final int green1=0x7f08001f;
+        public static final int green2=0x7f080020;
+        public static final int green3=0x7f080021;
+        public static final int green4=0x7f080022;
         public static final int light_yellow=0x7f080008;
-        public static final int orange=0x7f080016;
-        public static final int orange1=0x7f080017;
-        public static final int orange2=0x7f080018;
-        public static final int orange3=0x7f080019;
+        public static final int orange=0x7f080017;
+        public static final int orange1=0x7f080018;
+        public static final int orange2=0x7f080019;
+        public static final int orange3=0x7f08001a;
         public static final int pink=0x7f080014;
         public static final int pink1=0x7f080015;
+        public static final int pink2=0x7f080016;
         public static final int red=0x7f080010;
         public static final int red1=0x7f080011;
         public static final int red2=0x7f080012;
         public static final int red3=0x7f080013;
-        public static final int violet=0x7f080026;
+        public static final int violet=0x7f080027;
         public static final int white=0x7f080007;
-        public static final int yellow=0x7f08001a;
-        public static final int yellow1=0x7f08001b;
-        public static final int yellow2=0x7f08001c;
+        public static final int yellow=0x7f08001b;
+        public static final int yellow1=0x7f08001c;
+        public static final int yellow2=0x7f08001d;
     }
     public static final class dimen {
         public static final int header_footer_left_right_padding=0x7f060003;
@@ -475,27 +477,29 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class string {
         public static final int app_name=0x7f070006;
-        public static final int app_verse=0x7f070011;
-        public static final int charging=0x7f070008;
-        public static final int charging_full=0x7f070009;
-        public static final int close_default_lock=0x7f07000b;
-        public static final int copyright=0x7f07000d;
-        public static final int hello_world=0x7f07000f;
+        public static final int app_verse=0x7f07000d;
+        public static final int charging=0x7f07001c;
+        public static final int charging_full=0x7f07001d;
+        /**      <string name="setpassword_hint">验证原密码，再设置新密码</string> 
+         */
+        public static final int close_default_lock=0x7f07001e;
+        public static final int copyright=0x7f070009;
+        public static final int hello_world=0x7f07000b;
         public static final int initial_verse=0x7f070007;
-        public static final int lockpattern_error=0x7f070015;
-        public static final int lockpattern_recording_incorrect_too_short=0x7f070014;
+        public static final int lockpattern_error=0x7f070011;
+        public static final int lockpattern_recording_incorrect_too_short=0x7f070010;
         /**  Accessibility description sent when user adds a cell to the pattern. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_cell_added=0x7f070018;
+        public static final int lockscreen_access_pattern_cell_added=0x7f070014;
         /**  Accessibility description sent when the pattern times out and is cleared. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_cleared=0x7f070017;
+        public static final int lockscreen_access_pattern_cleared=0x7f070013;
         /**  Accessibility description sent when user completes drawing a pattern. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_detected=0x7f070019;
+        public static final int lockscreen_access_pattern_detected=0x7f070015;
         /**  Accessibility description sent when user starts drawing a lock pattern. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_start=0x7f070016;
+        public static final int lockscreen_access_pattern_start=0x7f070012;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -503,20 +507,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_from_bottom_refreshing_label=0x7f070005;
         public static final int pull_to_refresh_from_bottom_release_label=0x7f070004;
         public static final int pull_to_refresh_pull_label=0x7f070000;
-        public static final int pull_to_refresh_pull_label1=0x7f07001d;
+        public static final int pull_to_refresh_pull_label1=0x7f070019;
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
-        public static final int pull_to_refresh_refreshing_label1=0x7f07001f;
+        public static final int pull_to_refresh_refreshing_label1=0x7f07001b;
         public static final int pull_to_refresh_release_label=0x7f070001;
-        public static final int pull_to_refresh_release_label1=0x7f07001e;
-        public static final int setpassword_hint=0x7f07000a;
-        public static final int slogan=0x7f07000c;
-        public static final int title_activity_feed_back=0x7f07001b;
-        public static final int title_activity_home=0x7f07000e;
-        public static final int title_activity_initial_guide=0x7f07001c;
-        public static final int title_activity_recent=0x7f07001a;
-        public static final int title_activity_setting=0x7f070010;
-        public static final int title_activity_text_edit=0x7f070012;
-        public static final int title_activity_wallpaper_edit=0x7f070013;
+        public static final int pull_to_refresh_release_label1=0x7f07001a;
+        public static final int slogan=0x7f070008;
+        public static final int title_activity_feed_back=0x7f070017;
+        public static final int title_activity_home=0x7f07000a;
+        public static final int title_activity_initial_guide=0x7f070018;
+        public static final int title_activity_recent=0x7f070016;
+        public static final int title_activity_setting=0x7f07000c;
+        public static final int title_activity_text_edit=0x7f07000e;
+        public static final int title_activity_wallpaper_edit=0x7f07000f;
     }
     public static final class style {
         public static final int AppTheme=0x7f0a0000;

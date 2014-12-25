@@ -61,13 +61,15 @@ public class RecentActivity extends Activity {
 		setContentView(R.layout.activity_recent);				
         recentList = (ListView) findViewById(R.id.list_verse);
         //设置list为空时的提示
-        TextView emptyView = new TextView(this);
-        emptyView.setText("此地无言三百两");
-        emptyView.setTextSize(20.0f);
-        emptyView.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);     
+		String[] none_verse = getResources().getStringArray(R.array.none_verse);
+		int random = (int)(Math.random()*none_verse.length);		        
+        TextView noneView = new TextView(this);
+        noneView.setText(none_verse[random]);        
+        noneView.setTextSize(20.0f);
+        noneView.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);     
         LayoutParams params = new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
-        addContentView(emptyView, params);
-        recentList.setEmptyView(emptyView);
+        addContentView(noneView, params);
+        recentList.setEmptyView(noneView);
         // 创建数据库
         dbRecent = new dbHelper(this);
         recentCursor = dbRecent.select();
