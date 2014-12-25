@@ -63,9 +63,11 @@ public class InitialGuideActivity extends Activity {
 		LinearLayout ig3 = (LinearLayout) findViewById(R.id.ig3);
 		ImageView igDown2 = (ImageView)findViewById(R.id.igDown2);		
 		ImageView igDown3 = (ImageView)findViewById(R.id.igDown3);
-		TextView igCloseDefaultLock = (TextView)findViewById(R.id.igCloseDefaultLock);
+		TextView igHint = (TextView)findViewById(R.id.igHint);
+		String hint1=getResources().getText(R.string.ig_hint1).toString();
+		String hint2=getResources().getText(R.string.ig_hint2).toString();
 		if(PhoneUtil.isMIUI()){
-			igCloseDefaultLock.setVisibility(View.GONE);
+			igHint.setText(hint1);
 			ig2_btn.setText("开启「我信任该程序」和「自动启动」\n（确保锁屏运行）");
 			ig2.setVisibility(View.VISIBLE);
 			ig3.setVisibility(View.VISIBLE);
@@ -73,10 +75,13 @@ public class InitialGuideActivity extends Activity {
 			igDown3.setVisibility(View.INVISIBLE);
 		}
 		else if(PhoneUtil.isHuawei()){
-			igCloseDefaultLock.setVisibility(View.GONE);
+			igHint.setText(hint1);
 			ig2_btn.setText("设置「受保护的后台应用」\n（确保锁屏运行）");
 			ig2.setVisibility(View.VISIBLE);
 			igDown2.setVisibility(View.INVISIBLE);
+		}
+		else{
+			igHint.setText(hint1+hint2);
 		}
 		// 返回
 		ImageButton return_btn = (ImageButton) findViewById(R.id.initialguide_return);

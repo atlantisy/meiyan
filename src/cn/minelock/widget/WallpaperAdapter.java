@@ -55,7 +55,7 @@ public class WallpaperAdapter extends BaseAdapter {
 		R.color.app_color,R.color.green4,R.color.blue2,R.color.pink2,R.color.violet,
 		
 		R.drawable.wallpaper02,R.drawable.wallpaper04,
-		R.drawable.wallpaper05,R.drawable.wallpaper03,R.drawable.wallpaper01,
+		R.drawable.wallpaper03,R.drawable.wallpaper05,R.drawable.wallpaper01,
 				
 	};
 	
@@ -64,7 +64,7 @@ public class WallpaperAdapter extends BaseAdapter {
 		R.color.app_color,R.color.green4,R.color.blue2,R.color.pink2,R.color.violet,
 		
 		R.drawable._wallpaper02,R.drawable._wallpaper04,
-		R.drawable._wallpaper05,R.drawable._wallpaper03,R.drawable._wallpaper01,
+		R.drawable._wallpaper03,R.drawable._wallpaper05,R.drawable._wallpaper01,
 				
 	};
 

@@ -378,18 +378,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int home_topbar=0x7f05001a;
         public static final int home_verse=0x7f050023;
         public static final int ig1=0x7f05003a;
-        public static final int ig2=0x7f05003f;
-        public static final int ig3=0x7f050043;
+        public static final int ig2=0x7f05003e;
+        public static final int ig3=0x7f050042;
         public static final int igBtn1=0x7f05003b;
-        public static final int igBtn2=0x7f050040;
-        public static final int igBtn3=0x7f050044;
+        public static final int igBtn2=0x7f05003f;
+        public static final int igBtn3=0x7f050043;
         public static final int igCheck1=0x7f05003c;
-        public static final int igCheck2=0x7f050041;
-        public static final int igCheck3=0x7f050045;
-        public static final int igCloseDefaultLock=0x7f05003d;
+        public static final int igCheck2=0x7f050040;
+        public static final int igCheck3=0x7f050044;
         public static final int igDivide=0x7f050039;
-        public static final int igDown2=0x7f05003e;
-        public static final int igDown3=0x7f050042;
+        public static final int igDown2=0x7f05003d;
+        public static final int igDown3=0x7f050041;
+        public static final int igHint=0x7f050045;
         public static final int initialguide_ok=0x7f050046;
         public static final int initialguide_return=0x7f050038;
         public static final int iv_arrow_left=0x7f050066;
@@ -425,9 +425,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int setting=0x7f05005b;
         public static final int setting_about=0x7f05005f;
         public static final int setting_exit=0x7f050060;
-        public static final int setting_initialguide=0x7f05005d;
+        public static final int setting_initialguide=0x7f05005e;
         public static final int setting_return=0x7f05005a;
-        public static final int setting_setpassword=0x7f05005e;
+        public static final int setting_setpassword=0x7f05005d;
         public static final int setting_tips=0x7f050061;
         public static final int textView=0x7f050072;
         public static final int time=0x7f050048;
@@ -477,29 +477,28 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class string {
         public static final int app_name=0x7f070006;
-        public static final int app_verse=0x7f07000d;
-        public static final int charging=0x7f07001c;
-        public static final int charging_full=0x7f07001d;
-        /**      <string name="setpassword_hint">验证原密码，再设置新密码</string> 
-         */
-        public static final int close_default_lock=0x7f07001e;
-        public static final int copyright=0x7f070009;
-        public static final int hello_world=0x7f07000b;
+        public static final int app_verse=0x7f07000f;
+        public static final int charging=0x7f07001e;
+        public static final int charging_full=0x7f07001f;
+        public static final int copyright=0x7f07000b;
+        public static final int hello_world=0x7f07000d;
+        public static final int ig_hint1=0x7f070008;
+        public static final int ig_hint2=0x7f070009;
         public static final int initial_verse=0x7f070007;
-        public static final int lockpattern_error=0x7f070011;
-        public static final int lockpattern_recording_incorrect_too_short=0x7f070010;
+        public static final int lockpattern_error=0x7f070013;
+        public static final int lockpattern_recording_incorrect_too_short=0x7f070012;
         /**  Accessibility description sent when user adds a cell to the pattern. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_cell_added=0x7f070014;
+        public static final int lockscreen_access_pattern_cell_added=0x7f070016;
         /**  Accessibility description sent when the pattern times out and is cleared. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_cleared=0x7f070013;
+        public static final int lockscreen_access_pattern_cleared=0x7f070015;
         /**  Accessibility description sent when user completes drawing a pattern. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_detected=0x7f070015;
+        public static final int lockscreen_access_pattern_detected=0x7f070017;
         /**  Accessibility description sent when user starts drawing a lock pattern. [CHAR LIMIT=NONE] 
          */
-        public static final int lockscreen_access_pattern_start=0x7f070012;
+        public static final int lockscreen_access_pattern_start=0x7f070014;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -507,19 +506,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_from_bottom_refreshing_label=0x7f070005;
         public static final int pull_to_refresh_from_bottom_release_label=0x7f070004;
         public static final int pull_to_refresh_pull_label=0x7f070000;
-        public static final int pull_to_refresh_pull_label1=0x7f070019;
+        public static final int pull_to_refresh_pull_label1=0x7f07001b;
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
-        public static final int pull_to_refresh_refreshing_label1=0x7f07001b;
+        public static final int pull_to_refresh_refreshing_label1=0x7f07001d;
         public static final int pull_to_refresh_release_label=0x7f070001;
-        public static final int pull_to_refresh_release_label1=0x7f07001a;
-        public static final int slogan=0x7f070008;
-        public static final int title_activity_feed_back=0x7f070017;
-        public static final int title_activity_home=0x7f07000a;
-        public static final int title_activity_initial_guide=0x7f070018;
-        public static final int title_activity_recent=0x7f070016;
-        public static final int title_activity_setting=0x7f07000c;
-        public static final int title_activity_text_edit=0x7f07000e;
-        public static final int title_activity_wallpaper_edit=0x7f07000f;
+        public static final int pull_to_refresh_release_label1=0x7f07001c;
+        public static final int slogan=0x7f07000a;
+        public static final int title_activity_feed_back=0x7f070019;
+        public static final int title_activity_home=0x7f07000c;
+        public static final int title_activity_initial_guide=0x7f07001a;
+        public static final int title_activity_recent=0x7f070018;
+        public static final int title_activity_setting=0x7f07000e;
+        public static final int title_activity_text_edit=0x7f070010;
+        public static final int title_activity_wallpaper_edit=0x7f070011;
     }
     public static final class style {
         public static final int AppTheme=0x7f0a0000;

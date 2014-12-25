@@ -72,6 +72,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 
 	private boolean mLockStatus = false;	
 	private boolean mIsLockScreenOn = true;
+	private MyServiceConnection myServiceConnection;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -103,7 +104,9 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		String[] tips = getResources().getStringArray(R.array.tips);
 		int random = (int)(Math.random()*tips.length);
 		TextView tipView = (TextView)findViewById(R.id.setting_tips);
-		tipView.setText("×¢: "+tips[random]);		
+		tipView.setText("×¢: "+tips[random]);
+		
+		//myServiceConnection = new MyServiceConnection();
 	}
 
 	@Override
@@ -200,14 +203,14 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		
 		//Æô¶¯ËøÆÁ
 /*		if (mIsLockScreenOn){
-			// keep on disabling the system Keyguard
 			//Æô¶¯ËøÆÁ
 			startService(new Intent(this, MyLockScreenService.class));
+			
 			//EnableSystemKeyguard(false);
 		}
 		else {
 			stopService(new Intent(this, MyLockScreenService.class));
-			// recover original Keyguard
+
 			//EnableSystemKeyguard(true);
 		}*/
 	}
@@ -216,16 +219,18 @@ public class SettingActivity extends Activity  implements OnClickListener{
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		//Æô¶¯ËøÆÁ
+		//Æô¶¯ËøÆÁ		
 		if (mIsLockScreenOn){
-			// keep on disabling the system Keyguard
-			//Æô¶¯ËøÆÁ
+			//Æô¶¯ËøÆÁ			
 			startService(new Intent(this, MyLockScreenService.class));
+			//bindService(new Intent(this, MyLockScreenService.class),myServiceConnection ,Context.BIND_AUTO_CREATE);
+			
 			EnableSystemKeyguard(false);
 		}
 		else {
 			stopService(new Intent(this, MyLockScreenService.class));
-			// recover original Keyguard
+			//unbindService(myServiceConnection);
+			
 			//EnableSystemKeyguard(true);
 		}
 	}

@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.BatteryManager;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -53,11 +54,27 @@ public class MyLockScreenService extends Service {
     private TextView errorView;
     private MyScrollLayout mLineView;
 	
-	@Override
+       
+    @Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
 		Log.e("", "***********onBind MyLockScreenService");
 		return null;
+		//return myBinder;
+	}
+	
+	@Override
+	public void onRebind(Intent intent) {
+		// TODO Auto-generated method stub
+		Log.e("", "***********onReBind MyLockScreenService");
+		super.onRebind(intent);
+	}
+	
+	@Override
+	public boolean onUnbind(Intent intent) {
+		// TODO Auto-generated method stub
+		Log.e("", "***********onUnBind MyLockScreenService");
+		return super.onUnbind(intent);
 	}
 	
 	@Override
@@ -94,12 +111,12 @@ public class MyLockScreenService extends Service {
 		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
 				
 		// register Broadcast
-		Log.e("", "***********onCreate registerReceiver");
+		Log.e("", "***********onStart registerReceiver");
         if(mIsLockScreenOn){
         	IntentFilter intentFilter= new IntentFilter(ACT_SCREEN_OFF);
         	registerReceiver(mScreenBCR, intentFilter);
         }
-	}
+	}	
 
 	@Override
 	public void onDestroy() {
@@ -123,9 +140,12 @@ public class MyLockScreenService extends Service {
         }
         
         batteryObserver.unRegister();
-        
+                
         stopForeground(true);
         //startForegroundCompat();
+        Log.e("", "***********onDestroy registerReceiver");
+        
+        startService(new Intent(this, MyLockScreenService.class));
 	}
 	
 	private BroadcastReceiver mScreenBCR = new BroadcastReceiver() {
@@ -231,13 +251,15 @@ public class MyLockScreenService extends Service {
 	
 	// 解锁
 	public void unLock(){
+		Log.d("", "unLock");
 		// 移除悬浮窗
 /*		if(mFloatLayout != null)
 		{*/
 			mWindowManager.removeView(mFloatLayout);
 			mFloatLayout = null;
 /*		}*/
-	}	
+	}
+	
 	// 保存锁屏状态
 	public void saveLockStatus(){
 		editor.putBoolean(LOCK_STATUS, mLockStatus);
@@ -281,9 +303,10 @@ public class MyLockScreenService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
     	// TODO Auto-generated method stub    	
     	//startForeground(1120, new Notification());
-    	startForegroundCompat();
+    	startForegroundCompat();//设置service为前端
     	
-    	return super.onStartCommand(intent, flags, startId);   	  	
+    	flags = START_STICKY;//START_STICKY是service被kill掉后自动重写创建
+    	return super.onStartCommand(intent, flags, startId); 
     }
     
     private void startForegroundCompat() {

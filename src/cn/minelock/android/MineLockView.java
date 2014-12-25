@@ -99,10 +99,10 @@ public class MineLockView extends FrameLayout{
 		dbRecent = new dbHelper(context);
 		lockCursor = dbRecent.select();
 		// 获取保存的美言数量及美言显示方式
-		int showVerseFlag = settings.getInt(SHOWVERSEFLAG, 1);
+		int showVerseWallpaperFlag = settings.getInt(SHOWVERSEFLAG, 1);
 		sCustom = settings.getString(VERSE, getResources().getString(R.string.initial_verse));	
 		// 设置美言显示
-		SetVerseShow(showVerseFlag);
+		SetVerseWallpaperShow(showVerseWallpaperFlag);
 		sCustom = sCustom.trim();//去掉前后空格
 		Log.d(TAG, sCustom);
 		// 设置壁纸		
@@ -252,8 +252,13 @@ public class MineLockView extends FrameLayout{
 		}
 	};
 	//
-	private void SetVerseShow(int showVerseFlag){
+	private void SetVerseWallpaperShow(int showVerseFlag){
 		int verseQty = settings.getInt(VERSEQTY, 0);
+		boolean bIdPath=false;
+		int idPath;
+		int id;
+		String path;
+		
 		switch (showVerseFlag) {
 		case 1:
 			// 单句循环
@@ -265,14 +270,25 @@ public class MineLockView extends FrameLayout{
 				int verseId = (int)settings.getLong(VERSEID,0);							
 				// 移动到下一位置
 				if(verseId+1==verseQty)
-					verseId=0;
+					verseId = 0;
 				else
-					verseId=verseId+1;
+					verseId = verseId+1;
 				lockCursor.moveToPosition(verseId);	
+				// 美言
 				sCustom = lockCursor.getString(1) + lockCursor.getString(2);	
-				// 将美言及id存入SharedPreferences				
+				// 壁纸
+				idPath = lockCursor.getInt(3);
+				id = lockCursor.getInt(4);
+				path = lockCursor.getString(5);
+				// 将壁纸存入SharedPreferences
+				if(idPath==1)
+					bIdPath = true;
+				editor.putBoolean(BOOLIDPATH, bIdPath);// 壁纸
+				editor.putInt(WALLPAPERID, id);// 壁纸id
+				editor.putString(WALLPAPERPATH, path);// 壁纸path
+				// 将美言存入SharedPreferences				
 				editor.putString(VERSE, sCustom);// 美言
-				editor.putLong(VERSEID,(long)verseId);// 美言id
+				editor.putLong(VERSEID,(long)verseId);// 美言id	
 				editor.commit();
 			}
 			break;	
@@ -281,7 +297,18 @@ public class MineLockView extends FrameLayout{
 			if(verseQty>0 && sCustom.trim()!=""){
 				int random = (int)(Math.random()*verseQty);
 				lockCursor.moveToPosition(random);
+				// 美言
 				sCustom = lockCursor.getString(1) + lockCursor.getString(2);
+				// 壁纸
+				idPath = lockCursor.getInt(3);
+				id = lockCursor.getInt(4);
+				path = lockCursor.getString(5);
+				// 将壁纸存入SharedPreferences
+				if(idPath==1)
+					bIdPath = true;
+				editor.putBoolean(BOOLIDPATH, bIdPath);// 壁纸
+				editor.putInt(WALLPAPERID, id);// 壁纸id
+				editor.putString(WALLPAPERPATH, path);// 壁纸path				
 				// 将美言存入SharedPreferences				
 				editor.putString(VERSE, sCustom);// 美言
 				editor.putLong(VERSEID, random);// 美言id

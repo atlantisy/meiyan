@@ -22,14 +22,17 @@ import cn.minelock.android.R;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
@@ -89,9 +92,13 @@ public class HomeActivity extends Activity implements OnClickListener,
 	public static final String PWSETUP = "passWordSetUp";// 九宫格是否设置pref值名称
 
 	private SharedPreferences home_setting;
+	private SharedPreferences defaultPrefs;
 	
 	static final int MENU_SET_MODE = 0;
 
+	private MyServiceConnection myServiceConnection;
+	private boolean isLockScreenOn;
+	
 	private PullToRefreshGridView mPullRefreshGridView;
 	private GridView mGridView;
 	
@@ -176,6 +183,20 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 切换美言显示方式初始化及按钮图标切换事件
 		InitShowVerse();	
 		ShowVerse();
+		
+		myServiceConnection = new MyServiceConnection();
+		// 获取的default prefs数据	
+		defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		isLockScreenOn = defaultPrefs.getBoolean(LOCK_SWITCH, true);
+		if(isLockScreenOn){
+			startService(new Intent(this, MyLockScreenService.class));
+			//bindService(new Intent(this, MyLockScreenService.class),myServiceConnection ,Context.BIND_AUTO_CREATE);			
+		}		
+		else{
+			stopService(new Intent(this, MyLockScreenService.class));
+			//unbindService(myServiceConnection);
+		}
+		
 	}
 	
 	private final String LOCK_SWITCH = "lock_screen_switch";
@@ -183,22 +204,20 @@ public class HomeActivity extends Activity implements OnClickListener,
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
-		super.onPause();
-		// 获取的default prefs数据		
-		SharedPreferences defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		boolean isLockScreenOn = defaultPrefs.getBoolean(LOCK_SWITCH, true);
+		super.onPause();	
 		//启动锁屏
 		if (isLockScreenOn){
-			// keep on disabling the system Keyguard
-			//启动锁屏
-			startService(new Intent(this, MyLockScreenService.class));
-			//startService(new Intent(getApplicationContext(), MyLockScreenService.class));
+			//启动锁屏服务			
+			//startService(new Intent(this, MyLockScreenService.class));
+			//bindService(new Intent(this, MyLockScreenService.class),myServiceConnection ,Context.BIND_AUTO_CREATE);
+			
 			EnableSystemKeyguard(false);
 		}
 		else {
-			stopService(new Intent(this, MyLockScreenService.class));
-			//stopService(new Intent(getApplicationContext(), MyLockScreenService.class));
-			// recover original Keyguard
+			//关闭锁屏服务
+			//stopService(new Intent(this, MyLockScreenService.class));
+			//unbindService(myServiceConnection);
+			
 			EnableSystemKeyguard(true);
 		}
 		// 重置锁屏状态
@@ -211,6 +230,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		
 		SetWallpaper();
 		SetVerse();
 		InitShowVerse();
@@ -219,6 +239,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 			setup_grid_button.setVisibility(View.VISIBLE);
 		else
 			setup_grid_button.setVisibility(View.GONE);
+		
 	}
 	
 	// 下拉
@@ -372,7 +393,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		showVerseFlag = SINGLE_REPEAT;
 		show_verse_btn.setImageResource(R.drawable.ic_single_repeat);
 
-		StringUtil.showToast(this, "单句循环",  Toast.LENGTH_SHORT);
+		StringUtil.showToast(this, "单屏循环",  Toast.LENGTH_SHORT);
 	}
 	// 顺序循环
 	protected void orderRepeat() {
@@ -386,7 +407,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		showVerseFlag = SHUFFLE;
 		show_verse_btn.setImageResource(R.drawable.ic_shuffle);
 		
-		StringUtil.showToast(this, "随机美言",  Toast.LENGTH_SHORT);
+		StringUtil.showToast(this, "随机锁屏",  Toast.LENGTH_SHORT);
 	}
 	
 	// 切换锁屏方式按钮初始化
@@ -538,6 +559,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	public void onItemClick(int pos) {
 		setVerse(pos);
 	}
+	
 	// 控制系统锁屏
 	void EnableSystemKeyguard(boolean bEnable) {
 		KeyguardManager mKeyguardManager = null;
@@ -565,6 +587,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 		Log.e("", "showSpinWindow");
 		mSpinerPopWindow.setWidth(mBtnDropDown.getWidth());
 		mSpinerPopWindow.showAsDropDown(mBtnDropDown);
-	}
+	}				
 
 }

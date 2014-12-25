@@ -82,20 +82,7 @@
             android:layout_marginRight="4dp"
             android:background="@drawable/ic_right"
             android:layout_gravity="center"/>                                     
-    </LinearLayout> 
-       	
-	<TextView
-	    android:id="@+id/igCloseDefaultLock"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/alpha"
-        android:padding="16dp"
-        android:gravity="center_vertical"
-        android:layout_gravity="center_vertical"
-        android:text="@string/close_default_lock"
-        android:textColor="@color/gray"
-        android:textSize="14sp" 
-        android:visibility="gone"/>
+    </LinearLayout>        	
 	 
     <ImageView
         android:id="@+id/igDown2"
@@ -191,7 +178,21 @@
             android:background="@drawable/ic_right"
             android:layout_gravity="center"/>              
     </LinearLayout>
-      		   
+	
+	<TextView
+	    android:id="@+id/igHint"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/alpha"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:text="@string/ig_hint1"
+        android:textColor="@color/gray"
+        android:textSize="12sp" 
+        android:visibility="visible"/>
+	      		   
 	<View 
 	    android:layout_width="fill_parent"
 	    android:layout_height="0dp"

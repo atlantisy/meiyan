@@ -15,6 +15,10 @@ public class dbHelper extends SQLiteOpenHelper {
 	public final static String FIELD_ID="_id"; 
 	public final static String FIELD_TITLE="verse_title";
 	public final static String FIELD_ITEM="verse_item";
+	public final static String BOOL_ID_PATH="id_path";
+	public final static String WALLPAPER_ID="wallpaper_id";
+	public final static String WALLPAPER_PATH="wallpaper_path";
+
 	
 	public dbHelper(Context context)
 	{
@@ -27,10 +31,10 @@ public class dbHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		String sql="Create table " + TABLE_NAME + " (" + FIELD_ID + " integer primary key autoincrement,"
-		+ FIELD_TITLE + " text," + FIELD_ITEM + " text );";
+				+ FIELD_TITLE + " text,"+ FIELD_ITEM + " text," 
+				+ BOOL_ID_PATH + " INTEGER,"+  WALLPAPER_ID + " INTEGER," + WALLPAPER_PATH + " text );";
 		db.execSQL(sql);
-		
-		 
+			 
 	}
 
 	@Override
@@ -59,12 +63,15 @@ public class dbHelper extends SQLiteOpenHelper {
 		return cursor;
 	}
 	
-	public long insert(String Title,String Item)
+	public long insert(String Title,String Item,int bool,int id,String path)
 	{
 		SQLiteDatabase db=this.getWritableDatabase();
 		ContentValues cv=new ContentValues(); 
 		cv.put(FIELD_TITLE, Title);
-		cv.put(FIELD_ITEM, Item);//
+		cv.put(FIELD_ITEM, Item);
+		cv.put(BOOL_ID_PATH, bool);//
+		cv.put(WALLPAPER_ID, id);//
+		cv.put(WALLPAPER_PATH, path);//
 		long row=db.insert(TABLE_NAME, null, cv);
 		return row;
 	}

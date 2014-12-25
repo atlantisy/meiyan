@@ -257,9 +257,12 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				for (int i = 0; i <= 9 - len; i++)
 					verse += " ";			
 			// 将新增美言存入SQL数据库
+			int idPath = 0;
+			if(bIdOrPath)
+				idPath = 1;
 			if (len>0){
 /*				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
-*/					long verseId = dbRecent.insert(verse.substring(0, 1),verse.substring(1));
+*/					long verseId = dbRecent.insert(verse.substring(0, 1),verse.substring(1),idPath,wallpaperId,wallpaperPath);
 					// 将美言总数存入SharedPreferences
 					verseQty = verseQty+1;
 					editor.putInt(VERSEQTY, verseQty);
@@ -296,6 +299,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			wallpaperId = WallpaperAdapter.wallpaper[arg2];
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
 			bIdOrPath = true;//壁纸来源为应用内ID
+			
+/*			Bitmap bm = BitmapFactory.decodeResource(getResources(), wallpaperId);
+			String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
+			String photoName = "res" + StringUtil.makeFileName();
+			ImageTools.savePhotoToSDCard(bm, dir, photoName);
+			wallpaperPath = dir + "/" + photoName + ".png";
+			bIdOrPath = false;//壁纸存储到应用外SD卡上
+*/			
 		}
 	};	
 	// 点击实现颜色、壁纸选择项的显示/隐藏
@@ -398,20 +409,18 @@ public class EditVerseActivity extends Activity implements OnClickListener,
     
     public void getDefaultWallpaper(){
 		// 获取当前壁纸 ,转成Bitmap，并设置 背景 
-    	//verse_edit.setHint("正在同步...");
-    	//verse_edit.setText("正在同步...");
 		Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
 		Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
 		mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
+		//mEditVerseLayout.setBackground(new BitmapDrawable(bm));
+		//mEditVerseLayout.setBackgroundResource(resid);
 		// 保存到SD卡
 		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
 		String photoName = "wallpaper" + StringUtil.makeFileName();
 		ImageTools.savePhotoToSDCard(bm, dir, photoName);
 		wallpaperPath = dir + "/" + photoName + ".png";
         bIdOrPath = false;//壁纸来源为应用外路径
-        //verse_edit.setHint("同步成功");
         StringUtil.showToast(getApplication(), "同步成功", Toast.LENGTH_SHORT);
-		//verse_edit.setHint("点此写美言");
         verse_edit.setText(verse_hint);
         verse_edit.setSelection(verse_hint.length());
         verse_edit.setCursorVisible(true);

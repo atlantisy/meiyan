@@ -14,7 +14,6 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.DISABLE_STATUS_BAR" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
@@ -39,6 +38,7 @@
 
         <service 
             android:name="cn.minelock.android.MyLockScreenService" 
+            android:enabled="true"
             android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.SCREEN_OFF" />
@@ -86,6 +86,7 @@
         <receiver android:name="cn.minelock.android.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
     	<intent-filter>
         	<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
