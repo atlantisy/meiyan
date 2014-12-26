@@ -159,7 +159,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		Button editok_btn = (Button) findViewById(R.id.edit_ok);
 		editok_btn.setOnClickListener(editOkOnClickListener);
 		
-        // 存入SQL数据库
+        // SQLite数据库
 		dbRecent = new dbHelper(this);
 		
 		// 清空当前美言
@@ -260,7 +260,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			int idPath = 0;
 			if(bIdOrPath)
 				idPath = 1;
-			if (len>0){
+			if (len>=0){
 /*				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
 */					long verseId = dbRecent.insert(verse.substring(0, 1),verse.substring(1),idPath,wallpaperId,wallpaperPath);
 					// 将美言总数存入SharedPreferences

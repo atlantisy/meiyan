@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">美言锁屏</string>
-    <string name="initial_verse">美好时刻 由你书写</string>
+    <string name="initial_verse">我就是我 是颜色不一样的烟火</string>
 
     <string-array name="none_verse">
         <item>此地无言三百两</item>
@@ -19,8 +19,16 @@
     </string-array>
     
     <string name="ig_hint1">* 打开手机卫士，关闭锁屏后清理美言锁屏内存。\n\n</string>
-    <string name="ig_hint2">* 若锁屏被自动清理，打开系统设置，将美言锁屏设置为受保护的后台应用。</string> 
+    <string name="ig_hint2">* 若锁屏被清理内存，将美言锁屏设置为受保护的后台应用。</string> 
                           
+    <string-array name="recent_inital_verse">
+        <item>山不在高 有仙则名</item>
+        <item>面朝大海 春暖花开</item>
+        <item>生如夏花般绚烂 死若秋叶之静美</item>
+        <item>人世间所有的相遇都是久别重逢</item>
+        <item>我就是我 是颜色不一样的烟火</item>
+    </string-array>
+    
     <string-array name="Spring">
         <item>面朝大海 春暖花开</item>
         <item>春眠不觉晓</item>

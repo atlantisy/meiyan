@@ -47,6 +47,9 @@ public class RecentActivity extends Activity {
 	public static final String VERSEID = "verse_id";// 美言id pref值名称
 	public static final String VERSEQTY = "verse_quantity";// 美言数量pref值名称
 	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
+	public static final String BOOLIDPATH = "wallpaper_idorpath";//应用内or外壁纸bool的pref值名称,true为ID，false为path
+	public static final String WALLPAPERID = "wallpaper_id";//应用内壁纸资源ID的pref值名称
+	public static final String WALLPAPERPATH = "wallpaper_path";//应用外壁纸Path的pref值名称
 	
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
@@ -77,7 +80,8 @@ public class RecentActivity extends Activity {
         		R.layout.view_recent,recentCursor,
         		new String[]{dbHelper.FIELD_TITLE,dbHelper.FIELD_ITEM},
         		new int[]{R.id.recent_title,R.id.recent_item});
-        recentList.setAdapter(recentAdapter);
+        // 最近美言壁纸列表
+    	recentList.setAdapter(recentAdapter);
         // 获取保存的SharedPreferences
         settings = getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
@@ -91,10 +95,20 @@ public class RecentActivity extends Activity {
 				recentCursor.moveToPosition(arg2);
 				_id = recentCursor.getInt(0);
 				String verse = recentCursor.getString(1) + recentCursor.getString(2);
+				int idPath = recentCursor.getInt(3);
+				int wallpaperId = recentCursor.getInt(4);
+				String wallpaperPath = recentCursor.getString(5);
+				// 将壁纸存入SharedPreferences
+				boolean bIdPath=false;
+				if(idPath==1)
+					bIdPath = true;
+				editor.putBoolean(BOOLIDPATH, bIdPath);// 壁纸
+				editor.putInt(WALLPAPERID, wallpaperId);// 壁纸id
+				editor.putString(WALLPAPERPATH, wallpaperPath);// 壁纸path
 				// 将美言存入SharedPreferences				
 				editor.putString(VERSE, verse);// 美言
 				//editor.putLong(VERSEID, (long)_id);// 美言id
-				editor.putInt(SHOWVERSEFLAG, 1);// 单句循环				
+				//editor.putInt(SHOWVERSEFLAG, 1);// 单句循环				
 				editor.commit();
 				
 				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
@@ -186,6 +200,13 @@ public class RecentActivity extends Activity {
 				//overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);
 			}
 		});
+		
+/*		String[] initial_verse = getResources().getStringArray(R.array.recent_inital_verse);
+		int[] initial_wallpaper = {	
+				R.drawable.wallpaper02,R.drawable.wallpaper04,R.drawable.wallpaper03,R.drawable.wallpaper05,R.drawable.wallpaper01};
+		for(int i=0;i<5;i++)
+			dbRecent.insert(initial_verse[i].substring(0, 1),initial_verse[i].substring(1),1,initial_wallpaper[i],"");*/
+		
 	}
 	
 	//长按菜单响应函数

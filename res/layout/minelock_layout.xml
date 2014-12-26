@@ -110,7 +110,7 @@
 	     
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="72dp"            
+            android:layout_height="80dp"            
             android:orientation="vertical">
 
 <!--             <android.support.v4.view.ViewPager
@@ -126,8 +126,8 @@
 	  				android:id="@+id/mMyScrollLayout"    
 	  				android:layout_width="fill_parent"    
 	  				android:layout_height="wrap_content"
-	  				android:layout_marginLeft="8dp"
-	  				android:layout_marginRight="8dp"> 
+	  				android:layout_marginLeft="18dp"
+	  				android:layout_marginRight="18dp"> 
 	  					<FrameLayout    
 	    					android:background="@color/alpha"
 	  						android:layout_width="fill_parent"    

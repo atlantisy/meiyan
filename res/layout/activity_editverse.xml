@@ -86,7 +86,7 @@
                 android:padding="16dp"
                 android:ems="16"
                 android:gravity="center"
-                android:hint="书写美言"
+                android:hint="美好时刻 由你书写"
                 android:inputType="textMultiLine"
                 android:maxLines="4"
                 android:textColor="@color/white"

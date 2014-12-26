@@ -5,6 +5,7 @@ import java.security.Policy;
 
 import cn.minelock.util.PhoneUtil;
 import cn.minelock.util.StringUtil;
+import cn.minelock.widget.dbHelper;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
@@ -35,6 +36,8 @@ import android.widget.Toast;
 
 public class InitialGuideActivity extends Activity {
 
+	dbHelper dbRecent;
+	
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String INITIALGUIDE = "initial_guide";// 初始设置pref值名称
 	private static boolean bIntialGuide = false;// 初始设置是否完成
@@ -97,9 +100,18 @@ public class InitialGuideActivity extends Activity {
 			igDivide.setVisibility(View.GONE);
 			return_btn.setVisibility(View.GONE);
 			finish_btn.setVisibility(View.VISIBLE);
+						
+			// 初始化锁屏记录
+			dbRecent = new dbHelper(this);
+			String[] initial_verse = getResources().getStringArray(R.array.recent_inital_verse);
+			int[] initial_wallpaper = {	
+					R.drawable.wallpaper02,R.drawable.wallpaper04,R.drawable.wallpaper03,R.drawable.wallpaper05,R.drawable.wallpaper01};
+			for(int i=0;i<5;i++)
+				dbRecent.insert(initial_verse[i].substring(0, 1),initial_verse[i].substring(1),1,initial_wallpaper[i],"");	
 			
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putBoolean(INITIALGUIDE, true);
+			editor.putInt("verse_quantity", 5);
 			editor.commit();
 		}											
 	}
