@@ -27,7 +27,7 @@ public class StringUtil {
             mToast.show();
     }
 	/**
-	 * 
+	 * 按时间生成文件名
 	 * @param s
 	 * @return
 	 */
@@ -43,14 +43,73 @@ public class StringUtil {
 		String second = String.valueOf(mCalendar.get(Calendar.SECOND));
 
 		return year + month + day + hour + minute + second;
-	} 
+	}
+    /**
+	 * 字符长度不足9位，生成九宫格对称字符
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public static String getGridStr(String verse) {	
+		String s = verse.replace(" ", "");
+		s = s.replace("\n", "");
+		
+		int len = s.length();		
+		switch (len) {
+		case 0:
+			s=getSpace(9);
+		case 1:
+			s=getSpace(4)+s+getSpace(4);
+			break;
+		case 2:
+			s=getSpace(3)+s.substring(0, 1)+getSpace(1)+s.substring(1, 2)+getSpace(3);
+			break;
+		case 3:
+			s=getSpace(3)+s+getSpace(3);
+			break;
+		case 4:
+			s=getSpace(1)+s.substring(0, 1)+getSpace(1)+s.substring(1, 2)+
+			  getSpace(1)+s.substring(2, 3)+getSpace(1)+s.substring(3, 4)+
+			  getSpace(1);
+			break;
+		case 5:
+			s=s.substring(0, 1)+getSpace(1)+s.substring(1, 2)+getSpace(1)+
+			  s.substring(2, 3)+getSpace(1)+s.substring(3, 4)+getSpace(1)+
+			  s.substring(4, 5);
+			break;
+		case 6:
+			s=s.substring(0, 3)+getSpace(3)+s.substring(3, 6);
+			break;
+		case 7:
+			s=s.substring(0, 3)+getSpace(1)+
+			  s.substring(3, 4)+
+			  getSpace(1)+s.substring(4, 7);
+			break;
+		case 8:
+			s=s.substring(0, 4)+getSpace(1)+s.substring(4, 8);
+			break;
+		default:
+			break;
+		}
+
+		return s;
+	}
+    /**
+	 * @return
+	 */
+	public static String getSpace(int num) {	
+		String s="";
+		for(int i=0; i<num; i++)
+			s+=" ";
+		return s;
+	}	
     /**
 	 * 字符长度不足9位，补足
 	 * 
 	 * @param s
 	 * @return
 	 */
-	public static String getNineStr(String s) {		
+	public static String getNineStr(String s) {	
 		int len = s.length();
 		for(int i=0; i<9-len; i++){
 			s = s+" ";

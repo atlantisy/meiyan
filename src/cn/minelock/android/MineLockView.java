@@ -275,7 +275,7 @@ public class MineLockView extends FrameLayout{
 					verseId = verseId+1;
 				lockCursor.moveToPosition(verseId);	
 				// ÃÀÑÔ
-				sCustom = lockCursor.getString(1) + lockCursor.getString(2);	
+				sCustom = lockCursor.getString(2);// + lockCursor.getString(1);	
 				// ±ÚÖ½
 				idPath = lockCursor.getInt(3);
 				id = lockCursor.getInt(4);
@@ -298,7 +298,7 @@ public class MineLockView extends FrameLayout{
 				int random = (int)(Math.random()*verseQty);
 				lockCursor.moveToPosition(random);
 				// ÃÀÑÔ
-				sCustom = lockCursor.getString(1) + lockCursor.getString(2);
+				sCustom = lockCursor.getString(2);// + lockCursor.getString(1);
 				// ±ÚÖ½
 				idPath = lockCursor.getInt(3);
 				id = lockCursor.getInt(4);

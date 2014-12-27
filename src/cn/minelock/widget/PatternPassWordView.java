@@ -111,7 +111,7 @@ public class PatternPassWordView extends View {
 		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0); 
 		String initial_verse = getResources().getString(R.string.initial_verse);
 		String verse = settings.getString(VERSE, StringUtil.getNineStr(initial_verse));
-		
+		verse = StringUtil.getGridStr(verse);
 		// »­Á¬Ïß
 		if (sPoints.size() > 0) {
 			int tmpAlpha = mPaint.getAlpha();

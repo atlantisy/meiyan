@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/recent_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/editok_button_selector"
         android:gravity="center"
         android:layout_gravity="center_vertical"

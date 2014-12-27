@@ -18,8 +18,8 @@
 		<item>应用内部分壁纸来自Smartisan.</item>        
     </string-array>
     
-    <string name="ig_hint1">* 打开手机卫士，关闭锁屏后清理美言锁屏内存。\n\n</string>
-    <string name="ig_hint2">* 若锁屏被清理内存，将美言锁屏设置为受保护的后台应用。</string> 
+    <string name="ig_hint1">* 打开手机卫士，关闭锁屏后自动清理美言锁屏内存。\n\n</string>
+    <string name="ig_hint2">* 若被清理内存，设置美言锁屏为受保护的后台应用。</string> 
                           
     <string-array name="recent_inital_verse">
         <item>山不在高 有仙则名</item>

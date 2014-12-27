@@ -18,7 +18,8 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-	
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+		
     <application
         android:icon="@drawable/app_icon"
         android:label="@string/app_name"

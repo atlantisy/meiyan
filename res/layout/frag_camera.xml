@@ -12,6 +12,6 @@
         android:layout_gravity="left"
         android:background="@color/alpha"
         android:src="@drawable/ic_camera" 
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 </LinearLayout>

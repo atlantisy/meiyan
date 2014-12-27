@@ -3,7 +3,7 @@
     android:id="@+id/LockLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wallpaper00"
+    android:background="@drawable/wallpaper01"
     android:gravity="center_horizontal" >
 
     <LinearLayout

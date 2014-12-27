@@ -27,6 +27,8 @@ import android.os.IBinder;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -219,7 +221,7 @@ public class MyLockScreenService extends Service {
 				case 2:				
 					mLockStatus = false;
 					unLock();
-					//launchCamera();							
+					launchCamera();							
 					break;
 				default:
 					mLockStatus = true;
@@ -245,7 +247,10 @@ public class MyLockScreenService extends Service {
 				}
 				saveLockStatus();//保存锁屏状态
 			}
-		});	
+		});
+		// 来电自动解锁
+		TelephonyManager manager = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
+		manager.listen(new MyPhoneListener(), PhoneStateListener.LISTEN_CALL_STATE);
 		
 	}
 	
@@ -320,4 +325,32 @@ public class MyLockScreenService extends Service {
         }
     }
 
+    private class MyPhoneListener extends PhoneStateListener{
+    	@Override
+    	public void onCallStateChanged(int state, String incomingNumber) {
+    		// TODO Auto-generated method stub
+    		try {
+				switch (state) {
+				case TelephonyManager.CALL_STATE_RINGING:
+					mLockStatus=false;
+					editor.putBoolean(LOCK_STATUS, mLockStatus);
+					editor.commit();
+					
+					unLock();
+					break;
+				case TelephonyManager.CALL_STATE_IDLE:
+					//mLockStatus=false;
+				default:
+					//mLockStatus=true;
+					break;
+					
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+    		
+    		super.onCallStateChanged(state, incomingNumber);
+    	}
+    }
 }

@@ -278,7 +278,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		//…Ë÷√ºÚ—‘
 		line_verse.setText(verse.trim());
 		//…Ë÷√æ≈π¨—‘
-		String s = verse.replace("\n", " ");
+		String s = StringUtil.getGridStr(verse);//.replace("\n", " ");
 		TextView verse0 = (TextView) findViewById(R.id.verse0);
 		verse0.setText(s.substring(0, 1));
 		TextView verse1 = (TextView) findViewById(R.id.verse1);

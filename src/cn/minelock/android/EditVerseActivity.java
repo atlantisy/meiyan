@@ -262,7 +262,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				idPath = 1;
 			if (len>=0){
 /*				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
-*/					long verseId = dbRecent.insert(verse.substring(0, 1),verse.substring(1),idPath,wallpaperId,wallpaperPath);
+*/					long verseId = dbRecent.insert("",verse.substring(0),idPath,wallpaperId,wallpaperPath);
 					// 将美言总数存入SharedPreferences
 					verseQty = verseQty+1;
 					editor.putInt(VERSEQTY, verseQty);
@@ -365,7 +365,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							
 						case RANDOM_PAPER:							
 							int[] wallpaper = {
-									R.drawable.wallpaper00,R.drawable.wallpaper01,R.drawable.wallpaper02,
+									R.drawable.wallpaper01,R.drawable.wallpaper02,
 									R.drawable.wallpaper03,R.drawable.wallpaper04,R.drawable.wallpaper05,									
 								};
 							int random = (int)(Math.random()*wallpaper.length);

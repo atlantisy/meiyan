@@ -87,14 +87,14 @@ public class RecentActivity extends Activity {
 		editor = settings.edit();
 		verseQty = settings.getInt(VERSEQTY, 0);//实际美言总数量
                
-        //添加点击
+        // 添加点击
         recentList.setOnItemClickListener(new OnItemClickListener() {
 			
         	@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				recentCursor.moveToPosition(arg2);
 				_id = recentCursor.getInt(0);
-				String verse = recentCursor.getString(1) + recentCursor.getString(2);
+				String verse = recentCursor.getString(2);// + recentCursor.getString(1);
 				int idPath = recentCursor.getInt(3);
 				int wallpaperId = recentCursor.getInt(4);
 				String wallpaperPath = recentCursor.getString(5);
@@ -134,7 +134,7 @@ public class RecentActivity extends Activity {
 			}
 		}); */       
         
-        //添加长按点击
+        // 添加长按点击
         recentList.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
@@ -148,7 +148,7 @@ public class RecentActivity extends Activity {
 			}
 		});
         
-        //添加长按菜单响应
+        // 添加长按菜单响应
         recentList.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {			
 			
         	@Override
@@ -160,7 +160,7 @@ public class RecentActivity extends Activity {
 			}
 		}); 
         
-        //获取增删后的美言数量
+        // 获取增删后的美言数量
         String Qty = title + "(" + String.valueOf(verseQty) + ")";
         recent_label = (TextView) findViewById(R.id.recent_label);
         recent_label.setText(Qty);
