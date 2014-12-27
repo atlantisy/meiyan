@@ -1,6 +1,8 @@
 package cn.minelock.android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -9,7 +11,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -82,18 +86,37 @@ public class SetPasswordActivity extends Activity {
 				switch (v.getId()) {
 				case R.id.tvSave:
 					if (StringUtil.isNotEmpty(password)) {
-						ppwv.resetPassWord(password);
-						ppwv.clearPassword();
-						showToast("恭喜，设置成功");
-						SharedPreferences.Editor editor = settings.edit();
-						editor.putBoolean(PWSETUP, true);
-						editor.commit();
-						//返回九宫格已设置结果
-			            Intent data=new Intent();  
-			            data.putExtra("SetPassWord", true);   
-			            //请求代码可以自己设置，这里设置成20  
-			            setResult(20, data);
-						finish();
+						final AlertDialog dlg = new AlertDialog.Builder(SetPasswordActivity.this).create();
+						dlg.show();
+						Window window = dlg.getWindow();						 
+						window.setContentView(R.layout.setpassword_exit_dialog);
+						// 确认
+						Button ok = (Button) window.findViewById(R.id.setpassword_ok);
+						ok.setOnClickListener(new View.OnClickListener() {
+						  public void onClick(View v) {
+						        ppwv.resetPassWord(password);
+								ppwv.clearPassword();
+								showToast("恭喜，设置成功");
+								SharedPreferences.Editor editor = settings.edit();
+								editor.putBoolean(PWSETUP, true);
+								editor.commit();
+								//返回九宫格已设置结果
+					            Intent data=new Intent();  
+					            data.putExtra("SetPassWord", true);   
+					            //请求代码可以自己设置，这里设置成20  
+					            setResult(20, data);
+								finish();
+						  }
+						 });
+						 
+						// 关闭alert对话框架
+						Button cancel = (Button) window.findViewById(R.id.setpassword_cancel);
+						cancel.setOnClickListener(new View.OnClickListener() {
+						 public void onClick(View v) {
+						    dlg.cancel();
+						  }
+						}); 
+				        
 					} else {
 						ppwv.clearPassword();
 						showToast("密码为空，请重新输入");

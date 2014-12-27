@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="56dp"
+    android:layout_height="64dp"
     android:background="@drawable/default_button_selector"
     android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/recent_title"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/editok_button_selector"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/_wallpaper02"
         android:gravity="center"
         android:layout_gravity="center_vertical"
-        android:text="美"
         android:textColor="@color/white"
         android:textSize="18sp" 
    		android:paddingLeft="11dp"
         android:paddingRight="11dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"/>
 
     <TextView
         android:id="@+id/recent_item"
@@ -30,7 +29,7 @@
         android:background="@drawable/default_button_selector"
         android:gravity="center_vertical"
         android:singleLine="true"
-        android:text="言锁屏"
-        android:textColor="@color/gray_black"
+        android:text="书写美好时刻"
+        android:textColor="@color/gray"
         android:textSize="16sp" />
 </LinearLayout>

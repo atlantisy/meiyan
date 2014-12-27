@@ -11,11 +11,9 @@
     
     <string-array name="tips">
         <item>完成初始设置才可正常使用。</item>
-        <item>善用空格，手势密码可能更好看。</item>
         <item>编辑锁屏时，可以不写美言。</item>
         <item>建议美言不超过32个字。</item>
-        <item>若锁屏不成功，可尝试重启应用。</item>
-		<item>应用内部分壁纸来自Smartisan.</item>        
+        <item>若锁屏不成功，可尝试重启应用。</item>        
     </string-array>
     
     <string name="ig_hint1">* 打开手机卫士，关闭锁屏后自动清理美言锁屏内存。\n\n</string>
