@@ -19,9 +19,9 @@
 
         <View
             android:layout_width="1.0px"
-            android:layout_height="48.0px"
+            android:layout_height="48dp"
             android:layout_gravity="center_vertical"
-            android:background="@color/black" />
+            android:background="@color/alpha_white" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -49,16 +49,21 @@
             android:layout_weight="1"
             android:src="@drawable/blank" />
 
+        <View
+            android:layout_width="1.0px"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/alpha_white" />
         <Button
             android:id="@+id/edit_ok"
-            android:layout_width="48dp"
-            android:layout_height="32dp"
-            android:background="@drawable/editok_button_selector"
-            android:layout_marginRight="8dp"
+            android:layout_width="56dp"
+            android:layout_height="48dp"
+            android:background="@drawable/editok_button_selector1"
+            android:layout_marginRight="0dp"
             android:layout_gravity="center"
             android:text="完成"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
     </LinearLayout>
     
     <LinearLayout

@@ -96,7 +96,7 @@
         		android:shadowDy="0"
         		android:shadowRadius="1"                
                 android:layout_marginBottom="0dp"
-                android:text="密码错误，请重新输入"
+                android:text="密码不对，再想想看"
                 android:textColor="@color/red" 
                 android:textSize="14sp" 
                 android:visibility="invisible"/>
