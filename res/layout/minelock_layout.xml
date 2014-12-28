@@ -84,7 +84,7 @@
 				android:gravity="center"				
                 android:text=" "
                 android:textColor="@color/white" 
-                android:textSize="14sp" />
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/error_view"
                 android:layout_width="fill_parent"
@@ -98,7 +98,7 @@
                 android:layout_marginBottom="0dp"
                 android:text="密码不对，再想想看"
                 android:textColor="@color/red" 
-                android:textSize="14sp" 
+                android:textSize="16sp" 
                 android:visibility="invisible"/>
             
             <cn.minelock.widget.PatternPassWordView

@@ -5,11 +5,11 @@
     android:background="@drawable/default_button_selector"
     android:orientation="horizontal" >
 
-    <TextView
+<!--     <TextView
         android:id="@+id/recent_title"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@drawable/_wallpaper02"
+        android:background="@color/app_color"
         android:gravity="center"
         android:layout_gravity="center_vertical"
         android:textColor="@color/white"
@@ -19,8 +19,18 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"/>
+        android:layout_marginRight="12dp"/> -->
 
+    <ImageView
+        android:id="@+id/recent_title"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@color/gray_white"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"/>
+    
     <TextView
         android:id="@+id/recent_item"
         android:layout_width="0dp"

@@ -559,7 +559,7 @@ public class PatternPassWordView extends View {
 				// mCompleteListener.onPasswordTooMin(sPoints.size());
 				error();
 				clearPassword();
-				Toast.makeText(this.getContext(), "密码过短，至少 4 位",
+				Toast.makeText(this.getContext(), "密码太短，至少4位",
 						Toast.LENGTH_SHORT).show();
 			} else if (mCompleteListener != null) {
 				if (this.sPoints.size() >= passwordMinLength) {

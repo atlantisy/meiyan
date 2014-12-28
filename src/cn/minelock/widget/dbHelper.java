@@ -31,7 +31,7 @@ public class dbHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		String sql="Create table " + TABLE_NAME + " (" + FIELD_ID + " integer primary key autoincrement,"
-				+ FIELD_TITLE + " text,"+ FIELD_ITEM + " text," 
+				+ FIELD_TITLE + " INTEGER,"+ FIELD_ITEM + " text," 
 				+ BOOL_ID_PATH + " INTEGER,"+  WALLPAPER_ID + " INTEGER," + WALLPAPER_PATH + " text );";
 		db.execSQL(sql);
 			 
@@ -63,7 +63,7 @@ public class dbHelper extends SQLiteOpenHelper {
 		return cursor;
 	}
 	
-	public long insert(String Title,String Item,int bool,int id,String path)
+	public long insert(int Title,String Item,int bool,int id,String path)
 	{
 		SQLiteDatabase db=this.getWritableDatabase();
 		ContentValues cv=new ContentValues(); 

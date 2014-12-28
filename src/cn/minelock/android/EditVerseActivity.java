@@ -85,6 +85,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	public static final String WALLPAPERPATH = "wallpaper_path";// 应用外壁纸Path的pref值名称
 	
 	private int wallpaperId;
+	private int _wallpaperId;
 	private String wallpaperPath;
 	private boolean bIdOrPath;//true为Id，false为Path
 	private int verseQty;
@@ -114,6 +115,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 获取保存的壁纸
 		bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
 		wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
+		_wallpaperId = R.drawable.app_icon_grey;
 		wallpaperPath = settings.getString(WALLPAPERPATH, "");	
 		if(bIdOrPath==true)//设置壁纸			
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
@@ -258,11 +260,12 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 					verse += " ";			
 			// 将新增美言存入SQL数据库
 			int idPath = 0;
-			if(bIdOrPath)
+			if(bIdOrPath){
 				idPath = 1;
+			}
 			if (len>=0){
 /*				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
-*/					long verseId = dbRecent.insert("",verse.substring(0),idPath,wallpaperId,wallpaperPath);
+*/					long verseId = dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
 					// 将美言总数存入SharedPreferences
 					verseQty = verseQty+1;
 					editor.putInt(VERSEQTY, verseQty);
@@ -297,6 +300,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				long arg3) {
 			// TODO Auto-generated method stub
 			wallpaperId = WallpaperAdapter.wallpaper[arg2];
+			_wallpaperId = WallpaperAdapter._wallpaper[arg2];
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
 			bIdOrPath = true;//壁纸来源为应用内ID
 			

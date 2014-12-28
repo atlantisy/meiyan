@@ -106,8 +106,10 @@ public class InitialGuideActivity extends Activity {
 			String[] initial_verse = getResources().getStringArray(R.array.recent_inital_verse);
 			int[] initial_wallpaper = {	
 					R.drawable.wallpaper02,R.drawable.wallpaper04,R.drawable.wallpaper03,R.drawable.wallpaper05,R.drawable.wallpaper01};
+			int[] _initial_wallpaper = {	
+					R.drawable._wallpaper02,R.drawable._wallpaper04,R.drawable._wallpaper03,R.drawable._wallpaper05,R.drawable._wallpaper01};
 			for(int i=0;i<5;i++)
-				dbRecent.insert("",initial_verse[i].substring(0),1,initial_wallpaper[i],"");	
+				dbRecent.insert(_initial_wallpaper[i],initial_verse[i].substring(0),1,initial_wallpaper[i],"");	
 			
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putBoolean(INITIALGUIDE, true);
