@@ -2,8 +2,11 @@ package cn.minelock.android;
 
 
 
+import java.io.File;
+
 import cn.minelock.android.BatteryObserver;
 import cn.minelock.android.BatteryObserver.OnBatteryChange;
+import cn.minelock.util.StringUtil;
 import cn.minelock.widget.MyScrollLayout;
 import cn.minelock.widget.MyScrollLayout.OnViewChangeListener;
 import cn.minelock.widget.PatternPassWordView;
@@ -19,9 +22,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Binder;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -37,7 +42,7 @@ import android.widget.TextView;
 
 public class MyLockScreenService extends Service {
 	private final String ACT_SCREEN_OFF = "android.intent.action.SCREEN_OFF";
-	private final String ACT_SCREEN_ON = "android.intent.action.SCREEN_ON";
+	//private final String ACT_SCREEN_ON = "android.intent.action.SCREEN_ON";
 	
 	private SharedPreferences prefs = null;
 	private SharedPreferences.Editor editor = null;
@@ -99,7 +104,7 @@ public class MyLockScreenService extends Service {
         }
 	}
 	
-	@Override
+/*	@Override
 	@Deprecated
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
@@ -118,7 +123,7 @@ public class MyLockScreenService extends Service {
         	IntentFilter intentFilter= new IntentFilter(ACT_SCREEN_OFF);
         	registerReceiver(mScreenBCR, intentFilter);
         }
-	}	
+	}*/	
 
 	@Override
 	public void onDestroy() {
@@ -165,8 +170,7 @@ public class MyLockScreenService extends Service {
 						
 						//屏蔽手机内置的锁屏 
 						KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);    
-						KeyguardLock kl = km.newKeyguardLock("MineLock");						 
-			            kl.disableKeyguard();			            
+						km.newKeyguardLock("MineLock").disableKeyguard();						 			            
 			            
 			            CreateFloatView();
 					}												            
@@ -299,9 +303,13 @@ public class MyLockScreenService extends Service {
     private void launchCamera() {      	
     	Intent intent = new Intent();                 	
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);  
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);        		
-        this.startActivity(intent); 
-        
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera";					
+        String wallpaperPath = dir + "/" + "IMG" + StringUtil.makeFileName() + ".jpg"; 
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(wallpaperPath)));
+
+        this.startActivity(intent);        
     }	
     
     @Override

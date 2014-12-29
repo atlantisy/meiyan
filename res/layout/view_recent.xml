@@ -23,8 +23,8 @@
 
     <ImageView
         android:id="@+id/recent_title"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@color/gray_white"
         android:gravity="center"
         android:layout_gravity="center_vertical"
@@ -40,6 +40,6 @@
         android:gravity="center_vertical"
         android:singleLine="true"
         android:text="书写美好时刻"
-        android:textColor="@color/gray_black"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 </LinearLayout>

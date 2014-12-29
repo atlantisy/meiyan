@@ -42,8 +42,18 @@ public class StringUtil {
 		String minute = String.valueOf(mCalendar.get(Calendar.MINUTE));
 		String second = String.valueOf(mCalendar.get(Calendar.SECOND));
 
-		return year + month + day + hour + minute + second;
+		return "_" + year + addZero(month, 2) + addZero(day, 2) +
+				"_" + addZero(hour, 2) + addZero(minute, 2) + addZero(second, 2);
 	}
+    /**
+	 * 补零
+	 * @return
+	 */
+	public static String addZero(String s,int num) {	
+		for(int i=0; i<num-s.length(); i++)
+			s="0"+s;
+		return s;
+	}		
     /**
 	 * 字符长度不足9位，生成九宫格对称字符
 	 * 

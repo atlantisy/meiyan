@@ -61,15 +61,15 @@ public class MineLockView extends FrameLayout{
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
 	private PatternPassWordView ppwv = null;
-	private Toast toast;
+	//private Toast toast;
 	
 	dbHelper dbRecent;
 	private Cursor lockCursor;
 	
-	private SharedPreferences defaultPrefs = null;
-	private SharedPreferences.Editor defaultEditor = null;
-	private final String LOCK_STATUS = "lock_status";
-	private boolean mLockStatus;
+	//private SharedPreferences defaultPrefs = null;
+	//private SharedPreferences.Editor defaultEditor = null;
+	//private final String LOCK_STATUS = "lock_status";
+	//private boolean mLockStatus;
 	
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
@@ -93,8 +93,8 @@ public class MineLockView extends FrameLayout{
 		settings = context.getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
 		// 获取默认的prefs数据
-		defaultPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		defaultEditor = defaultPrefs.edit();
+		//defaultPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		//defaultEditor = defaultPrefs.edit();
 		// SQL数据库
 		dbRecent = new dbHelper(context);
 		lockCursor = dbRecent.select();
@@ -272,9 +272,9 @@ public class MineLockView extends FrameLayout{
 			// 顺序循环
 			if(verseQty>0 && sCustom.trim()!=""){
 				// 获取当前美言id
-				int verseId = (int)settings.getLong(VERSEID,0);							
-				// 移动到下一位置
-				if(verseId+1==verseQty)
+				int verseId = (int)settings.getLong(VERSEID,0);			
+				// 移动到下一位置										
+				if(verseId+1>=verseQty)
 					verseId = 0;
 				else
 					verseId = verseId+1;

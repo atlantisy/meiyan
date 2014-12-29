@@ -274,7 +274,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				_wallpaperId = WallpaperAdapter._wallpaper[index];					
 			}
 			else
-				_wallpaperId = R.color.gray_white;
+				_wallpaperId = R.drawable.app_icon_grey;
 			if (len>=0){
 /*				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
 */					long verseId = dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
@@ -435,7 +435,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		//mEditVerseLayout.setBackground(new BitmapDrawable(bm));
 		//mEditVerseLayout.setBackgroundResource(resid);
 		// 保存到SD卡
-		String photoName = "wallpaper" + StringUtil.makeFileName();
+		String photoName = "desk" + StringUtil.makeFileName();
 		ImageTools.savePhotoToSDCard(bm, dir, photoName);
 		wallpaperPath = dir + "/" + photoName + ".png";
         bIdOrPath = false;//壁纸来源为应用外路径
@@ -510,12 +510,12 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				ContentResolver resolver = getContentResolver();
 				Uri originalUri = data.getData();
 				try {
-					Bitmap picture = MediaStore.Images.Media.getBitmap(resolver,originalUri);
-					if (picture != null) {	
+					Bitmap image = MediaStore.Images.Media.getBitmap(resolver,originalUri);
+					if (image != null) {	
 						// 设置锁屏壁纸
-						Bitmap smallPicture = ImageTools.zoomBitmap(picture, picture.getWidth() / 2, picture.getHeight() / 2);
-						mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallPicture));
-						picture.recycle();
+						Bitmap smallImage = ImageTools.zoomBitmap(image, image.getWidth() / 2, image.getHeight() / 2);
+						mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallImage));
+						image.recycle();
 						
 						// 获取选择图片的路径
 /*						String[] proj = { MediaStore.Images.Media.DATA };
@@ -524,9 +524,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 						cursor.moveToFirst();
 						wallpaperPath = cursor.getString(column_index);*/						
 						// 保存到SD卡
-						String pictureName = "picture" + StringUtil.makeFileName();
-						ImageTools.savePhotoToSDCard(smallPicture, dir, pictureName);
-						wallpaperPath = dir + "/" + pictureName + ".png";
+						String imageName = "image" + StringUtil.makeFileName();
+						ImageTools.savePhotoToSDCard(smallImage, dir, imageName);
+						wallpaperPath = dir + "/" + imageName + ".png";
 						
 					}
 				} catch (FileNotFoundException e) {
