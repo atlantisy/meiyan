@@ -109,7 +109,7 @@ public class InitialGuideActivity extends Activity {
 			int[] _initial_wallpaper = {	
 					R.drawable._wallpaper02,R.drawable._wallpaper04,R.drawable._wallpaper03,R.drawable._wallpaper05,R.drawable._wallpaper01};
 			for(int i=0;i<5;i++)
-				dbRecent.insert(_initial_wallpaper[i],initial_verse[i].substring(0),1,initial_wallpaper[i],"");	
+				dbRecent.insert(_initial_wallpaper[i],initial_verse[i].substring(0),1,initial_wallpaper[i],"1_.png");	
 			
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putBoolean(INITIALGUIDE, true);

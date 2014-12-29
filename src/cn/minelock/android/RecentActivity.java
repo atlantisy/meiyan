@@ -44,7 +44,8 @@ public class RecentActivity extends Activity {
 	dbHelper dbRecent;
 	private Cursor recentCursor;
 	private ListView recentList;
-	private SimpleCursorAdapter recentAdapter;
+	//private SimpleCursorAdapter recentAdapter;
+	private SimpleAdapter recentAdapter1;
 	private ImageButton random_btn;
 	private int _id;
 	
@@ -66,6 +67,8 @@ public class RecentActivity extends Activity {
 	private TextView recent_label;
 	private String title = "锁屏记录";
 	
+	private List<Map<String,Object>> listData;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,19 +87,19 @@ public class RecentActivity extends Activity {
         // 创建数据库
         dbRecent = new dbHelper(this);
         recentCursor = dbRecent.select();
-    	recentAdapter = new SimpleCursorAdapter(this,
+/*    	recentAdapter = new SimpleCursorAdapter(this,
         		R.layout.view_recent,
         		recentCursor,
         		new String[]{dbHelper.FIELD_TITLE,dbHelper.FIELD_ITEM},
-        		new int[]{R.id.recent_title,R.id.recent_item});
+        		new int[]{R.id.recent_title,R.id.recent_item});*/
     	
-/*        SimpleAdapter recentAdapter1= new ImageSimpleAdapter(this, 
+        recentAdapter1 = new ImageSimpleAdapter(this, 
         		getDatas(), 
         		R.layout.view_recent, 
         		new String[]{dbHelper.FIELD_TITLE,dbHelper.FIELD_ITEM},
-        		new int[]{R.id.recent_title,R.id.recent_item});*/
+        		new int[]{R.id.recent_title,R.id.recent_item});
     	// 最近美言壁纸列表
-    	recentList.setAdapter(recentAdapter);
+    	recentList.setAdapter(recentAdapter1);
         // 获取保存的SharedPreferences
         settings = getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
@@ -214,30 +217,27 @@ public class RecentActivity extends Activity {
 				overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 				//overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);
 			}
-		});
-		
-/*		String[] initial_verse = getResources().getStringArray(R.array.recent_inital_verse);
-		int[] initial_wallpaper = {	
-				R.drawable.wallpaper02,R.drawable.wallpaper04,R.drawable.wallpaper03,R.drawable.wallpaper05,R.drawable.wallpaper01};
-		for(int i=0;i<5;i++)
-			dbRecent.insert(initial_verse[i].substring(0, 1),initial_verse[i].substring(1),1,initial_wallpaper[i],"");*/
-		
+		});				
 	}
 	
-    private List<HashMap<String,Object>> getDatas() {  
+    private List<Map<String,Object>> getDatas() {  
     	int columnsSize = recentCursor.getColumnCount();  
-    	List<HashMap<String,Object>> listData = new ArrayList<HashMap<String, Object>>();  
+    	listData = new ArrayList<Map<String, Object>>();  
         // 获取表的内容  
         while (recentCursor.moveToNext()) {  
-            HashMap<String, Object> map = new HashMap<String, Object>();  
-            for (int i = 0; i < columnsSize; i++) {  
-                map.put(dbHelper.FIELD_TITLE, recentCursor.getInt(1));  
-                map.put(dbHelper.FIELD_ITEM, recentCursor.getString(2));  
-                map.put(dbHelper.BOOL_ID_PATH, recentCursor.getInt(3));  
-                map.put(dbHelper.WALLPAPER_ID, recentCursor.getInt(4));
-                map.put(dbHelper.WALLPAPER_PATH, recentCursor.getString(5)); 
-            }  
-            listData.add(map);                      
+            Map<String, Object> map = new HashMap<String, Object>();  
+            for (int i = 0; i < columnsSize; i++) {
+            	int bool=recentCursor.getInt(3);
+            	String path=recentCursor.getString(5);
+            	String _path=path.substring(0, path.length()-4)+"_.png";
+            	//
+            	if(bool==1)
+            		map.put(dbHelper.FIELD_TITLE, recentCursor.getInt(1));
+            	else
+            		map.put(dbHelper.FIELD_TITLE, BitmapFactory.decodeFile(_path));
+                map.put(dbHelper.FIELD_ITEM, recentCursor.getString(2));                 
+            }
+            listData.add(map);
         } 
         
         return listData; 
@@ -312,7 +312,9 @@ public class RecentActivity extends Activity {
     		dbRecent.delete(_id);    		
     	recentCursor.requery();
     	//recentList.invalidateViews();
-    	recentAdapter.notifyDataSetChanged();
+    	//listData.remove(arg0);
+    	getDatas();
+    	recentAdapter1.notifyDataSetChanged();
     	recentList.invalidate();
     	_id=0;    	
     }

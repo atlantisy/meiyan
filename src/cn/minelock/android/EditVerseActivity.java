@@ -117,7 +117,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 获取保存的壁纸
 		bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
 		wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
-		wallpaperPath = settings.getString(WALLPAPERPATH, "");	
+		wallpaperPath = settings.getString(WALLPAPERPATH, "1_.png");	
 		if(bIdOrPath==true)//设置壁纸			
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
 		else{
@@ -272,13 +272,11 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				for(int j=0; j<WallpaperAdapter.wallpaper.length; j++)
 					if(wallpaperId==WallpaperAdapter.wallpaper[j])
 						index=j;		
-				_wallpaperId = WallpaperAdapter._wallpaper[index];
-				dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
+				_wallpaperId = WallpaperAdapter._wallpaper[index];				
 			}
-			else{
-				_wallpaperId = R.drawable.app_icon_grey;
-				dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
-			}								
+			else
+				_wallpaperId = R.drawable.app_icon_grey;										
+			dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
 			
 /*			if (len>=0){
 				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
@@ -373,7 +371,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							//清晰图片
 							photoName = "photo" + StringUtil.makeFileName();
 							wallpaperPath = dir + "/" + photoName + ".png";
-							_wallpaperPath = dir + "/_" + photoName + ".png";
+							_wallpaperPath = dir + "/" + photoName + "_" + ".png";
 							openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(wallpaperPath)));							
 							
 							startActivityForResult(openCameraIntent,TAKE_PHOTO);							
@@ -431,13 +429,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 获取当前壁纸 ,转成Bitmap，并设置 背景 
 		Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
 		Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
+		Bitmap _bm = ImageTools.zoomBitmap(bm, 72, 72);//压缩
 		mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
 		// 保存到SD卡
 		String photoName = "desk" + StringUtil.makeFileName();
 		ImageTools.savePhotoToSDCard(bm, dir, photoName);
-		//ImageTools.savePhotoToSDCard(bm, dir, "_"+photoName);
+		ImageTools.savePhotoToSDCard(_bm, dir, photoName+"_");
 		wallpaperPath = dir + "/" + photoName + ".png";
-		_wallpaperPath = dir + "/_" + photoName + ".png";
+		_wallpaperPath = dir + "/" + photoName +"_"+ ".png";
 		bIdOrPath = false;//壁纸来源为应用外路径
 		
         StringUtil.showToast(getApplication(), "同步成功", Toast.LENGTH_SHORT);
@@ -488,11 +487,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				// 清晰图片
 				Bitmap photo = null;
 				Bitmap smallPhoto = null;
+				Bitmap _smallPhoto = null;
 				try {
 					FileInputStream fis = new FileInputStream(wallpaperPath);
 					photo = BitmapFactory.decodeStream(fis);
 					smallPhoto = ImageTools.zoomBitmap(photo, photo.getWidth() / 2, photo.getHeight() / 2);//压缩
+					_smallPhoto = ImageTools.zoomBitmap(smallPhoto, 72, 72);//压缩
 					photo.recycle();
+					
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -501,6 +503,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallPhoto));
 				// 保存到SD卡
 				ImageTools.savePhotoToSDCard(smallPhoto, dir, photoName);//清晰数据
+				ImageTools.savePhotoToSDCard(_smallPhoto, dir, photoName+"_");
 				
 /*				String photoName = "photo" + StringUtil.makeFileName();
 				ImageTools.savePhotoToSDCard(photo, dir, photoName);
@@ -515,6 +518,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 					if (image != null) {	
 						// 设置锁屏壁纸
 						Bitmap smallImage = ImageTools.zoomBitmap(image, image.getWidth() / 2, image.getHeight() / 2);
+						Bitmap _smallImage = ImageTools.zoomBitmap(smallImage, 72, 72);
 						mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallImage));
 						image.recycle();
 						
@@ -527,7 +531,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 						// 保存到SD卡
 						String imageName = "image" + StringUtil.makeFileName();
 						ImageTools.savePhotoToSDCard(smallImage, dir, imageName);
+						ImageTools.savePhotoToSDCard(_smallImage, dir, imageName+"_");
 						wallpaperPath = dir + "/" + imageName + ".png";
+						_wallpaperPath = dir + "/" + imageName +"_"+ ".png";
 						
 					}
 				} catch (FileNotFoundException e) {
