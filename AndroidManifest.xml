@@ -43,16 +43,7 @@
             android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.SCREEN_OFF" />
-            </intent-filter>
-            <intent-filter>
-        		<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-    		</intent-filter>
-    		<intent-filter>
-        		<action android:name="android.intent.action.TIME_SET" />
-    		</intent-filter>
-    		<intent-filter>
-        		<action android:name="android.intent.action.DATE_CHANGED" />
-    		</intent-filter>            
+            </intent-filter>          
         </service>
 
         <activity
@@ -81,29 +72,28 @@
 		<receiver android:name="cn.minelock.android.UserPresentReceiver" >  
             <intent-filter>  
                 <action android:name="android.intent.action.USER_PRESENT" />  
-            </intent-filter>  
+            </intent-filter> 
+           <intent-filter>
+        		<action android:name="android.intent.action.TIME_SET" />
+    		</intent-filter>
+    		<intent-filter>
+        		<action android:name="android.intent.action.DATE_CHANGED" />
+    		</intent-filter>
+    		<intent-filter>
+        		<action android:name="android.intent.action.TIMEZONE_CHANGED" />
+    		</intent-filter> 
+    		<intent-filter>
+        		<action android:name="android.intent.action.BATTERY_CHANGED" />
+    		</intent-filter>
+    		<intent-filter>
+        		<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+    		</intent-filter>   
         </receiver> 
                 
         <receiver android:name="cn.minelock.android.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-    	<intent-filter>
-        	<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-    	</intent-filter>
-    	<intent-filter>
-        	<action android:name="android.intent.action.TIME_SET" />
-    	</intent-filter>
-    	<intent-filter>
-        	<action android:name="android.intent.action.DATE_CHANGED" />
-    	</intent-filter>
-    	<intent-filter>
-        	<action android:name="android.intent.action.TIMEZONE_CHANGED" />
-    	</intent-filter> 
-    	<intent-filter>
-        	<action android:name="android.intent.action.BATTERY_CHANGED" />
-    	</intent-filter>     	         
+            </intent-filter> 	         
         </receiver>
 
         <activity

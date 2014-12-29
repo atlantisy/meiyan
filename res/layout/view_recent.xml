@@ -23,8 +23,8 @@
 
     <ImageView
         android:id="@+id/recent_title"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:background="@color/gray_white"
         android:gravity="center"
         android:layout_gravity="center_vertical"

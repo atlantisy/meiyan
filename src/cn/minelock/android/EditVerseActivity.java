@@ -115,7 +115,6 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 获取保存的壁纸
 		bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
 		wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
-		_wallpaperId = R.drawable.app_icon_grey;
 		wallpaperPath = settings.getString(WALLPAPERPATH, "");	
 		if(bIdOrPath==true)//设置壁纸			
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
@@ -262,7 +261,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			int idPath = 0;
 			if(bIdOrPath){
 				idPath = 1;
+				int index=0;
+				for(int j=0; j<WallpaperAdapter.wallpaper.length; j++)
+					if(wallpaperId==WallpaperAdapter.wallpaper[j])
+						index=j;		
+				_wallpaperId = WallpaperAdapter._wallpaper[index];					
 			}
+			else
+				_wallpaperId = R.color.gray_white;
 			if (len>=0){
 /*				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
 */					long verseId = dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
@@ -463,6 +469,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
+		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
 		if (resultCode == Activity.RESULT_OK) {
 			switch (requestCode) {
 			case TAKE_PHOTO:
@@ -471,12 +478,12 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				Bitmap photo = (Bitmap)bundle.get("data");
 				// 设置锁屏壁纸
 				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(photo));
-				// 保存到SD卡
-				String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
+				// 保存到SD卡				
 				String photoName = "photo" + StringUtil.makeFileName();
 				ImageTools.savePhotoToSDCard(photo, dir, photoName);
 				wallpaperPath = dir + "/" + photoName + ".png";
 				break;
+			
 			case CHOOSE_PICTURE:
 				ContentResolver resolver = getContentResolver();
 				Uri originalUri = data.getData();
@@ -484,19 +491,30 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 					Bitmap picture = MediaStore.Images.Media.getBitmap(resolver,originalUri);
 					if (picture != null) {	
 						// 设置锁屏壁纸
-						mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(picture));
+						Bitmap smallPicture = ImageTools.zoomBitmap(picture, picture.getWidth() / 2, picture.getHeight() / 2);
+						mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallPicture));
+						picture.recycle();
+						
 						// 获取选择图片的路径
-						String[] proj = { MediaStore.Images.Media.DATA };
+/*						String[] proj = { MediaStore.Images.Media.DATA };
 						Cursor cursor = managedQuery(originalUri, proj, null,null,null);
 						int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 						cursor.moveToFirst();
-						wallpaperPath = cursor.getString(column_index);
+						wallpaperPath = cursor.getString(column_index);*/						
+						// 保存到SD卡
+						String pictureName = "picture" + StringUtil.makeFileName();
+						ImageTools.savePhotoToSDCard(smallPicture, dir, pictureName);
+						wallpaperPath = dir + "/" + pictureName + ".png";
+						
 					}
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				break;
+				
+			default:
 				break;
 			}			
 			

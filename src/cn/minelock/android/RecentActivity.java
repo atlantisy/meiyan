@@ -143,7 +143,7 @@ public class RecentActivity extends Activity {
 				// TODO Auto-generated method stub
 				recentCursor.moveToPosition(arg2);
 				_id = recentCursor.getInt(0);
-				deleteItem = recentCursor.getString(1)+recentCursor.getString(2);
+				deleteItem = recentCursor.getString(2);//+recentCursor.getInt(1);
 				return false;
 			}
 		});
@@ -251,7 +251,7 @@ public class RecentActivity extends Activity {
 			Intent intent=new Intent(Intent.ACTION_SEND);  
 			intent.setType("text/plain");  
 			intent.putExtra(Intent.EXTRA_SUBJECT, "·ÖÏí");  
-			intent.putExtra(Intent.EXTRA_TEXT, deleteItem+"#minelock#");  
+			intent.putExtra(Intent.EXTRA_TEXT, deleteItem.trim()+"#minelock#");  
 			startActivity(Intent.createChooser(intent, getTitle()));
     	}
     	if(cmd=="copy"){

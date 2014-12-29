@@ -19,7 +19,8 @@ public class UserPresentReceiver extends BroadcastReceiver {
 		final Intent mIntent = new Intent(context, MyLockScreenService.class);
 		final Context mContext = context;
 		
-		if (intent.getAction().equals(Intent.ACTION_USER_PRESENT)) {	
+		if (intent.getAction().equals(Intent.ACTION_USER_PRESENT)||intent.getAction().equals(Intent.ACTION_BATTERY_CHANGED)
+				||intent.getAction().equals(Intent.ACTION_TIME_CHANGED)) {	
 			
 			Timer timer = new Timer();
 			timer.schedule(new TimerTask() {
