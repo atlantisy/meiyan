@@ -266,7 +266,12 @@ public class HomeActivity extends Activity implements OnClickListener,
 			homeLayout.setBackgroundResource(wallpaperId);
 		else{
 			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
-			homeLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+			try {
+				homeLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+			} catch (Exception e) {
+				// TODO: handle exception
+				homeLayout.setBackgroundResource(wallpaperId);
+			}			
 		}
 	}
 	

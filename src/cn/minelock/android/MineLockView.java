@@ -114,7 +114,12 @@ public class MineLockView extends FrameLayout{
 			lockLayout.setBackgroundResource(wallpaperId);
 		else{
 			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
-			lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+			try {
+				lockLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+			} catch (Exception e) {
+				// TODO: handle exception
+				lockLayout.setBackgroundResource(wallpaperId);
+			}			
 		}				
 		// 简单滑动解锁，即锁屏方式1
 		viewVerse = (TextView) findViewById(R.id.tv_verse);

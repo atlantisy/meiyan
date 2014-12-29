@@ -1,6 +1,7 @@
 package cn.minelock.android;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -120,7 +121,12 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
 		else{
 			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
-			mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+			try {
+				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+			} catch (Exception e) {
+				// TODO: handle exception
+				mEditVerseLayout.setBackgroundResource(wallpaperId);
+			}			
 		}
 		// 获取保存的美言
 		verseQty = settings.getInt(VERSEQTY, 0);			
@@ -350,6 +356,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	
 	final Handler handler = new Handler();
 	private String verse_hint;
+	private String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
+	private String photoName = "photo" + StringUtil.makeFileName();	//
 	// 拍照或选取相册图片为锁屏壁纸
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -362,6 +370,12 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 						switch (which) {
 						case TAKE_PHOTO:							
 							Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+							
+							//清晰图片
+							photoName = "photo" + StringUtil.makeFileName();					
+							wallpaperPath = dir + "/" + photoName + ".png"; 
+							openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(wallpaperPath)));							
+							
 							startActivityForResult(openCameraIntent,TAKE_PHOTO);							
 							bIdOrPath = false;//壁纸来源为应用外路径
 							break;
@@ -374,12 +388,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							break;
 							
 						case RANDOM_PAPER:							
-							int[] wallpaper = {
-									R.drawable.wallpaper01,R.drawable.wallpaper02,
-									R.drawable.wallpaper03,R.drawable.wallpaper04,R.drawable.wallpaper05,									
-								};
-							int random = (int)(Math.random()*wallpaper.length);
-							wallpaperId = wallpaper[random];							
+							int random = (int)(Math.random()*WallpaperAdapter.wallpaper.length);
+							wallpaperId = WallpaperAdapter.wallpaper[random];							
 							mEditVerseLayout.setBackgroundResource(wallpaperId);
 							bIdOrPath = true;//壁纸来源为应用内ID		
 							break;
@@ -425,7 +435,6 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		//mEditVerseLayout.setBackground(new BitmapDrawable(bm));
 		//mEditVerseLayout.setBackgroundResource(resid);
 		// 保存到SD卡
-		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
 		String photoName = "wallpaper" + StringUtil.makeFileName();
 		ImageTools.savePhotoToSDCard(bm, dir, photoName);
 		wallpaperPath = dir + "/" + photoName + ".png";
@@ -469,19 +478,32 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
 		if (resultCode == Activity.RESULT_OK) {
 			switch (requestCode) {
 			case TAKE_PHOTO:
-				// 获取图片数据
-				Bundle bundle = data.getExtras(); 
-				Bitmap photo = (Bitmap)bundle.get("data");
+				// 模糊图片
+				//Bitmap photo = (Bitmap)data.getExtras().get("data");
+				
+				// 清晰图片
+				Bitmap photo = null;
+				Bitmap smallPhoto = null;
+				try {
+					FileInputStream fis = new FileInputStream(wallpaperPath);
+					photo = BitmapFactory.decodeStream(fis);
+					smallPhoto = ImageTools.zoomBitmap(photo, photo.getWidth() / 2, photo.getHeight() / 2);//压缩
+					photo.recycle();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				
 				// 设置锁屏壁纸
-				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(photo));
-				// 保存到SD卡				
-				String photoName = "photo" + StringUtil.makeFileName();
+				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallPhoto));
+				// 保存到SD卡
+				ImageTools.savePhotoToSDCard(smallPhoto, dir, photoName);//清晰数据
+				
+/*				String photoName = "photo" + StringUtil.makeFileName();
 				ImageTools.savePhotoToSDCard(photo, dir, photoName);
-				wallpaperPath = dir + "/" + photoName + ".png";
+				wallpaperPath = dir + "/" + photoName + ".png";*/
 				break;
 			
 			case CHOOSE_PICTURE:

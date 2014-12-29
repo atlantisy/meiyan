@@ -53,7 +53,12 @@ public class SetPasswordActivity extends Activity {
 			setPasswordLayout.setBackgroundResource(wallpaperId);
 		else{
 			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
-			setPasswordLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+			try {
+				setPasswordLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+			} catch (Exception e) {
+				// TODO: handle exception
+				setPasswordLayout.setBackgroundResource(wallpaperId);
+			}
 		}
 		//
 		setPasswordHint = (TextView)findViewById(R.id.SetPasswordHint);
