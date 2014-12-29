@@ -4,12 +4,14 @@
     <color name="alpha">#00000000</color>
     <color name="alpha0_white">#0fff</color>
     <color name="alpha0_black">#0000</color>
-    <color name="alpha_white">#48ffffff</color>
+    <color name="alpha_white">#58ffffff</color>
     <color name="alpha_black">#68000000</color>
     <color name="alpha_white1">#38ffffff</color>
     <color name="alpha_black1">#38181818</color>
     <color name="white">#fff</color>    
     <color name="light_yellow">#ffffcc</color>
+    <color name="dark">#646c7f</color>
+    <color name="dark_black">#21292b</color>    
     <color name="black">#000</color>
     <color name="gray_black">#737373</color>
     <color name="gray">#a7a7a7</color>

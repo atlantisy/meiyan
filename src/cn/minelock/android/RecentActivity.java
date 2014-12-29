@@ -1,11 +1,17 @@
 package cn.minelock.android;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.ClipboardManager;
 import android.view.ContextMenu;
@@ -23,10 +29,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.minelock.widget.ImageSimpleAdapter;
 import cn.minelock.widget.dbHelper;
 
 import cn.minelock.android.R;
@@ -77,10 +85,17 @@ public class RecentActivity extends Activity {
         dbRecent = new dbHelper(this);
         recentCursor = dbRecent.select();
     	recentAdapter = new SimpleCursorAdapter(this,
-        		R.layout.view_recent,recentCursor,
+        		R.layout.view_recent,
+        		recentCursor,
         		new String[]{dbHelper.FIELD_TITLE,dbHelper.FIELD_ITEM},
         		new int[]{R.id.recent_title,R.id.recent_item});
-        // 最近美言壁纸列表
+    	
+/*        SimpleAdapter recentAdapter1= new ImageSimpleAdapter(this, 
+        		getDatas(), 
+        		R.layout.view_recent, 
+        		new String[]{dbHelper.FIELD_TITLE,dbHelper.FIELD_ITEM},
+        		new int[]{R.id.recent_title,R.id.recent_item});*/
+    	// 最近美言壁纸列表
     	recentList.setAdapter(recentAdapter);
         // 获取保存的SharedPreferences
         settings = getSharedPreferences(PREFS, 0);
@@ -209,6 +224,24 @@ public class RecentActivity extends Activity {
 		
 	}
 	
+    private List<HashMap<String,Object>> getDatas() {  
+    	int columnsSize = recentCursor.getColumnCount();  
+    	List<HashMap<String,Object>> listData = new ArrayList<HashMap<String, Object>>();  
+        // 获取表的内容  
+        while (recentCursor.moveToNext()) {  
+            HashMap<String, Object> map = new HashMap<String, Object>();  
+            for (int i = 0; i < columnsSize; i++) {  
+                map.put(dbHelper.FIELD_TITLE, recentCursor.getInt(1));  
+                map.put(dbHelper.FIELD_ITEM, recentCursor.getString(2));  
+                map.put(dbHelper.BOOL_ID_PATH, recentCursor.getInt(3));  
+                map.put(dbHelper.WALLPAPER_ID, recentCursor.getInt(4));
+                map.put(dbHelper.WALLPAPER_PATH, recentCursor.getString(5)); 
+            }  
+            listData.add(map);                      
+        } 
+        
+        return listData; 
+    }
 	//长按菜单响应函数
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {		

@@ -19,9 +19,9 @@
 
         <View
             android:layout_width="1.0px"
-            android:layout_height="48dp"
+            android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:background="@color/alpha_white" />
+            android:background="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"

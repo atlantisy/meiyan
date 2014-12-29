@@ -78,7 +78,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	private SharedPreferences.Editor editor = null;
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String VERSE = "verse";// 美言pref值名称
-	public static final String VERSEID = "verse_id";// 美言id pref值名称
+	//public static final String VERSEID = "verse_id";// 美言id pref值名称
 	public static final String VERSEQTY = "verse_quantity";// 美言数量pref值名称	
 	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String BOOLIDPATH = "wallpaper_idorpath";// 应用内or外壁纸bool的pref值名称,true为ID，false为path
@@ -88,6 +88,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	private int wallpaperId;
 	private int _wallpaperId;
 	private String wallpaperPath;
+	private String _wallpaperPath;
 	private boolean bIdOrPath;//true为Id，false为Path
 	private int verseQty;
 	
@@ -271,25 +272,31 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				for(int j=0; j<WallpaperAdapter.wallpaper.length; j++)
 					if(wallpaperId==WallpaperAdapter.wallpaper[j])
 						index=j;		
-				_wallpaperId = WallpaperAdapter._wallpaper[index];					
+				_wallpaperId = WallpaperAdapter._wallpaper[index];
+				dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
 			}
-			else
+			else{
 				_wallpaperId = R.drawable.app_icon_grey;
-			if (len>=0){
-/*				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
-*/					long verseId = dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
+				dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
+			}								
+			
+/*			if (len>=0){
+				if(verse_hint.trim().equals(verse.trim())==false){//编辑前后美言不同
+					long verseId = dbRecent.insert(_wallpaperId,verse.substring(0),idPath,wallpaperId,wallpaperPath);
 					// 将美言总数存入SharedPreferences
 					verseQty = verseQty+1;
 					editor.putInt(VERSEQTY, verseQty);
 					//editor.putLong(VERSEID, verseId);
-/*				}*/
+				}
 			}
 			else{
 				int showVerseFlag = 1;
 				editor.putInt(SHOWVERSEFLAG, showVerseFlag);
-			}
+			}*/
 				
 			// 将美言存入SharedPreferences
+			verseQty = verseQty+1;//美言总数
+			editor.putInt(VERSEQTY, verseQty);
 			editor.putString(VERSE, verse);// 美言
 			// 将壁纸结果存入SharedPreferences
 			editor.putBoolean(BOOLIDPATH, bIdOrPath);
@@ -314,15 +321,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			wallpaperId = WallpaperAdapter.wallpaper[arg2];
 			_wallpaperId = WallpaperAdapter._wallpaper[arg2];
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
-			bIdOrPath = true;//壁纸来源为应用内ID
-			
-/*			Bitmap bm = BitmapFactory.decodeResource(getResources(), wallpaperId);
-			String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
-			String photoName = "res" + StringUtil.makeFileName();
-			ImageTools.savePhotoToSDCard(bm, dir, photoName);
-			wallpaperPath = dir + "/" + photoName + ".png";
-			bIdOrPath = false;//壁纸存储到应用外SD卡上
-*/			
+			bIdOrPath = true;//壁纸来源为应用内ID					
 		}
 	};	
 	// 点击实现颜色、壁纸选择项的显示/隐藏
@@ -372,8 +371,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 							
 							//清晰图片
-							photoName = "photo" + StringUtil.makeFileName();					
-							wallpaperPath = dir + "/" + photoName + ".png"; 
+							photoName = "photo" + StringUtil.makeFileName();
+							wallpaperPath = dir + "/" + photoName + ".png";
+							_wallpaperPath = dir + "/_" + photoName + ".png";
 							openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(wallpaperPath)));							
 							
 							startActivityForResult(openCameraIntent,TAKE_PHOTO);							
@@ -432,13 +432,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
 		Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
 		mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
-		//mEditVerseLayout.setBackground(new BitmapDrawable(bm));
-		//mEditVerseLayout.setBackgroundResource(resid);
 		// 保存到SD卡
 		String photoName = "desk" + StringUtil.makeFileName();
 		ImageTools.savePhotoToSDCard(bm, dir, photoName);
+		//ImageTools.savePhotoToSDCard(bm, dir, "_"+photoName);
 		wallpaperPath = dir + "/" + photoName + ".png";
-        bIdOrPath = false;//壁纸来源为应用外路径
+		_wallpaperPath = dir + "/_" + photoName + ".png";
+		bIdOrPath = false;//壁纸来源为应用外路径
+		
         StringUtil.showToast(getApplication(), "同步成功", Toast.LENGTH_SHORT);
         verse_edit.setText(verse_hint);
         verse_edit.setSelection(verse_hint.length());

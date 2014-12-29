@@ -19,9 +19,9 @@
 
         <View
             android:layout_width="1.0px"
-            android:layout_height="48dp"
+            android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:background="@color/alpha_white" />
+            android:background="@color/black" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -48,19 +48,23 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/blank" />
-
         <View
             android:layout_width="1.0px"
-            android:layout_height="48dp"
+            android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:background="@color/alpha_white" />
+            android:background="@color/black" />
         <Button
             android:id="@+id/edit_ok"
-            android:layout_width="54dp"
-            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
             android:background="@drawable/editok_button_selector1"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
             android:layout_marginRight="0dp"
             android:layout_gravity="center"
+            android:gravity="center_vertical"
             android:text="完成"
             android:textColor="@color/white"
             android:textSize="16sp" />
@@ -95,7 +99,7 @@
                 android:inputType="textMultiLine"
                 android:maxLines="4"
                 android:textColor="@color/white"
-                android:textColorHint="@color/alpha_white1"
+                android:textColorHint="@color/alpha_white"
                 android:textSize="20sp" 
                 android:selectAllOnFocus="true" > 
                 <requestFocus></requestFocus>           

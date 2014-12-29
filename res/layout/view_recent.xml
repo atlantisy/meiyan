@@ -40,6 +40,6 @@
         android:gravity="center_vertical"
         android:singleLine="true"
         android:text="书写美好时刻"
-        android:textColor="@color/black"
+        android:textColor="@color/dark"
         android:textSize="16sp" />
 </LinearLayout>
