@@ -2,6 +2,7 @@ package cn.minelock.android;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +49,7 @@ public class RecentActivity extends Activity {
 	private SimpleAdapter recentAdapter1;
 	private ImageButton random_btn;
 	private int _id;
+	private int position;
 	
 	private String deleteItem;
 	
@@ -67,7 +69,7 @@ public class RecentActivity extends Activity {
 	private TextView recent_label;
 	private String title = "锁屏记录";
 	
-	private List<Map<String,Object>> listData;
+	private ArrayList<HashMap<String,Object>> listData;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +96,7 @@ public class RecentActivity extends Activity {
         		new int[]{R.id.recent_title,R.id.recent_item});*/
     	
         recentAdapter1 = new ImageSimpleAdapter(this, 
-        		getDatas(), 
+        		getData(), 
         		R.layout.view_recent, 
         		new String[]{dbHelper.FIELD_TITLE,dbHelper.FIELD_ITEM},
         		new int[]{R.id.recent_title,R.id.recent_item});
@@ -159,6 +161,7 @@ public class RecentActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				// TODO Auto-generated method stub
+				position=arg2;
 				recentCursor.moveToPosition(arg2);
 				_id = recentCursor.getInt(0);
 				deleteItem = recentCursor.getString(2);//+recentCursor.getInt(1);
@@ -220,17 +223,17 @@ public class RecentActivity extends Activity {
 		});				
 	}
 	
-    private List<Map<String,Object>> getDatas() {  
+    private ArrayList<HashMap<String,Object>> getData() {  
     	int columnsSize = recentCursor.getColumnCount();  
-    	listData = new ArrayList<Map<String, Object>>();  
+    	listData = new ArrayList<HashMap<String, Object>>();  
         // 获取表的内容  
         while (recentCursor.moveToNext()) {  
-            Map<String, Object> map = new HashMap<String, Object>();  
+        	HashMap<String, Object> map = new HashMap<String, Object>();  
             for (int i = 0; i < columnsSize; i++) {
             	int bool=recentCursor.getInt(3);
             	String path=recentCursor.getString(5);
             	String _path=path.substring(0, path.length()-4)+"_.png";
-            	//
+            	// 赋值
             	if(bool==1)
             		map.put(dbHelper.FIELD_TITLE, recentCursor.getInt(1));
             	else
@@ -312,11 +315,22 @@ public class RecentActivity extends Activity {
     		dbRecent.delete(_id);    		
     	recentCursor.requery();
     	//recentList.invalidateViews();
-    	//listData.remove(arg0);
-    	getDatas();
+    	listData.remove(position);
     	recentAdapter1.notifyDataSetChanged();
     	recentList.invalidate();
     	_id=0;    	
     }
-	
+    
+/*    private void deleteInList(ArrayList<HashMap<String,Object>> list){
+        Iterator<HashMap<String,Object>> ite = list.iterator();
+        String id=String.valueOf(_id);
+        while(ite.hasNext()){
+          Map<String,Object> m = ite.next();
+          //删除          
+          if(id.equals(m.get(dbRecent.FIELD_ID))){
+            ite.remove();
+            break;
+          }
+        }
+    }*/
 }
