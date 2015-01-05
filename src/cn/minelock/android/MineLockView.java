@@ -2,6 +2,7 @@ package cn.minelock.android;
 
 import java.util.ArrayList;
 
+import cn.minelock.android.R;
 import cn.minelock.widget.MyScrollLayout;
 
 import cn.minelock.widget.LockLayer;
@@ -61,15 +62,9 @@ public class MineLockView extends FrameLayout{
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
 	
 	private PatternPassWordView ppwv = null;
-	//private Toast toast;
 	
 	dbHelper dbRecent;
-	private Cursor lockCursor;
-	
-	//private SharedPreferences defaultPrefs = null;
-	//private SharedPreferences.Editor defaultEditor = null;
-	//private final String LOCK_STATUS = "lock_status";
-	//private boolean mLockStatus;
+	private Cursor lockCursor;	
 	
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
@@ -92,19 +87,15 @@ public class MineLockView extends FrameLayout{
 		// 获取pref值			
 		settings = context.getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
-		// 获取默认的prefs数据
-		//defaultPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		//defaultEditor = defaultPrefs.edit();
 		// SQL数据库
 		dbRecent = new dbHelper(context);
 		lockCursor = dbRecent.select();
 		// 获取保存的美言数量及美言显示方式
 		int showVerseWallpaperFlag = settings.getInt(SHOWVERSEFLAG, 3);
 		sCustom = settings.getString(VERSE, getResources().getString(R.string.initial_verse));	
-		// 设置美言显示
-		SetVerseWallpaperShow(showVerseWallpaperFlag);
-		sCustom = sCustom.trim();//去掉前后空格
 		Log.d(TAG, sCustom);
+		// 设置美言、壁纸显示
+		//SetVerseWallpaperShow(showVerseWallpaperFlag);		
 		// 设置壁纸		
 		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
 		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
@@ -120,10 +111,12 @@ public class MineLockView extends FrameLayout{
 				// TODO: handle exception
 				lockLayout.setBackgroundResource(wallpaperId);
 			}			
-		}				
+		}
+		// 设置美言、壁纸显示
+		SetVerseWallpaperShow(showVerseWallpaperFlag);
 		// 简单滑动解锁，即锁屏方式1
 		viewVerse = (TextView) findViewById(R.id.tv_verse);
-		viewVerse.setText(sCustom);
+		viewVerse.setText(sCustom.trim());
     	mScrollLayout = (MyScrollLayout) this.findViewById(R.id.mMyScrollLayout); 	  	 	
 		// 九宫手势解锁，即锁屏方式2
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
@@ -258,6 +251,7 @@ public class MineLockView extends FrameLayout{
 	};
 	//
 	private void SetVerseWallpaperShow(int showVerseFlag){
+		String verse=sCustom;
 		int verseQty = settings.getInt(VERSEQTY, 0);
 		boolean bIdPath=false;
 		int idPath;
@@ -270,7 +264,7 @@ public class MineLockView extends FrameLayout{
 			break;
 		case 2:
 			// 顺序循环
-			if(verseQty>0 && sCustom.trim()!=""){
+			if(verseQty>0 && verse.trim()!=""){
 				// 获取当前美言id
 				int verseId = (int)settings.getLong(VERSEID,0);			
 				// 移动到下一位置										
@@ -280,7 +274,7 @@ public class MineLockView extends FrameLayout{
 					verseId = verseId+1;
 				lockCursor.moveToPosition(verseId);	
 				// 美言
-				sCustom = lockCursor.getString(2);// + lockCursor.getString(1);	
+				verse = lockCursor.getString(2);// + lockCursor.getString(1);	
 				// 壁纸
 				idPath = lockCursor.getInt(3);
 				id = lockCursor.getInt(4);
@@ -292,18 +286,18 @@ public class MineLockView extends FrameLayout{
 				editor.putInt(WALLPAPERID, id);// 壁纸id
 				editor.putString(WALLPAPERPATH, path);// 壁纸path
 				// 将美言存入SharedPreferences				
-				editor.putString(VERSE, sCustom);// 美言
+				editor.putString(VERSE, verse);// 美言
 				editor.putLong(VERSEID,(long)verseId);// 美言id	
 				editor.commit();
 			}
 			break;	
 		case 3:
 			// 随机显示
-			if(verseQty>0 && sCustom.trim()!=""){
+			if(verseQty>0 && verse.trim()!=""){
 				int random = (int)(Math.random()*verseQty);
 				lockCursor.moveToPosition(random);
 				// 美言
-				sCustom = lockCursor.getString(2);// + lockCursor.getString(1);
+				verse = lockCursor.getString(2);// + lockCursor.getString(1);
 				// 壁纸
 				idPath = lockCursor.getInt(3);
 				id = lockCursor.getInt(4);
@@ -315,7 +309,7 @@ public class MineLockView extends FrameLayout{
 				editor.putInt(WALLPAPERID, id);// 壁纸id
 				editor.putString(WALLPAPERPATH, path);// 壁纸path				
 				// 将美言存入SharedPreferences				
-				editor.putString(VERSE, sCustom);// 美言
+				editor.putString(VERSE, verse);// 美言
 				editor.putLong(VERSEID, random);// 美言id
 				editor.commit();						
 			}

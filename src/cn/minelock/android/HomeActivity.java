@@ -184,18 +184,18 @@ public class HomeActivity extends Activity implements OnClickListener,
 		InitShowVerse();	
 		ShowVerse();
 		
-		myServiceConnection = new MyServiceConnection();
+		//myServiceConnection = new MyServiceConnection();
 		// 获取的default prefs数据	
 		defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		isLockScreenOn = defaultPrefs.getBoolean(LOCK_SWITCH, true);
-		if(isLockScreenOn){
+		//isLockScreenOn = defaultPrefs.getBoolean(LOCK_SWITCH, true);
+/*		if(isLockScreenOn){
 			startService(new Intent(this, MyLockScreenService.class));
 			//bindService(new Intent(this, MyLockScreenService.class),myServiceConnection ,Context.BIND_AUTO_CREATE);			
 		}		
 		else{
 			stopService(new Intent(this, MyLockScreenService.class));
 			//unbindService(myServiceConnection);
-		}
+		}*/
 		
 	}
 	
@@ -204,22 +204,25 @@ public class HomeActivity extends Activity implements OnClickListener,
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
-		super.onPause();	
+		super.onPause();
+		
+		isLockScreenOn = defaultPrefs.getBoolean(LOCK_SWITCH, true);
 		//启动锁屏
 		if (isLockScreenOn){
 			//启动锁屏服务			
-			//startService(new Intent(this, MyLockScreenService.class));
+			startService(new Intent(this, MyLockScreenService.class));
 			//bindService(new Intent(this, MyLockScreenService.class),myServiceConnection ,Context.BIND_AUTO_CREATE);
 			
 			EnableSystemKeyguard(false);
 		}
 		else {
 			//关闭锁屏服务
-			//stopService(new Intent(this, MyLockScreenService.class));
+			stopService(new Intent(this, MyLockScreenService.class));
 			//unbindService(myServiceConnection);
 			
 			EnableSystemKeyguard(true);
 		}
+		
 		// 重置锁屏状态
 		SharedPreferences.Editor editor = defaultPrefs.edit();	
 		editor.putBoolean(LOCK_STATUS, false);

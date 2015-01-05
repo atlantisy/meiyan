@@ -3,6 +3,7 @@ package cn.minelock.android;
 import java.io.IOException;
 import java.security.Policy;
 
+import cn.minelock.android.R;
 import cn.minelock.util.PhoneUtil;
 import cn.minelock.util.StringUtil;
 import cn.minelock.widget.dbHelper;

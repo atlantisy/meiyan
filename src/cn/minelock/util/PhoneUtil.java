@@ -40,8 +40,8 @@ public final class PhoneUtil {
 	
 	public static boolean isHuawei() {
 		try {
-			return Build.MANUFACTURER.equals("Huawei")||Build.DEVICE.equals("HUAWEI")
-					||Build.DEVICE.equals("huawei");
+			return Build.MANUFACTURER.equals("Huawei")||Build.MANUFACTURER.equals("HUAWEI")
+					||Build.MANUFACTURER.equals("huawei");
 			
 		} catch (final Exception e) {
 			return false;

@@ -6,27 +6,25 @@
 
     <string-array name="none_verse">
         <item>此地无言三百两</item>
-        <item>竟无言以对</item>       
+        <item>竟无言以对</item>
     </string-array>
-    
     <string-array name="tips">
         <item>完成初始设置才可正常使用。</item>
         <item>编辑锁屏时，可以不写美言。</item>
         <item>建议美言不超过32个字。</item>
-        <item>若锁屏不成功，可尝试重启应用。</item>        
+        <item>若锁屏不成功，可尝试重启应用。</item>
     </string-array>
-    
+
     <string name="ig_hint1">* 打开手机卫士，关闭锁屏后自动清理美言锁屏内存。\n\n</string>
-    <string name="ig_hint2">* 若被清理内存，设置美言锁屏为受保护的后台应用。</string> 
-                          
+    <string name="ig_hint2">* 若被清理内存，设置美言锁屏为受保护的后台应用。</string>
+
     <string-array name="recent_inital_verse">
         <item>山不在高 有仙则名</item>
         <item>面朝大海 春暖花开</item>
-        <item>生如夏花般绚烂 死若秋叶之静美</item>
+        <item>秋叶之静美</item>
         <item>世间所有的相遇都是久别重逢</item>
         <item>我就是我 是颜色不一样的烟火</item>
     </string-array>
-    
     <string-array name="Spring">
         <item>面朝大海 春暖花开</item>
         <item>春眠不觉晓</item>
@@ -64,25 +62,123 @@
         <item>布谷声中夏令新</item>
         <item>我爱夏日长</item>
     </string-array>
-    <string-array name="Autumn"></string-array>
-    <string-array name="Winter"></string-array>
+    <string-array name="Autumn">
+		<item>秋风萧瑟，洪波涌起</item>
+		<item>解落三秋叶，能开二月花</item>
+		<item>窗含西岭千秋雪，门泊东吴万里船</item>
+		<item>湖光秋月两相和，潭面无风镜未磨</item>
+		<item>自古逢秋悲寂寥，我言秋日胜春朝</item>
+		<item>春花秋月何时了，往事知多少</item>
+		<item>停车坐爱枫林晚，霜叶红于二月花</item>
+		<item>八月秋高风怒号，卷我屋上三重茅</item>
+		<item>长风万里送秋雁，对此可以酣高楼</item>
+		<item>君问归期未有期，巴山夜雨涨秋池</item>
+		<item>月落乌啼霜满天，江枫渔火对愁眠</item>
+		<item>榈庭多落叶，慨然知已秋</item>
+		<item>秋风萧瑟天气凉，草木摇落露为霜。</item>
+		<item>寒城一以眺，平楚正苍然</item>
+		<item>迢迢新秋夕，亭亭月将圆 </item>
+		<item>草低金城雾。木下玉门风</item>
+		<item>亭皋木叶下，陇首秋云飞</item>
+		<item>桂林风景异，秋似洛阳春</item>
+		<item>树树皆秋色，山山唯落晖</item>
+		<item>寒山转苍翠，秋水日潺湲</item>
+		<item>秋声万户竹，寒色五陵松</item>
+		<item>荆溪白石出，天寒红叶稀</item>
+		<item>木落雁南度，北风江上寒</item>
+		<item>金井梧桐秋叶黄，珠帘不卷夜来霜</item>
+		<item>人烟寒橘柚，秋色老梧桐</item>
+		<item>雨色秋来寒，风严清江爽 </item>
+		<item>山明水净夜来霜，数树深红出浅黄</item>
+		<item>信宿渔人还泛泛，清秋燕子故飞飞</item>
+		<item>菡萏香销翠叶残，西风愁起绿波间</item>
+		<item>秋阴不散霜飞晚，留得枯荷听雨声</item>
+		<item>一年好景君须记，最是橙黄橘绿时</item>
+		<item>碧云天，黄叶地</item>
+		<item>秋色连波，波上寒烟翠</item>
+		<item>秋景有时飞独鸟，夕阳无事起寒烟</item>
+		<item>萧萧远树疏林外，一半秋山带夕阳</item>
+		<item>渐霜风凄紧，关河冷落，残照当楼</item>
+		<item>风定小轩无落叶，青虫相对吐秋丝</item>
+		<item>断虹霁雨，净秋空，山染修眉新绿</item>
+		<item>山抹微云，天连衰草</item>
+		<item>园翁莫把秋荷折，留与游鱼盖夕阳</item>
+		<item>绿池落尽红蕖却，荷叶犹开最小钱</item>
+		<item>孤村落日残霞，轻烟老树寒鸦</item>
+		<item>只有一枝梧叶，不知多少秋声</item>
+		<item>晚趁寒潮渡江去，满林黄叶雁声多</item> 
+    </string-array>
+    <string-array name="Winter">
+        <item>五月天山雪，无花只有寒 </item>
+        <item>黄云万里动风色，白波九道流雪山</item>
+        <item>一条藤径绿，万点雪峰晴       </item>
+        <item>欲渡黄河冰塞川，将登太行雪满山</item>
+        <item>孤飞一片雪，百里见秋毫        </item>
+        <item>黄河捧土尚可塞，北风雨雪恨难裁</item>
+        <item>天时人事日相催，冬至阳生春又来</item>
+        <item>寒风吹日短，风浪与云平       </item>
+        <item>西山白雪三城戍，南浦清江万里桥</item>
+        <item>其馀七匹亦殊绝，迥若寒空动烟雪</item>
+        <item>岁暮阴阳催短景，天涯霜雪霁寒宵</item>
+        <item>十月江南天气好，可怜冬景似春华</item>
+        <item>邯郸驿里逢冬至，抱膝灯前影伴身</item>
+        <item>欲将轻骑逐，大雪满弓刀        </item>
+        <item>夜深知雪重，时闻折竹声        </item>
+        <item>隔牖风惊竹，开门雪满山        </item>
+        <item>日暮苍山远，天寒白屋贫       </item>
+        <item>山回路转不见君，雪上空留马行处</item>
+        <item>北风卷地白草折，胡天八月即飞雪</item>
+        <item>云横秦岭家何在？雪拥蓝关马不前</item>
+        <item>谁将平地万堆雪，剪刻作此连天花</item>
+        <item>古戍苍苍烽火寒，大荒阴沉飞雪白</item>
+        <item>乱山残雪夜，孤烛异乡人        </item>
+        <item>野云万里无城郭，雨雪纷纷连大漠</item>
+        <item>千里黄云白日曛，北风吹雁雪纷纷</item>
+        <item>六出飞花入户时，坐看青竹变琼枝</item>
+        <item>不知庭霰今朝落，疑是林花昨夜开</item>
+        <item>千峰笋石千株玉，万树松萝万朵银</item>
+        <item>终南阴岭秀，积雪浮云端        </item>
+        <item>墙角数枝梅，凌寒独自开        </item>
+        <item>有梅无雪不精神，有雪无诗俗了人</item>
+        <item>明月照积雪，朔风劲且哀        </item>
+        <item>昔去雪如花，今来花似雪        </item>
+        <item>凄凄岁暮风，翳翳经日雪        </item>
+        <item>溪深难受雪，山冻不流云       </item>
+        <item>孤舟蓑笠翁，独钓寒江雪      </item>
+        <item>白雪纷纷何所似？撒盐空中差可拟</item>
+        <item>未若柳絮因风起               </item>
+        <item>回乐烽前沙似雪，受降城外月如霜</item>
+        <item>雪似梅花，梅花似雪            </item>
+        <item>似和不似都奇绝                </item>
+        <item>万里寒光生积雪，三边曙色动危旌</item>
+        <item>燕山雪花大如席，片片吹落轩辕台</item>
+        <item>地白风色寒，雪花大如手</item>
+        <item>乱云低薄暮，急雪舞回风</item>
+        <item>大雪压青松，青松挺且直</item>
+        <item>砌下落梅如雪乱，拂了一身还满 </item>
+        <item>北国风光，千里冰封，万里雪飘</item>
+    </string-array>
     <string-array name="Shine">
         <item>水光潋滟晴方好</item>
         <item>满树嫩晴春雨歇</item>
         <item>困人天气日初长</item>
         <item>惟有葵花向日晴</item>
     </string-array>
+    <string-array name="Wind">
+        <item>长风破浪会有时，直挂云帆济沧海</item>
+    </string-array>    
     <string-array name="Overcast">
         <item>也无风雨也无晴</item>
     </string-array>
     <string-array name="Rain">
         <item>小雨淅沥沥下个不停</item>
     </string-array>
-    <string-array name="Snow"></string-array>
-    <string-array name="Wind"></string-array>
+    <string-array name="Snow">
+        <item>江南江北雪漫漫，遥知易水寒</item>
+    </string-array>    	   	
 
     <string name="slogan">锁定美好时刻</string>
-    <string name="copyright">©2014 minelock.com. All rights reserved.</string>
+    <string name="copyright">©2014 Minelock.com. All rights reserved.</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setting">SettingActivity</string>
@@ -103,22 +199,20 @@
     <string name="title_activity_recent">RecentActivity</string>
     <string name="title_activity_feed_back">FeedBackActivity</string>
     <string name="title_activity_initial_guide">InitialGuideActivity</string>
-    
     <string name="pull_to_refresh_pull_label1">上拉编辑美言…</string>
     <string name="pull_to_refresh_release_label1">放开以编辑…</string>
     <string name="pull_to_refresh_refreshing_label1">正在载入…</string>
-    
     <string name="charging">充电中</string>
-    <string name="charging_full">已充满</string>   
-    
+    <string name="charging_full">已充满</string>
+
     <string-array name="verse_option_name">
         <item>每日美言</item>
         <item>每日壁纸</item>
         <item>我的收藏</item>
     </string-array>
-    
     <string-array name="customize">
         <item>自定义美言</item>
         <item>自定义壁纸</item>
     </string-array>
+
 </resources>

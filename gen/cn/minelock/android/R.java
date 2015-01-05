@@ -30,13 +30,13 @@ public final class R {
     }
     public static final class array {
         public static final int Autumn=0x7f090005;
-        public static final int Overcast=0x7f090008;
-        public static final int Rain=0x7f090009;
+        public static final int Overcast=0x7f090009;
+        public static final int Rain=0x7f09000a;
         public static final int Shine=0x7f090007;
-        public static final int Snow=0x7f09000a;
+        public static final int Snow=0x7f09000b;
         public static final int Spring=0x7f090003;
         public static final int Summer=0x7f090004;
-        public static final int Wind=0x7f09000b;
+        public static final int Wind=0x7f090008;
         public static final int Winter=0x7f090006;
         public static final int customize=0x7f09000d;
         public static final int none_verse=0x7f090000;

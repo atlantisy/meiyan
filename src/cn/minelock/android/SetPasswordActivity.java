@@ -23,7 +23,7 @@ import cn.minelock.widget.PatternPassWordView;
 import cn.minelock.widget.PatternPassWordView.OnCompleteListener;
 
 import cn.minelock.android.R;
-import cn.minelock.android.R.color;
+
 
 public class SetPasswordActivity extends Activity {
 	private PatternPassWordView ppwv;

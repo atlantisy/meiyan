@@ -72,7 +72,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 
 	private boolean mLockStatus = false;	
 	private boolean mIsLockScreenOn = true;
-	private MyServiceConnection myServiceConnection;
+	//private MyServiceConnection myServiceConnection;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

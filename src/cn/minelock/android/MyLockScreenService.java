@@ -6,6 +6,7 @@ import java.io.File;
 
 import cn.minelock.android.BatteryObserver;
 import cn.minelock.android.BatteryObserver.OnBatteryChange;
+import cn.minelock.android.R;
 import cn.minelock.util.StringUtil;
 import cn.minelock.widget.MyScrollLayout;
 import cn.minelock.widget.MyScrollLayout.OnViewChangeListener;
@@ -104,26 +105,6 @@ public class MyLockScreenService extends Service {
         }
 	}
 	
-/*	@Override
-	@Deprecated
-	public void onStart(Intent intent, int startId) {
-		// TODO Auto-generated method stub
-		super.onStart(intent, startId);
-		
-		startForegroundCompat();
-		
-		// 获取保存的prefs数据
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		editor = prefs.edit();
-		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
-				
-		// register Broadcast
-		Log.e("", "***********onStart registerReceiver");
-        if(mIsLockScreenOn){
-        	IntentFilter intentFilter= new IntentFilter(ACT_SCREEN_OFF);
-        	registerReceiver(mScreenBCR, intentFilter);
-        }
-	}*/	
 
 	@Override
 	public void onDestroy() {
@@ -148,7 +129,7 @@ public class MyLockScreenService extends Service {
         
         batteryObserver.unRegister();
                 
-        stopForeground(true);
+        //stopForeground(true);
         //startForegroundCompat();
         Log.e("", "***********onDestroy registerReceiver");
         
@@ -316,7 +297,7 @@ public class MyLockScreenService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
     	// TODO Auto-generated method stub    	
     	//startForeground(1120, new Notification());
-    	startForegroundCompat();//设置service为前端
+    	//startForegroundCompat();//设置service为前端
     	
     	flags = START_STICKY;//START_STICKY是service被kill掉后自动重写创建
     	return super.onStartCommand(intent, flags, startId); 

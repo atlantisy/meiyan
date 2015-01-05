@@ -28,22 +28,24 @@
         android:shadowDx="1"
         android:shadowDy="0"
         android:shadowRadius="1"
-        android:singleLine="true">
+        android:singleLine="true"
+        >
     </TextView>     
 
 <!--     <TextView
         android:id="@+id/tv_verse"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:gravity="center"
-        android:text="每时每刻 美好美言"
+        android:text="@string/initial_verse"
         android:textColor="@color/white"
-        android:textSize="20sp" 
+        android:textSize="18sp" 
         android:shadowColor="#33000000"
         android:shadowDx="1"
         android:shadowDy="0"
         android:shadowRadius="1"
-        android:maxLines="3">
+        android:singleLine="true"
+        android:ems="16">
     	<requestFocus/>  
     </TextView> -->
     <TextView

@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import cn.minelock.util.FileUtils;
@@ -115,10 +116,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 获取系统主屏幕壁纸
 		wallpaperManager = WallpaperManager.getInstance(this);
 		// 获取保存的壁纸
-		bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
-		wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
-		wallpaperPath = settings.getString(WALLPAPERPATH, "1_.png");	
-		if(bIdOrPath==true)//设置壁纸			
+		//bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
+		//wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
+		wallpaperPath = settings.getString(WALLPAPERPATH, "1_.png");
+		// 随机壁纸
+		bIdOrPath = true;
+		wallpaperId = WallpaperAdapter.wallpaper[(int)(Math.random()*WallpaperAdapter.wallpaper.length)];		
+		mEditVerseLayout.setBackgroundResource(wallpaperId);
+/*		if(bIdOrPath==true)//设置壁纸			
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
 		else{
 			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
@@ -128,12 +133,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				// TODO: handle exception
 				mEditVerseLayout.setBackgroundResource(wallpaperId);
 			}			
-		}
+		}*/
 		// 获取保存的美言
 		verseQty = settings.getInt(VERSEQTY, 0);			
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
-		String verse = getResources().getString(R.string.initial_verse);		
-		verse_edit.setText(settings.getString(VERSE, verse).trim());//设置默认美言
+		//String verse = getResources().getString(R.string.initial_verse);		
+		//verse_edit.setText(settings.getString(VERSE, verse).trim());//设置默认美言
+		String[] seasonVerse = getSeasonVerse();
+		verse_edit.setText(seasonVerse[(int)(Math.random()*seasonVerse.length)]);//设置随机美言
 		verse_hint = verse_edit.getText().toString();
 		verse_edit.setHighlightColor(getResources().getColor(R.color.alpha_black1));
 		verse_edit.selectAll();
@@ -556,7 +563,56 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		if(imm.isActive())// isOpen若返回true，则表示输入法打开
 			imm.hideSoftInputFromWindow(verse_edit.getWindowToken(), 0); //强制隐藏键盘		
 	}
-
+	/**
+	 * 获取季节诗词
+	 * @return
+	 */
+	private String[] getSeasonVerse() {	
+		String[] s= getResources().getStringArray(R.array.Spring);
+		int month = Calendar.getInstance().get(Calendar.MONTH)+1;
+		switch (month) {
+		case 3:
+			s= getResources().getStringArray(R.array.Spring);
+			break;
+		case 4:
+			s= getResources().getStringArray(R.array.Spring);
+			break;
+		case 5:
+			s= getResources().getStringArray(R.array.Spring);
+			break;
+		case 6:
+			s= getResources().getStringArray(R.array.Summer);
+			break;
+		case 7:
+			s= getResources().getStringArray(R.array.Summer);
+			break;
+		case 8:
+			s= getResources().getStringArray(R.array.Summer);
+			break;
+		case 9:
+			s= getResources().getStringArray(R.array.Autumn);
+			break;
+		case 10:
+			s= getResources().getStringArray(R.array.Autumn);
+			break;
+		case 11:
+			s= getResources().getStringArray(R.array.Autumn);
+			break;
+		case 12:
+			s= getResources().getStringArray(R.array.Winter);
+			break;
+		case 1:
+			s= getResources().getStringArray(R.array.Winter);
+			break;
+		case 2:
+			s= getResources().getStringArray(R.array.Winter);
+			break;
+		default:
+			break;
+		}
+		return s;
+	}	
+	
 	private void customOptionSetup() {
 		mBtnDropDown = (Button) findViewById(R.id.edit_label);
 		mBtnDropDown.setOnClickListener(this);
