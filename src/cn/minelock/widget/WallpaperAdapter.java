@@ -46,25 +46,23 @@ public class WallpaperAdapter extends BaseAdapter {
 		image.setLayoutParams(new GridView.LayoutParams(96, 96));
 		image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		//
-		image.setImageResource(_wallpaper[position]);
+		image.setImageResource(wallpaper[position]);
 		return image;				
 	}
 
 	public static int[] wallpaper = { 		
 		R.color.red3,R.color.orange3,R.color.yellow2,R.color.green3,R.color.green2,
-		R.color.app_color,R.color.green4,R.color.blue2,R.color.pink2,R.color.violet,
+		R.color.green4,R.color.blue2,R.color.app_color,R.color.pink4,R.color.violet,
 		
-		R.drawable.wallpaper01,R.drawable.wallpaper05,
-		R.drawable.wallpaper03,R.drawable.wallpaper04,R.drawable.wallpaper02,
+/*		R.color.gray_white1,R.color.dark,R.color.dark1,R.color.brown,R.color.dark_black,*/
 				
 	};
 	
 	public static int[] _wallpaper = { 		
 		R.color.red3,R.color.orange3,R.color.yellow2,R.color.green3,R.color.green2,
-		R.color.app_color,R.color.green4,R.color.blue2,R.color.pink2,R.color.violet,
+		R.color.green4,R.color.blue2,R.color.app_color,R.color.pink4,R.color.violet,
 		
-		R.drawable._wallpaper01,R.drawable._wallpaper05,
-		R.drawable._wallpaper03,R.drawable._wallpaper04,R.drawable._wallpaper02,
+/*		R.color.gray_white1,R.color.dark,R.color.dark1,R.color.brown,R.color.dark_black,*/
 				
 	};
 

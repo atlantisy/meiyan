@@ -11,12 +11,14 @@
     <color name="white">#fff</color>    
     <color name="light_yellow">#ffffcc</color>
     <color name="dark">#646c7f</color>
+    <color name="dark1">#7a7700</color>
     <color name="dark_black">#21292b</color>    
     <color name="black">#000</color>
     <color name="gray_black">#737373</color>
     <color name="gray">#a7a7a7</color>
     <color name="gray_gray">#dadada</color>
-    <color name="gray_white">#e6e6e6</color>        
+    <color name="gray_white">#e6e6e6</color> 
+    <color name="gray_white1">#d6d6d6</color>        
     <color name="app_color">#25dbc2</color>
     <color name="app_color_pressed">#1eaf9b</color>    
     <color name="red">#e75544</color>
@@ -25,7 +27,9 @@
     <color name="red3">#fd585c</color>
     <color name="pink">#ff2d8b</color> 
     <color name="pink1">#f4169d</color>  
-    <color name="pink2">#ffa6b2</color>       
+    <color name="pink2">#ffa6b2</color>    
+    <color name="pink3">#ffced7</color> 
+    <color name="pink4">#fecbd2</color>
     <color name="orange">#f37633</color>
     <color name="orange1">#ffbb32</color>
     <color name="orange2">#ff4c02</color>

@@ -139,8 +139,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
 		//String verse = getResources().getString(R.string.initial_verse);		
 		//verse_edit.setText(settings.getString(VERSE, verse).trim());//设置默认美言
-		String[] seasonVerse = getSeasonVerse();
-		verse_edit.setText(seasonVerse[(int)(Math.random()*seasonVerse.length)]);//设置随机美言
+		//String[] seasonVerse = getSeasonVerse();
+		//verse_edit.setText(seasonVerse[(int)(Math.random()*seasonVerse.length)]);//设置随机美言
 		verse_hint = verse_edit.getText().toString();
 		verse_edit.setHighlightColor(getResources().getColor(R.color.alpha_black1));
 		verse_edit.selectAll();
