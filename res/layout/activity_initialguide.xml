@@ -169,7 +169,7 @@
         	android:gravity="center_vertical"           
         	android:textColor="@color/gray_black"
         	android:textSize="14sp"
-        	android:text="开启「显示悬浮窗」\n（避免锁屏失败）"/>
+        	android:text="将美言锁屏加入一键清理白名单\n（防止锁屏失败）"/>
         <ImageView 
             android:id="@+id/igCheck3"
             android:layout_width="wrap_content"
@@ -199,7 +199,7 @@
 	    android:layout_weight="1"/>
 	<Button
         android:id="@+id/initialguide_ok"
-        android:layout_width="fill_parent"
+        android:layout_width="200dp"
         android:layout_height="48dp"
         android:background="@drawable/editok_button_selector"
         android:layout_margin="32dp"

@@ -15,8 +15,8 @@
         <item>若锁屏不成功，可尝试重启应用。</item>
     </string-array>
 
-    <string name="ig_hint1">* 打开手机卫士，关闭锁屏后自动清理美言锁屏内存。\n\n</string>
-    <string name="ig_hint2">* 若被清理内存，设置美言锁屏为受保护的后台应用。</string>
+    <string name="ig_hint1">* 在手机卫士、清理大师中将美言锁屏加入一键清理白名单。\n\n</string>
+    <string name="ig_hint2"></string>
 
     <string-array name="recent_initial_verse">
         <item>山不在高 有仙则名</item>

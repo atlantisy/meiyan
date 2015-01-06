@@ -1,5 +1,6 @@
 package cn.minelock.android;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.ClipboardManager;
 import android.view.ContextMenu;
@@ -321,16 +323,22 @@ public class RecentActivity extends Activity {
     	_id=0;    	
     }
     
-/*    private void deleteInList(ArrayList<HashMap<String,Object>> list){
-        Iterator<HashMap<String,Object>> ite = list.iterator();
-        String id=String.valueOf(_id);
-        while(ite.hasNext()){
-          Map<String,Object> m = ite.next();
-          //É¾³ý          
-          if(id.equals(m.get(dbRecent.FIELD_ID))){
-            ite.remove();
-            break;
-          }
-        }
-    }*/
+    public void shareMsg(String activityTitle, String msgTitle, String msgText,  
+            String imgPath) {  
+        Intent intent = new Intent(Intent.ACTION_SEND);  
+        if (imgPath == null || imgPath.equals("")) {  
+            intent.setType("text/plain"); // ´¿ÎÄ±¾   
+        } else {  
+            File f = new File(imgPath);  
+            if (f != null && f.exists() && f.isFile()) {  
+                intent.setType("image/jpg");  
+                Uri u = Uri.fromFile(f);  
+                intent.putExtra(Intent.EXTRA_STREAM, u);  
+            }  
+        }  
+        intent.putExtra(Intent.EXTRA_SUBJECT, msgTitle);  
+        intent.putExtra(Intent.EXTRA_TEXT, msgText);  
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
+        startActivity(Intent.createChooser(intent, activityTitle));  
+    }
 }

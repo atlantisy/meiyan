@@ -201,16 +201,25 @@ public class InitialGuideActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub	
-            Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
+/*            Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
             Intent intent =  new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,packageURI);  
-            startActivity(intent);
+            startActivity(intent);*/
             
-            Toast toast = Toast.makeText(getApplicationContext(),"开启「显示悬浮窗」", Toast.LENGTH_LONG);
+			Intent i = new Intent(Intent.ACTION_MAIN);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			i.addCategory(Intent.CATEGORY_HOME);
+			startActivity(i);
+			
+			Toast toast = Toast.makeText(getApplicationContext(),"长按Home键，进入一键清理\n下拉美言锁屏，确保已被锁定", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             
 			ImageView igCheck3 = (ImageView)findViewById(R.id.igCheck3);
-			igCheck3.setBackgroundResource(R.drawable.ic_check);			
+			igCheck3.setBackgroundResource(R.drawable.ic_check);
+			
+			toast = Toast.makeText(getApplicationContext(),"长按Home键，进入一键清理\n下拉美言锁屏，确保已被锁定", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
 		}
 	};
 	// 返回按钮

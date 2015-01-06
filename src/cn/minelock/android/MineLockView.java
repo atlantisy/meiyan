@@ -112,8 +112,6 @@ public class MineLockView extends FrameLayout{
 				lockLayout.setBackgroundResource(wallpaperId);
 			}			
 		}
-		// 设置美言、壁纸显示
-		SetVerseWallpaperShow(showVerseWallpaperFlag);
 		// 简单滑动解锁，即锁屏方式1
 		viewVerse = (TextView) findViewById(R.id.tv_verse);
 		viewVerse.setText(sCustom.trim());
@@ -131,7 +129,9 @@ public class MineLockView extends FrameLayout{
 		else{
 			mScrollLayout.setVisibility(View.VISIBLE);			
 			ppwv.setVisibility(View.GONE);			
-		}
+		}		
+		// 设置下一个美言、壁纸显示
+		SetVerseWallpaperShow(showVerseWallpaperFlag);
 		// 电池充电量显示
 		batteryValue = (TextView) this.findViewById(R.id.battery_value);	
 		onBattery(status, level, scale);

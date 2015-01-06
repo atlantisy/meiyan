@@ -68,17 +68,22 @@ public class PatternPassWordView extends View {
 	
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String VERSE = "verse";//锁屏方式pref值名称
+	
+	private String verse;
 
 	public PatternPassWordView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		initVerse();
 	}
 
 	public PatternPassWordView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		initVerse();
 	}
 
-	public PatternPassWordView(Context context) {
+	public PatternPassWordView(Context context) {				
 		super(context);
+		initVerse();
 	}
 
 	@Override
@@ -89,7 +94,15 @@ public class PatternPassWordView extends View {
 
 		drawToCanvas(canvas);
 	}
-
+	
+	private void initVerse() {
+		// 获取美言
+		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0); 
+		String initial_verse = getResources().getString(R.string.initial_verse);
+		verse = settings.getString(VERSE, StringUtil.getNineStr(initial_verse));
+		verse = StringUtil.getGridStr(verse);
+	}
+	
 	private void drawToCanvas(Canvas canvas) {
 		// mPaint.setColor(Color.RED);
 		// Point p1 = mPoints[1][1];
@@ -107,11 +120,6 @@ public class PatternPassWordView extends View {
 /*		textPaint.setShadowLayer(1f, 0,
 		0,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
 */		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置		
-		// 获取美言
-		SharedPreferences settings = this.getContext().getSharedPreferences(PREFS, 0); 
-		String initial_verse = getResources().getString(R.string.initial_verse);
-		String verse = settings.getString(VERSE, StringUtil.getNineStr(initial_verse));
-		verse = StringUtil.getGridStr(verse);
 		// 画连线
 		if (sPoints.size() > 0) {
 			int tmpAlpha = mPaint.getAlpha();
@@ -138,7 +146,7 @@ public class PatternPassWordView extends View {
 				if (p.state == Point.STATE_CHECK) {
 					canvas.drawBitmap(pattern_round_click, p.x - r, p.y - r,
 							mPaint);//画圆
-					textPaint.setColor(Color.argb(214, 214, 214, 214));
+					//textPaint.setColor(Color.argb(214, 214, 214, 214));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				} else if (p.state == Point.STATE_CHECK_ERROR) {
 					canvas.drawBitmap(pattern_round_click_error, p.x - r,
@@ -146,7 +154,7 @@ public class PatternPassWordView extends View {
 				} else {
 					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r,
 							mPaint);//画圆
-					textPaint.setColor(Color.argb(255, 255, 255, 255));
+					//textPaint.setColor(Color.argb(255, 255, 255, 255));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				}
 			}
