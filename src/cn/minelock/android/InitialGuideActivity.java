@@ -103,13 +103,13 @@ public class InitialGuideActivity extends Activity {
 			finish_btn.setVisibility(View.VISIBLE);
 						
 			// 初始化锁屏记录
-			dbRecent = new dbHelper(this);
+/*			dbRecent = new dbHelper(this);
 			String initial_verse = getResources().getString(R.string.initial_verse);
-			dbRecent.insert(R.drawable._wallpaper01,initial_verse.substring(0),1,R.drawable.wallpaper01,"1_.png");	
+			dbRecent.insert(R.drawable._wallpaper01,initial_verse.substring(0),1,R.drawable.wallpaper01,"1_.png");	*/
 			
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putBoolean(INITIALGUIDE, true);
-			editor.putInt("verse_quantity", 1);
+			//editor.putInt("verse_quantity", 1);
 			editor.commit();
 		}											
 	}
@@ -210,14 +210,14 @@ public class InitialGuideActivity extends Activity {
 			i.addCategory(Intent.CATEGORY_HOME);
 			startActivity(i);
 			
-			Toast toast = Toast.makeText(getApplicationContext(),"长按Home键，进入一键清理\n下拉美言锁屏，确保已被锁定", Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(getApplicationContext(),"长按home键，进入一键清理\n下拉美言锁屏，确保已被锁定", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             
 			ImageView igCheck3 = (ImageView)findViewById(R.id.igCheck3);
 			igCheck3.setBackgroundResource(R.drawable.ic_check);
 			
-			toast = Toast.makeText(getApplicationContext(),"长按Home键，进入一键清理\n下拉美言锁屏，确保已被锁定", Toast.LENGTH_LONG);
+			toast = Toast.makeText(getApplicationContext(),"长按home键，进入一键清理\n下拉美言锁屏，确保已被锁定", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
 		}

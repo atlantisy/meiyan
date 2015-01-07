@@ -101,10 +101,10 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		Button exit_btn = (Button) findViewById(R.id.setting_exit);
 		exit_btn.setOnClickListener(exitOnClickListener);
 		// 随机小提示
-		String[] tips = getResources().getStringArray(R.array.tips);
+/*		String[] tips = getResources().getStringArray(R.array.tips);
 		int random = (int)(Math.random()*tips.length);
 		TextView tipView = (TextView)findViewById(R.id.setting_tips);
-		tipView.setText("注: "+tips[random]);
+		tipView.setText("注: "+tips[random]);*/
 		
 		//myServiceConnection = new MyServiceConnection();
 	}

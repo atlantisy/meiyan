@@ -189,7 +189,7 @@ public class RecentActivity extends Activity {
         recent_label.setText(Qty);
         
         // 随机选取美言
-        random_btn = (ImageButton)findViewById(R.id.recent_random);
+/*        random_btn = (ImageButton)findViewById(R.id.recent_random);
         random_btn.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -206,10 +206,10 @@ public class RecentActivity extends Activity {
 				
 					startActivity(new Intent(RecentActivity.this, HomeActivity.class));
 				}
-/*				else
-					random_btn.setClickable(false);*/
+				else
+					random_btn.setClickable(false);
 			}
-		});
+		});*/
         
 		// 返回
 		ImageButton return_btn = (ImageButton) findViewById(R.id.recent_return);
@@ -313,11 +313,12 @@ public class RecentActivity extends Activity {
             });
     		builder.show();
     	}
-    	if(cmd=="delete")
-    		dbRecent.delete(_id);    		
+    	if(cmd=="delete"){
+    		dbRecent.delete(_id);
+    		listData.remove(position);
+    	}   		    		
     	recentCursor.requery();
-    	//recentList.invalidateViews();
-    	listData.remove(position);
+    	//recentList.invalidateViews();    	
     	recentAdapter1.notifyDataSetChanged();
     	recentList.invalidate();
     	_id=0;    	

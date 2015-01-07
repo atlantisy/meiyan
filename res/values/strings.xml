@@ -7,6 +7,7 @@
     <string-array name="none_verse">
         <item>此地无言三百两</item>
         <item>竟无言以对</item>
+        <item>你不是真正的无言</item>
     </string-array>
     <string-array name="tips">
         <item>完成初始设置才可正常使用。</item>

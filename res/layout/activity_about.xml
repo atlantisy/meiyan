@@ -37,6 +37,22 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/blank" />
+        
+        <View
+            android:layout_width="1.0px"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+        <Button
+        	android:id="@+id/about_feedback"
+        	android:layout_width="wrap_content"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:padding="8dp"
+        	android:background="@drawable/editok_button_selector1"
+        	android:text="意见反馈"
+        	android:textColor="@color/white"
+        	android:textSize="14sp" />
     </LinearLayout>
 
     <ImageView
@@ -71,7 +87,7 @@
         android:layout_weight="1"
         android:background="@color/alpha" />
 	<Button
-        android:id="@+id/about_help"
+        android:id="@+id/about_weibo"
         android:layout_width="196dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -85,7 +101,7 @@
         android:layout_height="8dp"
         android:background="@color/white" />    
     <Button
-        android:id="@+id/about_feedback"
+        android:id="@+id/about_wechat"
         android:layout_width="196dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

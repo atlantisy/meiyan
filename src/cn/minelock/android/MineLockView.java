@@ -91,7 +91,7 @@ public class MineLockView extends FrameLayout{
 		dbRecent = new dbHelper(context);
 		lockCursor = dbRecent.select();
 		// 获取保存的美言数量及美言显示方式
-		int showVerseWallpaperFlag = settings.getInt(SHOWVERSEFLAG, 3);
+		int showVerseWallpaperFlag = settings.getInt(SHOWVERSEFLAG, 1);
 		sCustom = settings.getString(VERSE, getResources().getString(R.string.initial_verse));	
 		Log.d(TAG, sCustom);
 		// 设置美言、壁纸显示

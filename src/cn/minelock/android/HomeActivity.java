@@ -78,7 +78,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	private static final int SINGLE_REPEAT = 1;// 单句循环
 	private static final int ORDER_REPEAT = 2;// 顺序循环
 	private static final int SHUFFLE = 3;// 随机显示
-	private static int showVerseFlag = 3;// 美言显示方式pref值
+	private static int showVerseFlag = 1;// 美言显示方式pref值
 	private static boolean bPassWord = false;// 九宫格是否设置
 	private static String verse = "";// 美言
 
@@ -356,7 +356,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 美言显示方式按钮初始化
 	private void InitShowVerse() {
 		show_verse_btn = (ImageButton) findViewById(R.id.home_repeat_shuffle);
-		showVerseFlag=home_setting.getInt(SHOWVERSEFLAG, 3);
+		showVerseFlag=home_setting.getInt(SHOWVERSEFLAG, 1);
 		switch (showVerseFlag) {
 		case SINGLE_REPEAT:
 			show_verse_btn.setImageResource(R.drawable.ic_single_repeat);
