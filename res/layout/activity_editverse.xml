@@ -146,11 +146,17 @@
             android:layout_height="48dp"
             android:background="@color/alpha"
             android:src="@drawable/ic_color" 
-            android:visibility="gone"/>        
+            android:visibility="gone"/> 
+        <ImageButton
+            android:id="@+id/edit_emoji"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_emoji_selector" />             
     </LinearLayout>
 
     <GridView
-        android:id="@+id/wallpaper_grid"
+        android:id="@+id/color_grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -162,5 +168,22 @@
         android:verticalSpacing="4dp"
         android:visibility="gone" >
     </GridView>
-
+    
+    <GridView
+        android:id="@+id/emoji_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:background="@color/white"
+        android:columnWidth="45dp"
+        android:gravity="center"
+        android:horizontalSpacing="16dp"
+        android:numColumns="7"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="24dp"
+        android:visibility="gone" >
+    </GridView>
 </LinearLayout>

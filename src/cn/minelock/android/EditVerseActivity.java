@@ -15,6 +15,7 @@ import cn.minelock.util.StringUtil;
 import cn.minelock.widget.AbstractSpinerAdapter;
 import cn.minelock.widget.CustemObject;
 import cn.minelock.widget.CustemSpinerAdapter;
+import cn.minelock.widget.EmojiAdapter;
 import cn.minelock.widget.ImageTools;
 import cn.minelock.widget.SpinerPopWindow;
 import cn.minelock.widget.WallpaperAdapter;
@@ -89,17 +90,20 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	private int wallpaperId;
 	private int _wallpaperId;
 	private String wallpaperPath;
-	private String _wallpaperPath;
+	//private String _wallpaperPath;
 	private boolean bIdOrPath;//true为Id，false为Path
 	private int verseQty;
 	
 	private boolean bControlEditColor = true;
+	private boolean bControlEditEmoji = true;
 	private LinearLayout mEditVerseLayout;
-	private WallpaperAdapter wpAdapter;
+	private WallpaperAdapter colorAdapter;
+	private EmojiAdapter emojiAdapter;
 	private WallpaperManager wallpaperManager;
-	private GridView wpGridview;
+	private GridView colorGridview;
+	private GridView emojiGridview;
 	private ImageButton clear_btn;
-	//private ProgressBar pb;
+	private ImageButton editemoji_btn;
 	
 	dbHelper dbRecent;
 		
@@ -107,40 +111,23 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editverse);
-		mEditVerseLayout = (LinearLayout) findViewById(R.id.editverse_layout);
-		wpGridview = (GridView) findViewById(R.id.wallpaper_grid);
-		//pb = (ProgressBar) findViewById(R.id.editverse_progressbar);
+		mEditVerseLayout = (LinearLayout) findViewById(R.id.editverse_layout);		
 		// 获取存储的pref数据
 		settings = getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
 		// 获取系统主屏幕壁纸
 		wallpaperManager = WallpaperManager.getInstance(this);
 		// 获取保存的壁纸
-		//bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
-		//wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
 		wallpaperPath = settings.getString(WALLPAPERPATH, "1_.png");
 		// 随机壁纸
 		bIdOrPath = true;
 		wallpaperId = WallpaperAdapter.wallpaper[(int)(Math.random()*WallpaperAdapter.wallpaper.length)];		
 		mEditVerseLayout.setBackgroundResource(wallpaperId);
-/*		if(bIdOrPath==true)//设置壁纸			
-			mEditVerseLayout.setBackgroundResource(wallpaperId);
-		else{
-			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
-			try {
-				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
-			} catch (Exception e) {
-				// TODO: handle exception
-				mEditVerseLayout.setBackgroundResource(wallpaperId);
-			}			
-		}*/
 		// 获取保存的美言
 		verseQty = settings.getInt(VERSEQTY, 0);			
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
 		//String verse = getResources().getString(R.string.initial_verse);		
 		//verse_edit.setText(settings.getString(VERSE, verse).trim());//设置默认美言
-		//String[] seasonVerse = getSeasonVerse();
-		//verse_edit.setText(seasonVerse[(int)(Math.random()*seasonVerse.length)]);//设置随机美言
 		verse_hint = verse_edit.getText().toString();
 		verse_edit.setHighlightColor(getResources().getColor(R.color.alpha_black1));
 		verse_edit.selectAll();
@@ -155,28 +142,40 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			    //imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 			    boolean bool = imm.isActive();
 			    if(bool){
-			    	wpGridview.setVisibility(View.GONE);
+			    	colorGridview.setVisibility(View.GONE);
+			    	bControlEditColor = true;
+			    	
+			    	emojiGridview.setVisibility(View.GONE);
+			    	editemoji_btn.setImageResource(R.drawable.ic_emoji);
+			    	bControlEditEmoji = true;
 			    }
 			    return false;
 			}
 		});
-		// 选择应用自带颜色初始化
-		wpAdapter = new WallpaperAdapter(this);
-		wpGridview.setAdapter(wpAdapter);
-		wpGridview.setOnItemClickListener(wallpaperListener);
-		// 选择应用内颜色作为壁纸点击事件
+		// 应用自带表情
+		emojiAdapter = new EmojiAdapter(this);
+		emojiGridview = (GridView) findViewById(R.id.emoji_grid);
+		emojiGridview.setAdapter(emojiAdapter);
+		emojiGridview.setOnItemClickListener(emojiListener);
+		// 选择表情作为美言
+		editemoji_btn = (ImageButton) findViewById(R.id.edit_emoji);
+		editemoji_btn.setOnClickListener(editEmojiOnClickListener);
+		// 应用自带颜色		
+		colorAdapter = new WallpaperAdapter(this);
+		colorGridview = (GridView) findViewById(R.id.color_grid);
+		colorGridview.setAdapter(colorAdapter);
+		colorGridview.setOnItemClickListener(colorListener);
+		// 选择应用内颜色为背景
 		ImageButton editcolor_btn = (ImageButton) findViewById(R.id.edit_color);
 		editcolor_btn.setOnClickListener(editColorOnClickListener);
 		// 拍照或选取相册图片为背景
 		ImageButton editwallpaper_btn = (ImageButton) findViewById(R.id.edit_camera);
 		editwallpaper_btn.setOnClickListener(editWallpaperOnClickListener);
+        // SQLite数据库
+		dbRecent = new dbHelper(this);	
 		// 发布锁屏美言及壁纸
 		Button editok_btn = (Button) findViewById(R.id.edit_ok);
-		editok_btn.setOnClickListener(editOkOnClickListener);
-		
-        // SQLite数据库
-		dbRecent = new dbHelper(this);
-		
+		editok_btn.setOnClickListener(editOkOnClickListener);			
 		// 清空当前美言
 		clear_btn = (ImageButton) findViewById(R.id.edit_clear);
 		clear_btn.setOnClickListener(clearOnClickListener);
@@ -315,33 +314,56 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 		}
 	};
-	
-	// 选择应用内自带颜色或壁纸 
-	OnItemClickListener wallpaperListener = new OnItemClickListener() {
+	// 选择应用内自带表情
+	OnItemClickListener emojiListener = new OnItemClickListener() {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
-			// TODO Auto-generated method stub
+				
+		}
+	};	
+	// 选择应用内自带颜色或壁纸 
+	OnItemClickListener colorListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
 			wallpaperId = WallpaperAdapter.wallpaper[arg2];
 			_wallpaperId = WallpaperAdapter._wallpaper[arg2];
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
 			bIdOrPath = true;//壁纸来源为应用内ID					
 		}
 	};	
-	// 点击实现颜色、壁纸选择项的显示/隐藏
+	// 控制表情列表的显示/隐藏
+	private OnClickListener editEmojiOnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View arg0) {
+			if (bControlEditEmoji == true) {
+				bControlEditEmoji = false;
+				emojiGridview.setVisibility(View.VISIBLE);
+				editemoji_btn.setImageResource(R.drawable.ic_emoji_grey);
+				hideSoftKeyboard();
+			} else {
+				bControlEditEmoji = true;
+				emojiGridview.setVisibility(View.GONE);
+				editemoji_btn.setImageResource(R.drawable.ic_emoji);
+			}
+		}
+	};
+	// 控制颜色、壁纸列表的显示/隐藏
 	private OnClickListener editColorOnClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
 			if (bControlEditColor == true) {
 				bControlEditColor = false;
-				wpGridview.setVisibility(View.VISIBLE);
+				colorGridview.setVisibility(View.VISIBLE);
 				hideSoftKeyboard();
 			} else {
 				bControlEditColor = true;
-				wpGridview.setVisibility(View.GONE);
+				colorGridview.setVisibility(View.GONE);
 			}
 		}
 	};
@@ -351,9 +373,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
 			hideSoftKeyboard();
-			wpGridview.setVisibility(View.GONE);
+			colorGridview.setVisibility(View.GONE);
+			emojiGridview.setVisibility(View.GONE);
 			showPicturePicker(EditVerseActivity.this);
 		}
 	};
@@ -378,7 +400,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							//清晰图片
 							photoName = "photo" + StringUtil.makeFileName();
 							wallpaperPath = dir + "/" + photoName + ".png";
-							_wallpaperPath = dir + "/" + photoName + "_" + ".png";
+							//_wallpaperPath = dir + "/" + photoName + "_" + ".png";
 							openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(wallpaperPath)));							
 							
 							startActivityForResult(openCameraIntent,TAKE_PHOTO);							
@@ -400,12 +422,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 							break;
 							
 						case DEFAULT_PAPER:
-							//verse_edit.setHint("正在同步...");
-							//showRoundProcessDialog(R.layout.process_dialog);
 					    	verse_hint = verse_edit.getText().toString();
 					    	verse_edit.setCursorVisible(false);
 					    	verse_edit.setText("正在同步...");
-					    	//verse_edit.setSelection(verse_hint.length());
 							new Thread(new Runnable() {
 								
 								@Override
@@ -443,7 +462,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		ImageTools.savePhotoToSDCard(bm, dir, photoName);
 		ImageTools.savePhotoToSDCard(_bm, dir, photoName+"_");
 		wallpaperPath = dir + "/" + photoName + ".png";
-		_wallpaperPath = dir + "/" + photoName +"_"+ ".png";
+		//_wallpaperPath = dir + "/" + photoName +"_"+ ".png";
 		bIdOrPath = false;//壁纸来源为应用外路径
 		
         StringUtil.showToast(getApplication(), "同步成功", Toast.LENGTH_SHORT);
@@ -540,7 +559,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 						ImageTools.savePhotoToSDCard(smallImage, dir, imageName);
 						ImageTools.savePhotoToSDCard(_smallImage, dir, imageName+"_");
 						wallpaperPath = dir + "/" + imageName + ".png";
-						_wallpaperPath = dir + "/" + imageName +"_"+ ".png";
+						//_wallpaperPath = dir + "/" + imageName +"_"+ ".png";
 						
 					}
 				} catch (FileNotFoundException e) {
