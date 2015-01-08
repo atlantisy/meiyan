@@ -46,8 +46,7 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/blank" />
+            android:layout_weight="1"/>        
         <View
             android:layout_width="1.0px"
             android:layout_height="20dp"
@@ -73,16 +72,15 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.0"
-        android:layout_marginTop="0dp"
-        android:gravity="center"
+        android:layout_weight="1"        
+        android:gravity="top"
         android:focusable="true"  
         android:focusableInTouchMode="true"
         android:orientation="horizontal" >
         
         <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="220dp"
             android:fillViewport="true"
             android:orientation="vertical"
             android:scrollbars="vertical" >
@@ -92,10 +90,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/alpha"                
-                android:padding="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"            
                 android:ems="16"
                 android:gravity="center"
-                android:hint="书写美好时刻 "
+                android:hint="书写美好..."
                 android:inputType="textMultiLine"
                 android:maxLines="4"
                 android:textColor="@color/white"
@@ -107,6 +106,11 @@
         </ScrollView>                
     </LinearLayout>
 
+<!--     <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/> -->
+    
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
@@ -114,7 +118,7 @@
         android:orientation="horizontal" >
 
         <ImageButton
-            android:id="@+id/edit_camera"
+            android:id="@+id/edit_photo"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@color/alpha"
@@ -152,7 +156,8 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@color/alpha"
-            android:src="@drawable/ic_emoji_selector" />             
+            android:src="@drawable/ic_emoji_selector" 
+            android:visibility="gone"/>             
     </LinearLayout>
 
     <GridView
@@ -186,4 +191,5 @@
         android:verticalSpacing="24dp"
         android:visibility="gone" >
     </GridView>
+
 </LinearLayout>

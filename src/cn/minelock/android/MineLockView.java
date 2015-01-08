@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -60,6 +61,8 @@ public class MineLockView extends FrameLayout{
 	public static final String LOCKFLAG = "lockFlag";//锁屏方式pref值名称
 	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";//九宫格是否设置pref值名称	
+	public static final String SHOWRIGHT = "showRight";	
+	public static final String LEFTCAMERA = "leftCamera";
 	
 	private PatternPassWordView ppwv = null;
 	
@@ -127,8 +130,20 @@ public class MineLockView extends FrameLayout{
 			ppwv.setVisibility(View.VISIBLE);			
 		}
 		else{
-			mScrollLayout.setVisibility(View.VISIBLE);			
-			ppwv.setVisibility(View.GONE);			
+			mScrollLayout.setVisibility(View.VISIBLE);
+			ppwv.setVisibility(View.GONE);
+			// 右滑箭头
+			TextView tv_right=(TextView)findViewById(R.id.tv_right);
+			if(settings.getBoolean(SHOWRIGHT, true))				
+				tv_right.setVisibility(View.VISIBLE);
+			else
+				tv_right.setVisibility(View.GONE);
+			// 左滑相机
+			ImageButton ib_camera=(ImageButton)findViewById(R.id.ib_camera);
+			if(settings.getBoolean(LEFTCAMERA, false))				
+				ib_camera.setVisibility(View.VISIBLE);
+			else
+				ib_camera.setVisibility(View.GONE);						
 		}		
 		// 设置下一个美言、壁纸显示
 		SetVerseWallpaperShow(showVerseWallpaperFlag);

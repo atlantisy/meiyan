@@ -6,12 +6,12 @@
     android:orientation="vertical" >
 
     <ImageButton
-        android:id="@+id/iv_camera"
+        android:id="@+id/ib_camera"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="left"
         android:background="@color/alpha"
         android:src="@drawable/ic_camera" 
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
 </LinearLayout>

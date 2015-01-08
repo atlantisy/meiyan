@@ -201,12 +201,29 @@ public class MyLockScreenService extends Service {
 				switch (view) {
 				case 0:
 					mLockStatus = false;
-					unLock();			
+					unLock();
+					// 返回桌面
+					Intent intent = new Intent(Intent.ACTION_MAIN);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					intent.addCategory(Intent.CATEGORY_HOME);
+					startActivity(intent);
 					break;
 				case 2:				
 					mLockStatus = false;
 					unLock();
-					launchCamera();							
+					//
+					SharedPreferences settings = getSharedPreferences("lock_pref", 0);
+					if(settings.getBoolean("leftCamera", false)){
+						// 打开相机
+						launchCamera();
+					}
+					else{
+						// 返回桌面
+						Intent i = new Intent(Intent.ACTION_MAIN);
+						i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						i.addCategory(Intent.CATEGORY_HOME);
+						startActivity(i);
+					}
 					break;
 				default:
 					mLockStatus = true;

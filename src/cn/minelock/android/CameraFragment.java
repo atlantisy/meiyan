@@ -41,7 +41,7 @@ public class CameraFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         Log.d(TAG, "CameraFragment-----onCreateView");
         View view = inflater.inflate(R.layout.frag_camera, container, false);
-        ImageView viewCamera = (ImageView) view.findViewById(R.id.iv_camera);               
+        ImageView viewCamera = (ImageView) view.findViewById(R.id.ib_camera);               
         viewCamera.setImageBitmap(cameraImage);
         return view;
     }

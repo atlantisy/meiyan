@@ -60,7 +60,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 public class SettingActivity extends Activity  implements OnClickListener{
 
 	private CheckBox lock_checkbox = null;
-	private SwitchButton lock_switchbtn = null;
+	//private SwitchButton lock_switchbtn = null;
 	
 	static public String customText = "";
 
@@ -77,7 +77,6 @@ public class SettingActivity extends Activity  implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setting);
-
 		// 获取保存的prefs数据
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		mIsLockScreenOn = prefs.getBoolean(LOCK_SWITCH, true);
@@ -91,6 +90,9 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		// 设置九宫密码按钮
 		Button setpassword_btn = (Button) findViewById(R.id.setting_setpassword);
 		setpassword_btn.setOnClickListener(setPasswordOnClickListener);	
+		// 个性设置按钮
+		Button more_btn = (Button) findViewById(R.id.setting_more);
+		more_btn.setOnClickListener(moreOnClickListener);	
 		// 关于按钮
 		Button about_btn = (Button) findViewById(R.id.setting_about);
 		about_btn.setOnClickListener(aboutOnClickListener);	
@@ -120,6 +122,17 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			break;
 		}
 	}
+	// 个性设置按钮
+	private OnClickListener moreOnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			startActivity(new Intent(SettingActivity.this, SettingMoreActivity.class));
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			//finish();
+		}
+	};	
 	// 关于按钮
 	private OnClickListener aboutOnClickListener = new OnClickListener() {
 

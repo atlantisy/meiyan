@@ -169,7 +169,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		ImageButton editcolor_btn = (ImageButton) findViewById(R.id.edit_color);
 		editcolor_btn.setOnClickListener(editColorOnClickListener);
 		// 拍照或选取相册图片为背景
-		ImageButton editwallpaper_btn = (ImageButton) findViewById(R.id.edit_camera);
+		ImageButton editwallpaper_btn = (ImageButton) findViewById(R.id.edit_photo);
 		editwallpaper_btn.setOnClickListener(editWallpaperOnClickListener);
         // SQLite数据库
 		dbRecent = new dbHelper(this);	

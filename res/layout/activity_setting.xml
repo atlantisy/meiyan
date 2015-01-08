@@ -24,7 +24,6 @@
             android:background="@color/black" />
 
         <TextView
-            android:id="@+id/setting"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -34,11 +33,9 @@
             android:textColor="@android:color/white" />
 
         <ImageView
-            android:id="@+id/blank"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/blank" />
+            android:layout_weight="1" />
     </LinearLayout>
 
     <ScrollView
@@ -91,7 +88,7 @@
                     android:layout_marginRight="16dp"
                     android:background="@drawable/checkbox_selector"
                     android:button="@null"
-                    android:checked="false" />
+                    android:checked="true" />
             </LinearLayout>
 
             <View
@@ -116,6 +113,22 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/gray_white" />
+			<Button
+                android:id="@+id/setting_more"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="个性设置"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_white" />
             <Button
                 android:id="@+id/setting_initialguide"
                 android:layout_width="fill_parent"
@@ -124,22 +137,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
                 android:text="初始设置"
-                android:textSize="16sp" />
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/gray_white" />
-            <Button
-                android:id="@+id/setting_more"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/default_button_selector"
-                android:gravity="center_vertical"
-                android:paddingLeft="16dp"
-                android:text="更多设置"
-                android:textSize="16sp" />
+                android:textSize="16sp" />            
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="24dp"

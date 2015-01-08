@@ -68,7 +68,9 @@ public class PatternPassWordView extends View {
 	
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String VERSE = "verse";//锁屏方式pref值名称
+	public static final String SHOWPASSWORD = "showPassword";
 	
+	private boolean showPassword;	
 	private String verse;
 
 	public PatternPassWordView(Context context, AttributeSet attrs, int defStyle) {
@@ -101,6 +103,8 @@ public class PatternPassWordView extends View {
 		String initial_verse = getResources().getString(R.string.initial_verse);
 		verse = settings.getString(VERSE, StringUtil.getNineStr(initial_verse));
 		verse = StringUtil.getGridStr(verse);
+		// 是否显示手势密码轨迹
+		showPassword = settings.getBoolean(SHOWPASSWORD, true);
 	}
 	
 	private void drawToCanvas(Canvas canvas) {
@@ -121,7 +125,7 @@ public class PatternPassWordView extends View {
 		0,this.getResources().getColor(android.R.color.background_dark));// 阴影的设置
 */		textPaint.setTextAlign(Paint.Align.CENTER);// 字符的中心在屏幕的位置		
 		// 画连线
-		if (sPoints.size() > 0) {
+		if (sPoints.size()>0 && showPassword) {
 			int tmpAlpha = mPaint.getAlpha();
 			mPaint.setAlpha(lineAlpha);
 			Point tp = sPoints.get(0);
@@ -144,8 +148,10 @@ public class PatternPassWordView extends View {
 				int index = i*mPoints[i].length+j;
 				float textY=(textPaint.descent()-textPaint.ascent())/2;
 				if (p.state == Point.STATE_CHECK) {
-					canvas.drawBitmap(pattern_round_click, p.x - r, p.y - r,
-							mPaint);//画圆
+					if(showPassword)
+						canvas.drawBitmap(pattern_round_click, p.x - r, p.y - r,mPaint);//画圆
+					else
+						canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r,mPaint);//画圆
 					//textPaint.setColor(Color.argb(214, 214, 214, 214));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				} else if (p.state == Point.STATE_CHECK_ERROR) {
