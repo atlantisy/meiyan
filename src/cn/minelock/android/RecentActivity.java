@@ -258,7 +258,7 @@ public class RecentActivity extends Activity {
 			break;
 		case 1:
 			operation("copy");
-			Toast.makeText(getApplicationContext(), "已复制", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "已复制文字", Toast.LENGTH_SHORT).show();
 			break;			
 		case 2:			
 			operation("delete");

@@ -86,20 +86,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/alpha" />
-	<Button
-        android:id="@+id/about_weibo"
-        android:layout_width="196dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="16dp"
-        android:background="@drawable/editok_button_selector"
-        android:text="关注微博"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
-	<View
-        android:layout_width="fill_parent"
-        android:layout_height="8dp"
-        android:background="@color/white" />    
     <Button
         android:id="@+id/about_wechat"
         android:layout_width="196dp"
@@ -109,7 +95,21 @@
         android:background="@drawable/editok_button_selector"
         android:text="关注微信"
         android:textColor="@color/white"
-        android:textSize="18sp" />    
+        android:textSize="18sp" />
+    	
+	<View
+        android:layout_width="fill_parent"
+        android:layout_height="8dp"/>    
+    <Button
+        android:id="@+id/about_weibo"
+        android:layout_width="196dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="16dp"
+        android:background="@drawable/editok_button_selector"
+        android:text="关注微博"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 	<View
         android:layout_width="fill_parent"
         android:layout_height="8dp"

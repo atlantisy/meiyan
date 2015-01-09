@@ -203,10 +203,10 @@ public class MyLockScreenService extends Service {
 					mLockStatus = false;
 					unLock();
 					// 返回桌面
-					Intent intent = new Intent(Intent.ACTION_MAIN);
+/*					Intent intent = new Intent(Intent.ACTION_MAIN);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					intent.addCategory(Intent.CATEGORY_HOME);
-					startActivity(intent);
+					startActivity(intent);*/
 					break;
 				case 2:				
 					mLockStatus = false;
@@ -217,13 +217,13 @@ public class MyLockScreenService extends Service {
 						// 打开相机
 						launchCamera();
 					}
-					else{
+/*					else{
 						// 返回桌面
 						Intent i = new Intent(Intent.ACTION_MAIN);
 						i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						i.addCategory(Intent.CATEGORY_HOME);
 						startActivity(i);
-					}
+					}*/
 					break;
 				default:
 					mLockStatus = true;
