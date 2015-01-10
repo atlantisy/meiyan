@@ -120,7 +120,7 @@
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="个性设置"
+                android:text="显示设置"
                 android:textSize="16sp" />
 
             <View

@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
 			android:gravity="center_vertical"
-            android:text="编辑锁屏"
+            android:text="创作锁屏"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
 

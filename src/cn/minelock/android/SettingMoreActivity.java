@@ -18,16 +18,19 @@ public class SettingMoreActivity extends Activity {
 
 	private SharedPreferences prefs = null;
 	public static final String PREFS = "lock_pref";// pref文件名
+	public static final String STATUSBAR = "statusbar";
 	public static final String SHOWRIGHT = "showRight";	
 	public static final String LEFTCAMERA = "leftCamera";
 	public static final String SHOWPASSWORD = "showPassword";	
 	
+	private CheckBox statusbar_checkbox = null;
 	private CheckBox showright_checkbox = null;
 	private CheckBox leftcamera_checkbox = null;
 	private CheckBox showpassword_checkbox = null;
 	
+	private boolean mStatusbar = false;
 	private boolean mShowRight = true;
-	private boolean mLeftCamera = true;
+	private boolean mLeftCamera = false;
 	private boolean mShowPassword = true;
 	
 	@Override
@@ -37,6 +40,11 @@ public class SettingMoreActivity extends Activity {
 		// 获取保存的prefs数据
 		prefs = getSharedPreferences(PREFS, 0);
 		//prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		// 显示状态栏
+		mStatusbar = prefs.getBoolean(STATUSBAR, false);		 
+		statusbar_checkbox = (CheckBox) findViewById(R.id.statusbar_checkbox);
+		statusbar_checkbox.setChecked(mStatusbar);
+		statusbar_checkbox.setOnClickListener(new OnStatusbarListener());
 		// 显示右滑箭头
 		mShowRight = prefs.getBoolean(SHOWRIGHT, true);		 
 		showright_checkbox = (CheckBox) findViewById(R.id.showright_checkbox);
@@ -57,6 +65,16 @@ public class SettingMoreActivity extends Activity {
 		return_btn.setOnClickListener(returnOnClickListener);
 	}
 	
+	// 显示状态栏
+	class OnStatusbarListener implements OnClickListener {
+		public void onClick(View v) {
+			mStatusbar = statusbar_checkbox.isChecked();
+			//将开关check值存入pref中
+			SharedPreferences.Editor editor = prefs.edit();						
+			editor.putBoolean(STATUSBAR, mStatusbar);
+			editor.commit();
+		}
+	}	
 	// 显示右滑箭头
 	class OnShowRightListener implements OnClickListener {
 		public void onClick(View v) {

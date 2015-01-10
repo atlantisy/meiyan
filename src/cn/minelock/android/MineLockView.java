@@ -222,14 +222,12 @@ public class MineLockView extends FrameLayout{
 				lockView.batteryHandler.sendEmptyMessage(MSG_RUN_AIM);
 			} else if (what == MSG_STOP_ANIM) {
 				lockView.isAnim = false;
-				//lockView.batteryImage.setVisibility(View.GONE);
-				lockView.batteryValue.setVisibility(View.GONE);
+				lockView.batteryValue.setVisibility(View.INVISIBLE);
 				//lockView.animStart = 0;
 				//lockView.animIndex = 0;
 			} else if (what == MSG_RUN_AIM) {
 				if (!lockView.isAnim) {
 					lockView.isAnim = true;
-					//lockView.batteryImage.setVisibility(View.VISIBLE);
 					lockView.batteryValue.setVisibility(View.VISIBLE);
 					lockView.batteryHandler.post(lockView.batteryAnim);
 				}

@@ -90,7 +90,7 @@ public class MyLockScreenService extends Service {
 		// TODO Auto-generated method stub
 		super.onCreate();
 		
-		startForegroundCompat();
+		//startForegroundCompat();
 					
 		// 获取保存的prefs数据
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -174,8 +174,10 @@ public class MyLockScreenService extends Service {
 		wmParams.height = WindowManager.LayoutParams.MATCH_PARENT; 
 		
 		wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;//
-		wmParams.flags = 1280;//隐藏状态栏    FLAG_FULLSCREEN|FLAG_LAYOUT_IN_SCREEN						
-		//wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+		if(getSharedPreferences("lock_pref", 0).getBoolean("statusbar", false))
+			wmParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN;						
+		else
+			wmParams.flags = 1280;//隐藏状态栏    FLAG_FULLSCREEN|FLAG_LAYOUT_IN_SCREEN
 		// 显示锁屏界面
 		mWindowManager.addView(mFloatLayout, wmParams); 
 		// 充电量显示
@@ -197,33 +199,17 @@ public class MyLockScreenService extends Service {
 			
 			@Override
 			public void OnViewChange(int view) {
-				// TODO Auto-generated method stub
 				switch (view) {
 				case 0:
 					mLockStatus = false;
 					unLock();
-					// 返回桌面
-/*					Intent intent = new Intent(Intent.ACTION_MAIN);
-					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					intent.addCategory(Intent.CATEGORY_HOME);
-					startActivity(intent);*/
 					break;
 				case 2:				
 					mLockStatus = false;
 					unLock();
-					//
-					SharedPreferences settings = getSharedPreferences("lock_pref", 0);
-					if(settings.getBoolean("leftCamera", false)){
-						// 打开相机
+					// 打开相机
+					if(getSharedPreferences("lock_pref", 0).getBoolean("leftCamera", false))						
 						launchCamera();
-					}
-/*					else{
-						// 返回桌面
-						Intent i = new Intent(Intent.ACTION_MAIN);
-						i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						i.addCategory(Intent.CATEGORY_HOME);
-						startActivity(i);
-					}*/
 					break;
 				default:
 					mLockStatus = true;

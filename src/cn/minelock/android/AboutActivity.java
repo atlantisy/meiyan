@@ -37,7 +37,10 @@ public class AboutActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			joinQQGroup("YY5Tm4TItvMDDVFJkkqDBRVB4JXeiwla");
+			if(!joinQQGroup("YY5Tm4TItvMDDVFJkkqDBRVB4JXeiwla")){
+				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dwz.cn/minelock0"));  
+				startActivity(i);  
+			}
 		}
 	};
 	// Î¢²©

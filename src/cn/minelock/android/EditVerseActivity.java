@@ -388,7 +388,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	public void showPicturePicker(Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		//builder.setTitle("更换锁屏壁纸");
-		builder.setItems(new String[] { "拍照", "从相册选取", "与桌面壁纸同步"},
+		builder.setItems(new String[] { "拍照", "从相册选取", "使用桌面壁纸"},
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -424,7 +424,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 						case DEFAULT_PAPER:
 					    	verse_hint = verse_edit.getText().toString();
 					    	verse_edit.setCursorVisible(false);
-					    	verse_edit.setText("正在同步...");
+					    	verse_edit.setText("正在获取...");
 							new Thread(new Runnable() {
 								
 								@Override
@@ -465,7 +465,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		//_wallpaperPath = dir + "/" + photoName +"_"+ ".png";
 		bIdOrPath = false;//壁纸来源为应用外路径
 		
-        StringUtil.showToast(getApplication(), "同步成功", Toast.LENGTH_SHORT);
+        StringUtil.showToast(getApplication(), "获取成功", Toast.LENGTH_SHORT);
         verse_edit.setText(verse_hint);
         verse_edit.setSelection(verse_hint.length());
         verse_edit.setCursorVisible(true);

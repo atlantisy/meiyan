@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
-            android:text="个性设置"
+            android:text="显示设置"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
 
@@ -56,6 +56,38 @@
             android:paddingLeft="0dp"
             android:paddingRight="0dp" >
 
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="显示状态栏"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/statusbar_checkbox"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/checkbox_selector"
+                    android:button="@null"
+                    android:checked="false" />
+            </LinearLayout> 
+			<View
+                android:layout_width="fill_parent"
+                android:layout_height="24dp"
+                android:background="@color/gray_white" />
+			            
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
