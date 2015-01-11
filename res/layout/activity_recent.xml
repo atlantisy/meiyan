@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
 			android:gravity="center_vertical"
 			android:paddingLeft="16dp"
-            android:text="美言记录"
+            android:text="创作记录"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
         

@@ -75,7 +75,7 @@ public class SetPasswordActivity extends Activity {
 						ppwv.clearPassword();
 						needverify = false;
 					} else {
-						setPasswordHint.setText("密码不对，再想想看");
+						setPasswordHint.setText("密码不对，再想一想");
 						setPasswordHint.setTextColor(getResources().getColor(R.color.red));
 						//showToast("密码错误，请重新输入");
 						ppwv.clearPassword();

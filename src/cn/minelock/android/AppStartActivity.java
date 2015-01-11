@@ -30,6 +30,7 @@ public class AppStartActivity extends Activity {
 		final View view = View.inflate(this, R.layout.start, null);
 		setContentView(view);
 		
+		//this.excludeFromRecents
 		// 渐变展示启动屏,这里通过动画来设置了开启应用程序的界面
 		AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
 		aa.setDuration(1000);

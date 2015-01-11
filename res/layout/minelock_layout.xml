@@ -13,7 +13,7 @@
 
         <View 
             android:layout_width="fill_parent"
-            android:layout_height="22dp"/>
+            android:layout_height="16dp"/>
         
         <LinearLayout
             android:layout_width="fill_parent"
@@ -100,7 +100,7 @@
         		android:shadowDy="0"
         		android:shadowRadius="1"                
                 android:layout_marginBottom="0dp"
-                android:text="密码不对，再想想看"
+                android:text="密码不对，再想一想"
                 android:textColor="@color/red" 
                 android:textSize="16sp" 
                 android:visibility="invisible"/>
