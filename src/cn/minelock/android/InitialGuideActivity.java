@@ -74,7 +74,7 @@ public class InitialGuideActivity extends Activity {
 			igHint.setText(hint1);
 			ig2_btn.setText("开启「我信任该程序」和「自动启动」\n（确保锁屏运行）");
 			ig2.setVisibility(View.VISIBLE);
-			ig3_btn.setText("将美言锁屏加入一键清理白名单\n（防止锁屏失败）");
+			ig3_btn.setText("将美言锁屏加入「内存加速」白名单\n（防止锁屏失败）");
 			ig3.setVisibility(View.VISIBLE);
 			igDown2.setVisibility(View.INVISIBLE);
 			igDown3.setVisibility(View.INVISIBLE);
@@ -222,7 +222,7 @@ public class InitialGuideActivity extends Activity {
 				i.addCategory(Intent.CATEGORY_HOME);
 				startActivity(i);
 				
-				ig3Toast = "长按home键，进入一键清理\n下拉美言锁屏，确保已被锁定";
+				ig3Toast = "长按home键，进入内存加速\n下拉美言锁屏，确保已被锁定";
 			}
 			else if(PhoneUtil.isHuawei()){
 				Intent intent =  new Intent(Settings.ACTION_SETTINGS);	

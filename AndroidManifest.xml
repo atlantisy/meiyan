@@ -49,7 +49,6 @@
         <activity
             android:name="cn.minelock.android.HomeActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
@@ -64,7 +63,7 @@
         <activity
             android:name="cn.minelock.android.LockActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:excludeFromRecents="true"
+            android:excludeFromRecents="false"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
@@ -99,7 +98,6 @@
         <activity
             android:name="cn.minelock.android.SettingActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar"
@@ -107,7 +105,6 @@
         </activity>
         <activity
             android:name="cn.minelock.android.EditVerseActivity"
-            android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
@@ -115,15 +112,13 @@
         <activity
             android:name="cn.minelock.android.SetPasswordActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="cn.minelock.android.RecentActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:excludeFromRecents="true"
+            android:configChanges="orientation|keyboardHidden"            
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
@@ -131,7 +126,6 @@
         <activity
             android:name="cn.minelock.android.AboutActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
@@ -139,7 +133,6 @@
         <activity
             android:name="cn.minelock.android.InitialGuideActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
@@ -147,7 +140,6 @@
         <activity
             android:name="cn.minelock.android.SettingMoreActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >

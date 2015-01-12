@@ -506,7 +506,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		}
 
 	}
-	
+		
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
@@ -536,9 +536,24 @@ public class HomeActivity extends Activity implements OnClickListener,
 		case R.id.verse_option:
 			showSpinWindow();
 			break;
-
+/*		case R.id.line_verse:
+			LinearLayout topbar=(LinearLayout)findViewById(R.id.home_topbar);
+			LinearLayout bottombar=(LinearLayout)findViewById(R.id.home_bottombar);
+			if(fullscreen){
+				fullscreen=false;
+				topbar.setVisibility(View.GONE);
+				bottombar.setVisibility(View.GONE);
+			}
+			else{
+				fullscreen=true;
+				topbar.setVisibility(View.VISIBLE);
+				bottombar.setVisibility(View.VISIBLE);
+			}
+				
+			break;*/
 		}
 	}
+	//private boolean fullscreen=true;
 	
 	// 返回其他activity传递的结果
 	@Override
