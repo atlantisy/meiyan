@@ -50,11 +50,11 @@ public class RecentActivity extends Activity {
 	private ListView recentList;
 	//private SimpleCursorAdapter recentAdapter;
 	private SimpleAdapter recentAdapter1;
-	private ImageButton random_btn;
+	//private ImageButton random_btn;
 	private int _id;
 	private int position;
 	
-	private String deleteItem;
+	private String deleteVerse;
 	
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String VERSE = "verse";// 美言pref值名称
@@ -167,7 +167,7 @@ public class RecentActivity extends Activity {
 				position=arg2;
 				recentCursor.moveToPosition(arg2);
 				_id = recentCursor.getInt(0);
-				deleteItem = recentCursor.getString(2);//+recentCursor.getInt(1);
+				deleteVerse = recentCursor.getString(2);//+recentCursor.getInt(1);
 				return false;
 			}
 		});
@@ -295,22 +295,29 @@ public class RecentActivity extends Activity {
     {
     	setTitle("");
     	if(cmd=="share"){
-			Intent intent=new Intent(Intent.ACTION_SEND);  
+    		String sharePath="（通过#美言锁屏#创作，下载链接：http://www.minelock.com）";
+/*			Intent intent=new Intent(Intent.ACTION_SEND);  
 			intent.setType("text/plain");  
 			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");  
-			intent.putExtra(Intent.EXTRA_TEXT, deleteItem.trim()+"#minelock#");  
-			startActivity(Intent.createChooser(intent, getTitle()));
+			intent.putExtra(Intent.EXTRA_TEXT, deleteVerse.trim()+sharePath);  
+			startActivity(Intent.createChooser(intent, getTitle()));*/
+    		    		
+    		String imgPath="";
+    		if(recentCursor.getInt(3)==0)
+    			imgPath=recentCursor.getString(5); 
+    		
+    		shareMsg(deleteVerse.trim(),deleteVerse.trim()+sharePath,imgPath);
     	}
     	if(cmd=="copy"){
     		//dbRecent.insert( myEditText.getText().toString());    		
     		ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-    		cbm.setText(deleteItem);     		
+    		cbm.setText(deleteVerse);     		
     	}
     	if(cmd=="edit"){
     		final EditText myEditText = new EditText(this);
     		//myEditText.setText(deleteItem.trim().toCharArray(), 0, deleteItem.trim().length());
-    		myEditText.setText(deleteItem);
-    		myEditText.setSelection(deleteItem.trim().length());//设置光标在末尾
+    		myEditText.setText(deleteVerse);
+    		myEditText.setSelection(deleteVerse.trim().length());//设置光标在末尾
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);   
     		builder.setView(myEditText).setNegativeButton("取消", null);
     		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -341,8 +348,7 @@ public class RecentActivity extends Activity {
     	_id=0;    	
     }
     
-    public void shareMsg(String activityTitle, String msgTitle, String msgText,  
-            String imgPath) {  
+    public void shareMsg(String msgTitle, String msgText,String imgPath) {  
         Intent intent = new Intent(Intent.ACTION_SEND);  
         if (imgPath == null || imgPath.equals("")) {  
             intent.setType("text/plain"); // 纯文本   
@@ -356,7 +362,7 @@ public class RecentActivity extends Activity {
         }  
         intent.putExtra(Intent.EXTRA_SUBJECT, msgTitle);  
         intent.putExtra(Intent.EXTRA_TEXT, msgText);  
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
-        startActivity(Intent.createChooser(intent, activityTitle));  
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);          
+        startActivity(Intent.createChooser(intent, getTitle()));
     }
 }
