@@ -454,7 +454,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
     public void getDefaultWallpaper(){
 		// ªÒ»°µ±«∞±⁄÷Ω ,◊™≥…Bitmap£¨≤¢…Ë÷√ ±≥æ∞ 
 		Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
-		Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
+		//Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
+		Bitmap bm = ImageTools.zoomBitmap(((BitmapDrawable) wallpaperDrawable).getBitmap(), 720, 1280);		
 		Bitmap _bm = ImageTools.zoomBitmap(bm, 72, 72);//—πÀı
 		mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
 		// ±£¥ÊµΩSDø®
@@ -517,7 +518,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				try {
 					FileInputStream fis = new FileInputStream(wallpaperPath);
 					photo = BitmapFactory.decodeStream(fis);
-					smallPhoto = ImageTools.zoomBitmap(photo, photo.getWidth() / 2, photo.getHeight() / 2);//—πÀı
+					//smallPhoto = ImageTools.zoomBitmap(photo, photo.getWidth() / 2, photo.getHeight() / 2);//—πÀı
+					smallPhoto = ImageTools.zoomBitmap(photo, 720, 1280);//—πÀı
 					_smallPhoto = ImageTools.zoomBitmap(smallPhoto, 72, 72);//—πÀı
 					photo.recycle();
 					
@@ -543,7 +545,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 					Bitmap image = MediaStore.Images.Media.getBitmap(resolver,originalUri);
 					if (image != null) {	
 						// …Ë÷√À¯∆¡±⁄÷Ω
-						Bitmap smallImage = ImageTools.zoomBitmap(image, image.getWidth() / 2, image.getHeight() / 2);
+						//Bitmap smallImage = ImageTools.zoomBitmap(image, image.getWidth() / 2, image.getHeight() / 2);
+						Bitmap smallImage = ImageTools.zoomBitmap(image, 720, 1280);
 						Bitmap _smallImage = ImageTools.zoomBitmap(smallImage, 72, 72);
 						mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallImage));
 						image.recycle();

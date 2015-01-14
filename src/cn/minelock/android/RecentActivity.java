@@ -38,6 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.minelock.widget.ImageSimpleAdapter;
+import cn.minelock.widget.ImageTools;
 import cn.minelock.widget.dbHelper;
 
 import cn.minelock.android.R;
@@ -186,30 +187,7 @@ public class RecentActivity extends Activity {
         // 获取增删后的美言数量
         String Qty = title + "(" + String.valueOf(verseQty) + ")";
         recent_label = (TextView) findViewById(R.id.recent_label);
-        recent_label.setText(Qty);
-        
-        // 随机选取美言
-/*        random_btn = (ImageButton)findViewById(R.id.recent_random);
-        random_btn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				int random = (int)(Math.random()*verseQty);
-				if(verseQty>0){
-					recentCursor.moveToPosition(random);
-					_id = recentCursor.getInt(0);
-					String verse = recentCursor.getString(1) + recentCursor.getString(2);
-					// 将美言存入SharedPreferences				
-					editor.putString(VERSE, verse);// 美言
-					editor.commit();
-				
-					startActivity(new Intent(RecentActivity.this, HomeActivity.class));
-				}
-				else
-					random_btn.setClickable(false);
-			}
-		});*/
+        recent_label.setText(Qty);        
         
 		// 返回
 		ImageButton return_btn = (ImageButton) findViewById(R.id.recent_return);
@@ -262,6 +240,37 @@ public class RecentActivity extends Activity {
 			break;			
 		case 2:			
 			operation("delete");
+			int verseId = position;				
+			// 移动到上一位置										
+			if(verseId<=0){
+				editor.putBoolean(BOOLIDPATH, true);// 壁纸
+				editor.putInt(WALLPAPERID, R.drawable.wallpaper01);// 壁纸id
+				editor.putString(WALLPAPERPATH, "1_.png");// 壁纸path
+				// 将美言存入SharedPreferences				
+				editor.putString(VERSE, getResources().getString(R.string.initial_verse));// 美言
+				editor.putLong(VERSEID,0);// 美言id				
+			}				
+			else{
+				verseId = verseId-1;
+				recentCursor.moveToPosition(verseId);	
+				// 美言
+				String verse = recentCursor.getString(2);
+				// 壁纸
+				int idPath = recentCursor.getInt(3);
+				int id = recentCursor.getInt(4);
+				String path = recentCursor.getString(5);
+				// 将壁纸存入SharedPreferences
+				boolean bIdPath = false;
+				if(idPath==1)
+					bIdPath = true;
+				editor.putBoolean(BOOLIDPATH, bIdPath);// 壁纸
+				editor.putInt(WALLPAPERID, id);// 壁纸id
+				editor.putString(WALLPAPERPATH, path);// 壁纸path
+				// 将美言存入SharedPreferences				
+				editor.putString(VERSE, verse);// 美言
+				editor.putLong(VERSEID,(long)verseId);// 美言id	
+			}
+							
 			if(verseQty>0)
 				verseQty = verseQty-1;
 			else
@@ -316,6 +325,14 @@ public class RecentActivity extends Activity {
     	if(cmd=="delete"){
     		dbRecent.delete(_id);
     		listData.remove(position);
+			// 删除SD卡上图片
+    		//recentCursor.moveToPosition(position);
+    		if(recentCursor.getInt(3)==0){
+				String deletePath=recentCursor.getString(5);
+				String _deletePath=deletePath.substring(0, deletePath.length()-4)+"_.png";
+				ImageTools.deletePhoto(deletePath);
+				ImageTools.deletePhoto(_deletePath);
+			}
     	}   		    		
     	recentCursor.requery();
     	//recentList.invalidateViews();    	

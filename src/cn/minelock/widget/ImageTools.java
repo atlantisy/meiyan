@@ -355,6 +355,12 @@ public final class ImageTools {
 	 * @param path
 	 * file:///sdcard/temp.jpg
 	 */
+	public static void deletePhoto(String path){
+		if (checkSDCardAvailable()) {
+			File f = new File(path);
+			f.delete();
+		}
+	}
 	public static void deleteAllPhoto(String path){
 		if (checkSDCardAvailable()) {
 			File folder = new File(path);
