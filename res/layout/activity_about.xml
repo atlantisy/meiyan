@@ -93,7 +93,7 @@
         android:layout_gravity="center"
         android:padding="16dp"
         android:background="@drawable/editok_button_selector"
-        android:text="关注微信"
+        android:text="官方网站"
         android:textColor="@color/white"
         android:textSize="18sp" />
     	
@@ -107,7 +107,7 @@
         android:layout_gravity="center"
         android:padding="16dp"
         android:background="@drawable/editok_button_selector"
-        android:text="关注微博"
+        android:text="官方微博"
         android:textColor="@color/white"
         android:textSize="18sp" />
 	<View

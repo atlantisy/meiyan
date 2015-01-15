@@ -37,10 +37,10 @@ public class AboutActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			if(!joinQQGroup("YY5Tm4TItvMDDVFJkkqDBRVB4JXeiwla")){
+			//if(!joinQQGroup("YY5Tm4TItvMDDVFJkkqDBRVB4JXeiwla")){
 				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dwz.cn/minelockwx20140926"));  
 				startActivity(i);  
-			}
+			//}
 		}
 	};
 	// Î¢²©
@@ -60,7 +60,8 @@ public class AboutActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dwz.cn/minelockwx20140926"));   
+			//Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dwz.cn/minelockwx20140926"));  
+			Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.minelock.com"));   
 			//i.setClassName("com.android.browser", "com.android.browser.BrowserActivity");   
 			startActivity(i);  
 		}

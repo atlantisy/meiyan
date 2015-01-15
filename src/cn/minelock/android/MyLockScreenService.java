@@ -330,8 +330,9 @@ public class MyLockScreenService extends Service {
 					
 					unLock();
 					break;
-				case TelephonyManager.CALL_STATE_IDLE:
+/*				case TelephonyManager.CALL_STATE_IDLE:
 					//mLockStatus=false;
+					break;*/
 				default:
 					//mLockStatus=true;
 					break;

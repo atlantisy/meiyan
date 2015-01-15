@@ -242,16 +242,18 @@ public class RecentActivity extends Activity {
 			operation("delete");
 			int verseId = position;				
 			// 移动到上一位置										
-			if(verseId<=0){
+			if(verseQty==1){
 				editor.putBoolean(BOOLIDPATH, true);// 壁纸
 				editor.putInt(WALLPAPERID, R.drawable.wallpaper01);// 壁纸id
 				editor.putString(WALLPAPERPATH, "1_.png");// 壁纸path
 				// 将美言存入SharedPreferences				
 				editor.putString(VERSE, getResources().getString(R.string.initial_verse));// 美言
 				editor.putLong(VERSEID,0);// 美言id				
-			}				
+			}
 			else{
-				verseId = verseId-1;
+				if(verseId==verseQty-1)
+					verseId = verseId-1;
+				//verseId = verseId-1;
 				recentCursor.moveToPosition(verseId);	
 				// 美言
 				String verse = recentCursor.getString(2);
@@ -268,7 +270,7 @@ public class RecentActivity extends Activity {
 				editor.putString(WALLPAPERPATH, path);// 壁纸path
 				// 将美言存入SharedPreferences				
 				editor.putString(VERSE, verse);// 美言
-				editor.putLong(VERSEID,(long)verseId);// 美言id	
+				//editor.putLong(VERSEID,(long)verseId);// 美言id	
 			}
 							
 			if(verseQty>0)

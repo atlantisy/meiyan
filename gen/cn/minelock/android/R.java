@@ -505,7 +505,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int frag_camera=0x7f030009;
         public static final int frag_unlock=0x7f03000a;
         public static final int frag_verse=0x7f03000b;
-        public static final int gridview_verse=0x7f03000c;
+        public static final int grid_verse0=0x7f03000c;
         public static final int minelock_layout=0x7f03000d;
         public static final int process_dialog=0x7f03000e;
         public static final int pull_to_refresh_header_horizontal=0x7f03000f;

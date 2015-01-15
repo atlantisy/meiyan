@@ -107,8 +107,8 @@
             
             <cn.minelock.widget.PatternPassWordView
                 android:id="@+id/mPatternPassWordView"
-                android:layout_width="248dp"
-                android:layout_height="248dp" 
+                android:layout_width="244dp"
+                android:layout_height="244dp" 
                 android:layout_gravity="center"/>
         </LinearLayout>		
 	     

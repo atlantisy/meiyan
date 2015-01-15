@@ -39,6 +39,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -165,7 +166,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		}
 		// 生成适配器
 		SimpleAdapter saVerses = new SimpleAdapter(this, listVerse,
-				R.layout.gridview_verse, new String[] { "Verse" },
+				R.layout.grid_verse0, new String[] { "Verse" },
 				new int[] { R.id.verse_content });
 		// 添加并且显示,添加消息处理
 		verse_grid.setAdapter(saVerses);
@@ -536,24 +537,31 @@ public class HomeActivity extends Activity implements OnClickListener,
 		case R.id.verse_option:
 			showSpinWindow();
 			break;
-/*		case R.id.line_verse:
+			
+		}
+	}
+	
+	private boolean fullscreen=true;
+	// 点击空白处显示全屏
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		if(event.getAction() == MotionEvent.ACTION_DOWN){
 			LinearLayout topbar=(LinearLayout)findViewById(R.id.home_topbar);
 			LinearLayout bottombar=(LinearLayout)findViewById(R.id.home_bottombar);
 			if(fullscreen){
 				fullscreen=false;
-				topbar.setVisibility(View.GONE);
-				bottombar.setVisibility(View.GONE);
+				topbar.setVisibility(View.INVISIBLE);
+				bottombar.setVisibility(View.INVISIBLE);
 			}
 			else{
 				fullscreen=true;
 				topbar.setVisibility(View.VISIBLE);
 				bottombar.setVisibility(View.VISIBLE);
-			}
-				
-			break;*/
+			}		
 		}
+		
+		return super.onTouchEvent(event);
 	}
-	//private boolean fullscreen=true;
 	
 	// 返回其他activity传递的结果
 	@Override
