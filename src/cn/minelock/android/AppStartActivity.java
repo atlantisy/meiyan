@@ -76,7 +76,7 @@ public class AppStartActivity extends Activity {
 	private void redirectToInitialGuide() {
 		Intent intent = new Intent(this, InitialGuideActivity.class);
 		startActivity(intent);		
-		finish();
+		//finish();
 	}
 	
 	

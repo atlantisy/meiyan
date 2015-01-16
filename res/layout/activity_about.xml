@@ -15,7 +15,7 @@
             android:id="@+id/about_return"
             android:layout_width="48dp"
             android:layout_height="fill_parent"
-            android:background="@drawable/ic_return_selector"/>
+            android:background="@drawable/ic_return_selector" />
 
         <View
             android:layout_width="1.0px"
@@ -37,33 +37,36 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/blank" />
-        
+
         <View
             android:layout_width="1.0px"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
             android:background="@color/black" />
+
         <Button
-        	android:id="@+id/about_feedback"
-        	android:layout_width="wrap_content"
-        	android:layout_height="fill_parent"
-        	android:gravity="center"
-        	android:padding="8dp"
-        	android:background="@drawable/editok_button_selector1"
-        	android:text="意见反馈"
-        	android:textColor="@color/white"
-        	android:textSize="14sp" />
+            android:id="@+id/about_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/editok_button_selector1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="意见反馈"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="24dp"
         android:background="@color/alpha" />
+
     <ImageView
         android:layout_width="144dp"
         android:layout_height="144dp"
         android:layout_gravity="center"
         android:background="@drawable/start_logo" />
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -72,49 +75,54 @@
         android:text="美言锁屏 "
         android:textColor="@color/gray_black"
         android:textSize="30sp" />
+
     <TextView
         android:id="@+id/about_version"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="4dp"
-        android:text="v1.2"
+        android:text="v1.2.1"
         android:textColor="@color/gray_black"
-        android:textSize="14sp" />
-    <ImageView
+        android:textSize="14sp" />    
+    
+    <View
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/alpha" />
-    <Button
-        android:id="@+id/about_wechat"
-        android:layout_width="196dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="16dp"
-        android:background="@drawable/editok_button_selector"
-        android:text="官方网站"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
-    	
-	<View
+        android:layout_weight="1" />
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="8dp"/>    
-    <Button
-        android:id="@+id/about_weibo"
-        android:layout_width="196dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="16dp"
-        android:background="@drawable/editok_button_selector"
-        android:text="官方微博"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
-	<View
-        android:layout_width="fill_parent"
-        android:layout_height="8dp"
-        android:background="@color/white" />  
-	<TextView
+        android:background="@color/alpha"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/about_wechat"
+            android:layout_width="148dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@drawable/editok_button_selector"
+            android:text="官方网站"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    	<View
+        	android:layout_width="fill_parent"
+        	android:layout_height="8dp"
+        	android:background="@color/alpha"/>
+        <Button
+            android:id="@+id/about_weibo"
+            android:layout_width="148dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@drawable/editok_button_selector"
+            android:text="官方微博"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -122,4 +130,5 @@
         android:text="@string/copyright"
         android:textColor="@color/gray_gray"
         android:textSize="12sp" />
+
 </LinearLayout>

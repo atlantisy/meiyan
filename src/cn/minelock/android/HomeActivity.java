@@ -1,5 +1,6 @@
 package cn.minelock.android;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -31,6 +32,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -132,16 +134,18 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// 美言类型设置选项
 		verseOptionSetup();
 		
-		// 分享按钮
-		ImageButton share_button = (ImageButton) findViewById(R.id.home_share1);
+		// 分享
+		ImageButton share_button = (ImageButton) findViewById(R.id.home_share);
 		share_button.setOnClickListener(this);
-		// 设置按钮
+/*		ImageButton share1_button = (ImageButton) findViewById(R.id.home_share1);
+		share1_button.setOnClickListener(this);*/
+		// 设置
 		ImageButton setting_button = (ImageButton) findViewById(R.id.home_setting1);
 		setting_button.setOnClickListener(this);
-		// 历史记录按钮
+		// 历史记录
 		ImageButton recent_button = (ImageButton) findViewById(R.id.home_recent);
 		recent_button.setOnClickListener(this);
-		// 编辑美言按钮
+		// 编辑美言
 		ImageButton text_button = (ImageButton) findViewById(R.id.home_text);
 		text_button.setOnClickListener(this);
 		// 设置九宫格手势
@@ -511,13 +515,20 @@ public class HomeActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
-		case R.id.home_share1:
+/*		case R.id.home_share1:
 			Intent intent=new Intent(Intent.ACTION_SEND);  
 			intent.setType("text/plain");  
 			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");  
-			intent.putExtra(Intent.EXTRA_TEXT, verse+"#minelock#");  
+			intent.putExtra(Intent.EXTRA_TEXT, verse.trim()+"#minelock#");  
 			startActivity(Intent.createChooser(intent, getTitle()));
-			break;
+			break;*/
+		case R.id.home_share:			
+			String imgPath="";
+    		if(!home_setting.getBoolean(BOOLIDPATH, true))
+    			imgPath=home_setting.getString(WALLPAPERPATH, ""); 
+    		
+    		shareMsg(verse.trim(),verse.trim()+getResources().getString(R.string.share_word),imgPath);
+			break;			
 		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));
 			//overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
@@ -548,15 +559,18 @@ public class HomeActivity extends Activity implements OnClickListener,
 		if(event.getAction() == MotionEvent.ACTION_DOWN){
 			LinearLayout topbar=(LinearLayout)findViewById(R.id.home_topbar);
 			LinearLayout bottombar=(LinearLayout)findViewById(R.id.home_bottombar);
+			LinearLayout share=(LinearLayout)findViewById(R.id.home_social);
 			if(fullscreen){
 				fullscreen=false;
 				topbar.setVisibility(View.INVISIBLE);
 				bottombar.setVisibility(View.INVISIBLE);
+				share.setVisibility(View.VISIBLE);
 			}
 			else{
 				fullscreen=true;
 				topbar.setVisibility(View.VISIBLE);
 				bottombar.setVisibility(View.VISIBLE);
+				share.setVisibility(View.GONE);
 			}		
 		}
 		
@@ -603,6 +617,24 @@ public class HomeActivity extends Activity implements OnClickListener,
 		else
 			mKeyguardLock.disableKeyguard();
 	}
+	// 分享
+    public void shareMsg(String msgTitle, String msgText,String imgPath) {  
+        Intent intent = new Intent(Intent.ACTION_SEND);  
+        if (imgPath == null || imgPath.equals("")) {  
+            intent.setType("text/plain"); // 纯文本   
+        } else {  
+            File f = new File(imgPath);  
+            if (f != null && f.exists() && f.isFile()) {  
+                intent.setType("image/jpg");  
+                Uri u = Uri.fromFile(f);  
+                intent.putExtra(Intent.EXTRA_STREAM, u);  
+            }  
+        }  
+        intent.putExtra(Intent.EXTRA_SUBJECT, msgTitle);  
+        intent.putExtra(Intent.EXTRA_TEXT, msgText);  
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);          
+        startActivity(Intent.createChooser(intent, getTitle()));
+    }
 	
 	private void setVerse(int pos) {
 		if (pos >= 0 && pos <= nameList.size()) {

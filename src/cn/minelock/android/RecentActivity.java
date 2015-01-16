@@ -297,7 +297,6 @@ public class RecentActivity extends Activity {
     {
     	setTitle("");
     	if(cmd=="share"){
-    		String sharePath="（通过#美言锁屏#创作，下载链接：http://www.minelock.com）";
 /*			Intent intent=new Intent(Intent.ACTION_SEND);  
 			intent.setType("text/plain");  
 			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");  
@@ -308,7 +307,7 @@ public class RecentActivity extends Activity {
     		if(recentCursor.getInt(3)==0)
     			imgPath=recentCursor.getString(5); 
     		
-    		shareMsg(deleteVerse.trim(),deleteVerse.trim()+sharePath,imgPath);
+    		shareMsg(deleteVerse.trim(),deleteVerse.trim()+getResources().getString(R.string.share_word),imgPath);
     	}
     	if(cmd=="copy"){
     		//dbRecent.insert( myEditText.getText().toString());    		

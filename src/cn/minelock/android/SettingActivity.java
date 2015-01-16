@@ -1,6 +1,13 @@
 package cn.minelock.android;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import cn.minelock.android.MyLockScreenService;
 
@@ -15,9 +22,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -31,6 +42,7 @@ import android.text.SpannableString;
 import android.text.style.CharacterStyle;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -99,9 +111,9 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		// 返回按钮
 		ImageButton return_btn = (ImageButton) findViewById(R.id.setting_return);
 		return_btn.setOnClickListener(returnOnClickListener);
-		// 退出按钮
-		Button exit_btn = (Button) findViewById(R.id.setting_exit);
-		exit_btn.setOnClickListener(exitOnClickListener);
+		// 检查更新按钮
+		Button checkversion_btn = (Button) findViewById(R.id.setting_checkversion);
+		checkversion_btn.setOnClickListener(checkversionOnClickListener);
 		// 随机小提示
 /*		String[] tips = getResources().getStringArray(R.array.tips);
 		int random = (int)(Math.random()*tips.length);
@@ -165,22 +177,59 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			//finish();
 		}
 	};
-	// 退出按钮
-	private OnClickListener exitOnClickListener = new OnClickListener() {
+	
+	// 检查更新按钮
+	private OnClickListener checkversionOnClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			finish();
-			
-			//android.os.Process.killProcess(android.os.Process.myPid());
-			//System.exit(0);
-			
-			Intent i = new Intent(Intent.ACTION_MAIN);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			i.addCategory(Intent.CATEGORY_HOME);
-			startActivity(i);
+		    // 获取本地版本号
+		    PackageInfo packageInfo;
+		    String localVersion = "1.0";
+		    try {
+				packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+				localVersion = packageInfo.versionName;
+			} catch (NameNotFoundException e) {
+				e.printStackTrace();
+			}
+		    // 获取服务器版本号
+		    String serverVersion = "1.2.1";
+			try {			    
+	            String path = getResources().getString(R.string.version_url);  
+	            // 包装成url的对象   
+				URL url = new URL(path);
+	            HttpURLConnection conn =  (HttpURLConnection) url.openConnection();   
+	            conn.setConnectTimeout(5000);  
+	            InputStream is =conn.getInputStream();
+	            // 获取服务器xml文件
+	            XmlPullParser  parser = Xml.newPullParser();  
+	            parser.setInput(is, "utf-8");//设置解析的数据源   
+	            int type = parser.getEventType();
+	            while(type != XmlPullParser.END_DOCUMENT ){  
+	                switch (type) {  
+	                case XmlPullParser.START_TAG:  
+	                    if("version".equals(parser.getName())){  
+	                    	//获取版本号  
+	                    	serverVersion = parser.nextText(); 
+	                    }  
+	                    break;  
+	                }  
+	                type = parser.next();  
+	            }            
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		    
+		    // 比较本地与服务器版本
+			if(localVersion.equals(serverVersion)){			
+				StringUtil.showToast(getApplicationContext(), "当前已是最新版本",  Toast.LENGTH_SHORT);
+			}
+			else{
+				StringUtil.showToast(getApplicationContext(), "版本太旧，请下载最新版本",  Toast.LENGTH_SHORT);
+				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.minelock.com"));      
+				startActivity(i); 			
+			}				
 		}
+		
 	};
 	
 	// 锁屏开关
@@ -246,9 +295,10 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			
 			//EnableSystemKeyguard(true);
 		}
-	}
-
-	void EnableSystemKeyguard(boolean bEnable) {
+	}	
+	
+	//
+	private void EnableSystemKeyguard(boolean bEnable) {
 		KeyguardManager mKeyguardManager = null;
 		KeyguardLock mKeyguardLock = null;
 

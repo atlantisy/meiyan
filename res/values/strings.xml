@@ -2,8 +2,11 @@
 <resources>
 
     <string name="app_name">美言锁屏</string>
-    <string name="initial_verse">我就是我 是颜色不一样的烟火</string>
-
+    <string name="initial_verse">颜色不一样的烟火</string>
+    
+    <string name="share_word">（通过#美言锁屏#创作，下载链接：http://www.minelock.com）</string>
+	<string name="version_url">http://minelock.sinaapp.com/app_version.xml</string>
+	
     <string-array name="none_verse">
         <item>此地无言三百两</item>
         <!--
@@ -18,7 +21,7 @@
         <item>若锁屏不成功，可尝试重启应用。</item>
     </string-array>
 
-    <string name="ig_hint1">* 在手机卫士和清理大师中，将美言锁屏加入内存加速和自启管理白名单。\n</string>
+    <string name="ig_hint1">* 在安全中心、手机管家、手机卫士和清理大师中，将美言锁屏加入内存加速和自启管理白名单。\n</string>
     <string name="ig_hint2"></string>
 
     <string-array name="recent_initial_verse">

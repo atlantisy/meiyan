@@ -72,9 +72,9 @@ public class InitialGuideActivity extends Activity {
 		String hint2=getResources().getText(R.string.ig_hint2).toString();
 		if(PhoneUtil.isMIUI()){
 			igHint.setText(hint1);
-			ig2_btn.setText("开启「我信任该程序」和「自动启动」\n（确保锁屏运行）");
+			ig2_btn.setText("开启「显示悬浮窗」\n（确保锁屏运行）");
 			ig2.setVisibility(View.VISIBLE);
-			ig3_btn.setText("将美言锁屏加入「内存加速」白名单\n（防止锁屏失败）");
+			ig3_btn.setText("设置「内存加速」白名单\n（防止锁屏失败）");
 			ig3.setVisibility(View.VISIBLE);
 			igDown2.setVisibility(View.INVISIBLE);
 			igDown3.setVisibility(View.INVISIBLE);
@@ -169,7 +169,7 @@ public class InitialGuideActivity extends Activity {
 			// TODO Auto-generated method stub  			
 			String ig2Toast = "";
 			if(PhoneUtil.isMIUI()){
-				PackageManager pm = getPackageManager();
+/*				PackageManager pm = getPackageManager();
 	            PackageInfo info = null;
 	            try {
 	            	info = pm.getPackageInfo(getPackageName(), 0);
@@ -183,9 +183,13 @@ public class InitialGuideActivity extends Activity {
 	            	startActivity(i);
 	            } catch (Exception e) {
 	            	e.printStackTrace();
-	            }
-	            
-	            ig2Toast = "开启「我信任该程序」\n开启「自动启动」";	            
+	            }	            
+	            ig2Toast = "开启「我信任该程序」\n开启「自动启动」";	*/
+				
+				Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
+	            Intent intent =  new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,packageURI);  
+	            startActivity(intent);	            
+	            ig2Toast = "在「权限管理」中允许「显示悬浮窗」";	
 			}
 			else if(PhoneUtil.isHuawei()){
 /*				Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
@@ -222,7 +226,7 @@ public class InitialGuideActivity extends Activity {
 				i.addCategory(Intent.CATEGORY_HOME);
 				startActivity(i);
 				
-				ig3Toast = "长按home键，进入内存加速\n下拉美言锁屏，确保已被锁定";
+				ig3Toast = "打开「近期任务」下拉美言锁屏至锁定";
 			}
 			else if(PhoneUtil.isHuawei()){
 				Intent intent =  new Intent(Settings.ACTION_SETTINGS);	
