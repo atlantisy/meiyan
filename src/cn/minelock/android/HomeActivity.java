@@ -562,8 +562,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 			LinearLayout share=(LinearLayout)findViewById(R.id.home_social);
 			if(fullscreen){
 				fullscreen=false;
-				topbar.setVisibility(View.INVISIBLE);
-				bottombar.setVisibility(View.INVISIBLE);
+				topbar.setVisibility(View.GONE);
+				bottombar.setVisibility(View.GONE);
 				share.setVisibility(View.VISIBLE);
 			}
 			else{

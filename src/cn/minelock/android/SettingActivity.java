@@ -7,12 +7,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xmlpull.v1.XmlPullParser;
 
 import cn.minelock.android.MyLockScreenService;
 
 import cn.minelock.android.R;
 import cn.minelock.util.StringUtil;
+import cn.minelock.util.XMLParser;
 import cn.minelock.widget.SwitchButton;
 import cn.minelock.widget.SwitchButton.OnChangeListener;
 
@@ -192,42 +196,29 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			} catch (NameNotFoundException e) {
 				e.printStackTrace();
 			}
-		    // 获取服务器版本号
-		    String serverVersion = "1.2.1";
-			try {			    
-	            String path = getResources().getString(R.string.version_url);  
-	            // 包装成url的对象   
-				URL url = new URL(path);
-	            HttpURLConnection conn =  (HttpURLConnection) url.openConnection();   
-	            conn.setConnectTimeout(5000);  
-	            InputStream is =conn.getInputStream();
-	            // 获取服务器xml文件
-	            XmlPullParser  parser = Xml.newPullParser();  
-	            parser.setInput(is, "utf-8");//设置解析的数据源   
-	            int type = parser.getEventType();
-	            while(type != XmlPullParser.END_DOCUMENT ){  
-	                switch (type) {  
-	                case XmlPullParser.START_TAG:  
-	                    if("version".equals(parser.getName())){  
-	                    	//获取版本号  
-	                    	serverVersion = parser.nextText(); 
-	                    }  
-	                    break;  
-	                }  
-	                type = parser.next();  
-	            }            
-			} catch (Exception e) {
-				e.printStackTrace();
-			}		    
-		    // 比较本地与服务器版本
-			if(localVersion.equals(serverVersion)){			
-				StringUtil.showToast(getApplicationContext(), "当前已是最新版本",  Toast.LENGTH_SHORT);
-			}
-			else{
-				StringUtil.showToast(getApplicationContext(), "版本太旧，请下载最新版本",  Toast.LENGTH_SHORT);
-				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.minelock.com"));      
-				startActivity(i); 			
-			}				
+		    // 检查网络连接
+		    if(XMLParser.isNetworkConnected(getApplicationContext())){
+			    // 获取服务器版本号
+		        XMLParser parser = new XMLParser();  
+		        String xml = parser.getXmlFromUrl("http://minelock.sinaapp.com/version.xml"); // 从网络获取xml  
+		        Document doc = parser.getDomElement(xml); // 获取 DOM 节点
+		        NodeList nl = doc.getElementsByTagName("version");
+		        Element e = (Element) nl.item(0); // 获取第一个节点
+		        String serverVersion = parser.getValue(e, "name"); // 获取服务器versionName
+			    // 比较本地与服务器版本
+				if(localVersion.equals(serverVersion)){			
+					StringUtil.showToast(getApplicationContext(), "当前已是最新版本",  Toast.LENGTH_SHORT);
+				}
+				else{
+					StringUtil.showToast(getApplicationContext(), "版本太旧，请下载最新版本",  Toast.LENGTH_SHORT);
+					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.minelock.com"));      
+					startActivity(i); 			
+				}
+		    }
+		    else{
+		    	StringUtil.showToast(getApplicationContext(), "网络无法连接",  Toast.LENGTH_SHORT);
+		    }
+				
 		}
 		
 	};

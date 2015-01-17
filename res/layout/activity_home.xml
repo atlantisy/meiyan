@@ -361,7 +361,7 @@
    <LinearLayout
 		android:id="@+id/home_social"
         android:layout_width="fill_parent"
-        android:layout_height="48dp"
+        android:layout_height="60dp"
         android:background="@color/alpha"
         android:gravity="center"
         android:orientation="horizontal" 
@@ -375,7 +375,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="@color/alpha"
-            android:src="@drawable/ic_share" />
+            android:src="@drawable/ic_share_selector" />
         <View 
             android:layout_width="0dp"
             android:layout_height="fill_parent"
