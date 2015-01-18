@@ -41,6 +41,13 @@ public class AboutActivity extends Activity {
 				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dwz.cn/minelockwx20140926"));  
 				startActivity(i);  
 			}
+/*			try {
+				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("weixin://profile/gh_8855805715f8"));  
+				startActivity(i); 
+			} catch (Exception e) {
+				joinQQGroup("YY5Tm4TItvMDDVFJkkqDBRVB4JXeiwla");
+			}*/
+							
 		}
 	};
 	// Î¢²©

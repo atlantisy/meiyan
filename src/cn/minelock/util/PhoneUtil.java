@@ -22,6 +22,18 @@ public final class PhoneUtil {
 		}
 	}
 	
+	public static String getMIUIVersion() {
+		try {
+			final BuildProperties prop = BuildProperties.newInstance();
+			if(isMIUI())
+				return prop.getProperty(KEY_MIUI_VERSION_NAME, null);
+			else
+				return "";
+		} catch (IOException e) {
+			return "";
+		}					
+	}
+	
 	public static boolean isFlyme() {
 		try {
 /*			final Method method = Build.class.getMethod("hasSmartBar");			

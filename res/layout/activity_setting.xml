@@ -114,21 +114,6 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/gray_white" />
             <Button
-                android:id="@+id/setting_initialguide"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/default_button_selector"
-                android:gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:text="初始设置"
-                android:textSize="16sp" /> 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1.0px"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/gray_white" />
-            <Button
                 android:id="@+id/setting_setpassword"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
@@ -136,7 +121,22 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:text="手势密码"
-                android:textSize="16sp" />                           
+                android:textSize="16sp" />              
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_white" />
+			<Button
+                android:id="@+id/setting_initialguide"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="初始设置"
+                android:textSize="16sp" />                          
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="24dp"

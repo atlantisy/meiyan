@@ -455,7 +455,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		// 获取当前壁纸 ,转成Bitmap，并设置 背景 
 		Drawable wallpaperDrawable = wallpaperManager.getDrawable();  
 		//Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
-		Bitmap bm = ImageTools.zoomBitmap(((BitmapDrawable) wallpaperDrawable).getBitmap(), 640, 1136);		
+		Bitmap bm = ImageTools.zoomBitmap(((BitmapDrawable) wallpaperDrawable).getBitmap(), 720, 1280);		
 		Bitmap _bm = ImageTools.zoomBitmap(bm, 72, 72);//压缩
 		mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
 		// 保存到SD卡
@@ -519,7 +519,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 					FileInputStream fis = new FileInputStream(wallpaperPath);
 					photo = BitmapFactory.decodeStream(fis);
 					//smallPhoto = ImageTools.zoomBitmap(photo, photo.getWidth() / 2, photo.getHeight() / 2);//压缩
-					smallPhoto = ImageTools.zoomBitmap(photo, 640, 1136);//压缩
+					smallPhoto = ImageTools.zoomBitmap(photo, 720, 1280);//压缩
 					_smallPhoto = ImageTools.zoomBitmap(smallPhoto, 72, 72);//压缩
 					photo.recycle();
 					
@@ -541,34 +541,38 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			case CHOOSE_PICTURE:
 				ContentResolver resolver = getContentResolver();
 				Uri originalUri = data.getData();
+				Bitmap smallImage = null;
+				Bitmap _smallImage = null;
 				try {
 					Bitmap image = MediaStore.Images.Media.getBitmap(resolver,originalUri);
 					if (image != null) {	
 						// 设置锁屏壁纸
-						//Bitmap smallImage = ImageTools.zoomBitmap(image, image.getWidth() / 2, image.getHeight() / 2);
-						Bitmap smallImage = ImageTools.zoomBitmap(image, 640, 1136);
-						Bitmap _smallImage = ImageTools.zoomBitmap(smallImage, 72, 72);
+						if(image.getHeight()>=1800)
+							smallImage = ImageTools.zoomBitmap(image, image.getWidth() / 2, image.getHeight() / 2);
+						else							
+							smallImage = ImageTools.zoomBitmap(image, image.getWidth()-2, image.getHeight()-2);
+						_smallImage = ImageTools.zoomBitmap(smallImage, 72, 72);
 						mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallImage));
-						image.recycle();
-						
-						// 获取选择图片的路径
-/*						String[] proj = { MediaStore.Images.Media.DATA };
-						Cursor cursor = managedQuery(originalUri, proj, null,null,null);
-						int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-						cursor.moveToFirst();
-						wallpaperPath = cursor.getString(column_index);*/						
-						// 保存到SD卡
-						String imageName = "image" + StringUtil.makeFileName();
-						ImageTools.savePhotoToSDCard(smallImage, dir, imageName);
-						ImageTools.savePhotoToSDCard(_smallImage, dir, imageName+"_");
-						wallpaperPath = dir + "/" + imageName + ".png";
-						//_wallpaperPath = dir + "/" + imageName +"_"+ ".png";
-						
+						image.recycle();												
 					}
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
+				}
+				// 获取选择图片的路径
+/*						String[] proj = { MediaStore.Images.Media.DATA };
+				Cursor cursor = managedQuery(originalUri, proj, null,null,null);
+				int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+				cursor.moveToFirst();
+				wallpaperPath = cursor.getString(column_index);*/						
+				// 保存到SD卡				
+				if(smallImage!=null){
+					String imageName = "image" + StringUtil.makeFileName();
+					ImageTools.savePhotoToSDCard(smallImage, dir, imageName);
+					ImageTools.savePhotoToSDCard(_smallImage, dir, imageName+"_");
+					wallpaperPath = dir + "/" + imageName + ".png";
+					//_wallpaperPath = dir + "/" + imageName +"_"+ ".png";
 				}
 				break;
 				

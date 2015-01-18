@@ -244,7 +244,7 @@ public class MyLockScreenService extends Service {
 	
 	// ½âËø
 	public void unLock(){
-		Log.d("", "unLock");
+		//Log.d("", "unLock");
 		// ÒÆ³ýÐü¸¡´°
 /*		if(mFloatLayout != null)
 		{*/

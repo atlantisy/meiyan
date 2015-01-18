@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import cn.minelock.util.BitmapUtil;
 import cn.minelock.util.StringUtil;
 import cn.minelock.widget.AbstractSpinerAdapter;
 import cn.minelock.widget.CustemObject;
 import cn.minelock.widget.CustemSpinerAdapter;
+import cn.minelock.widget.ImageTools;
 import cn.minelock.widget.PatternPassWordView;
 import cn.minelock.widget.SpinerPopWindow;
 import cn.minelock.widget.dbHelper;
@@ -31,9 +33,12 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -511,21 +516,40 @@ public class HomeActivity extends Activity implements OnClickListener,
 		}
 
 	}
-		
+	
+	final Handler shareHandler = new Handler();
+	// 构建分享Runnable对象
+    Runnable runnableShare = new  Runnable(){  
+        @Override  
+        public void run() {
+        	Bitmap screenShot = takeScreenShot();
+        	Bitmap _screenShot = ImageTools.zoomBitmap(screenShot, screenShot.getWidth() / 2, screenShot.getHeight() / 2);	
+        	String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
+        	ImageTools.savePhotoToSDCard(_screenShot, dir, "share");
+        }           
+    };
+    
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
-/*		case R.id.home_share1:
-			Intent intent=new Intent(Intent.ACTION_SEND);  
-			intent.setType("text/plain");  
-			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");  
-			intent.putExtra(Intent.EXTRA_TEXT, verse.trim()+"#minelock#");  
-			startActivity(Intent.createChooser(intent, getTitle()));
-			break;*/
 		case R.id.home_share:			
-			String imgPath="";
+/*			String imgPath="";
     		if(!home_setting.getBoolean(BOOLIDPATH, true))
-    			imgPath=home_setting.getString(WALLPAPERPATH, ""); 
+    			imgPath=home_setting.getString(WALLPAPERPATH, "");*/
+						
+			// 隐藏分享按钮
+			ImageButton shartBtn = (ImageButton)findViewById(R.id.home_share);
+			shartBtn.setVisibility(View.INVISIBLE);
+			// 截屏并保存
+			String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
+			String imgPath = dir + "/" + "share" + ".png";			
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					shareHandler.post(runnableShare);
+				}
+			}).start();							
     		
     		shareMsg(verse.trim(),verse.trim()+getResources().getString(R.string.share_word),imgPath);
 			break;			
@@ -560,11 +584,14 @@ public class HomeActivity extends Activity implements OnClickListener,
 			LinearLayout topbar=(LinearLayout)findViewById(R.id.home_topbar);
 			LinearLayout bottombar=(LinearLayout)findViewById(R.id.home_bottombar);
 			LinearLayout share=(LinearLayout)findViewById(R.id.home_social);
+			ImageButton shartBtn = (ImageButton)findViewById(R.id.home_share);
+			
 			if(fullscreen){
 				fullscreen=false;
-				topbar.setVisibility(View.GONE);
+				topbar.setVisibility(View.INVISIBLE);
 				bottombar.setVisibility(View.GONE);
 				share.setVisibility(View.VISIBLE);
+				shartBtn.setVisibility(View.VISIBLE);
 			}
 			else{
 				fullscreen=true;
@@ -635,7 +662,28 @@ public class HomeActivity extends Activity implements OnClickListener,
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);          
         startActivity(Intent.createChooser(intent, getTitle()));
     }
-	
+    // 获取指定Activity的截屏
+	private Bitmap takeScreenShot() {    
+    	//View是你需要截图的View  
+        View view = getWindow().getDecorView();  
+        view.setDrawingCacheEnabled(true);  
+        view.buildDrawingCache();  
+        Bitmap b1 = view.getDrawingCache();     
+        //获取状态栏高度  
+        Rect frame = new Rect();  
+        getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);  
+        int statusBarHeight = frame.top;  
+        System.out.println(statusBarHeight);   
+        //获取屏幕长和高  
+        int width = getWindowManager().getDefaultDisplay().getWidth();  
+        int height = getWindowManager().getDefaultDisplay().getHeight();   
+        //去掉标题栏  
+        //Bitmap b = Bitmap.createBitmap(b1, 0, 25, 320, 455);  
+        Bitmap b = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height - statusBarHeight);  
+        view.destroyDrawingCache();  
+        
+        return b;  
+    } 	
 	private void setVerse(int pos) {
 		if (pos >= 0 && pos <= nameList.size()) {
 			CustemObject value = nameList.get(pos);

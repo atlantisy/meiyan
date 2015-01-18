@@ -10,7 +10,7 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
     <uses-permission android:name="android.permission.INTERNET" />    
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -35,34 +35,34 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <service
+<!--         <service
             android:name="cn.minelock.android.MyLockScreenService"
             android:configChanges="orientation|keyboardHidden"
             android:enabled="true" >
             <intent-filter android:priority="1000" >
                 <action android:name="android.intent.action.SCREEN_OFF" />
             </intent-filter>
-        </service>
+        </service> -->
 
+        <service
+            android:name="cn.minelock.android.MyLockScreenService">
+            <intent-filter >
+                <action android:name="android.intent.action.SCREEN_OFF" />
+            </intent-filter>
+        </service>
+        
         <activity
             android:name="cn.minelock.android.HomeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
-
-            <!--
-                 <intent-filter>
-                <category android:name="android.intent.category.HOME" /> 
-                <category android:name="android.intent.category.DEFAULT" /> 
-            </intent-filter>
-            -->
         </activity>
+        
         <activity
             android:name="cn.minelock.android.LockActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -76,7 +76,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
-            <intent-filter>
+<!--             <intent-filter>
                 <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
             <intent-filter>
@@ -90,8 +90,9 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
+            </intent-filter> -->
         </receiver>
+        
         <receiver android:name="cn.minelock.android.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -106,12 +107,14 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" >
         </activity>
+        
         <activity
             android:name="cn.minelock.android.EditVerseActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        
         <activity
             android:name="cn.minelock.android.SetPasswordActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -119,6 +122,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        
         <activity
             android:name="cn.minelock.android.RecentActivity"
             android:configChanges="orientation|keyboardHidden"            
@@ -126,6 +130,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        
         <activity
             android:name="cn.minelock.android.AboutActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -133,6 +138,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        
         <activity
             android:name="cn.minelock.android.InitialGuideActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -140,6 +146,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        
         <activity
             android:name="cn.minelock.android.SettingMoreActivity"
             android:configChanges="orientation|keyboardHidden"
