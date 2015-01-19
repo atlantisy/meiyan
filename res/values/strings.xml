@@ -8,9 +8,10 @@
 	<string name="version_url">http://minelock.sinaapp.com/version.xml</string>
 	
     <string-array name="none_verse">
-        <item>此地无言三百两</item>
+        <item>无图何以言表</item>
         <!--
-             <item>竟无言以对</item>
+             <item>此地无言三百两</item>
+        <item>竟无言以对</item>
         <item>你不是真正的无言</item>
         -->
     </string-array>
@@ -21,8 +22,8 @@
         <item>若锁屏不成功，可尝试重启应用。</item>
     </string-array>
 
-    <string name="ig_hint1">* 在手机管家、手机卫士和清理大师中，将美言锁屏加入自启管理和内存加速白名单。\n</string>
-    <string name="ig_hint2">* 在手机卫士和清理大师中，将美言锁屏加入自启管理和内存加速白名单。\n</string>
+    <string name="ig_hint1">特殊设置：在手机管家、手机卫士、清理大师和安全大师中，将美言锁屏加入内存加速和自动启动白名单。</string>
+    <string name="ig_hint2"></string>
 
     <string-array name="recent_initial_verse">
         <item>山不在高 有仙则名</item>

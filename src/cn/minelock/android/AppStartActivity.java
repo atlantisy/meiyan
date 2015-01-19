@@ -25,12 +25,18 @@ public class AppStartActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//Remove notification bar
+		// Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		final View view = View.inflate(this, R.layout.start, null);
-		setContentView(view);
+        final View view = View.inflate(this, R.layout.start, null);
+        setContentView(view);
 		
-		//this.excludeFromRecents
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            //结束你的activity
+            finish();
+        	return;        	
+        }
+        
+        //this.excludeFromRecents
 		// 渐变展示启动屏,这里通过动画来设置了开启应用程序的界面
 		AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
 		aa.setDuration(1000);
@@ -66,6 +72,7 @@ public class AppStartActivity extends Activity {
 	 */
 	private void redirectToHome() {
 		Intent intent = new Intent(this, HomeActivity.class);
+		//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 		//finish();
 	}
@@ -75,6 +82,7 @@ public class AppStartActivity extends Activity {
 	 */
 	private void redirectToInitialGuide() {
 		Intent intent = new Intent(this, InitialGuideActivity.class);
+		//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);		
 		//finish();
 	}

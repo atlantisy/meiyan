@@ -333,7 +333,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 			}*/
 			
 			Intent i = new Intent(Intent.ACTION_MAIN);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			i.addCategory(Intent.CATEGORY_HOME);
 			startActivity(i);
 			
@@ -523,9 +523,11 @@ public class HomeActivity extends Activity implements OnClickListener,
         @Override  
         public void run() {
         	Bitmap screenShot = takeScreenShot();
-        	Bitmap _screenShot = ImageTools.zoomBitmap(screenShot, screenShot.getWidth() / 2, screenShot.getHeight() / 2);	
+        	//Bitmap _screenShot = ImageTools.zoomBitmap(screenShot, screenShot.getWidth() / 2, screenShot.getHeight() / 2);	
         	String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
-        	ImageTools.savePhotoToSDCard(_screenShot, dir, "share");
+        	String imgPath = dir + "/" + "share" + ".png";	
+        	ImageTools.savePhotoToSDCard(screenShot, dir, "share");
+        	shareMsg(verse.trim(), verse.trim()+getResources().getString(R.string.share_word), imgPath);
         }           
     };
     
@@ -540,18 +542,14 @@ public class HomeActivity extends Activity implements OnClickListener,
 			// Òþ²Ø·ÖÏí°´Å¥
 			ImageButton shartBtn = (ImageButton)findViewById(R.id.home_share);
 			shartBtn.setVisibility(View.INVISIBLE);
-			// ½ØÆÁ²¢±£´æ
-			String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
-			String imgPath = dir + "/" + "share" + ".png";			
+			// ½ØÆÁ²¢±£´æ					
 			new Thread(new Runnable() {
 				
 				@Override
 				public void run() {
 					shareHandler.post(runnableShare);
 				}
-			}).start();							
-    		
-    		shareMsg(verse.trim(),verse.trim()+getResources().getString(R.string.share_word),imgPath);
+			}).start();							    		    		
 			break;			
 		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));

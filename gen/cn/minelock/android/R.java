@@ -40,7 +40,8 @@ public final class R {
         public static final int Winter=0x7f090006;
         public static final int customize=0x7f09000d;
         /** 
-             <item>竟无言以对</item>
+             <item>此地无言三百两</item>
+        <item>竟无言以对</item>
         <item>你不是真正的无言</item>
         
          */
@@ -201,6 +202,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int blue2=0x7f08002b;
         public static final int blue3=0x7f08002c;
         public static final int brown=0x7f08002e;
+        public static final int brown1=0x7f08002f;
         public static final int dark=0x7f080009;
         public static final int dark1=0x7f08000a;
         public static final int dark_black=0x7f08000b;

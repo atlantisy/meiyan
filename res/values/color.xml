@@ -11,7 +11,7 @@
     <color name="white">#fff</color>    
     <color name="light_yellow">#ffffcc</color>
     <color name="dark">#646c7f</color>
-    <color name="dark1">#7a7700</color>
+    <color name="dark1">#37445c</color>
     <color name="dark_black">#21292b</color>    
     <color name="black">#000</color>
     <color name="gray_black">#737373</color>
@@ -48,5 +48,5 @@
     <color name="blue3">#019de8</color>
     <color name="violet">#cb70d7</color>
     <color name="brown">#a06700</color>
-        
+    <color name="brown1">#7a7700</color>        
 </resources>

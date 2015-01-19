@@ -178,9 +178,9 @@ public class RecentActivity extends Activity {
         	@Override
 			public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 				//menu.setHeaderTitle(deleteItem.trim());   
-				menu.add(0, 0, 0, "分享");				
-				menu.add(0, 1, 0, "复制");
-				menu.add(0, 2, 0, "删除");
+				menu.add(0, 0, 0, "复制文字");				
+				menu.add(0, 1, 0, "分享壁纸");
+				menu.add(0, 2, 0, "删除锁屏");
 			}
 		}); 
         
@@ -232,11 +232,10 @@ public class RecentActivity extends Activity {
 		
 		switch (item.getItemId()) {
 		case 0:
-			operation("share");
+			operation("copy");
 			break;
 		case 1:
-			operation("copy");
-			Toast.makeText(getApplicationContext(), "已复制文字", Toast.LENGTH_SHORT).show();
+			operation("share");			
 			break;			
 		case 2:			
 			operation("delete");
@@ -304,15 +303,21 @@ public class RecentActivity extends Activity {
 			startActivity(Intent.createChooser(intent, getTitle()));*/
     		    		
     		String imgPath="";
-    		if(recentCursor.getInt(3)==0)
-    			imgPath=recentCursor.getString(5); 
-    		
-    		shareMsg(deleteVerse.trim(),deleteVerse.trim()+getResources().getString(R.string.share_word),imgPath);
+    		if(recentCursor.getInt(3)==0){
+        		imgPath=recentCursor.getString(5);     		
+        		shareMsg(deleteVerse.trim(),deleteVerse.trim()+getResources().getString(R.string.share_word),imgPath);
+    		}
+    		else
+    			Toast.makeText(getApplicationContext(), "无图无真相", Toast.LENGTH_SHORT).show();
     	}
     	if(cmd=="copy"){
     		//dbRecent.insert( myEditText.getText().toString());    		
     		ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-    		cbm.setText(deleteVerse);     		
+    		cbm.setText(deleteVerse.trim());
+    		if(deleteVerse.trim().equals(""))
+    			Toast.makeText(getApplicationContext(), "无言以对", Toast.LENGTH_SHORT).show();
+    		else
+    			Toast.makeText(getApplicationContext(), "已复制文字", Toast.LENGTH_SHORT).show();
     	}
     	if(cmd=="edit"){
     		final EditText myEditText = new EditText(this);

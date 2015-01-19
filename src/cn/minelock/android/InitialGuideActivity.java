@@ -73,7 +73,7 @@ public class InitialGuideActivity extends Activity {
 		ImageView igDown4 = (ImageView)findViewById(R.id.igDown4);
 		// 其他设置提示
 		TextView igHint = (TextView)findViewById(R.id.igHint);
-		String hint1=getResources().getText(R.string.ig_hint1).toString();
+		String hint1 = getResources().getText(R.string.ig_hint1).toString();
 		igHint.setText(hint1);
 		// 判断是否MIUI
 		if(PhoneUtil.isMIUI()){
@@ -81,17 +81,26 @@ public class InitialGuideActivity extends Activity {
 			ig2_btn.setText("开启「显示悬浮窗」\n（确保锁屏运行）");				
 			ig2.setVisibility(View.VISIBLE);
 			igDown2.setVisibility(View.INVISIBLE);
-			// 3
-			if(PhoneUtil.getMIUIVersion().equals("V6"))
+			if(PhoneUtil.getMIUIVersion().equals("V6")){
+				// 3
 				ig3_btn.setText("设置「自启动管理」\n（防止锁屏失败）");
-			else
-				ig3_btn.setText("开启「我信任该程序」和「自动启动」\n（防止锁屏失败）");			
-			ig3.setVisibility(View.VISIBLE);			
-			igDown3.setVisibility(View.INVISIBLE);
+				//ig3_btn.setText("安全中心-授权管理-自启动管理-开启美言锁屏");
+				
+				ig3.setVisibility(View.VISIBLE);			
+				igDown3.setVisibility(View.INVISIBLE);
+			}				
+			else{
+				// 3
+				ig3_btn.setText("开启「我信任该程序」和「自动启动」\n（防止锁屏失败）");		
+				ig3.setVisibility(View.VISIBLE);			
+				igDown3.setVisibility(View.INVISIBLE);				
+			}
 			// 4
 			ig4_btn.setText("设置内存加速白名单\n（防止锁屏被释放）");
+			//ig4_btn.setText("启动近期任务，下拉美言锁屏至锁定\n（防止内存被释放）");
 			ig4.setVisibility(View.VISIBLE);
 			igDown4.setVisibility(View.INVISIBLE);
+			
 		}
 		else if(PhoneUtil.isHuawei()){
 			// 2
@@ -196,8 +205,12 @@ public class InitialGuideActivity extends Activity {
 				
 				Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
 	            Intent intent =  new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,packageURI);  
-	            startActivity(intent);	            
-	            ig2Toast = "在「权限管理」中允许「显示悬浮窗」";	
+	            startActivity(intent);	
+	            
+	            if(PhoneUtil.getMIUIVersion().equals("V6"))
+	            	ig2Toast = "在「权限管理」中允许「显示悬浮窗」";
+	            else
+	            	ig2Toast = "开启「显示悬浮窗」";	            	
 			}
 			else if(PhoneUtil.isHuawei()){
 /*				Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
@@ -227,10 +240,12 @@ public class InitialGuideActivity extends Activity {
 	            if(PhoneUtil.getMIUIVersion().equals("V6")){
 	    			// 返回桌面
 	    			Intent i = new Intent(Intent.ACTION_MAIN);
-	    			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    			//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	    			i.addCategory(Intent.CATEGORY_HOME);
 	    			startActivity(i);
+	    			
 		            ig3Toast = "安全中心→授权管理→自启动管理→开启美言锁屏";
+		            //ig3Toast = "启动近期任务，下拉美言锁屏至锁定";
 	            }	            	
 	            else{
 					PackageManager pm = getPackageManager();
@@ -278,11 +293,11 @@ public class InitialGuideActivity extends Activity {
             
 			// 返回桌面
 			Intent i = new Intent(Intent.ACTION_MAIN);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			i.addCategory(Intent.CATEGORY_HOME);
 			startActivity(i);
 
-			Toast toast = Toast.makeText(getApplicationContext(),"启动近期任务，下拉美言锁屏至锁定", Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(getApplicationContext(),"启动近期任务→下拉美言锁屏至锁定", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             
@@ -308,9 +323,8 @@ public class InitialGuideActivity extends Activity {
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
 			startActivity(new Intent(InitialGuideActivity.this, HomeActivity.class));
-			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
-			
-			finish();
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);			
+			//finish();
 		}
 	};
 		
