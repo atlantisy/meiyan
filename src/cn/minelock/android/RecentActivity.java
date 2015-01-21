@@ -178,9 +178,9 @@ public class RecentActivity extends Activity {
         	@Override
 			public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 				//menu.setHeaderTitle(deleteItem.trim());   
-				menu.add(0, 0, 0, "复制文字");				
+				menu.add(0, 0, 0, "复制美言");				
 				menu.add(0, 1, 0, "分享壁纸");
-				menu.add(0, 2, 0, "删除锁屏");
+				menu.add(0, 2, 0, "删除");
 			}
 		}); 
         
@@ -317,7 +317,7 @@ public class RecentActivity extends Activity {
     		if(deleteVerse.trim().equals(""))
     			Toast.makeText(getApplicationContext(), "无言以对", Toast.LENGTH_SHORT).show();
     		else
-    			Toast.makeText(getApplicationContext(), "已复制文字", Toast.LENGTH_SHORT).show();
+    			Toast.makeText(getApplicationContext(), "已复制", Toast.LENGTH_SHORT).show();
     	}
     	if(cmd=="edit"){
     		final EditText myEditText = new EditText(this);

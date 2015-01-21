@@ -111,9 +111,9 @@ public class SettingMoreActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			startActivity(new Intent(SettingMoreActivity.this, SettingActivity.class));
-			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
-			//finish();
+/*			startActivity(new Intent(SettingMoreActivity.this, SettingActivity.class));
+			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);*/
+			finish();
 		}
 	};
 }
