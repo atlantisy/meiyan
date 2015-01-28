@@ -38,7 +38,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
-        
+        <ImageButton
+            android:id="@+id/recent_add"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_add" />         
         <ImageButton
             android:id="@+id/recent_random"
             android:layout_width="48dp"

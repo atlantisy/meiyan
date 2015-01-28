@@ -26,15 +26,15 @@ public class BootReceiver extends BroadcastReceiver {
 		
 		if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {	
 			
-			Timer timer = new Timer();
+/*			Timer timer = new Timer();
 			timer.schedule(new TimerTask() {
 				public void run() {
 					mContext.startService(mIntent);
 					this.cancel();
 				}
-			}, 30000);
+			}, 30000);*/
 			
-			//mContext.startService(mIntent);
+			mContext.startService(mIntent);
 		}
 	}
 }

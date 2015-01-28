@@ -22,7 +22,7 @@
         <item>若锁屏不成功，可尝试重启应用。</item>
     </string-array>
 
-    <string name="ig_hint1">特殊设置：在手机管家、手机卫士、清理大师和安全大师中，将美言锁屏加入内存加速和自动启动白名单。</string>
+    <string name="ig_hint1">特殊设置：在手机管家、手机卫士、安全大师等安全应用中，将美言锁屏加入内存加速和自动启动白名单。</string>
     <string name="ig_hint2"></string>
 
     <string-array name="recent_initial_verse">
@@ -185,7 +185,7 @@
     </string-array>
 
     <string name="slogan">锁定美好时刻</string>
-    <string name="copyright">©2014 Minelock.com. All rights reserved.</string>
+    <string name="copyright">©2014-2015 Minelock.com. All rights reserved.</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setting">SettingActivity</string>

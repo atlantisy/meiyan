@@ -178,17 +178,31 @@ public class RecentActivity extends Activity {
         	@Override
 			public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 				//menu.setHeaderTitle(deleteItem.trim());   
-				menu.add(0, 0, 0, "复制美言");				
+				menu.add(0, 0, 0, "复制文字");				
 				menu.add(0, 1, 0, "分享壁纸");
 				menu.add(0, 2, 0, "删除");
 			}
 		}); 
         
         // 获取增删后的美言数量
-        String Qty = title + "(" + String.valueOf(verseQty) + ")";
+        String Qty = title;
+        if(verseQty>0)
+        	Qty = title + "(" + String.valueOf(verseQty) + ")";
         recent_label = (TextView) findViewById(R.id.recent_label);
-        recent_label.setText(Qty);        
+        recent_label.setText(Qty);   
         
+		// 增加
+		ImageButton add_btn = (ImageButton) findViewById(R.id.recent_add);
+		add_btn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(RecentActivity.this, EditVerseActivity.class));
+				//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+				finish();
+			}
+		});	        
 		// 返回
 		ImageButton return_btn = (ImageButton) findViewById(R.id.recent_return);
 		return_btn.setOnClickListener(new OnClickListener() {
@@ -272,14 +286,17 @@ public class RecentActivity extends Activity {
 				//editor.putLong(VERSEID,(long)verseId);// 美言id	
 			}
 							
-			if(verseQty>0)
+			if(verseQty>0){
 				verseQty = verseQty-1;
-			else
+				recent_label.setText(title + "(" + String.valueOf(verseQty) + ")");
+			}				
+			else{
 				verseQty = 0;
+				recent_label.setText(title);
+			}				
 			editor.putInt(VERSEQTY, verseQty);// 美言数量
 			editor.commit();
-			
-			recent_label.setText(title + "(" + String.valueOf(verseQty) + ")");
+						
 			Toast.makeText(getApplicationContext(), "已删除", Toast.LENGTH_SHORT).show();
 			break;
 		case 3:

@@ -31,12 +31,26 @@
             android:text="设置"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
-
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
-    </LinearLayout>
+        <View
+            android:layout_width="1.0px"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />        
+		<Button
+            android:id="@+id/setting_question"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/editok_button_selector1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="常见问题"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+        </LinearLayout>
 
     <ScrollView
         android:layout_width="fill_parent"

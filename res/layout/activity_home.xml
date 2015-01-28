@@ -179,7 +179,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" />
+                    android:textSize="18sp" /> 
 
                 <TextView
                     android:id="@+id/verse1"
@@ -275,7 +275,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" />
+                    android:textSize="18sp" /> 
             </LinearLayout>
         </LinearLayout>	  	
 

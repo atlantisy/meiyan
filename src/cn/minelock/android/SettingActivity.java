@@ -99,7 +99,10 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		// 锁屏开关checkbox
 		lock_checkbox = (CheckBox) findViewById(R.id.lock_checkbox);
 		lock_checkbox.setChecked(mIsLockScreenOn);
-		lock_checkbox.setOnClickListener(new OnCheckedListener());	
+		lock_checkbox.setOnClickListener(new OnCheckedListener());
+		// 常见问题
+		Button question_btn = (Button) findViewById(R.id.setting_question);
+		question_btn.setOnClickListener(this);		
 		// 初始引导设置
 		Button initialguide_btn = (Button) findViewById(R.id.setting_initialguide);
 		initialguide_btn.setOnClickListener(this);
@@ -136,6 +139,11 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			startActivity(new Intent(SettingActivity.this, InitialGuideActivity.class));
 			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			break;
+		case R.id.setting_question:
+			Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dwz.cn/minelockwx20150123"));   
+			//i.setClassName("com.android.browser", "com.android.browser.BrowserActivity");   
+			startActivity(i);  
+			break;	
 		}
 	}
 	// 个性设置按钮
@@ -210,7 +218,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 					StringUtil.showToast(getApplicationContext(), "当前已是最新版本",  Toast.LENGTH_SHORT);
 				}
 				else{
-					StringUtil.showToast(getApplicationContext(), "版本太旧，请下载最新版本",  Toast.LENGTH_SHORT);
+					StringUtil.showToast(getApplicationContext(), "当前为旧版本，请下载最新版本",  Toast.LENGTH_SHORT);
 					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.minelock.com"));      
 					startActivity(i); 			
 				}

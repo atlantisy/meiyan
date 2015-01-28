@@ -59,6 +59,7 @@
         <activity
             android:name="cn.minelock.android.HomeActivity"
             android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
 <!--             <intent-filter>
@@ -76,11 +77,11 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
 
-        <receiver android:name="cn.minelock.android.UserPresentReceiver" >
+<!--         <receiver android:name="cn.minelock.android.UserPresentReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
-<!--             <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
             <intent-filter>
@@ -94,8 +95,8 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter> -->
-        </receiver>
+            </intent-filter>
+        </receiver> -->
         
         <receiver android:name="cn.minelock.android.BootReceiver" >
             <intent-filter>
