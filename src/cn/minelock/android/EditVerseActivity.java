@@ -252,9 +252,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			startActivity(new Intent(EditVerseActivity.this, HomeActivity.class));
-			finish();
-			overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+			//startActivity(new Intent(EditVerseActivity.this, HomeActivity.class));
+			//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+			finish();			
 		}
 	};	
 	/** 发布美言及壁纸**/

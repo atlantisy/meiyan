@@ -179,7 +179,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" /> 
+                    android:textSize="16sp" /> 
 
                 <TextView
                     android:id="@+id/verse1"
@@ -189,7 +189,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/verse2"
@@ -199,7 +199,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -217,7 +217,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/verse4"
@@ -227,7 +227,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/verse5"
@@ -237,7 +237,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -255,7 +255,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/verse7"
@@ -265,7 +265,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/verse8"
@@ -275,7 +275,7 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="18sp" /> 
+                    android:textSize="16sp" /> 
             </LinearLayout>
         </LinearLayout>	  	
 

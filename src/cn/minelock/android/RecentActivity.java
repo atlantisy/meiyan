@@ -200,7 +200,7 @@ public class RecentActivity extends Activity {
 				// TODO Auto-generated method stub
 				startActivity(new Intent(RecentActivity.this, EditVerseActivity.class));
 				//overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
-				finish();
+				//finish();
 			}
 		});	        
 		// ·µ»Ø

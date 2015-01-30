@@ -118,7 +118,7 @@ public class PatternPassWordView extends View {
 		// 设置画字的paint
 		Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG
 				| Paint.DEV_KERN_TEXT_FLAG);
-		textPaint.setTextSize(36.0f);// 字体大小
+		textPaint.setTextSize(32.0f);// 字体大小
 		textPaint.setTypeface(Typeface.SANS_SERIF);// 采用默认的宽度
 		textPaint.setColor(Color.WHITE);// 采用的白色
 /*		textPaint.setShadowLayer(1f, 0,
