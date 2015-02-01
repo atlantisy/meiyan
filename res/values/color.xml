@@ -20,7 +20,9 @@
     <color name="gray_white">#e6e6e6</color> 
     <color name="gray_white1">#d6d6d6</color>        
     <color name="app_color">#25dbc2</color>
-    <color name="app_color_pressed">#1eaf9b</color>    
+    <color name="app_color_pressed">#1eaf9b</color> 
+    <color name="app_color1">#0ac3c8</color>   
+    <color name="blackboard">#147f61</color> 
     <color name="red">#e75544</color>
     <color name="red1">#d86b68</color>
     <color name="red2">#fe4543</color>

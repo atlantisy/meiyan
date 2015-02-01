@@ -215,10 +215,10 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		        String serverVersion = parser.getValue(e, "name"); // 获取服务器versionName
 			    // 比较本地与服务器版本
 				if(localVersion.equals(serverVersion)){			
-					StringUtil.showToast(getApplicationContext(), "当前已是最新版本",  Toast.LENGTH_SHORT);
+					StringUtil.showToast(getApplicationContext(), "当前已是最新版",  Toast.LENGTH_SHORT);
 				}
 				else{
-					StringUtil.showToast(getApplicationContext(), "当前为旧版本，请下载最新版本",  Toast.LENGTH_SHORT);
+					StringUtil.showToast(getApplicationContext(), "当前为旧版，请下载最新版",  Toast.LENGTH_SHORT);
 					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.minelock.com"));      
 					startActivity(i); 			
 				}

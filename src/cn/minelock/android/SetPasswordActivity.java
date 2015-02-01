@@ -14,6 +14,8 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +46,7 @@ public class SetPasswordActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setpassword);
 		RelativeLayout setPasswordLayout = (RelativeLayout)findViewById(R.id.SetPasswordLayout);
-		//获取pref值
+		// 获取pref值
 		settings = getSharedPreferences(PREFS, 0);
 		boolean bIdOrPath = settings.getBoolean(BOOLIDPATH, true);
 		int wallpaperId = settings.getInt(WALLPAPERID, R.drawable.wallpaper01);
@@ -60,7 +62,7 @@ public class SetPasswordActivity extends Activity {
 				setPasswordLayout.setBackgroundResource(wallpaperId);
 			}
 		}
-		//
+		// 文字提示
 		setPasswordHint = (TextView)findViewById(R.id.SetPasswordHint);
 		ppwv = (PatternPassWordView) this.findViewById(R.id.mPatternPassWordView);
 		ppwv.setOnCompleteListener(new OnCompleteListener() {
@@ -84,8 +86,8 @@ public class SetPasswordActivity extends Activity {
 				}
 			}
 		});
-
-		OnClickListener mOnClickListener = new OnClickListener() {
+	    // 重置、保存密码
+	    OnClickListener mOnClickListener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				switch (v.getId()) {
@@ -145,6 +147,8 @@ public class SetPasswordActivity extends Activity {
 		else{			
 			setPasswordHint.setText("请验证原密码以修改");			
 		}
+		
+		
 	}
 	
 	private void showToast(CharSequence message) {

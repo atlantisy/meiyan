@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_white"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
-<LinearLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:background="@drawable/shape_bg_grey"
@@ -35,10 +35,10 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
     </LinearLayout>
-	
-	<ScrollView
+
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/gray_white"
@@ -82,17 +82,18 @@
                     android:background="@drawable/checkbox_selector"
                     android:button="@null"
                     android:checked="false" />
-            </LinearLayout> 
-			<TextView
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="32dp"
+                android:layout_height="40dp"
+                android:background="@color/gray_white"
                 android:gravity="center_vertical|bottom"
+                android:paddingLeft="20dp"
                 android:text="滑动解锁"
-                android:paddingLeft="10dp"
                 android:textColor="@color/gray"
-                android:textSize="14sp" 
-                android:background="@color/gray_white" />
-			            
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
@@ -120,14 +121,14 @@
                     android:button="@null"
                     android:checked="true" />
             </LinearLayout>
-            
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray_white" />  
-                          
+                android:background="@color/gray_white" />
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
@@ -155,17 +156,17 @@
                     android:button="@null"
                     android:checked="false" />
             </LinearLayout>
-			
-			<TextView
+
+            <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="32dp"
+                android:layout_height="40dp"
+                android:background="@color/gray_white"
                 android:gravity="center_vertical|bottom"
+                android:paddingLeft="20dp"
                 android:text="手势解锁"
-                android:paddingLeft="10dp"
                 android:textColor="@color/gray"
-                android:textSize="14sp" 
-                android:background="@color/gray_white" />
-			
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
@@ -180,7 +181,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
-                    android:text="显示手势密码轨迹"
+                    android:text="显示手势连线"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -192,9 +193,79 @@
                     android:background="@drawable/checkbox_selector"
                     android:button="@null"
                     android:checked="true" />
-            </LinearLayout> 
-                      
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_white" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="显示多彩手势"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <CheckBox
+                    android:id="@+id/colorpassword_checkbox"
+                    android:layout_width="56dp"
+                    android:layout_height="28dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/checkbox_selector"
+                    android:button="@null"
+                    android:checked="false" />
+                
+<!--                 <RadioGroup
+                    android:id="@+id/PatternColorGroup"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"                   
+                    android:gravity="right"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal" >
+                    
+                    <RadioButton
+                        android:id="@+id/PatternAlpha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/alpha_black"/>
+                    <RadioButton
+                        android:id="@+id/PatternRed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/pink4"/>
+                    <RadioButton
+                        android:id="@+id/PatternYellow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/yellow2"/>
+                    <RadioButton
+                        android:id="@+id/PatternGreen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"/>
+                    <RadioButton
+                        android:id="@+id/PatternBlue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/blue2"/>
+                </RadioGroup> -->
+            </LinearLayout>
+            
         </LinearLayout>
     </ScrollView>
-    
+
 </LinearLayout>

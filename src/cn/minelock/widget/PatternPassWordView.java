@@ -69,8 +69,9 @@ public class PatternPassWordView extends View {
 	public static final String PREFS = "lock_pref";//pref文件名
 	public static final String VERSE = "verse";//锁屏方式pref值名称
 	public static final String SHOWPASSWORD = "showPassword";
+	public static final String PWCOLOR = "passwordColor";// 九宫格颜色pref值名称
 	
-	private boolean showPassword;	
+	private boolean showPassword;
 	private String verse;
 
 	public PatternPassWordView(Context context, AttributeSet attrs, int defStyle) {
@@ -118,7 +119,7 @@ public class PatternPassWordView extends View {
 		// 设置画字的paint
 		Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG
 				| Paint.DEV_KERN_TEXT_FLAG);
-		textPaint.setTextSize(32.0f);// 字体大小
+		textPaint.setTextSize(36.0f);// 字体大小
 		textPaint.setTypeface(Typeface.SANS_SERIF);// 采用默认的宽度
 		textPaint.setColor(Color.WHITE);// 采用的白色
 /*		textPaint.setShadowLayer(1f, 0,
@@ -146,21 +147,19 @@ public class PatternPassWordView extends View {
 			for (int j = 0; j < mPoints[i].length; j++) {
 				Point p = mPoints[i][j];
 				int index = i*mPoints[i].length+j;
-				float textY=(textPaint.descent()-textPaint.ascent())/2;
+				float textY = (textPaint.descent()-textPaint.ascent())/2;
 				if (p.state == Point.STATE_CHECK) {
-					if(showPassword)
-						canvas.drawBitmap(pattern_round_click, p.x - r, p.y - r,mPaint);//画圆
-					else
-						canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r,mPaint);//画圆
-					//textPaint.setColor(Color.argb(214, 214, 214, 214));
+					canvas.drawBitmap(pattern_round_click, p.x - r, p.y - r,mPaint);//画圆
+					//textPaint.setColor(Color.rgb(100, 108, 127));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				} else if (p.state == Point.STATE_CHECK_ERROR) {
 					canvas.drawBitmap(pattern_round_click_error, p.x - r,
 							p.y - r, mPaint);
 				} else {
+					pattern_round_original = getOriginalPattern();
 					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r,
 							mPaint);//画圆
-					//textPaint.setColor(Color.argb(255, 255, 255, 255));
+					//textPaint.setColor(Color.rgb(255, 255, 255));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				}
 			}
@@ -189,7 +188,22 @@ public class PatternPassWordView extends View {
 		}*/
 
 	}
-
+	/**
+	 * 原始手势
+	 * 
+	 * @param canvas
+	 */
+	private Bitmap getOriginalPattern() {		
+		if(getContext().getSharedPreferences(PREFS, 0).getBoolean(PWCOLOR, false)){
+			int[]color = {R.drawable.pattern_round_original_red,R.drawable.pattern_round_original_yellow,
+					R.drawable.pattern_round_original_green,R.drawable.pattern_round_original_blue};
+			int random = (int)(Math.random()*color.length);
+			return BitmapFactory.decodeResource(this.getResources(), color[random]);
+		}
+		else
+			return BitmapFactory.decodeResource(this.getResources(), R.drawable.pattern_round_original);
+	}
+	
 	/**
 	 * 初始化Cache信息
 	 * 
@@ -214,8 +228,8 @@ public class PatternPassWordView extends View {
 			h = w;
 		}
 
-		pattern_round_original = BitmapFactory.decodeResource(
-				this.getResources(), R.drawable.pattern_round_original);
+		pattern_round_original = BitmapFactory.decodeResource(this.getResources(), 
+				R.drawable.pattern_round_original);
 		pattern_round_click = BitmapFactory.decodeResource(this.getResources(),
 				R.drawable.pattern_round_click);
 

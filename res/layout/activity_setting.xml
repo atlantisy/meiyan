@@ -47,7 +47,7 @@
             android:background="@drawable/editok_button_selector1"
             android:gravity="center"
             android:padding="8dp"
-            android:text="问题与反馈"
+            android:text="帮助与反馈"
             android:textColor="@color/white"
             android:textSize="14sp" />
         </LinearLayout>

@@ -13,6 +13,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 public class SettingMoreActivity extends Activity {
 
@@ -22,16 +24,19 @@ public class SettingMoreActivity extends Activity {
 	public static final String SHOWRIGHT = "showRight";	
 	public static final String LEFTCAMERA = "leftCamera";
 	public static final String SHOWPASSWORD = "showPassword";	
+	public static final String PWCOLOR = "passwordColor";
 	
 	private CheckBox statusbar_checkbox = null;
 	private CheckBox showright_checkbox = null;
 	private CheckBox leftcamera_checkbox = null;
 	private CheckBox showpassword_checkbox = null;
+	private CheckBox colorpassword_checkbox = null;
 	
 	private boolean mStatusbar = false;
 	private boolean mShowRight = true;
 	private boolean mLeftCamera = false;
 	private boolean mShowPassword = true;
+	private boolean mColorPassword = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +65,49 @@ public class SettingMoreActivity extends Activity {
 		showpassword_checkbox = (CheckBox) findViewById(R.id.showpassword_checkbox);
 		showpassword_checkbox.setChecked(mShowPassword);
 		showpassword_checkbox.setOnClickListener(new OnShowPasswordListener());
+		// 显示彩色手势密码
+		mColorPassword = prefs.getBoolean(PWCOLOR, false);		 
+		colorpassword_checkbox = (CheckBox) findViewById(R.id.colorpassword_checkbox);
+		colorpassword_checkbox.setChecked(mColorPassword);
+		colorpassword_checkbox.setOnClickListener(new OnColorPasswordListener());		
+		// 选择手势密码颜色
+/*		RadioGroup radioGroup = (RadioGroup) findViewById(R.id.PatternColorGroup);  	      
+	    radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+	    		    	
+	        @Override  
+	        public void onCheckedChanged(RadioGroup group, int checkedId){	
+	            // TODO Auto-generated method stub  	            
+	    		RadioButton alpha = (RadioButton) findViewById(R.id.PatternAlpha);  
+	    		RadioButton red = (RadioButton) findViewById(R.id.PatternRed);  
+	    		RadioButton yellow = (RadioButton) findViewById(R.id.PatternYellow);  
+	    		RadioButton green = (RadioButton) findViewById(R.id.PatternGreen);  
+	    		RadioButton blue = (RadioButton) findViewById(R.id.PatternBlue);
+	        	int color = 1;
+	    		if(checkedId == alpha.getId()){  
+	    			color = 1;
+	        	}  
+	        	else if(checkedId == red.getId()){
+	        		color = 2; 
+	        	}
+	        	else if(checkedId == yellow.getId()){
+	        		color = 3; 
+	        	}
+	        	else if(checkedId == green.getId()){
+	        		color = 4;
+	        	}
+	        	else if(checkedId == blue.getId()){
+	        		color = 5; 
+	        	}
+				// 将颜色值存入pref中
+				SharedPreferences.Editor editor = prefs.edit();						
+				editor.putInt(PWCOLOR, color);
+				editor.commit();
+	        }  
+	    });*/
 		// 返回按钮
 		ImageButton return_btn = (ImageButton) findViewById(R.id.moresetting_return);
 		return_btn.setOnClickListener(returnOnClickListener);
+
 	}
 	
 	// 显示状态栏
@@ -102,6 +147,16 @@ public class SettingMoreActivity extends Activity {
 			//将开关check值存入pref中
 			SharedPreferences.Editor editor = prefs.edit();						
 			editor.putBoolean(SHOWPASSWORD, mShowPassword);
+			editor.commit();
+		}
+	}
+	// 显示多彩手势密码
+	class OnColorPasswordListener implements OnClickListener {
+		public void onClick(View v) {
+			mColorPassword = colorpassword_checkbox.isChecked();
+			//将开关check值存入pref中
+			SharedPreferences.Editor editor = prefs.edit();						
+			editor.putBoolean(PWCOLOR, mColorPassword);
 			editor.commit();
 		}
 	}	
