@@ -36,7 +36,7 @@ public class SettingMoreActivity extends Activity {
 	private boolean mShowRight = true;
 	private boolean mLeftCamera = false;
 	private boolean mShowPassword = true;
-	private boolean mColorPassword = false;
+	private boolean mColorPassword = true;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class SettingMoreActivity extends Activity {
 		showpassword_checkbox.setChecked(mShowPassword);
 		showpassword_checkbox.setOnClickListener(new OnShowPasswordListener());
 		// 显示彩色手势密码
-		mColorPassword = prefs.getBoolean(PWCOLOR, false);		 
+		mColorPassword = prefs.getBoolean(PWCOLOR, true);		 
 		colorpassword_checkbox = (CheckBox) findViewById(R.id.colorpassword_checkbox);
 		colorpassword_checkbox.setChecked(mColorPassword);
 		colorpassword_checkbox.setOnClickListener(new OnColorPasswordListener());		

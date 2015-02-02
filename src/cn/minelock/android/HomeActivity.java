@@ -98,7 +98,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 	public static final String LOCKFLAG = "lockFlag";// 锁屏方式pref值名称
 	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";// 九宫格是否设置pref值名称
-
+	public static final String PWCOLOR = "passwordColor";// 多彩九宫格pref值名称
+	
 	private SharedPreferences home_setting;
 	private SharedPreferences defaultPrefs;
 	
@@ -315,6 +316,16 @@ public class HomeActivity extends Activity implements OnClickListener,
 		verse7.setText(s.substring(7, 8));
 		TextView verse8 = (TextView) findViewById(R.id.verse8);
 		verse8.setText(s.substring(8, 9));
+		// 控制多彩霓虹手势		
+		verse0.setBackgroundResource(getPatternId());
+		verse1.setBackgroundResource(getPatternId());
+		verse2.setBackgroundResource(getPatternId());
+		verse3.setBackgroundResource(getPatternId());
+		verse4.setBackgroundResource(getPatternId());
+		verse5.setBackgroundResource(getPatternId());
+		verse6.setBackgroundResource(getPatternId());
+		verse7.setBackgroundResource(getPatternId());
+		verse8.setBackgroundResource(getPatternId());
 	}
 
 	//按两次返回键退出
@@ -366,7 +377,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 美言显示方式按钮初始化
 	private void InitShowVerse() {
 		show_verse_btn = (ImageButton) findViewById(R.id.home_repeat_shuffle);
-		showVerseFlag=home_setting.getInt(SHOWVERSEFLAG, 1);
+		showVerseFlag = home_setting.getInt(SHOWVERSEFLAG, 1);
 		switch (showVerseFlag) {
 		case SINGLE_REPEAT:
 			show_verse_btn.setImageResource(R.drawable.ic_single_repeat);
@@ -496,6 +507,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 			setup_grid_button.setVisibility(View.GONE);
 		else
 			setup_grid_button.setVisibility(View.VISIBLE);
+		SetVerse();
 		//Toast.makeText(this, R.string.grid_verse_style,  Toast.LENGTH_SHORT).show();
 		StringUtil.showToast(this, "手势解锁",  Toast.LENGTH_SHORT);
 	}
@@ -681,7 +693,18 @@ public class HomeActivity extends Activity implements OnClickListener,
         view.destroyDrawingCache();  
         
         return b;  
-    } 	
+    } 
+	// 获取图案ID
+	private int getPatternId() {		
+		int[]color = {R.drawable.pattern_round_original_red,R.drawable.pattern_round_original_yellow,
+					R.drawable.pattern_round_original_green,R.drawable.pattern_round_original_blue};
+		if(home_setting.getBoolean(PWCOLOR, true))
+			return  (int)color[(int)(Math.random()*color.length)];
+		else
+			return  R.drawable.pattern_round_original;
+		
+	}	
+	//
 	private void setVerse(int pos) {
 		if (pos >= 0 && pos <= nameList.size()) {
 			CustemObject value = nameList.get(pos);

@@ -5,12 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import cn.minelock.util.FileUtils;
 import cn.minelock.util.StringUtil;
 import cn.minelock.widget.AbstractSpinerAdapter;
 import cn.minelock.widget.CustemObject;
@@ -104,6 +106,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 	private GridView emojiGridview;
 	private ImageButton clear_btn;
 	private ImageButton editemoji_btn;
+	private ImageButton recommend_btn;
 	
 	dbHelper dbRecent;
 		
@@ -152,6 +155,9 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			    return false;
 			}
 		});
+		// 美日一荐
+		recommend_btn = (ImageButton) findViewById(R.id.recommend_photo);
+		recommend_btn.setOnClickListener(recommendOnClickListener);
 		// 应用自带表情
 		emojiAdapter = new EmojiAdapter(this);
 		emojiGridview = (GridView) findViewById(R.id.emoji_grid);
@@ -334,7 +340,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			mEditVerseLayout.setBackgroundResource(wallpaperId);
 			bIdOrPath = true;//壁纸来源为应用内ID					
 		}
-	};	
+	};
 	// 控制表情列表的显示/隐藏
 	private OnClickListener editEmojiOnClickListener = new OnClickListener() {
 
@@ -367,7 +373,66 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			}
 		}
 	};
+	
+	final Handler handlerRecommend = new Handler();
+	// 美日一荐
+	private OnClickListener recommendOnClickListener = new OnClickListener() {
 
+		@Override
+		public void onClick(View arg0) {
+			hideSoftKeyboard();
+	    	verse_hint = verse_edit.getText().toString();
+	    	verse_edit.setCursorVisible(false);
+	    	verse_edit.setText("刷新美日一荐...");
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					handlerRecommend.post(runnableRecommend);
+				}
+			}).start();
+		}
+	};
+	// 构建Runnable对象，在runnable中更新界面  
+    Runnable runnableRecommend = new  Runnable(){  
+        @Override  
+        public void run() {
+        	String url = "http://dn-mylock.qbox.me/20150210.jpg";
+        	Bitmap bm = getUrlBitmap(url);
+    		//Bitmap bm = ImageTools.zoomBitmap(bitmap, bitmap.getWidth()-2, bitmap.getHeight()-2);	
+    		Bitmap _bm = ImageTools.zoomBitmap(bm, 72, 72);// 压缩
+    		mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
+    		// 保存到SD卡
+    		String photoName = "star" + StringUtil.makeFileName();
+    		ImageTools.savePhotoToSDCard(bm, dir, photoName);
+    		ImageTools.savePhotoToSDCard(_bm, dir, photoName+"_");
+    		wallpaperPath = dir + "/" + photoName + ".png";
+    		//_wallpaperPath = dir + "/" + photoName +"_"+ ".png";
+    		bIdOrPath = false;//壁纸来源为应用外路径
+    		
+            StringUtil.showToast(getApplication(), "推荐成功", Toast.LENGTH_SHORT);
+            verse_edit.setText(verse_hint);
+            verse_edit.setSelection(verse_hint.length());
+            verse_edit.setCursorVisible(true);
+        }           
+    };
+    // 从网络获取图片
+    private Bitmap getUrlBitmap(String url) 
+    {         
+        try { 
+            URL imageUrl = new URL(url); 
+            HttpURLConnection conn = (HttpURLConnection)imageUrl.openConnection(); 
+            conn.setDoInput(true);
+            conn.connect(); 
+            InputStream inputStream=conn.getInputStream();            
+            return BitmapFactory.decodeStream(inputStream);
+            
+        } catch (Exception ex){ 
+           ex.printStackTrace(); 
+           return null; 
+        } 
+    } 
+    
 	/** 选择应用外壁纸 **/	
 	private OnClickListener editWallpaperOnClickListener = new OnClickListener() {
 
@@ -380,7 +445,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		}
 	};
 	
-	final Handler handler = new Handler();
+	final Handler handlerDefaultPaper = new Handler();
 	private String verse_hint;
 	private String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
 	private String photoName = "photo" + StringUtil.makeFileName();	//
@@ -429,7 +494,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 								
 								@Override
 								public void run() {
-									handler.post(runnableDefaultPaper);
+									handlerDefaultPaper.post(runnableDefaultPaper);
 								}
 							}).start();
 							break;

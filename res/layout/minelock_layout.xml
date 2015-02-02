@@ -122,14 +122,15 @@
             
             <cn.minelock.widget.PatternPassWordView
                 android:id="@+id/mPatternPassWordView"
-                android:layout_width="244dp"
-                android:layout_height="244dp" 
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:layout_margin="0dp" 
                 android:layout_gravity="center"/>
         </LinearLayout>		
 	     
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="80dp"            
+            android:layout_height="80dp"           
             android:orientation="vertical">
 
 <!--             <android.support.v4.view.ViewPager
@@ -145,7 +146,7 @@
 	  				android:id="@+id/mMyScrollLayout"    
 	  				android:layout_width="fill_parent"    
 	  				android:layout_height="wrap_content"
-	  				android:layout_marginLeft="18dp"
+	  				android:layout_marginLeft="18dp" 
 	  				android:layout_marginRight="18dp"> 
 	  					<FrameLayout    
 	    					android:background="@color/alpha"

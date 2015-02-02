@@ -47,6 +47,7 @@ public class PatternPassWordView extends View {
 
 	//
 	private Point[][] mPoints = new Point[3][3];
+	private int[] colorArray = new int[9];
 	// 圆的半径
 	private float r = 0;
 	// 选中的点
@@ -156,9 +157,10 @@ public class PatternPassWordView extends View {
 					canvas.drawBitmap(pattern_round_click_error, p.x - r,
 							p.y - r, mPaint);
 				} else {
-					pattern_round_original = getOriginalPattern();
-					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r,
-							mPaint);//画圆
+					//pattern_round_original = getPattern();
+					if(getContext().getSharedPreferences(PREFS, 0).getBoolean(PWCOLOR, true))
+						pattern_round_original = BitmapFactory.decodeResource(this.getResources(), colorArray[index]);
+					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r, mPaint);//画圆
 					//textPaint.setColor(Color.rgb(255, 255, 255));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
 				}
@@ -193,8 +195,8 @@ public class PatternPassWordView extends View {
 	 * 
 	 * @param canvas
 	 */
-	private Bitmap getOriginalPattern() {		
-		if(getContext().getSharedPreferences(PREFS, 0).getBoolean(PWCOLOR, false)){
+	private Bitmap getPattern() {		
+		if(getContext().getSharedPreferences(PREFS, 0).getBoolean(PWCOLOR, true)){
 			int[]color = {R.drawable.pattern_round_original_red,R.drawable.pattern_round_original_yellow,
 					R.drawable.pattern_round_original_green,R.drawable.pattern_round_original_blue};
 			int random = (int)(Math.random()*color.length);
@@ -202,8 +204,7 @@ public class PatternPassWordView extends View {
 		}
 		else
 			return BitmapFactory.decodeResource(this.getResources(), R.drawable.pattern_round_original);
-	}
-	
+	}	
 	/**
 	 * 初始化Cache信息
 	 * 
@@ -228,6 +229,11 @@ public class PatternPassWordView extends View {
 			h = w;
 		}
 
+		int[]color = {R.drawable.pattern_round_original_red,R.drawable.pattern_round_original_yellow,
+					R.drawable.pattern_round_original_green,R.drawable.pattern_round_original_blue};
+		for(int i=0; i<9; i++)
+			colorArray[i] = color[(int)(Math.random()*color.length)];
+		
 		pattern_round_original = BitmapFactory.decodeResource(this.getResources(), 
 				R.drawable.pattern_round_original);
 		pattern_round_click = BitmapFactory.decodeResource(this.getResources(),
