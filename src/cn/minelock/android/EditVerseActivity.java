@@ -380,10 +380,10 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 
 		@Override
 		public void onClick(View arg0) {
-			hideSoftKeyboard();
+			//hideSoftKeyboard();
 	    	verse_hint = verse_edit.getText().toString();
 	    	verse_edit.setCursorVisible(false);
-	    	verse_edit.setText("刷新美日一荐...");
+	    	verse_edit.setText("推荐每日壁纸中...");
 			new Thread(new Runnable() {
 				
 				@Override
@@ -397,13 +397,13 @@ public class EditVerseActivity extends Activity implements OnClickListener,
     Runnable runnableRecommend = new  Runnable(){  
         @Override  
         public void run() {
-        	String url = "http://dn-mylock.qbox.me/20150210.jpg";
+        	String url = "http://dn-mylock.qbox.me/"+StringUtil.makeDayName()+".jpg";
         	Bitmap bm = getUrlBitmap(url);
     		//Bitmap bm = ImageTools.zoomBitmap(bitmap, bitmap.getWidth()-2, bitmap.getHeight()-2);	
     		Bitmap _bm = ImageTools.zoomBitmap(bm, 72, 72);// 压缩
     		mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bm));
     		// 保存到SD卡
-    		String photoName = "star" + StringUtil.makeFileName();
+    		String photoName = "star" + StringUtil.makeDayName();
     		ImageTools.savePhotoToSDCard(bm, dir, photoName);
     		ImageTools.savePhotoToSDCard(_bm, dir, photoName+"_");
     		wallpaperPath = dir + "/" + photoName + ".png";

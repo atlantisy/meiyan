@@ -47,6 +47,20 @@ public class StringUtil {
 				"_" + addZero(hour, 2) + addZero(minute, 2) + addZero(second, 2);
 	}
     /**
+	 * 按时间生成文件名
+	 * @param s
+	 * @return
+	 */	
+	public static String makeDayName() {		
+		Calendar mCalendar = Calendar.getInstance();
+		// 年月日
+		String year = String.valueOf(mCalendar.get(Calendar.YEAR));
+		String month = String.valueOf(mCalendar.get(Calendar.MONTH)+1);
+		String day = String.valueOf(mCalendar.get(Calendar.DAY_OF_MONTH));				
+
+		return year + addZero(month, 2) + addZero(day, 2);
+	}	
+    /**
 	 * 补零
 	 * @return
 	 */

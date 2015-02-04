@@ -448,7 +448,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int lefttocamera_checkbox=0x7f05006e;
         public static final int line_verse=0x7f050033;
         public static final int list_verse=0x7f05005d;
-        public static final int listview=0x7f050085;
+        public static final int listview=0x7f050089;
         public static final int loading_process_dialog_progressBar=0x7f05007c;
         public static final int lock_checkbox=0x7f050064;
         public static final int login_toast=0x7f050054;
@@ -465,18 +465,22 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_progress=0x7f05007f;
         public static final int pull_to_refresh_sub_text=0x7f050081;
         public static final int pull_to_refresh_text=0x7f050080;
+        public static final int recent_action_copy=0x7f050083;
+        public static final int recent_action_delete=0x7f050085;
+        public static final int recent_action_label=0x7f050082;
+        public static final int recent_action_share=0x7f050084;
         public static final int recent_add=0x7f05005b;
-        public static final int recent_item=0x7f050087;
+        public static final int recent_item=0x7f05008b;
         public static final int recent_label=0x7f05005a;
         public static final int recent_random=0x7f05005c;
         public static final int recent_return=0x7f050059;
-        public static final int recent_title=0x7f050086;
+        public static final int recent_title=0x7f05008a;
         public static final int recent_top=0x7f050058;
         public static final int recommend_photo=0x7f050017;
         public static final int rotate=0x7f050007;
         public static final int scrollview=0x7f05000b;
-        public static final int setpassword_cancel=0x7f050082;
-        public static final int setpassword_ok=0x7f050083;
+        public static final int setpassword_cancel=0x7f050086;
+        public static final int setpassword_ok=0x7f050087;
         public static final int setting_about=0x7f050069;
         public static final int setting_checkversion=0x7f050068;
         public static final int setting_initialguide=0x7f050067;
@@ -488,7 +492,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int showpassword_checkbox=0x7f05006f;
         public static final int showright_checkbox=0x7f05006d;
         public static final int statusbar_checkbox=0x7f05006c;
-        public static final int textView=0x7f050084;
+        public static final int textView=0x7f050088;
         public static final int time=0x7f05004f;
         public static final int timeDisplay=0x7f050050;
         public static final int tvReset=0x7f050060;
@@ -530,11 +534,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int process_dialog=0x7f03000e;
         public static final int pull_to_refresh_header_horizontal=0x7f03000f;
         public static final int pull_to_refresh_header_vertical=0x7f030010;
-        public static final int setpassword_exit_dialog=0x7f030011;
-        public static final int spiner_item_layout=0x7f030012;
-        public static final int spiner_window_layout=0x7f030013;
-        public static final int start=0x7f030014;
-        public static final int view_recent=0x7f030015;
+        public static final int recent_action_dialog=0x7f030011;
+        public static final int setpassword_exit_dialog=0x7f030012;
+        public static final int spiner_item_layout=0x7f030013;
+        public static final int spiner_window_layout=0x7f030014;
+        public static final int start=0x7f030015;
+        public static final int view_recent=0x7f030016;
     }
     public static final class string {
         public static final int app_name=0x7f070006;

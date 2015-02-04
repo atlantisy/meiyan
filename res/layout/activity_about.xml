@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="4dp"
-        android:text="v1.2.2"
+        android:text="v1.3"
         android:textColor="@color/gray_black"
         android:textSize="14sp" />    
     

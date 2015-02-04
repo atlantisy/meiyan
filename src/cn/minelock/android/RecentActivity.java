@@ -22,12 +22,14 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -136,26 +138,8 @@ public class RecentActivity extends Activity {
 				
 				startActivity(new Intent(RecentActivity.this, HomeActivity.class));
 				overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
-				//overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);
 			}
-		});
-        
-/*        recentList.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				// TODO Auto-generated method stub
-				SQLiteCursor sc = (SQLiteCursor)arg0.getSelectedItem();
-				_id = sc.getInt(0);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		}); */       
+		});             
         
         // 添加长按点击
         recentList.setOnItemLongClickListener(new OnItemLongClickListener() {
@@ -163,17 +147,96 @@ public class RecentActivity extends Activity {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				// TODO Auto-generated method stub
-				position=arg2;
+				// 列表位置
+				position = arg2;
 				recentCursor.moveToPosition(arg2);
 				_id = recentCursor.getInt(0);
 				deleteVerse = recentCursor.getString(2);//+recentCursor.getInt(1);
-				return false;
+				// 列表处理对话框
+				final AlertDialog dlg = new AlertDialog.Builder(RecentActivity.this).create();
+				dlg.show();
+				Window window = dlg.getWindow();						 
+				window.setContentView(R.layout.recent_action_dialog);
+				// 标题
+				TextView label = (TextView) window.findViewById(R.id.recent_action_label);
+				label.setText(deleteVerse.trim());
+				// 复制
+				Button copy = (Button) window.findViewById(R.id.recent_action_copy);
+				copy.setOnClickListener(new View.OnClickListener() {					
+					public void onClick(View v) {
+						operation("copy");
+						dlg.cancel();
+				  }
+				 });
+				// 分享
+				Button share = (Button) window.findViewById(R.id.recent_action_share);
+				share.setOnClickListener(new View.OnClickListener() {					
+					public void onClick(View v) {
+						operation("share");	
+						dlg.cancel();
+				  }
+				 });
+				// 删除
+				Button delete = (Button) window.findViewById(R.id.recent_action_delete);
+				delete.setOnClickListener(new View.OnClickListener() {					
+					public void onClick(View v) {
+						operation("delete");
+						int verseId = position;				
+						// 移动到上一位置										
+						if(verseQty==1){
+							editor.putBoolean(BOOLIDPATH, true);// 壁纸
+							editor.putInt(WALLPAPERID, R.drawable.wallpaper01);// 壁纸id
+							editor.putString(WALLPAPERPATH, "1_.png");// 壁纸path
+							// 将美言存入SharedPreferences				
+							editor.putString(VERSE, getResources().getString(R.string.initial_verse));// 美言
+							editor.putLong(VERSEID,0);// 美言id				
+						}
+						else{
+							if(verseId==verseQty-1)
+								verseId = verseId-1;
+							//verseId = verseId-1;
+							recentCursor.moveToPosition(verseId);	
+							// 美言
+							String verse = recentCursor.getString(2);
+							// 壁纸
+							int idPath = recentCursor.getInt(3);
+							int id = recentCursor.getInt(4);
+							String path = recentCursor.getString(5);
+							// 将壁纸存入SharedPreferences
+							boolean bIdPath = false;
+							if(idPath==1)
+								bIdPath = true;
+							editor.putBoolean(BOOLIDPATH, bIdPath);// 壁纸
+							editor.putInt(WALLPAPERID, id);// 壁纸id
+							editor.putString(WALLPAPERPATH, path);// 壁纸path
+							// 将美言存入SharedPreferences				
+							editor.putString(VERSE, verse);// 美言
+							//editor.putLong(VERSEID,(long)verseId);// 美言id	
+						}
+										
+						if(verseQty>0){
+							verseQty = verseQty-1;
+							recent_label.setText(title + "(" + String.valueOf(verseQty) + ")");
+						}				
+						else{
+							verseQty = 0;
+							recent_label.setText(title);
+						}				
+						editor.putInt(VERSEQTY, verseQty);// 美言数量
+						editor.commit();
+									
+						Toast.makeText(getApplicationContext(), "已删除", Toast.LENGTH_SHORT).show();
+						
+						dlg.cancel();
+				  }
+				 });
+				
+				return true;
 			}
 		});
         
         // 添加长按菜单响应
-        recentList.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {			
+/*        recentList.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {			
 			
         	@Override
 			public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
@@ -182,7 +245,7 @@ public class RecentActivity extends Activity {
 				menu.add(0, 1, 0, "分享壁纸");
 				menu.add(0, 2, 0, "删除");
 			}
-		}); 
+		}); */
         
         // 获取增删后的美言数量
         String Qty = title;
@@ -239,7 +302,7 @@ public class RecentActivity extends Activity {
         
         return listData; 
     }
-	//长按菜单响应函数
+/*	//长按菜单响应函数
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {		
 		super.onOptionsItemSelected(item);
@@ -307,7 +370,7 @@ public class RecentActivity extends Activity {
 			break;
 		}
 		return true;
-	}
+	}*/
 	
     private void operation(String cmd)
     {

@@ -99,7 +99,7 @@
                 android:maxLines="4"
                 android:textColor="@color/white"
                 android:textColorHint="@color/alpha_white"
-                android:textSize="20sp" 
+                android:textSize="18sp" 
                 android:selectAllOnFocus="true" > 
                 <requestFocus></requestFocus>           
             </EditText>                                	

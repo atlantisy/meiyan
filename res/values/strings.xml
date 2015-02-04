@@ -4,7 +4,7 @@
     <string name="app_name">美言锁屏</string>
     <string name="initial_verse">勿忘初心 方得始终</string>
     
-    <string name="share_word">（通过#美言锁屏#创作，下载链接：http://www.minelock.com）</string>
+    <string name="share_word">（分享自#美言锁屏#，下载链接：http://www.minelock.com）</string>
 	<string name="version_url">http://minelock.sinaapp.com/version.xml</string>
 	
     <string-array name="none_verse">
