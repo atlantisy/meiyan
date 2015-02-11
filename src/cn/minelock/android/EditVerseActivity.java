@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import cn.minelock.util.StringUtil;
+import cn.minelock.util.XMLParser;
 import cn.minelock.widget.AbstractSpinerAdapter;
 import cn.minelock.widget.CustemObject;
 import cn.minelock.widget.CustemSpinerAdapter;
@@ -55,6 +56,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewTreeObserver.OnPreDrawListener;
@@ -381,16 +383,40 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		@Override
 		public void onClick(View arg0) {
 			//hideSoftKeyboard();
-	    	verse_hint = verse_edit.getText().toString();
-	    	verse_edit.setCursorVisible(false);
-	    	verse_edit.setText("推荐每日壁纸中...");
-			new Thread(new Runnable() {
-				
-				@Override
-				public void run() {
-					handlerRecommend.post(runnableRecommend);
-				}
-			}).start();
+			String url = dir + "/star" + StringUtil.makeDayName() + ".png";
+			File f = new File(url); 
+			if(f != null && f.exists() && f.isFile()){
+		    	verse_hint = verse_edit.getText().toString();
+		    	verse_edit.setCursorVisible(false);
+		    	verse_edit.setText("推荐今日壁纸...");
+		    	// url
+		    	wallpaperPath = url;
+				Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
+		    	mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+	    		bIdOrPath = false;//壁纸来源为应用外路径
+	    		
+	            verse_edit.setText(verse_hint);
+	            verse_edit.setSelection(verse_hint.length());
+	            verse_edit.setCursorVisible(true);
+	    	}
+			else{
+				// 检查网络连接	
+			    if(XMLParser.isNetworkConnected(getApplicationContext())){		    	
+			    	verse_hint = verse_edit.getText().toString();
+			    	verse_edit.setCursorVisible(false);
+			    	verse_edit.setText("推荐今日壁纸...");
+			    	new Thread(new Runnable() {
+						
+			    		@Override
+			    		public void run() {
+			    			handlerRecommend.post(runnableRecommend);
+			    		}
+			    	}).start();	
+			    }
+			    else
+			    	StringUtil.showToast(getApplicationContext(), "网络无法连接",  Toast.LENGTH_SHORT);
+			}
+					    
 		}
 	};
 	// 构建Runnable对象，在runnable中更新界面  
@@ -410,7 +436,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
     		//_wallpaperPath = dir + "/" + photoName +"_"+ ".png";
     		bIdOrPath = false;//壁纸来源为应用外路径
     		
-            StringUtil.showToast(getApplication(), "推荐成功", Toast.LENGTH_SHORT);
+            //StringUtil.showToast(getApplication(), "推荐成功", Toast.LENGTH_SHORT);
             verse_edit.setText(verse_hint);
             verse_edit.setSelection(verse_hint.length());
             verse_edit.setCursorVisible(true);
@@ -441,7 +467,58 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			hideSoftKeyboard();
 			colorGridview.setVisibility(View.GONE);
 			emojiGridview.setVisibility(View.GONE);
-			showPicturePicker(EditVerseActivity.this);
+			
+			//showPicturePicker(EditVerseActivity.this);
+			
+			final AlertDialog dlg = new AlertDialog.Builder(EditVerseActivity.this).create();
+			dlg.show();
+			Window window = dlg.getWindow();						 
+			window.setContentView(R.layout.photo_action_dialog);
+			// 相机
+			Button camera = (Button) window.findViewById(R.id.photo_action_camera);
+			camera.setOnClickListener(new View.OnClickListener() {					
+				public void onClick(View v) {
+					Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+					
+					//清晰图片
+					photoName = "photo" + StringUtil.makeFileName();
+					wallpaperPath = dir + "/" + photoName + ".png";
+					//_wallpaperPath = dir + "/" + photoName + "_" + ".png";
+					openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(wallpaperPath)));							
+					
+					startActivityForResult(openCameraIntent,TAKE_PHOTO);							
+					bIdOrPath = false;//壁纸来源为应用外路径
+					dlg.cancel();
+				}
+			 });
+			// 相册
+			Button album = (Button) window.findViewById(R.id.photo_action_album);
+			album.setOnClickListener(new View.OnClickListener() {					
+				public void onClick(View v) {
+					Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
+					openAlbumIntent.setType("image/*");
+					startActivityForResult(openAlbumIntent,CHOOSE_PICTURE);							
+					bIdOrPath = false;//壁纸来源为应用外路径
+					dlg.cancel();
+				}
+			 });
+			// 桌面壁纸
+			Button desk = (Button) window.findViewById(R.id.photo_action_desk);
+			desk.setOnClickListener(new View.OnClickListener() {					
+				public void onClick(View v) {
+			    	verse_hint = verse_edit.getText().toString();
+			    	verse_edit.setCursorVisible(false);
+			    	verse_edit.setText("正在获取...");
+					new Thread(new Runnable() {
+						
+						@Override
+						public void run() {
+							handlerDefaultPaper.post(runnableDefaultPaper);
+						}
+					}).start();
+					dlg.cancel();
+				}
+			 });			
 		}
 	};
 	

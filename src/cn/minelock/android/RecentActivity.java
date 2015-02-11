@@ -159,15 +159,20 @@ public class RecentActivity extends Activity {
 				window.setContentView(R.layout.recent_action_dialog);
 				// 标题
 				TextView label = (TextView) window.findViewById(R.id.recent_action_label);
-				label.setText(deleteVerse.trim());
+				if(deleteVerse.trim().equals(""))
+					label.setText("操作");					
+				else
+					label.setText(deleteVerse.trim());
 				// 复制
-				Button copy = (Button) window.findViewById(R.id.recent_action_copy);
+				Button copy = (Button) window.findViewById(R.id.recent_action_copy);				
 				copy.setOnClickListener(new View.OnClickListener() {					
 					public void onClick(View v) {
 						operation("copy");
 						dlg.cancel();
 				  }
 				 });
+				if(deleteVerse.trim().equals(""))
+					copy.setVisibility(View.GONE);				
 				// 分享
 				Button share = (Button) window.findViewById(R.id.recent_action_share);
 				share.setOnClickListener(new View.OnClickListener() {					
@@ -176,6 +181,8 @@ public class RecentActivity extends Activity {
 						dlg.cancel();
 				  }
 				 });
+				if(recentCursor.getInt(3)==1)
+					share.setVisibility(View.GONE);
 				// 删除
 				Button delete = (Button) window.findViewById(R.id.recent_action_delete);
 				delete.setOnClickListener(new View.OnClickListener() {					

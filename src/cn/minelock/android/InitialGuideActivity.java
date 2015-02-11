@@ -130,7 +130,7 @@ public class InitialGuideActivity extends Activity {
 			// ³õÊ¼»¯ËøÆÁ¼ÇÂ¼
 /*			dbRecent = new dbHelper(this);
 			String initial_verse = getResources().getString(R.string.initial_verse);
-			dbRecent.insert(R.drawable._wallpaper01,initial_verse.substring(0),1,R.drawable.wallpaper01,"1_.png");	*/
+			dbRecent.insert(R.drawable._wallpaper01,initial_verse.substring(0),1,R.drawable.wallpaper01,"1_.png");*/	
 			
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putBoolean(INITIALGUIDE, true);

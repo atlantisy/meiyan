@@ -92,7 +92,7 @@
                 android:paddingLeft="20dp"
                 android:text="滑动解锁"
                 android:textColor="@color/gray"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -165,7 +165,7 @@
                 android:paddingLeft="20dp"
                 android:text="手势解锁"
                 android:textColor="@color/gray"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="fill_parent"

@@ -122,19 +122,18 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@color/alpha"
-            android:src="@drawable/ic_photo" />      
-        <ImageButton
-            android:id="@+id/recommend_photo"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@color/alpha"
-            android:src="@drawable/ic_recommend" />
-        
+            android:src="@drawable/ic_photo" />             
+      
 		<View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
-        
+		<ImageButton
+            android:id="@+id/recommend_photo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/alpha"
+            android:src="@drawable/ic_recommend" />          
         <ImageButton 
             android:id="@+id/edit_clear"
             android:layout_width="48dp"
@@ -146,8 +145,8 @@
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
-
+            android:layout_weight="0" />
+		
         <ImageButton
             android:id="@+id/edit_color"
             android:layout_width="48dp"

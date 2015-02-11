@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical" >
-        <TextView
-            android:id="@+id/recent_action_label"
+<!--         <TextView
+            android:id="@+id/photo_action_label"
             android:textColor="@color/app_color"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:gravity="center_vertical"
             android:layout_width="fill_parent"
             android:layout_height="64dp"
@@ -25,14 +25,14 @@
 		    android:layout_height="2px"
 		    android:layout_marginLeft="12dp"
 		    android:layout_marginRight="12dp"
-		    android:background="@color/gray_gray"/>  
+		    android:background="@color/gray_gray"/>   -->
         <Button
-            android:id="@+id/recent_action_copy"
+            android:id="@+id/photo_action_camera"
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
             android:paddingLeft="24dp" 
-            android:text="复制文字"
+            android:text="拍一张"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:background="@drawable/default_button_selector" />  
@@ -43,12 +43,12 @@
 		    android:layout_marginRight="12dp"		    
 		    android:background="@color/gray_gray"/> 
 		<Button
-            android:id="@+id/recent_action_share"
+            android:id="@+id/photo_action_album"
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
             android:paddingLeft="24dp" 
-            android:text="分享壁纸"
+            android:text="从相册选取"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:background="@drawable/default_button_selector" /> 
@@ -59,12 +59,12 @@
 		    android:layout_marginRight="12dp"		    
 		    android:background="@color/gray_gray"/> 		       	
 		<Button
-            android:id="@+id/recent_action_delete"
+            android:id="@+id/photo_action_desk"
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
             android:paddingLeft="24dp" 
-            android:text="删除该锁屏"
+            android:text="使用桌面壁纸"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:background="@drawable/default_button_selector" /> 	
