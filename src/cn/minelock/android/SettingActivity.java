@@ -284,17 +284,26 @@ public class SettingActivity extends Activity  implements OnClickListener{
 		//Æô¶¯ËøÆÁ		
 		if (mIsLockScreenOn){
 			//Æô¶¯ËøÆÁ			
+			//mLockStatus = false;
 			startService(new Intent(this, MyLockScreenService.class));
+			
 			//bindService(new Intent(this, MyLockScreenService.class),myServiceConnection ,Context.BIND_AUTO_CREATE);
 			
 			//EnableSystemKeyguard(false);
 		}
 		else {
-			stopService(new Intent(this, MyLockScreenService.class));
+			mLockStatus = true;
+			//stopService(new Intent(this, MyLockScreenService.class));
+			
 			//unbindService(myServiceConnection);
 			
 			//EnableSystemKeyguard(true);
+			
+			SharedPreferences.Editor editor = prefs.edit();						
+			editor.putBoolean(LOCK_STATUS, mLockStatus);
+			editor.commit();
 		}
+
 	}	
 	
 	//

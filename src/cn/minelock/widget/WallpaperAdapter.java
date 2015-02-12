@@ -50,7 +50,8 @@ public class WallpaperAdapter extends BaseAdapter {
 		return image;				
 	}
 
-	public static int[] wallpaper = { 		
+	public static int[] wallpaper = { 
+		R.drawable.wallpaper01,
 		R.color.red3,R.color.orange3,R.color.yellow2,R.color.green3,R.color.green2,
 		R.color.green4,R.color.blue2,R.color.app_color,R.color.app_color1,R.color.pink4,
 		R.color.violet,R.color.dark1,R.color.blackboard,
@@ -58,7 +59,8 @@ public class WallpaperAdapter extends BaseAdapter {
 				
 	};
 	
-	public static int[] _wallpaper = { 		
+	public static int[] _wallpaper = {
+		R.drawable._wallpaper01,
 		R.color.red3,R.color.orange3,R.color.yellow2,R.color.green3,R.color.green2,
 		R.color.green4,R.color.blue2,R.color.app_color,R.color.app_color1,R.color.pink4,
 		R.color.violet,R.color.dark1,R.color.blackboard,

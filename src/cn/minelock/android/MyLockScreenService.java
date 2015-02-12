@@ -122,10 +122,10 @@ public class MyLockScreenService extends Service {
 		editor.putBoolean(LOCK_STATUS, false);
 		editor.commit();
 		//被销毁时启动自身，保持自身在后台存活
-        if(mIsLockScreenOn){
+/*        if(mIsLockScreenOn){
         	IntentFilter intentFilter= new IntentFilter(ACT_SCREEN_OFF);
         	registerReceiver(mScreenBCR, intentFilter);        	
-        }
+        }*/
         
         batteryObserver.unRegister();
                 
@@ -323,16 +323,23 @@ public class MyLockScreenService extends Service {
     		// TODO Auto-generated method stub
     		try {
 				switch (state) {
-				case TelephonyManager.CALL_STATE_RINGING:
-					mLockStatus=false;
+				case TelephonyManager.CALL_STATE_RINGING://来电
+					mLockStatus = false;
 					editor.putBoolean(LOCK_STATUS, mLockStatus);
 					editor.commit();
 					
 					unLock();
 					break;
-/*				case TelephonyManager.CALL_STATE_IDLE:
-					//mLockStatus=false;
+/*				case TelephonyManager.CALL_STATE_IDLE://挂断
+					//mLockStatus = false;
 					break;*/
+				case TelephonyManager.CALL_STATE_OFFHOOK://接听
+					mLockStatus = false;
+					editor.putBoolean(LOCK_STATUS, mLockStatus);
+					editor.commit();
+					
+					unLock();
+					break;
 				default:
 					//mLockStatus=true;
 					break;

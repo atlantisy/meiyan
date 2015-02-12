@@ -121,13 +121,28 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		settings = getSharedPreferences(PREFS, 0);
 		editor = settings.edit();
 		// 获取系统主屏幕壁纸
-		wallpaperManager = WallpaperManager.getInstance(this);
-		// 获取保存的壁纸
-		wallpaperPath = settings.getString(WALLPAPERPATH, "1_.png");
-		// 随机壁纸
-		bIdOrPath = true;
-		wallpaperId = WallpaperAdapter.wallpaper[(int)(Math.random()*WallpaperAdapter.wallpaper.length)];		
-		mEditVerseLayout.setBackgroundResource(wallpaperId);
+		wallpaperManager = WallpaperManager.getInstance(this);	
+		// 美日一荐
+		recommend_btn = (ImageButton) findViewById(R.id.recommend_photo);
+		recommend_btn.setOnClickListener(recommendOnClickListener);
+		// 设置背景		
+		wallpaperPath = settings.getString(WALLPAPERPATH, "1_.png");//获取保存的壁纸	
+		String url = dir + "/star" + StringUtil.makeDayName() + ".png";
+		File f = new File(url); 
+		if(f != null && f.exists() && f.isFile()){
+			recommend_btn.setVisibility(View.GONE);
+			bIdOrPath = false;
+			wallpaperPath = url;	    	
+			Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
+	    	mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
+		}
+		else{
+			bIdOrPath = true;
+			// 随机壁纸
+			//wallpaperId = WallpaperAdapter.wallpaper[(int)(Math.random()*WallpaperAdapter.wallpaper.length)];			
+			wallpaperId = R.drawable.wallpaper01;			
+			mEditVerseLayout.setBackgroundResource(wallpaperId);
+		}	
 		// 获取保存的美言
 		verseQty = settings.getInt(VERSEQTY, 0);			
 		verse_edit = (EditText) findViewById(R.id.edit_verse);
@@ -157,9 +172,6 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			    return false;
 			}
 		});
-		// 美日一荐
-		recommend_btn = (ImageButton) findViewById(R.id.recommend_photo);
-		recommend_btn.setOnClickListener(recommendOnClickListener);
 		// 应用自带表情
 		emojiAdapter = new EmojiAdapter(this);
 		emojiGridview = (GridView) findViewById(R.id.emoji_grid);

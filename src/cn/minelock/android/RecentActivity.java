@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.ClipboardManager;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -391,11 +392,14 @@ public class RecentActivity extends Activity {
     		    		
     		String imgPath="";
     		if(recentCursor.getInt(3)==0){
-        		imgPath=recentCursor.getString(5);     		
-        		shareMsg(deleteVerse.trim(),deleteVerse.trim()+getResources().getString(R.string.share_word),imgPath);
+        		imgPath=recentCursor.getString(5); 
+        		shareMsg(deleteVerse.trim(),"#美言壁纸#"+deleteVerse.trim()+getResources().getString(R.string.share_word),imgPath);
     		}
-    		else
+    		else{
     			Toast.makeText(getApplicationContext(), "无图无真相", Toast.LENGTH_SHORT).show();
+    			//String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
+    		}
+    			
     	}
     	if(cmd=="copy"){
     		//dbRecent.insert( myEditText.getText().toString());    		

@@ -217,6 +217,11 @@ public class HomeActivity extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 		super.onPause();
 		
+		// 重置锁屏状态
+		SharedPreferences.Editor editor = defaultPrefs.edit();	
+		editor.putBoolean(LOCK_STATUS, false);
+		editor.commit();
+		
 		isLockScreenOn = defaultPrefs.getBoolean(LOCK_SWITCH, true);
 		//启动锁屏
 		if (isLockScreenOn){
@@ -224,20 +229,20 @@ public class HomeActivity extends Activity implements OnClickListener,
 			startService(new Intent(this, MyLockScreenService.class));
 			//bindService(new Intent(this, MyLockScreenService.class),myServiceConnection ,Context.BIND_AUTO_CREATE);
 			
-			EnableSystemKeyguard(false);
+			//EnableSystemKeyguard(false);
 		}
 		else {
 			//关闭锁屏服务
-			stopService(new Intent(this, MyLockScreenService.class));
+			editor.putBoolean(LOCK_STATUS, true);
+			editor.commit();
+			
+			//stopService(new Intent(this, MyLockScreenService.class));
 			//unbindService(myServiceConnection);
 			
-			EnableSystemKeyguard(true);
+			//EnableSystemKeyguard(true);
 		}
 		
-		// 重置锁屏状态
-		SharedPreferences.Editor editor = defaultPrefs.edit();	
-		editor.putBoolean(LOCK_STATUS, false);
-		editor.commit();
+
 	}
 	// 界面在前端时刷新美言的设置
 	@Override
