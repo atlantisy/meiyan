@@ -6,12 +6,11 @@
 
     <uses-sdk android:minSdkVersion="9" />
 
-    
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
-    <uses-permission android:name="android.permission.INTERNET" />    
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
@@ -28,17 +27,18 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="cn.minelock.android.AppStartActivity" 
+            android:name="cn.minelock.android.AppStartActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-<!--         <service
+        <!--
+             <service
             android:name="cn.minelock.android.MyLockScreenService"
             android:excludeFromRecents="false"
             android:launchMode="singleTask"
@@ -47,27 +47,29 @@
             <intent-filter android:priority="1000" >
                 <action android:name="android.intent.action.SCREEN_OFF" />
             </intent-filter>
-        </service> -->
+        </service>
+        -->
 
-        <service
-            android:name="cn.minelock.android.MyLockScreenService">
-            <intent-filter >
+        <service android:name="cn.minelock.android.MyLockScreenService" >
+            <intent-filter>
                 <action android:name="android.intent.action.SCREEN_OFF" />
             </intent-filter>
         </service>
-        
+
         <activity
             android:name="cn.minelock.android.HomeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
-<!--             <intent-filter>
+
+            <!--
+                 <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>  -->           
+            </intent-filter>
+            -->
         </activity>
-        
         <activity
             android:name="cn.minelock.android.LockActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -77,7 +79,8 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
 
-<!--         <receiver android:name="cn.minelock.android.UserPresentReceiver" >
+        <!--
+             <receiver android:name="cn.minelock.android.UserPresentReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
@@ -96,8 +99,9 @@
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
-        </receiver> -->
-        
+        </receiver>
+        -->
+
         <receiver android:name="cn.minelock.android.BootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -111,46 +115,47 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" >
         </activity>
-        
         <activity
             android:name="cn.minelock.android.EditVerseActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        
         <activity
             android:name="cn.minelock.android.SetPasswordActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        
         <activity
             android:name="cn.minelock.android.RecentActivity"
-            android:configChanges="orientation|keyboardHidden"            
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        
         <activity
             android:name="cn.minelock.android.AboutActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        
         <activity
             android:name="cn.minelock.android.InitialGuideActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        
         <activity
             android:name="cn.minelock.android.SettingMoreActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="cn.minelock.android.HelpWebViewActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            android:label="@string/title_activity_help_web_view" >
         </activity>
     </application>
 

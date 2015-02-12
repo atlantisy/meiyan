@@ -2,17 +2,16 @@
 <resources>
 
     <string name="app_name">美言锁屏</string>
-    <string name="initial_verse">花样年华</string>
-    
+    <string name="initial_verse">春光乍泄</string>
     <string name="share_word">（分享自#美言锁屏#，下载链接：http://www.minelock.com）</string>
-	<string name="version_url">http://minelock.sinaapp.com/version.xml</string>
-	
+    <string name="version_url">http://minelock.sinaapp.com/version.xml</string>
+
     <string-array name="none_verse">
         <item>无图何以言表</item>
         <!--
              <item>此地无言三百两</item>
         <item>竟无言以对</item>
-        <item>你不是真正的无言</item>
+        <item>你不是真正的无言</item>
         -->
     </string-array>
     <string-array name="tips">
@@ -222,5 +221,7 @@
         <item>自定义美言</item>
         <item>自定义壁纸</item>
     </string-array>
+
+    <string name="title_activity_help_web_view">HelpWebViewActivity</string>
 
 </resources>

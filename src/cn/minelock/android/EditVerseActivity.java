@@ -395,6 +395,8 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		    	mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 	    		bIdOrPath = false;//壁纸来源为应用外路径
 	    		
+	    		StringUtil.showToast(getApplication(), "推荐成功", Toast.LENGTH_SHORT);
+	    		
 	            verse_edit.setText(verse_hint);
 	            verse_edit.setSelection(verse_hint.length());
 	            verse_edit.setCursorVisible(true);
@@ -436,7 +438,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
     		//_wallpaperPath = dir + "/" + photoName +"_"+ ".png";
     		bIdOrPath = false;//壁纸来源为应用外路径
     		
-            //StringUtil.showToast(getApplication(), "推荐成功", Toast.LENGTH_SHORT);
+            StringUtil.showToast(getApplication(), "推荐成功", Toast.LENGTH_SHORT);
             verse_edit.setText(verse_hint);
             verse_edit.setSelection(verse_hint.length());
             verse_edit.setCursorVisible(true);

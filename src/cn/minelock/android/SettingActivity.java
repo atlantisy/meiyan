@@ -140,9 +140,10 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			break;
 		case R.id.setting_question:
-			Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dwz.cn/minelockwx20150123"));   
-			//i.setClassName("com.android.browser", "com.android.browser.BrowserActivity");   
-			startActivity(i);  
+/*			Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dwz.cn/minelockwx20150123"));    
+			startActivity(i);*/
+			startActivity(new Intent(SettingActivity.this, HelpWebViewActivity.class));
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			break;	
 		}
 	}
@@ -239,12 +240,12 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			//启动锁屏
 			if (mIsLockScreenOn){
 				// keep on disabling the system Keyguard
-				EnableSystemKeyguard(false);
+				//EnableSystemKeyguard(false);
 				mLockStatus = false;
 			}
 			else {
 				// recover original Keyguard
-				EnableSystemKeyguard(true);
+				//EnableSystemKeyguard(true);
 				mLockStatus = true;
 			}
 			//将锁屏开关check值存入pref中
@@ -286,7 +287,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 			startService(new Intent(this, MyLockScreenService.class));
 			//bindService(new Intent(this, MyLockScreenService.class),myServiceConnection ,Context.BIND_AUTO_CREATE);
 			
-			EnableSystemKeyguard(false);
+			//EnableSystemKeyguard(false);
 		}
 		else {
 			stopService(new Intent(this, MyLockScreenService.class));
