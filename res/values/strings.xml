@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">美言锁屏</string>
-    <string name="initial_verse">这就是爱情</string>
-    <string name="share_word">（分享自#美言锁屏#，下载链接：http://dwz.cn/minelock360_download）</string>
+    <string name="initial_verse">夜空中最亮的星</string>
+    <string name="share_word">（分享自#美言锁屏#，免费下载：http://t.cn/RZSCtzi）</string>
     <string name="version_url">http://minelock.sinaapp.com/version.xml</string>
 
     <string-array name="none_verse">

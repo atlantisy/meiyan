@@ -1,6 +1,7 @@
 package cn.minelock.android;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -23,8 +24,10 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import cn.minelock.android.R;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
+import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -48,6 +51,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -551,22 +555,56 @@ public class HomeActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
-		case R.id.home_share:			
-/*			String imgPath="";
-    		if(!home_setting.getBoolean(BOOLIDPATH, true))
-    			imgPath=home_setting.getString(WALLPAPERPATH, "");*/
-						
+		case R.id.home_share:
 			// 隐藏分享按钮
 			ImageButton shartBtn = (ImageButton)findViewById(R.id.home_share);
 			shartBtn.setVisibility(View.INVISIBLE);
+			
+			// 操作弹出框
+			final AlertDialog dlg = new AlertDialog.Builder(HomeActivity.this).create();
+			dlg.show();
+			Window window = dlg.getWindow();						 
+			window.setContentView(R.layout.home_action_dialog);
+			// 设为桌面壁纸			
+			Button desk = (Button) window.findViewById(R.id.home_action_desk);				
+			desk.setOnClickListener(new View.OnClickListener() {					
+				public void onClick(View v) {
+					dlg.cancel();
+					WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());					
+					Bitmap bitmap = BitmapFactory.decodeFile(home_setting.getString(WALLPAPERPATH, ""));
+					try {
+						if(!home_setting.getBoolean(BOOLIDPATH, true))
+							wallpaperManager.setBitmap(bitmap);
+						else
+							wallpaperManager.setResource(R.drawable.wallpaper01);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} 
+					Toast.makeText(getApplicationContext(), "设置成功", Toast.LENGTH_SHORT).show();		  
+				}
+			 });
+			// 分享壁纸
+			Button share = (Button) window.findViewById(R.id.home_action_share);				
+			share.setOnClickListener(new View.OnClickListener() {					
+				public void onClick(View v) {
+					// 分享壁纸
+					String imgPath="";
+		    		if(!home_setting.getBoolean(BOOLIDPATH, true))
+		    			imgPath = home_setting.getString(WALLPAPERPATH, "");
+					shareMsg(verse.trim(), verse.trim()+getResources().getString(R.string.share_word), imgPath);
+					dlg.cancel();			  
+				}
+			 });
+						
 			// 截屏并保存					
-			new Thread(new Runnable() {
+/*			new Thread(new Runnable() {
 				
 				@Override
 				public void run() {
 					shareHandler.post(runnableShare);
 				}
-			}).start();							    		    		
+			}).start();	*/						    		    		
 			break;			
 		case R.id.home_recent:
 			startActivity(new Intent(HomeActivity.this, RecentActivity.class));

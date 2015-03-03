@@ -102,6 +102,20 @@ public class InitialGuideActivity extends Activity {
 			igDown4.setVisibility(View.INVISIBLE);
 			
 		}
+		else if(PhoneUtil.isFlyme()){
+			// 2
+			ig2_btn.setText("设置「自启动」\n（确保锁屏运行）");
+			ig2.setVisibility(View.VISIBLE);
+			igDown2.setVisibility(View.INVISIBLE);
+			// 3
+			ig3_btn.setText("设置「待机耗电管理」\n（防止锁屏失败）");
+			ig3.setVisibility(View.VISIBLE);			
+			igDown3.setVisibility(View.INVISIBLE);
+			// 4
+			ig4_btn.setText("设置「进程服务白名单」\n（防止锁屏被清理）");
+			ig4.setVisibility(View.VISIBLE);
+			igDown4.setVisibility(View.INVISIBLE);			
+		}		
 		else if(PhoneUtil.isHuawei()){
 			// 2
 			ig2_btn.setText("设置「信任此应用程序」\n（确保锁屏运行）");
@@ -152,12 +166,15 @@ public class InitialGuideActivity extends Activity {
 				startActivity(intent);
 			}
 			else if(PhoneUtil.isFlyme()){
-				closeLockToast = "请选择「无」"; 
+/*				closeLockToast = "请选择「无」"; 
 				intent = new Intent();
 				ComponentName cm = new ComponentName("com.android.settings","com.android.settings.ChooseLockGeneric");  
 				intent.setComponent(cm);  
 				intent.setAction("android.intent.action.VIEW"); 
-				startActivity(intent);
+				startActivity(intent);*/
+				
+				closeLockToast = "已关闭"; 
+				EnableSystemKeyguard(false);
 			}
 			else if((PhoneUtil.isHuawei())){				
 				closeLockToast = "解锁样式中选择「不锁屏」"; 
@@ -212,6 +229,15 @@ public class InitialGuideActivity extends Activity {
 	            else
 	            	ig2Toast = "开启「显示悬浮窗」";	            	
 			}
+			else if(PhoneUtil.isFlyme()){	            
+    			// 返回桌面
+    			Intent i = new Intent(Intent.ACTION_MAIN);
+    			//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    			i.addCategory(Intent.CATEGORY_HOME);
+    			startActivity(i);
+    			
+	            ig2Toast = "安全中心→权限管理→自启动→\n开启美言锁屏";	            			
+			}			
 			else if(PhoneUtil.isHuawei()){
 /*				Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
 	            Intent intent =  new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,packageURI);  
@@ -267,6 +293,15 @@ public class InitialGuideActivity extends Activity {
 	            }
 	            	
 			}
+			else if(PhoneUtil.isFlyme()){	            
+    			// 返回桌面
+    			Intent i = new Intent(Intent.ACTION_MAIN);
+    			//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    			i.addCategory(Intent.CATEGORY_HOME);
+    			startActivity(i);
+    			
+    			ig3Toast = "安全中心→省电模式→\n右下角待机耗电管理→开启美言锁屏";	            			
+			}			
 			else if(PhoneUtil.isHuawei()){
 				Intent intent =  new Intent(Settings.ACTION_SETTINGS);	
 				startActivity(intent);
@@ -290,14 +325,22 @@ public class InitialGuideActivity extends Activity {
 /*            Uri packageURI = Uri.parse("package:" + "cn.minelock.android");
             Intent intent =  new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,packageURI);  
             startActivity(intent);*/
-            
-			// 返回桌面
-			Intent i = new Intent(Intent.ACTION_MAIN);
-			//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			i.addCategory(Intent.CATEGORY_HOME);
-			startActivity(i);
-
-			Toast toast = Toast.makeText(getApplicationContext(),"启动近期任务→下拉美言锁屏至锁定", Toast.LENGTH_LONG);
+			
+			String ig4Toast = "";	           
+    		// 返回桌面
+    		Intent i = new Intent(Intent.ACTION_MAIN);
+    		//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    		i.addCategory(Intent.CATEGORY_HOME);
+    		startActivity(i);
+    		
+			if(PhoneUtil.isMIUI()){	    			
+		        ig4Toast = "启动近期任务→下拉美言锁屏至锁定";
+			}            			
+			else if(PhoneUtil.isFlyme()){	               			
+    			ig4Toast = "安全中心→垃圾清理→右上角设置→\n进程服务白名单添加美言锁屏";	            			
+			}	
+			
+			Toast toast = Toast.makeText(getApplicationContext(),ig4Toast, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             

@@ -71,7 +71,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
                     android:text="锁屏显示状态栏"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_black"
                     android:textSize="16sp" />
 
                 <CheckBox
@@ -109,7 +109,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
                     android:text="显示右滑箭头"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_black"
                     android:textSize="16sp" />
 
                 <CheckBox
@@ -144,7 +144,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
                     android:text="左滑打开相机"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_black"
                     android:textSize="16sp" />
 
                 <CheckBox
@@ -182,7 +182,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
                     android:text="显示手势连线"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_black"
                     android:textSize="16sp" />
 
                 <CheckBox
@@ -217,7 +217,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
                     android:text="多彩霓虹手势"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_black"
                     android:textSize="16sp" />
                 <CheckBox
                     android:id="@+id/colorpassword_checkbox"

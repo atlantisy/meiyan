@@ -149,7 +149,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		//String verse = getResources().getString(R.string.initial_verse);		
 		//verse_edit.setText(settings.getString(VERSE, verse).trim());//设置默认美言
 		verse_hint = verse_edit.getText().toString();
-		verse_edit.setHighlightColor(getResources().getColor(R.color.alpha_black1));
+		verse_edit.setHighlightColor(getResources().getColor(R.color.alpha_black));
 		verse_edit.selectAll();
 		//verse_edit.addTextChangedListener(textChangedWatcher);//有字时显示清空按钮
 		verse_edit.setOnTouchListener(new View.OnTouchListener() {
@@ -400,14 +400,14 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			if(f != null && f.exists() && f.isFile()){
 		    	verse_hint = verse_edit.getText().toString();
 		    	verse_edit.setCursorVisible(false);
-		    	verse_edit.setText("推荐今日壁纸...");
+		    	verse_edit.setText("推荐壁纸...");
 		    	// url
 		    	wallpaperPath = url;
 				Bitmap bitmap = BitmapFactory.decodeFile(wallpaperPath);
 		    	mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(bitmap));
 	    		bIdOrPath = false;//壁纸来源为应用外路径
 	    		
-	    		StringUtil.showToast(getApplication(), "推荐成功", Toast.LENGTH_SHORT);
+	    		StringUtil.showToast(getApplication(), "推荐成功，感谢网友投稿", Toast.LENGTH_SHORT);
 	    		
 	            verse_edit.setText(verse_hint);
 	            verse_edit.setSelection(verse_hint.length());
@@ -418,7 +418,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			    if(XMLParser.isNetworkConnected(getApplicationContext())){		    	
 			    	verse_hint = verse_edit.getText().toString();
 			    	verse_edit.setCursorVisible(false);
-			    	verse_edit.setText("推荐今日壁纸...");
+			    	verse_edit.setText("推荐今日投稿壁纸...");
 			    	new Thread(new Runnable() {
 						
 			    		@Override
@@ -450,7 +450,7 @@ public class EditVerseActivity extends Activity implements OnClickListener,
     		//_wallpaperPath = dir + "/" + photoName +"_"+ ".png";
     		bIdOrPath = false;//壁纸来源为应用外路径
     		
-            StringUtil.showToast(getApplication(), "推荐成功", Toast.LENGTH_SHORT);
+            StringUtil.showToast(getApplication(), "推荐成功，感谢网友投稿", Toast.LENGTH_SHORT);
             verse_edit.setText(verse_hint);
             verse_edit.setSelection(verse_hint.length());
             verse_edit.setCursorVisible(true);

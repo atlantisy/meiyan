@@ -393,7 +393,7 @@ public class RecentActivity extends Activity {
     		String imgPath="";
     		if(recentCursor.getInt(3)==0){
         		imgPath=recentCursor.getString(5); 
-        		shareMsg(deleteVerse.trim(),"#美言壁纸#"+deleteVerse.trim()+getResources().getString(R.string.share_word),imgPath);
+        		shareMsg(deleteVerse.trim(),deleteVerse.trim()+getResources().getString(R.string.share_word),imgPath);
     		}
     		else{
     			Toast.makeText(getApplicationContext(), "无图无真相", Toast.LENGTH_SHORT).show();

@@ -92,7 +92,7 @@
                 android:background="@color/alpha"                
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"            
-                android:ems="16"
+                android:ems="20"
                 android:gravity="center"
                 android:hint="What will your verse be?"
                 android:inputType="textMultiLine"
