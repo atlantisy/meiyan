@@ -201,7 +201,7 @@
         android:background="@color/alpha"
         android:gravity="center"
         android:text="壁纸投稿：bizhi@minelock.com"
-        android:textColor="@color/gray"
+        android:textColor="@color/gray_gray"
         android:textSize="12sp" 
         android:visibility="visible"/>
 

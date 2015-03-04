@@ -570,9 +570,10 @@ public class HomeActivity extends Activity implements OnClickListener,
 			desk.setOnClickListener(new View.OnClickListener() {					
 				public void onClick(View v) {
 					dlg.cancel();
+										
 					WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());					
 					Bitmap bitmap = BitmapFactory.decodeFile(home_setting.getString(WALLPAPERPATH, ""));
-					try {
+					try {						
 						if(!home_setting.getBoolean(BOOLIDPATH, true))
 							wallpaperManager.setBitmap(bitmap);
 						else

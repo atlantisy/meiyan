@@ -287,7 +287,6 @@
             android:background="@color/alpha"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingBottom="0dp"
             android:gravity="center"
             android:shadowColor="#38181818"
             android:shadowDx="0"

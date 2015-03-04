@@ -173,8 +173,9 @@ public class InitialGuideActivity extends Activity {
 				intent.setAction("android.intent.action.VIEW"); 
 				startActivity(intent);*/
 				
-				closeLockToast = "已关闭"; 
+				//EnableSystemKeyguard(true);
 				EnableSystemKeyguard(false);
+				closeLockToast = "已关闭"; 				
 			}
 			else if((PhoneUtil.isHuawei())){				
 				closeLockToast = "解锁样式中选择「不锁屏」"; 
@@ -372,11 +373,9 @@ public class InitialGuideActivity extends Activity {
 	};
 		
 	void EnableSystemKeyguard(boolean bEnable) {
-		KeyguardManager mKeyguardManager = null;
-		KeyguardLock mKeyguardLock = null;
-
-		mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-		mKeyguardLock = mKeyguardManager.newKeyguardLock("MineLock");
+		KeyguardManager mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+		KeyguardLock mKeyguardLock = mKeyguardManager.newKeyguardLock(this.getClass().getName());
+		
 		if (bEnable)
 			mKeyguardLock.reenableKeyguard();
 		else
