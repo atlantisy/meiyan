@@ -503,7 +503,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 		verse_grid1.setVisibility(View.GONE);
 		setup_grid_button.setVisibility(View.GONE);
 		//Toast.makeText(this, R.string.line_verse_style, Toast.LENGTH_SHORT).show();
-		StringUtil.showToast(this, "滑动解锁",  Toast.LENGTH_SHORT);
+		StringUtil.showToast(this, "横滑解锁",  Toast.LENGTH_SHORT);
 	}
 	// 九宫手势锁屏
 	protected void grid() {
@@ -557,8 +557,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 		switch (view.getId()) {
 		case R.id.home_share:
 			// 隐藏分享按钮
-			ImageButton shartBtn = (ImageButton)findViewById(R.id.home_share);
-			shartBtn.setVisibility(View.INVISIBLE);
+/*			ImageButton shartBtn = (ImageButton)findViewById(R.id.home_share);
+			shartBtn.setVisibility(View.INVISIBLE);*/
 			
 			// 操作弹出框
 			final AlertDialog dlg = new AlertDialog.Builder(HomeActivity.this).create();

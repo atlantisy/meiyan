@@ -119,7 +119,7 @@
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="显示设置"
+                android:text="个性设置"
                 android:textSize="16sp" 
                 android:textColor="@color/dark_black"/>
             <View

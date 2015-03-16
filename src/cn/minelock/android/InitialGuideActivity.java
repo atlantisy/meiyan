@@ -118,13 +118,17 @@ public class InitialGuideActivity extends Activity {
 		}		
 		else if(PhoneUtil.isHuawei()){
 			// 2
-			ig2_btn.setText("设置「信任此应用程序」\n（确保锁屏运行）");
+			ig2_btn.setText("设置「自动启动」\n（确保锁屏运行）");
 			ig2.setVisibility(View.VISIBLE);
 			igDown2.setVisibility(View.INVISIBLE);
 			// 3
-			ig3_btn.setText("设置「受保护的后台应用」\n（防止锁屏失败）");
+			ig3_btn.setText("设置「信任此应用程序」\n（防止锁屏失败）");
 			ig3.setVisibility(View.VISIBLE);			
-			igDown3.setVisibility(View.INVISIBLE);
+			igDown3.setVisibility(View.INVISIBLE);			
+			// 4
+			ig4_btn.setText("设置「受保护的后台应用」\n（防止锁屏被清理）");
+			ig4.setVisibility(View.VISIBLE);			
+			igDown4.setVisibility(View.INVISIBLE);
 		}
 		// 返回
 		ImageButton return_btn = (ImageButton) findViewById(R.id.initialguide_return);
@@ -158,7 +162,7 @@ public class InitialGuideActivity extends Activity {
 
 		@Override
 		public void onClick(View arg0) {							
-			String closeLockToast = "屏幕锁定选择「无」";
+			String closeLockToast = "屏幕锁定中选择「无」";
 			Intent intent = null;
 			if(PhoneUtil.isMIUI()){
 				closeLockToast = "开启「开启开发者选项」\n开启「直接进入系统」";
@@ -175,7 +179,7 @@ public class InitialGuideActivity extends Activity {
 				
 				//EnableSystemKeyguard(true);
 				EnableSystemKeyguard(false);
-				closeLockToast = "已关闭"; 				
+				closeLockToast = "正在关闭...\n若关闭失败请参考「帮助与反馈」"; 				
 			}
 			else if((PhoneUtil.isHuawei())){				
 				closeLockToast = "解锁样式中选择「不锁屏」"; 
@@ -247,7 +251,7 @@ public class InitialGuideActivity extends Activity {
 				Intent intent =  new Intent(Settings.ACTION_SETTINGS);	
 				startActivity(intent);
 				
-	            ig2Toast = "在「权限管理」中设置信任美言锁屏";	            			
+	            ig2Toast = "设置开机、后台自动启动";	            			
 			}				           
             Toast toast = Toast.makeText(getApplicationContext(),ig2Toast, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
@@ -307,7 +311,7 @@ public class InitialGuideActivity extends Activity {
 				Intent intent =  new Intent(Settings.ACTION_SETTINGS);	
 				startActivity(intent);
 				
-	            ig3Toast = "在「受保护的后台应用」中开启美言锁屏";
+	            ig3Toast = "在「权限管理」中设置信任美言锁屏";	
 			}
 			Toast toast = Toast.makeText(getApplicationContext(),ig3Toast, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
@@ -328,19 +332,32 @@ public class InitialGuideActivity extends Activity {
             startActivity(intent);*/
 			
 			String ig4Toast = "";	           
-    		// 返回桌面
-    		Intent i = new Intent(Intent.ACTION_MAIN);
-    		//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    		i.addCategory(Intent.CATEGORY_HOME);
-    		startActivity(i);
-    		
-			if(PhoneUtil.isMIUI()){	    			
+   		
+			if(PhoneUtil.isMIUI()){	
+	    		// 返回桌面
+	    		Intent i = new Intent(Intent.ACTION_MAIN);
+	    		//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    		i.addCategory(Intent.CATEGORY_HOME);
+	    		startActivity(i);
+	    		
 		        ig4Toast = "启动近期任务→下拉美言锁屏至锁定";
 			}            			
-			else if(PhoneUtil.isFlyme()){	               			
+			else if(PhoneUtil.isFlyme()){
+	    		// 返回桌面
+	    		Intent i = new Intent(Intent.ACTION_MAIN);
+	    		//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    		i.addCategory(Intent.CATEGORY_HOME);
+	    		startActivity(i);
+	    		
     			ig4Toast = "安全中心→垃圾清理→右上角设置→\n进程服务白名单添加美言锁屏";	            			
-			}	
-			
+			}
+			else if(PhoneUtil.isHuawei()){	               			
+				Intent intent =  new Intent(Settings.ACTION_SETTINGS);	
+				startActivity(intent);
+				
+	            ig4Toast = "在「受保护的后台应用」中开启美言锁屏";	            			
+			}			
+
 			Toast toast = Toast.makeText(getApplicationContext(),ig4Toast, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();

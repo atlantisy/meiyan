@@ -27,7 +27,7 @@
 		    android:layout_height="1px"
 		    android:layout_marginLeft="12dp"
 		    android:layout_marginRight="12dp"
-		    android:background="@color/gray_gray"/>  
+		    android:background="@color/gray_gray1"/>  
         <Button
             android:id="@+id/home_action_desk"
             android:layout_width="fill_parent"

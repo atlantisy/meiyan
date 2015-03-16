@@ -21,22 +21,25 @@ public class SettingMoreActivity extends Activity {
 	private SharedPreferences prefs = null;
 	public static final String PREFS = "lock_pref";// pref文件名
 	public static final String STATUSBAR = "statusbar";
+	public static final String VIBRATE = "vibrate";
 	public static final String SHOWRIGHT = "showRight";	
 	public static final String LEFTCAMERA = "leftCamera";
 	public static final String SHOWPASSWORD = "showPassword";	
 	public static final String PWCOLOR = "passwordColor";
 	
 	private CheckBox statusbar_checkbox = null;
+	private CheckBox vibrate_checkbox = null;
 	private CheckBox showright_checkbox = null;
 	private CheckBox leftcamera_checkbox = null;
 	private CheckBox showpassword_checkbox = null;
 	private CheckBox colorpassword_checkbox = null;
 	
 	private boolean mStatusbar = false;
+	private boolean mVibrate = true;
 	private boolean mShowRight = true;
 	private boolean mLeftCamera = false;
 	private boolean mShowPassword = true;
-	private boolean mColorPassword = true;
+	private boolean mColorPassword = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,11 @@ public class SettingMoreActivity extends Activity {
 		statusbar_checkbox = (CheckBox) findViewById(R.id.statusbar_checkbox);
 		statusbar_checkbox.setChecked(mStatusbar);
 		statusbar_checkbox.setOnClickListener(new OnStatusbarListener());
+		// 开启振动
+		mVibrate = prefs.getBoolean(VIBRATE, true);		 
+		vibrate_checkbox = (CheckBox) findViewById(R.id.vibrate_checkbox);
+		vibrate_checkbox.setChecked(mVibrate);
+		vibrate_checkbox.setOnClickListener(new OnVibrateListener());		
 		// 显示右滑箭头
 		mShowRight = prefs.getBoolean(SHOWRIGHT, true);		 
 		showright_checkbox = (CheckBox) findViewById(R.id.showright_checkbox);
@@ -66,7 +74,7 @@ public class SettingMoreActivity extends Activity {
 		showpassword_checkbox.setChecked(mShowPassword);
 		showpassword_checkbox.setOnClickListener(new OnShowPasswordListener());
 		// 显示彩色手势密码
-		mColorPassword = prefs.getBoolean(PWCOLOR, true);		 
+		mColorPassword = prefs.getBoolean(PWCOLOR, false);	 
 		colorpassword_checkbox = (CheckBox) findViewById(R.id.colorpassword_checkbox);
 		colorpassword_checkbox.setChecked(mColorPassword);
 		colorpassword_checkbox.setOnClickListener(new OnColorPasswordListener());		
@@ -117,6 +125,16 @@ public class SettingMoreActivity extends Activity {
 			//将开关check值存入pref中
 			SharedPreferences.Editor editor = prefs.edit();						
 			editor.putBoolean(STATUSBAR, mStatusbar);
+			editor.commit();
+		}
+	}	
+	// 开启振动
+	class OnVibrateListener implements OnClickListener {
+		public void onClick(View v) {
+			mVibrate = vibrate_checkbox.isChecked();
+			//将开关check值存入pref中
+			SharedPreferences.Editor editor = prefs.edit();						
+			editor.putBoolean(VIBRATE, mVibrate);
 			editor.commit();
 		}
 	}	

@@ -219,7 +219,7 @@ public class SettingActivity extends Activity  implements OnClickListener{
 					StringUtil.showToast(getApplicationContext(), "当前已是最新版",  Toast.LENGTH_SHORT);
 				}
 				else{
-					StringUtil.showToast(getApplicationContext(), "当前为旧版，请下载最新版",  Toast.LENGTH_SHORT);
+					StringUtil.showToast(getApplicationContext(), "当前为旧版， 官网可下载最新版",  Toast.LENGTH_SHORT);
 					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.minelock.com"));      
 					startActivity(i); 			
 				}

@@ -3,13 +3,13 @@
 
     <string name="app_name">美言锁屏</string>
     <string name="initial_verse">夜空中最亮的星</string>
-    <string name="share_word">（分享自#美言锁屏#，免费下载：http://t.cn/RZSCtzi）</string>
+    <string name="share_word">（分享自#美言锁屏#，点击下载：http://t.cn/RwE1H5Y）</string>
     <string name="version_url">http://minelock.sinaapp.com/version.xml</string>
 
     <string-array name="none_verse">
-        <item>无图何以言表</item>
+        <item>此地无言三百两</item>
         <!--
-             <item>此地无言三百两</item>
+             <item>无图何以言表</item>
         <item>竟无言以对</item>
         <item>你不是真正的无言</item>
         -->

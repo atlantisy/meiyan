@@ -31,6 +31,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.telephony.PhoneStateListener;
@@ -245,12 +246,19 @@ public class MyLockScreenService extends Service {
 	// 解锁
 	public void unLock(){
 		//Log.d("", "unLock");
+		// 振动
+		if(getSharedPreferences("lock_pref", 0).getBoolean("vibrate", true)){
+			Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);  
+	        long [] pattern = {100,100};// 停止 开启 停止 开启   
+	        vibrator.vibrate(pattern,-1);//重复两次上面的pattern 如果只想震动一次，index设为-1   			
+		}			
 		// 移除悬浮窗
 /*		if(mFloatLayout != null)
 		{*/
 			mWindowManager.removeView(mFloatLayout);
 			mFloatLayout = null;
 /*		}*/
+			
 	}
 	
 	// 保存锁屏状态
