@@ -178,6 +178,7 @@ public class MineLockView extends FrameLayout{
 			batteryHandler.sendEmptyMessage(MSG_STOP_ANIM);
 		}
 	}
+	// µç³Ø×´Ì¬
 	public static boolean isBatteryCharging(int state) {
 		boolean isCharing = false;
 		switch (state) {
@@ -199,10 +200,11 @@ public class MineLockView extends FrameLayout{
 		}
 		return isCharing;
 	}
-	static final int ANIM_IMAGE_LEN = 17;
+	
+	//static final int ANIM_IMAGE_LEN = 17;
 	static final int MSG_START_ANIM = 100;
 	static final int MSG_STOP_ANIM = 200;
-	static final int MSG_RUN_AIM = 300;	
+	static final int MSG_RUN_ANIM = 300;	
 	private boolean isAnim = false;
 	private int status = -1;
 	private int level = -1;
@@ -219,18 +221,18 @@ public class MineLockView extends FrameLayout{
 		public void handleMessage(Message msg) {
 			int what = msg.what;
 			if (what == MSG_START_ANIM) {
-				lockView.batteryHandler.sendEmptyMessage(MSG_RUN_AIM);
+				lockView.batteryHandler.sendEmptyMessage(MSG_RUN_ANIM);
 			} else if (what == MSG_STOP_ANIM) {
 				lockView.isAnim = false;
 				lockView.batteryValue.setVisibility(View.INVISIBLE);
 				//lockView.animStart = 0;
 				//lockView.animIndex = 0;
-			} else if (what == MSG_RUN_AIM) {
-				if (!lockView.isAnim) {
-					lockView.isAnim = true;
+			} else if (what == MSG_RUN_ANIM) {
+				//if (!lockView.isAnim) {
+					lockView.isAnim = true;					
 					lockView.batteryValue.setVisibility(View.VISIBLE);
 					lockView.batteryHandler.post(lockView.batteryAnim);
-				}
+				//}
 			}
 		}
 	}

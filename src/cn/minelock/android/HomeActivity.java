@@ -574,8 +574,12 @@ public class HomeActivity extends Activity implements OnClickListener,
 					WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());					
 					Bitmap bitmap = BitmapFactory.decodeFile(home_setting.getString(WALLPAPERPATH, ""));
 					try {						
-						if(!home_setting.getBoolean(BOOLIDPATH, true))
+						if(!home_setting.getBoolean(BOOLIDPATH, true)){
+							int desiredMinimumWidth = getWindowManager().getDefaultDisplay().getWidth(); 
+							int desiredMinimumHeight = getWindowManager().getDefaultDisplay().getHeight();
+							wallpaperManager.suggestDesiredDimensions(desiredMinimumWidth, desiredMinimumHeight);
 							wallpaperManager.setBitmap(bitmap);
+						}							
 						else
 							wallpaperManager.setResource(R.drawable.wallpaper01);
 					} catch (IOException e) {

@@ -179,7 +179,7 @@ public class InitialGuideActivity extends Activity {
 				
 				//EnableSystemKeyguard(true);
 				EnableSystemKeyguard(false);
-				closeLockToast = "正在关闭...\n若关闭失败请参考「帮助与反馈」"; 				
+				closeLockToast = "正在关闭，若关闭不成功\n请参考「帮助与反馈」"; 				
 			}
 			else if((PhoneUtil.isHuawei())){				
 				closeLockToast = "解锁样式中选择「不锁屏」"; 

@@ -191,7 +191,7 @@ public class MyLockScreenService extends Service {
 			public void onChange(int status, int level, int scale) {
 				// TODO Auto-generated method stub
 				root.onBattery(status, level, scale);
-				root.onUpdate();
+				//root.onUpdate();
 			}
 		});
 		// 简单滑动解锁
@@ -242,23 +242,30 @@ public class MyLockScreenService extends Service {
 		manager.listen(new MyPhoneListener(), PhoneStateListener.LISTEN_CALL_STATE);
 		
 	}
-	
+
+/*	@Override
+	@Deprecated
+	public void onStart(Intent intent, int startId) {
+		// TODO Auto-generated method stub
+		super.onStart(intent, startId);
+		root.onResume();
+	}*/
 	// 解锁
 	public void unLock(){
 		//Log.d("", "unLock");
-		// 振动
-		if(getSharedPreferences("lock_pref", 0).getBoolean("vibrate", true)){
-			Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);  
-	        long [] pattern = {100,100};// 停止 开启 停止 开启   
-	        vibrator.vibrate(pattern,-1);//重复两次上面的pattern 如果只想震动一次，index设为-1   			
-		}			
+		
 		// 移除悬浮窗
 /*		if(mFloatLayout != null)
 		{*/
 			mWindowManager.removeView(mFloatLayout);
 			mFloatLayout = null;
 /*		}*/
-			
+		// 振动
+		if(getSharedPreferences("lock_pref", 0).getBoolean("vibrate", true)){
+			Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);  
+		    long [] pattern = {100,100};// 停止 开启 停止 开启   
+		    vibrator.vibrate(pattern,-1);//重复两次上面的pattern 如果只想震动一次，index设为-1   			
+		}				
 	}
 	
 	// 保存锁屏状态

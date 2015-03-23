@@ -3,7 +3,7 @@
 
     <string name="app_name">美言锁屏</string>
     <string name="initial_verse">夜空中最亮的星</string>
-    <string name="share_word">（分享自#美言锁屏#，点击下载：http://t.cn/RwE1H5Y）</string>
+    <string name="share_word">（壁纸来自#美言锁屏#，点击下载：http://app.mi.com/download/83528）</string>
     <string name="version_url">http://minelock.sinaapp.com/version.xml</string>
 
     <string-array name="none_verse">
