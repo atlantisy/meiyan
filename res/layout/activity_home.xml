@@ -94,7 +94,7 @@
         android:layout_gravity="top|center_horizontal"
         android:background="@color/light_yellow"
         android:padding="12dp"
-        android:text="点击设置手势密码 〉"
+        android:text="点击前往设置手势密码 〉"
         android:textColor="@color/brown"
         android:visibility="gone" >
     </Button>
@@ -171,7 +171,7 @@
                 android:background="@color/alpha"
                 android:orientation="horizontal" >
 
-                <TextView
+                <Button
                     android:id="@+id/verse0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -179,9 +179,10 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="16sp" /> 
+                    android:textSize="16sp" 
+                    android:textColor="@color/white"/> 
 
-                <TextView
+                <Button
                     android:id="@+id/verse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -189,9 +190,10 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="16sp" />
+                    android:textSize="16sp" 
+                    android:textColor="@color/white"/>
 
-                <TextView
+                <Button
                     android:id="@+id/verse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -199,7 +201,8 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="16sp" />
+                    android:textSize="16sp" 
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -209,7 +212,7 @@
                 android:background="@color/alpha"
                 android:orientation="horizontal" >
 
-                <TextView
+                <Button
                     android:id="@+id/verse3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -217,9 +220,10 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="16sp" />
+                    android:textSize="16sp" 
+                    android:textColor="@color/white"/>
 
-                <TextView
+                <Button
                     android:id="@+id/verse4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -227,9 +231,10 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="16sp" />
+                    android:textSize="16sp" 
+                    android:textColor="@color/white"/>
 
-                <TextView
+                <Button
                     android:id="@+id/verse5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -237,7 +242,8 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="16sp" />
+                    android:textSize="16sp" 
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
@@ -247,7 +253,7 @@
                 android:background="@color/alpha"
                 android:orientation="horizontal" >
 
-                <TextView
+                <Button
                     android:id="@+id/verse6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -255,9 +261,10 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="16sp" />
+                    android:textSize="16sp" 
+                    android:textColor="@color/white"/>
 
-                <TextView
+                <Button
                     android:id="@+id/verse7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -265,9 +272,10 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="16sp" />
+                    android:textSize="16sp" 
+                    android:textColor="@color/white"/>
 
-                <TextView
+                <Button
                     android:id="@+id/verse8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -275,7 +283,8 @@
                     android:background="@drawable/pattern_round_original"
                     android:gravity="center"
                     android:textAppearance="?android:textAppearanceMedium"
-                    android:textSize="16sp" /> 
+                    android:textSize="16sp" 
+                    android:textColor="@color/white"/> 
             </LinearLayout>
         </LinearLayout>	  	
 

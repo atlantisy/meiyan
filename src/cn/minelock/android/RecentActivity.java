@@ -82,7 +82,7 @@ public class RecentActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recent);				
         recentList = (ListView) findViewById(R.id.list_verse);
-        //设置list为空时的提示
+        // 设置list为空时的提示
 		String[] none_verse = getResources().getStringArray(R.array.none_verse);
 		int random = (int)(Math.random()*none_verse.length);		        
         TextView noneView = new TextView(this);

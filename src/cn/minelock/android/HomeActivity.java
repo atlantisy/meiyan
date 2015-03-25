@@ -307,23 +307,23 @@ public class HomeActivity extends Activity implements OnClickListener,
 		line_verse.setText(verse.trim());
 		//设置九宫言
 		String s = StringUtil.getGridStr(verse);//.replace("\n", " ");
-		TextView verse0 = (TextView) findViewById(R.id.verse0);
+		Button verse0 = (Button) findViewById(R.id.verse0);
 		verse0.setText(s.substring(0, 1));
-		TextView verse1 = (TextView) findViewById(R.id.verse1);
+		Button verse1 = (Button) findViewById(R.id.verse1);
 		verse1.setText(s.substring(1, 2));
-		TextView verse2 = (TextView) findViewById(R.id.verse2);
+		Button verse2 = (Button) findViewById(R.id.verse2);
 		verse2.setText(s.substring(2, 3));
-		TextView verse3 = (TextView) findViewById(R.id.verse3);
+		Button verse3 = (Button) findViewById(R.id.verse3);
 		verse3.setText(s.substring(3, 4));
-		TextView verse4 = (TextView) findViewById(R.id.verse4);
+		Button verse4 = (Button) findViewById(R.id.verse4);
 		verse4.setText(s.substring(4, 5));
-		TextView verse5 = (TextView) findViewById(R.id.verse5);
+		Button verse5 = (Button) findViewById(R.id.verse5);
 		verse5.setText(s.substring(5, 6));
-		TextView verse6 = (TextView) findViewById(R.id.verse6);
+		Button verse6 = (Button) findViewById(R.id.verse6);
 		verse6.setText(s.substring(6, 7));
-		TextView verse7 = (TextView) findViewById(R.id.verse7);
+		Button verse7 = (Button) findViewById(R.id.verse7);
 		verse7.setText(s.substring(7, 8));
-		TextView verse8 = (TextView) findViewById(R.id.verse8);
+		Button verse8 = (Button) findViewById(R.id.verse8);
 		verse8.setText(s.substring(8, 9));
 		// 控制多彩霓虹手势		
 		verse0.setBackgroundResource(getPatternId());
@@ -601,7 +601,20 @@ public class HomeActivity extends Activity implements OnClickListener,
 					dlg.cancel();			  
 				}
 			 });
-						
+			// 修改手势密码
+			Button editpassword = (Button) window.findViewById(R.id.home_action_editpassword);				
+			editpassword.setOnClickListener(new View.OnClickListener() {					
+				public void onClick(View v) {
+					// 修改手势密码
+					startActivityForResult(new Intent(HomeActivity.this,SetPasswordActivity.class), 100);
+					dlg.cancel();			  
+				}
+			 });
+			if(flag==LINE){
+				editpassword.setVisibility(View.GONE);
+				View divide2 = (View) window.findViewById(R.id.home_action_divide2);
+				divide2.setVisibility(View.GONE);
+			}
 			// 截屏并保存					
 /*			new Thread(new Runnable() {
 				

@@ -137,13 +137,15 @@
                 android:paddingLeft="20dp"
                 android:text="手势密码"
                 android:textSize="16sp" 
-                android:textColor="@color/dark_black"/>              
+                android:textColor="@color/dark_black"
+                android:visibility="visible"/>              
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/gray_white" />
+                android:background="@color/gray_white" 
+                android:visibility="visible"/>
 			<Button
                 android:id="@+id/setting_initialguide"
                 android:layout_width="fill_parent"

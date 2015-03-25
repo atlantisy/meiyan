@@ -38,6 +38,22 @@
             android:textSize="16sp"
             android:textColor="@color/black"
             android:background="@drawable/default_button_selector" />  
-		       			 	
+		<View 
+		    android:id="@+id/home_action_divide2"
+		    android:layout_width="fill_parent"
+		    android:layout_height="1px"
+		    android:layout_marginLeft="12dp"
+		    android:layout_marginRight="12dp"
+		    android:background="@color/gray_gray1"/>  
+        <Button
+            android:id="@+id/home_action_editpassword"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="24dp" 
+            android:text="修改手势密码"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:background="@drawable/default_button_selector" />  		       			 	
 	</LinearLayout>
 </LinearLayout>

@@ -261,7 +261,7 @@
                     android:layout_marginRight="16dp"
                     android:background="@drawable/checkbox_selector"
                     android:button="@null"
-                    android:checked="false" />
+                    android:checked="true" />
                 
 <!--                 <RadioGroup
                     android:id="@+id/PatternColorGroup"
