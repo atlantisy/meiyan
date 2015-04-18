@@ -91,6 +91,10 @@ public class SetPasswordActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				switch (v.getId()) {
+				case R.id.SetPatternBtn:
+					//ppwv.clearPassword();
+					startActivity(new Intent(SetPasswordActivity.this,SetPatternActivity.class));
+					break;
 				case R.id.tvSave:
 					if (StringUtil.isNotEmpty(password)) {
 						final AlertDialog dlg = new AlertDialog.Builder(SetPasswordActivity.this).create();
@@ -135,8 +139,18 @@ public class SetPasswordActivity extends Activity {
 				}
 			}
 		};
+		// 设置手势样式
+		Button setPatternBtn = (Button) findViewById(R.id.SetPatternBtn);
+		setPatternBtn.setOnClickListener(mOnClickListener);
+/*		setPatternBtn.setOnClickListener(new View.OnClickListener() {
+			  public void onClick(View v) {
+				  	startActivity(new Intent(SetPasswordActivity.this,SetPatternActivity.class));
+				  }
+			 });*/
+		// 保存
 		Button buttonSave = (Button) this.findViewById(R.id.tvSave);
 		buttonSave.setOnClickListener(mOnClickListener);
+		// 重置
 		Button tvReset = (Button) this.findViewById(R.id.tvReset);
 		tvReset.setOnClickListener(mOnClickListener);
 		// 如果密码为空,直接输入密码

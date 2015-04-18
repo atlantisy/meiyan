@@ -96,23 +96,26 @@
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp" >
 
+            	<Button
+                	android:id="@+id/setpattern_optionbtn"
+                	android:layout_width="0dp"
+                	android:layout_height="fill_parent"
+                	android:layout_weight="1"
+                	android:background="@color/alpha"
+                	android:gravity="center_vertical"
+                	android:paddingLeft="20dp"
+                	android:text="手势点背景"
+                	android:textSize="16sp" 
+                	android:textColor="@color/dark_black"/>
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="20dp"
-                    android:text="百变多彩手势"
-                    android:textColor="@color/dark_black"
-                    android:textSize="16sp" />
-                <CheckBox
-                    android:id="@+id/colorpassword_checkbox"
-                    android:layout_width="56dp"
-                    android:layout_height="28dp"
+                    android:id="@+id/setpattern_optiontext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
                     android:layout_marginRight="16dp"
-                    android:background="@drawable/checkbox_selector"
-                    android:button="@null"
-                    android:checked="true" />                
+                    android:gravity="center_vertical"
+                    android:text="透明黑"
+                    android:textSize="14sp" 
+                	android:textColor="@color/gray_gray"/>                
             </LinearLayout>
             <View
                 android:layout_width="fill_parent"
@@ -127,9 +130,10 @@
                 android:background="@drawable/default_button_selector"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="设置拼图手势"
+                android:text="自定义九宫拼图"
                 android:textSize="16sp" 
-                android:textColor="@color/dark_black"/>
+                android:textColor="@color/dark_black"
+                android:visibility="gone"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/patternoption1"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="24dp" 
+            android:text="透明黑"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:background="@drawable/default_button_selector" />  
+		<View 
+		    android:layout_width="fill_parent"
+		    android:layout_height="1px"
+		    android:layout_marginLeft="12dp"
+		    android:layout_marginRight="12dp"		    
+		    android:background="@color/gray_gray"/> 
+		<Button
+            android:id="@+id/patternoption2"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="24dp" 
+            android:text="百变多彩"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:background="@drawable/default_button_selector" /> 
+		<View 
+		    android:layout_width="fill_parent"
+		    android:layout_height="1px"
+		    android:layout_marginLeft="12dp"
+		    android:layout_marginRight="12dp"		    
+		    android:background="@color/gray_gray"/> 		       	
+		<Button
+            android:id="@+id/patternoption3"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="24dp" 
+            android:text="九宫拼图"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:background="@drawable/default_button_selector" /> 	
+	</LinearLayout>
+</LinearLayout>

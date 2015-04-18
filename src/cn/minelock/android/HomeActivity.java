@@ -77,7 +77,8 @@ public class HomeActivity extends Activity implements OnClickListener,
 	private ImageButton lockbtn = null;// 锁屏方式按钮
 	private ImageButton show_verse_btn = null;// 美言显示方式按钮
 	private Button setup_grid_button = null;// 设置九宫手势按钮
-
+	private Button verse0,verse1,verse2,verse3,verse4,verse5,verse6,verse7,verse8;
+	
 	private Button mBtnDropDown;
 	private List<CustemObject> nameList = new ArrayList<CustemObject>();
 	private AbstractSpinerAdapter mAdapter;
@@ -307,24 +308,33 @@ public class HomeActivity extends Activity implements OnClickListener,
 		line_verse.setText(verse.trim());
 		//设置九宫言
 		String s = StringUtil.getGridStr(verse);//.replace("\n", " ");
-		Button verse0 = (Button) findViewById(R.id.verse0);
+		verse0 = (Button) findViewById(R.id.verse0);		
 		verse0.setText(s.substring(0, 1));
-		Button verse1 = (Button) findViewById(R.id.verse1);
+		verse0.setOnClickListener(this);
+		verse1 = (Button) findViewById(R.id.verse1);
 		verse1.setText(s.substring(1, 2));
-		Button verse2 = (Button) findViewById(R.id.verse2);
+		verse1.setOnClickListener(this);
+		verse2 = (Button) findViewById(R.id.verse2);
 		verse2.setText(s.substring(2, 3));
-		Button verse3 = (Button) findViewById(R.id.verse3);
+		verse2.setOnClickListener(this);
+		verse3 = (Button) findViewById(R.id.verse3);
 		verse3.setText(s.substring(3, 4));
-		Button verse4 = (Button) findViewById(R.id.verse4);
+		verse3.setOnClickListener(this);
+		verse4 = (Button) findViewById(R.id.verse4);
 		verse4.setText(s.substring(4, 5));
-		Button verse5 = (Button) findViewById(R.id.verse5);
+		verse4.setOnClickListener(this);
+		verse5 = (Button) findViewById(R.id.verse5);
 		verse5.setText(s.substring(5, 6));
-		Button verse6 = (Button) findViewById(R.id.verse6);
+		verse5.setOnClickListener(this);
+		verse6 = (Button) findViewById(R.id.verse6);
 		verse6.setText(s.substring(6, 7));
-		Button verse7 = (Button) findViewById(R.id.verse7);
+		verse6.setOnClickListener(this);
+		verse7 = (Button) findViewById(R.id.verse7);
 		verse7.setText(s.substring(7, 8));
-		Button verse8 = (Button) findViewById(R.id.verse8);
+		verse7.setOnClickListener(this);
+		verse8 = (Button) findViewById(R.id.verse8);
 		verse8.setText(s.substring(8, 9));
+		verse8.setOnClickListener(this);
 		// 控制多彩霓虹手势		
 		verse0.setBackgroundResource(getPatternId());
 		verse1.setBackgroundResource(getPatternId());
@@ -555,6 +565,15 @@ public class HomeActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
+		case R.id.verse0:
+		case R.id.verse1:
+		case R.id.verse2:
+		case R.id.verse3:
+		case R.id.verse4:
+		case R.id.verse5:
+		case R.id.verse6:
+		case R.id.verse7:
+		case R.id.verse8:
 		case R.id.home_share:
 			// 隐藏分享按钮
 /*			ImageButton shartBtn = (ImageButton)findViewById(R.id.home_share);
