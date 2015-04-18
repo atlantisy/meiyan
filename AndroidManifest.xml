@@ -21,8 +21,9 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-	<uses-permission android:name="android.permission.VIBRATE" /> 
-	<uses-permission android:name="android.permission.BATTERY_STATS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+
     <application
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
@@ -48,7 +49,7 @@
             <intent-filter android:priority="1000" >
                 <action android:name="android.intent.action.SCREEN_OFF" />
             </intent-filter>
-        </service>
+        </service>
         -->
 
         <service android:name="cn.minelock.android.MyLockScreenService" >
@@ -68,7 +69,7 @@
                  <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>
             -->
         </activity>
         <activity
@@ -100,7 +101,7 @@
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
-        </receiver>
+        </receiver>
         -->
 
         <receiver android:name="cn.minelock.android.BootReceiver" >
@@ -154,9 +155,15 @@
         <activity
             android:name="cn.minelock.android.HelpWebViewActivity"
             android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_help_web_view"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar" 
-            android:label="@string/title_activity_help_web_view" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="cn.minelock.android.SetPatternActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
     </application>
 

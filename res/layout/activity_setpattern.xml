@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_bg_grey"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/setpattern_return"
+            android:layout_width="48dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/ic_return_selector" />
+
+        <View
+            android:layout_width="1.0px"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:text="设置手势样式"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/blank" />
+    </LinearLayout>
+    
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbarThumbVertical="@drawable/scrollbar_handle_vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="显示手势连线"
+                    android:textColor="@color/dark_black"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/showpassword_checkbox"
+                    android:layout_width="56dp"
+                    android:layout_height="28dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/checkbox_selector"
+                    android:button="@null"
+                    android:checked="true" />
+            </LinearLayout>
+                        
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="24dp"
+                android:background="@color/gray_white" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="百变多彩手势"
+                    android:textColor="@color/dark_black"
+                    android:textSize="16sp" />
+                <CheckBox
+                    android:id="@+id/colorpassword_checkbox"
+                    android:layout_width="56dp"
+                    android:layout_height="28dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/checkbox_selector"
+                    android:button="@null"
+                    android:checked="true" />                
+            </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_white" />            
+            <Button
+                android:id="@+id/setpattern_puzzle"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/default_button_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="设置拼图手势"
+                android:textSize="16sp" 
+                android:textColor="@color/dark_black"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

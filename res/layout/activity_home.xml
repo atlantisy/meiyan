@@ -94,7 +94,7 @@
         android:layout_gravity="top|center_horizontal"
         android:background="@color/light_yellow"
         android:padding="12dp"
-        android:text="点击前往设置手势密码 〉"
+        android:text="点此设置手势密码 〉"
         android:textColor="@color/brown"
         android:visibility="gone" >
     </Button>

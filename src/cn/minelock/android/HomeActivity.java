@@ -610,10 +610,23 @@ public class HomeActivity extends Activity implements OnClickListener,
 					dlg.cancel();			  
 				}
 			 });
+			// 设置手势样式
+			Button puzzlepassword = (Button) window.findViewById(R.id.home_action_puzzlepassword);				
+			puzzlepassword.setOnClickListener(new View.OnClickListener() {					
+				public void onClick(View v) {
+					// 设置手势样式
+					startActivity(new Intent(HomeActivity.this,SetPatternActivity.class));
+					dlg.cancel();			  
+				}
+			 });			
 			if(flag==LINE){
 				editpassword.setVisibility(View.GONE);
 				View divide2 = (View) window.findViewById(R.id.home_action_divide2);
 				divide2.setVisibility(View.GONE);
+				//
+				puzzlepassword.setVisibility(View.GONE);
+				View divide3 = (View) window.findViewById(R.id.home_action_divide3);
+				divide3.setVisibility(View.GONE);
 			}
 			// 截屏并保存					
 /*			new Thread(new Runnable() {

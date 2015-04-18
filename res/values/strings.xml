@@ -11,7 +11,7 @@
         <!--
              <item>无图何以言表</item>
         <item>竟无言以对</item>
-        <item>你不是真正的无言</item>
+        <item>你不是真正的无言</item>
         -->
     </string-array>
     <string-array name="tips">
@@ -223,5 +223,6 @@
     </string-array>
 
     <string name="title_activity_help_web_view">HelpWebViewActivity</string>
+    <string name="title_activity_set_pattern">SetPatternActivity</string>
 
 </resources>

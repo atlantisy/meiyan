@@ -664,9 +664,22 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 		if (resultCode == Activity.RESULT_OK) {
 			switch (requestCode) {
 			case TAKE_PHOTO:
+				// 裁剪图片
+/*				Intent intent = new Intent("com.android.camera.action.CROP");
+				intent.setDataAndType(Uri.fromFile(new File(wallpaperPath)), "image/*");
+				//下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
+				intent.putExtra("crop", "true");
+				// aspectX aspectY 是宽高的比例
+				intent.putExtra("aspectX", 9);
+				intent.putExtra("aspectY", 16);
+				// outputX outputY 是裁剪图片宽高
+				intent.putExtra("outputX", 450);
+				intent.putExtra("outputY", 800);
+				intent.putExtra("return-data", true);*/
+				
 				// 模糊图片
 				//Bitmap photo = (Bitmap)data.getExtras().get("data");
-				
+				//Bitmap photo = (Bitmap)data.getExtras().getParcelable("data");				
 				// 清晰图片
 				Bitmap photo = null;
 				Bitmap smallPhoto = null;
@@ -684,10 +697,10 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 				}
 				
 				// 设置锁屏壁纸
-				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallPhoto));
+				mEditVerseLayout.setBackgroundDrawable(new BitmapDrawable(smallPhoto));//smallPhoto
 				// 保存到SD卡
-				ImageTools.savePhotoToSDCard(smallPhoto, dir, photoName);//清晰数据
-				ImageTools.savePhotoToSDCard(_smallPhoto, dir, photoName+"_");
+				ImageTools.savePhotoToSDCard(smallPhoto, dir, photoName);//清晰数据smallPhoto
+				ImageTools.savePhotoToSDCard(_smallPhoto, dir, photoName+"_");//_smallPhoto
 				
 /*				String photoName = "photo" + StringUtil.makeFileName();
 				ImageTools.savePhotoToSDCard(photo, dir, photoName);

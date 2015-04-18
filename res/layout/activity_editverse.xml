@@ -94,7 +94,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"                           
                 android:gravity="center"
-                android:hint="写下最多九个字"
+                android:hint="最多写九个字"
                 android:inputType="textMultiLine"
                 android:maxLines="4"
                 android:textColor="@color/white"
