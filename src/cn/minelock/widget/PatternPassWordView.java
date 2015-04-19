@@ -16,6 +16,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -71,6 +72,7 @@ public class PatternPassWordView extends View {
 	public static final String VERSE = "verse";//锁屏方式pref值名称
 	public static final String SHOWPASSWORD = "showPassword";
 	public static final String PWCOLOR = "passwordColor";// 九宫格颜色pref值名称
+	public static final String PATTERNOPTION = "patternOption";// 手势选项pref值名称
 	
 	private boolean showPassword;
 	private String verse;
@@ -143,6 +145,7 @@ public class PatternPassWordView extends View {
 			lineAlpha = mPaint.getAlpha();
 		}
 		
+		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock/Puzzle";
 		// 画所有圆和字
 		for (int i = 0; i < mPoints.length; i++) {
 			for (int j = 0; j < mPoints[i].length; j++) {
@@ -150,6 +153,8 @@ public class PatternPassWordView extends View {
 				int index = i*mPoints[i].length+j;
 				float textY = (textPaint.descent()-textPaint.ascent())/2;
 				if (p.state == Point.STATE_CHECK) {
+					if(getContext().getSharedPreferences(PREFS, 0).getInt(PATTERNOPTION, 1)==3)
+						pattern_round_click = BitmapFactory.decodeResource(this.getResources(), R.drawable.pattern_round_click1);
 					canvas.drawBitmap(pattern_round_click, p.x - r, p.y - r,mPaint);//画圆
 					//textPaint.setColor(Color.rgb(100, 108, 127));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字
@@ -158,8 +163,12 @@ public class PatternPassWordView extends View {
 							p.y - r, mPaint);
 				} else {
 					//pattern_round_original = getPattern();
-					if(getContext().getSharedPreferences(PREFS, 0).getBoolean(PWCOLOR, true))
+					if(getContext().getSharedPreferences(PREFS, 0).getInt(PATTERNOPTION, 1)==1)
+						pattern_round_original = BitmapFactory.decodeResource(this.getResources(), R.drawable.pattern_round_original);
+					else if(getContext().getSharedPreferences(PREFS, 0).getInt(PATTERNOPTION, 1)==2)
 						pattern_round_original = BitmapFactory.decodeResource(this.getResources(), colorArray[index]);
+					else if(getContext().getSharedPreferences(PREFS, 0).getInt(PATTERNOPTION, 1)==3)
+						pattern_round_original = BitmapFactory.decodeFile(dir+"/"+index+".png");										
 					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r, mPaint);//画圆
 					//textPaint.setColor(Color.rgb(255, 255, 255));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//画字

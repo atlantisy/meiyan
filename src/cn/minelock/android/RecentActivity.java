@@ -73,7 +73,7 @@ public class RecentActivity extends Activity {
 	
 	private int verseQty;
 	private TextView recent_label;
-	private String title = "锁屏列表";
+	private String title = "图文列表";
 	
 	private ArrayList<HashMap<String,Object>> listData;
 	

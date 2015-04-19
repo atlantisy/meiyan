@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
-            android:text="设置手势样式"
+            android:text="手势样式"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
 

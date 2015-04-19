@@ -53,6 +53,7 @@
             android:textColor="@color/black"
             android:background="@drawable/default_button_selector" /> 
 		<View 
+		    android:id="@+id/photo_action_divide2"
 		    android:layout_width="fill_parent"
 		    android:layout_height="1px"
 		    android:layout_marginLeft="12dp"

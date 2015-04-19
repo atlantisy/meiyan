@@ -104,6 +104,7 @@ public class HomeActivity extends Activity implements OnClickListener,
 	public static final String SHOWVERSEFLAG = "showVerseFlag";//美言显示方式pref值名称
 	public static final String PWSETUP = "passWordSetUp";// 九宫格是否设置pref值名称
 	public static final String PWCOLOR = "passwordColor";// 多彩九宫格pref值名称
+	public static final String PATTERNOPTION = "patternOption";// 手势选项pref值名称
 	
 	private SharedPreferences home_setting;
 	private SharedPreferences defaultPrefs;
@@ -307,6 +308,9 @@ public class HomeActivity extends Activity implements OnClickListener,
 		//设置简言
 		line_verse.setText(verse.trim());
 		//设置九宫言
+/*		Button[] verseBtnArray = {verse0,verse1,verse2,verse3,verse4,verse5,verse6,verse7,verse8};
+		int[] verseIdArray = {R.id.verse0,R.id.verse1,R.id.verse2,R.id.verse3,R.id.verse4,
+				R.id.verse5,R.id.verse6,R.id.verse7,R.id.verse8};*/
 		String s = StringUtil.getGridStr(verse);//.replace("\n", " ");
 		verse0 = (Button) findViewById(R.id.verse0);		
 		verse0.setText(s.substring(0, 1));
@@ -336,15 +340,46 @@ public class HomeActivity extends Activity implements OnClickListener,
 		verse8.setText(s.substring(8, 9));
 		verse8.setOnClickListener(this);
 		// 控制多彩霓虹手势		
-		verse0.setBackgroundResource(getPatternId());
-		verse1.setBackgroundResource(getPatternId());
-		verse2.setBackgroundResource(getPatternId());
-		verse3.setBackgroundResource(getPatternId());
-		verse4.setBackgroundResource(getPatternId());
-		verse5.setBackgroundResource(getPatternId());
-		verse6.setBackgroundResource(getPatternId());
-		verse7.setBackgroundResource(getPatternId());
-		verse8.setBackgroundResource(getPatternId());
+		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock/Puzzle";
+		if(home_setting.getInt(PATTERNOPTION, 1)==3){
+/*			for(int i=0;i<9;i++){
+				Bitmap piece = BitmapFactory.decodeFile(dir+"/"+i+".png");
+				verseBtnArray[i].setBackgroundDrawable(new BitmapDrawable(piece));
+			}*/
+			Bitmap piece0 = BitmapFactory.decodeFile(dir+"/"+"0.png");//
+			verse0.setBackgroundDrawable(new BitmapDrawable(piece0));
+			Bitmap piece1 = BitmapFactory.decodeFile(dir+"/"+"1.png");//
+			verse1.setBackgroundDrawable(new BitmapDrawable(piece1));
+			Bitmap piece2 = BitmapFactory.decodeFile(dir+"/"+"2.png");//
+			verse2.setBackgroundDrawable(new BitmapDrawable(piece2));
+			Bitmap piece3 = BitmapFactory.decodeFile(dir+"/"+"3.png");//
+			verse3.setBackgroundDrawable(new BitmapDrawable(piece3));
+			Bitmap piece4 = BitmapFactory.decodeFile(dir+"/"+"4.png");//
+			verse4.setBackgroundDrawable(new BitmapDrawable(piece4));
+			Bitmap piece5 = BitmapFactory.decodeFile(dir+"/"+"5.png");//
+			verse5.setBackgroundDrawable(new BitmapDrawable(piece5));
+			Bitmap piece6 = BitmapFactory.decodeFile(dir+"/"+"6.png");//
+			verse6.setBackgroundDrawable(new BitmapDrawable(piece6));
+			Bitmap piece7 = BitmapFactory.decodeFile(dir+"/"+"7.png");//
+			verse7.setBackgroundDrawable(new BitmapDrawable(piece7));
+			Bitmap piece8 = BitmapFactory.decodeFile(dir+"/"+"8.png");//
+			verse8.setBackgroundDrawable(new BitmapDrawable(piece8));
+		}
+		else{
+/*			for(int i=0;i<9;i++){
+				verseBtnArray[i].setBackgroundResource(getPatternId());
+			}*/
+			verse0.setBackgroundResource(getPatternId());
+			verse1.setBackgroundResource(getPatternId());
+			verse2.setBackgroundResource(getPatternId());
+			verse3.setBackgroundResource(getPatternId());
+			verse4.setBackgroundResource(getPatternId());
+			verse5.setBackgroundResource(getPatternId());
+			verse6.setBackgroundResource(getPatternId());
+			verse7.setBackgroundResource(getPatternId());
+			verse8.setBackgroundResource(getPatternId());
+		}
+
 	}
 
 	//按两次返回键退出
@@ -574,6 +609,39 @@ public class HomeActivity extends Activity implements OnClickListener,
 		case R.id.verse6:
 		case R.id.verse7:
 		case R.id.verse8:
+			// 操作弹出框
+			final AlertDialog dlg_pattern = new AlertDialog.Builder(HomeActivity.this).create();
+			dlg_pattern.show();
+			Window window_pattern = dlg_pattern.getWindow();						 
+			window_pattern.setContentView(R.layout.home_pattern_dialog);
+			// 修改手势密码
+			Button editpassword = (Button) window_pattern.findViewById(R.id.home_action_editpassword);				
+			editpassword.setOnClickListener(new View.OnClickListener() {					
+				public void onClick(View v) {
+					// 修改手势密码
+					startActivityForResult(new Intent(HomeActivity.this,SetPasswordActivity.class), 100);
+					dlg_pattern.cancel();			  
+				}
+			 });
+			// 设置手势样式
+			Button puzzlepassword = (Button) window_pattern.findViewById(R.id.home_action_puzzlepassword);				
+			puzzlepassword.setOnClickListener(new View.OnClickListener() {					
+				public void onClick(View v) {
+					// 设置手势样式
+					startActivity(new Intent(HomeActivity.this,SetPatternActivity.class));
+					dlg_pattern.cancel();			  
+				}
+			 });			
+/*			if(flag==LINE){
+				editpassword.setVisibility(View.GONE);
+				View divide2 = (View) window_pattern.findViewById(R.id.home_action_divide2);
+				divide2.setVisibility(View.GONE);
+				//
+				puzzlepassword.setVisibility(View.GONE);
+				View divide3 = (View) window_pattern.findViewById(R.id.home_action_divide3);
+				divide3.setVisibility(View.GONE);
+			}*/
+			break;
 		case R.id.home_share:
 			// 隐藏分享按钮
 /*			ImageButton shartBtn = (ImageButton)findViewById(R.id.home_share);
@@ -620,33 +688,6 @@ public class HomeActivity extends Activity implements OnClickListener,
 					dlg.cancel();			  
 				}
 			 });
-			// 修改手势密码
-			Button editpassword = (Button) window.findViewById(R.id.home_action_editpassword);				
-			editpassword.setOnClickListener(new View.OnClickListener() {					
-				public void onClick(View v) {
-					// 修改手势密码
-					startActivityForResult(new Intent(HomeActivity.this,SetPasswordActivity.class), 100);
-					dlg.cancel();			  
-				}
-			 });
-			// 设置手势样式
-			Button puzzlepassword = (Button) window.findViewById(R.id.home_action_puzzlepassword);				
-			puzzlepassword.setOnClickListener(new View.OnClickListener() {					
-				public void onClick(View v) {
-					// 设置手势样式
-					startActivity(new Intent(HomeActivity.this,SetPatternActivity.class));
-					dlg.cancel();			  
-				}
-			 });			
-			if(flag==LINE){
-				editpassword.setVisibility(View.GONE);
-				View divide2 = (View) window.findViewById(R.id.home_action_divide2);
-				divide2.setVisibility(View.GONE);
-				//
-				puzzlepassword.setVisibility(View.GONE);
-				View divide3 = (View) window.findViewById(R.id.home_action_divide3);
-				divide3.setVisibility(View.GONE);
-			}
 			// 截屏并保存					
 /*			new Thread(new Runnable() {
 				
@@ -690,7 +731,10 @@ public class HomeActivity extends Activity implements OnClickListener,
 			ImageButton shartBtn = (ImageButton)findViewById(R.id.home_share);
 			
 			if(fullscreen){
-				fullscreen=false;
+				fullscreen=false;				
+				verse_line.setVisibility(View.GONE);
+				verse_grid1.setVisibility(View.GONE);
+				
 				topbar.setVisibility(View.INVISIBLE);
 				bottombar.setVisibility(View.GONE);
 				share.setVisibility(View.VISIBLE);
@@ -698,6 +742,10 @@ public class HomeActivity extends Activity implements OnClickListener,
 			}
 			else{
 				fullscreen=true;
+				if(flag==LINE)
+					verse_line.setVisibility(View.VISIBLE);					
+				else
+					verse_grid1.setVisibility(View.VISIBLE);
 				topbar.setVisibility(View.VISIBLE);
 				bottombar.setVisibility(View.VISIBLE);
 				share.setVisibility(View.GONE);
@@ -791,7 +839,9 @@ public class HomeActivity extends Activity implements OnClickListener,
 	private int getPatternId() {		
 		int[]color = {R.drawable.pattern_round_original_red,R.drawable.pattern_round_original_yellow,
 					R.drawable.pattern_round_original_green,R.drawable.pattern_round_original_blue};
-		if(home_setting.getBoolean(PWCOLOR, true))
+		if(home_setting.getInt(PATTERNOPTION, 1)==1)
+			return  R.drawable.pattern_round_original;
+		else if(home_setting.getInt(PATTERNOPTION, 1)==2)
 			return  (int)color[(int)(Math.random()*color.length)];
 		else
 			return  R.drawable.pattern_round_original;

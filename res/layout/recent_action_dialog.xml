@@ -64,7 +64,7 @@
             android:layout_height="48dp"
             android:gravity="center_vertical"
             android:paddingLeft="24dp" 
-            android:text="删除该锁屏"
+            android:text="删除该图文"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:background="@drawable/default_button_selector" /> 	

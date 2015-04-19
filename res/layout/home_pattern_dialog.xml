@@ -12,39 +12,6 @@
         android:background="@color/white"
         android:orientation="vertical" >
 
-		<Button
-            android:id="@+id/home_action_share"
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="24dp" 
-            android:text="分享此壁纸"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:background="@drawable/default_button_selector" /> 
-		<View 
-		    android:layout_width="fill_parent"
-		    android:layout_height="1px"
-		    android:layout_marginLeft="12dp"
-		    android:layout_marginRight="12dp"
-		    android:background="@color/gray_gray1"/>  
-        <Button
-            android:id="@+id/home_action_desk"
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="24dp" 
-            android:text="设为桌面壁纸"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:background="@drawable/default_button_selector" />  
-<!-- 		<View 
-		    android:id="@+id/home_action_divide2"
-		    android:layout_width="fill_parent"
-		    android:layout_height="1px"
-		    android:layout_marginLeft="12dp"
-		    android:layout_marginRight="12dp"
-		    android:background="@color/gray_gray1"/>  
         <Button
             android:id="@+id/home_action_editpassword"
             android:layout_width="fill_parent"
@@ -71,6 +38,6 @@
             android:text="设置手势样式"
             android:textSize="16sp"
             android:textColor="@color/black"
-            android:background="@drawable/default_button_selector" /> -->              		       			 	
+            android:background="@drawable/default_button_selector" />              		       			 	
 	</LinearLayout>
 </LinearLayout>
