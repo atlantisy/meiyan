@@ -213,8 +213,8 @@ public class SetPatternActivity extends Activity {
 					ImageTools.savePhotoToSDCard(piece, dir, String.valueOf(index));	                
 	            }  
 	        }
-	        StringUtil.showToast(this, "已完成",  Toast.LENGTH_SHORT);
-	        
+	        StringUtil.showToast(this, "拼图完成",  Toast.LENGTH_SHORT);
+	        startActivity(new Intent(SetPatternActivity.this, SetPasswordActivity.class));
 			/**
 			 * 下面注释的方法是将裁剪之后的图片以Base64Coder的字符方式上
 			 * 传到服务器，QQ头像上传采用的方法跟这个类似

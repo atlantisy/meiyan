@@ -346,24 +346,40 @@ public class HomeActivity extends Activity implements OnClickListener,
 				Bitmap piece = BitmapFactory.decodeFile(dir+"/"+i+".png");
 				verseBtnArray[i].setBackgroundDrawable(new BitmapDrawable(piece));
 			}*/
-			Bitmap piece0 = BitmapFactory.decodeFile(dir+"/"+"0.png");//
-			verse0.setBackgroundDrawable(new BitmapDrawable(piece0));
-			Bitmap piece1 = BitmapFactory.decodeFile(dir+"/"+"1.png");//
-			verse1.setBackgroundDrawable(new BitmapDrawable(piece1));
-			Bitmap piece2 = BitmapFactory.decodeFile(dir+"/"+"2.png");//
-			verse2.setBackgroundDrawable(new BitmapDrawable(piece2));
-			Bitmap piece3 = BitmapFactory.decodeFile(dir+"/"+"3.png");//
-			verse3.setBackgroundDrawable(new BitmapDrawable(piece3));
-			Bitmap piece4 = BitmapFactory.decodeFile(dir+"/"+"4.png");//
-			verse4.setBackgroundDrawable(new BitmapDrawable(piece4));
-			Bitmap piece5 = BitmapFactory.decodeFile(dir+"/"+"5.png");//
-			verse5.setBackgroundDrawable(new BitmapDrawable(piece5));
-			Bitmap piece6 = BitmapFactory.decodeFile(dir+"/"+"6.png");//
-			verse6.setBackgroundDrawable(new BitmapDrawable(piece6));
-			Bitmap piece7 = BitmapFactory.decodeFile(dir+"/"+"7.png");//
-			verse7.setBackgroundDrawable(new BitmapDrawable(piece7));
-			Bitmap piece8 = BitmapFactory.decodeFile(dir+"/"+"8.png");//
-			verse8.setBackgroundDrawable(new BitmapDrawable(piece8));
+			String url = dir+"/"+"0.png";
+			File f = new File(url); 
+			if(f != null && f.exists() && f.isFile()){
+				Bitmap piece0 = BitmapFactory.decodeFile(dir+"/"+"0.png");//
+				verse0.setBackgroundDrawable(new BitmapDrawable(getResources(),piece0));
+				Bitmap piece1 = BitmapFactory.decodeFile(dir+"/"+"1.png");//
+				verse1.setBackgroundDrawable(new BitmapDrawable(getResources(),piece1));
+				Bitmap piece2 = BitmapFactory.decodeFile(dir+"/"+"2.png");//
+				verse2.setBackgroundDrawable(new BitmapDrawable(getResources(),piece2));
+				Bitmap piece3 = BitmapFactory.decodeFile(dir+"/"+"3.png");//
+				verse3.setBackgroundDrawable(new BitmapDrawable(getResources(),piece3));
+				Bitmap piece4 = BitmapFactory.decodeFile(dir+"/"+"4.png");//
+				verse4.setBackgroundDrawable(new BitmapDrawable(getResources(),piece4));
+				Bitmap piece5 = BitmapFactory.decodeFile(dir+"/"+"5.png");//
+				verse5.setBackgroundDrawable(new BitmapDrawable(getResources(),piece5));
+				Bitmap piece6 = BitmapFactory.decodeFile(dir+"/"+"6.png");//
+				verse6.setBackgroundDrawable(new BitmapDrawable(getResources(),piece6));
+				Bitmap piece7 = BitmapFactory.decodeFile(dir+"/"+"7.png");//
+				verse7.setBackgroundDrawable(new BitmapDrawable(getResources(),piece7));
+				Bitmap piece8 = BitmapFactory.decodeFile(dir+"/"+"8.png");//
+				verse8.setBackgroundDrawable(new BitmapDrawable(getResources(),piece8));
+			}
+			else{
+				verse0.setBackgroundResource(R.drawable.pattern_round_click1);
+				verse1.setBackgroundResource(R.drawable.pattern_round_click1);
+				verse2.setBackgroundResource(R.drawable.pattern_round_click1);
+				verse3.setBackgroundResource(R.drawable.pattern_round_click1);
+				verse4.setBackgroundResource(R.drawable.pattern_round_click1);
+				verse5.setBackgroundResource(R.drawable.pattern_round_click1);
+				verse6.setBackgroundResource(R.drawable.pattern_round_click1);
+				verse7.setBackgroundResource(R.drawable.pattern_round_click1);
+				verse8.setBackgroundResource(R.drawable.pattern_round_click1);
+			}
+
 		}
 		else{
 /*			for(int i=0;i<9;i++){
@@ -655,9 +671,10 @@ public class HomeActivity extends Activity implements OnClickListener,
 			// 设为桌面壁纸			
 			Button desk = (Button) window.findViewById(R.id.home_action_desk);				
 			desk.setOnClickListener(new View.OnClickListener() {					
-				public void onClick(View v) {
+				public void onClick(View v) {					
 					dlg.cancel();
-										
+					//Toast.makeText(getApplicationContext(), "正在设置...", Toast.LENGTH_SHORT).show();
+					
 					WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());					
 					Bitmap bitmap = BitmapFactory.decodeFile(home_setting.getString(WALLPAPERPATH, ""));
 					try {						

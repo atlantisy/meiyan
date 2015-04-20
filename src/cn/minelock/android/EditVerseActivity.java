@@ -492,13 +492,19 @@ public class EditVerseActivity extends Activity implements OnClickListener,
 			Button camera = (Button) window.findViewById(R.id.photo_action_camera);
 			camera.setOnClickListener(new View.OnClickListener() {					
 				public void onClick(View v) {
-					Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+					Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);					
+					//openCameraIntent.putExtra("output", Uri.fromFile(sdcardTempFile));
+/*					openCameraIntent.putExtra("crop", "true");
+					openCameraIntent.putExtra("aspectX", 3);// 裁剪框比例
+					openCameraIntent.putExtra("aspectY", 4);
+					openCameraIntent.putExtra("outputX", 600);// 输出图片大小
+					openCameraIntent.putExtra("outputY", 800);*/
 					
 					//清晰图片
 					photoName = "photo" + StringUtil.makeFileName();
 					wallpaperPath = dir + "/" + photoName + ".png";
-					//_wallpaperPath = dir + "/" + photoName + "_" + ".png";
-					openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(wallpaperPath)));							
+					//_wallpaperPath = dir + "/" + photoName + "_" + ".png";												
+					openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(wallpaperPath)));
 					
 					startActivityForResult(openCameraIntent,TAKE_PHOTO);							
 					bIdOrPath = false;//壁纸来源为应用外路径

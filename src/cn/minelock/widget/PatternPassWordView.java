@@ -1,5 +1,8 @@
 package cn.minelock.widget;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -10,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -18,6 +22,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Environment;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -167,8 +172,18 @@ public class PatternPassWordView extends View {
 						pattern_round_original = BitmapFactory.decodeResource(this.getResources(), R.drawable.pattern_round_original);
 					else if(getContext().getSharedPreferences(PREFS, 0).getInt(PATTERNOPTION, 1)==2)
 						pattern_round_original = BitmapFactory.decodeResource(this.getResources(), colorArray[index]);
-					else if(getContext().getSharedPreferences(PREFS, 0).getInt(PATTERNOPTION, 1)==3)
-						pattern_round_original = BitmapFactory.decodeFile(dir+"/"+index+".png");										
+					else if(getContext().getSharedPreferences(PREFS, 0).getInt(PATTERNOPTION, 1)==3){
+						String url = dir+"/"+index+".png";
+						File f = new File(url); 
+						if(f != null && f.exists() && f.isFile()){
+							Options opts = new Options();
+							opts.inDensity = 240;//DisplayMetrics.DENSITY_DEFAULT;
+							opts.inTargetDensity = getResources().getDisplayMetrics().densityDpi;						
+							pattern_round_original = BitmapFactory.decodeFile(url, opts);
+						}
+						else
+							pattern_round_original = BitmapFactory.decodeResource(this.getResources(), R.drawable.pattern_round_click1);
+					}																
 					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r, mPaint);//»­Ô²
 					//textPaint.setColor(Color.rgb(255, 255, 255));
 					canvas.drawText(verse.substring(index,index+1), p.x, p.y+textY/2, textPaint);//»­×Ö
