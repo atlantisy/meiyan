@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">美言锁屏</string>
-    <string name="initial_verse">夜空中最亮的星</string>
+    <string name="initial_verse">永远相信美好的事情即将发生</string>
     <string name="share_word">（壁纸来自#美言锁屏#，点击下载：http://app.mi.com/download/83528）</string>
     <string name="version_url">http://minelock.sinaapp.com/version.xml</string>
 

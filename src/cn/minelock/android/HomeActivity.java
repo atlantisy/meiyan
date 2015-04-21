@@ -369,15 +369,15 @@ public class HomeActivity extends Activity implements OnClickListener,
 				verse8.setBackgroundDrawable(new BitmapDrawable(getResources(),piece8));
 			}
 			else{
-				verse0.setBackgroundResource(R.drawable.pattern_round_click1);
-				verse1.setBackgroundResource(R.drawable.pattern_round_click1);
-				verse2.setBackgroundResource(R.drawable.pattern_round_click1);
-				verse3.setBackgroundResource(R.drawable.pattern_round_click1);
-				verse4.setBackgroundResource(R.drawable.pattern_round_click1);
-				verse5.setBackgroundResource(R.drawable.pattern_round_click1);
-				verse6.setBackgroundResource(R.drawable.pattern_round_click1);
-				verse7.setBackgroundResource(R.drawable.pattern_round_click1);
-				verse8.setBackgroundResource(R.drawable.pattern_round_click1);
+				verse0.setBackgroundResource(R.drawable.lena_01);
+				verse1.setBackgroundResource(R.drawable.lena_02);
+				verse2.setBackgroundResource(R.drawable.lena_03);
+				verse3.setBackgroundResource(R.drawable.lena_04);
+				verse4.setBackgroundResource(R.drawable.lena_05);
+				verse5.setBackgroundResource(R.drawable.lena_06);
+				verse6.setBackgroundResource(R.drawable.lena_07);
+				verse7.setBackgroundResource(R.drawable.lena_08);
+				verse8.setBackgroundResource(R.drawable.lena_09);
 			}
 
 		}
@@ -697,12 +697,13 @@ public class HomeActivity extends Activity implements OnClickListener,
 			Button share = (Button) window.findViewById(R.id.home_action_share);				
 			share.setOnClickListener(new View.OnClickListener() {					
 				public void onClick(View v) {
+					dlg.cancel();
 					// 分享壁纸
 					String imgPath="";
 		    		if(!home_setting.getBoolean(BOOLIDPATH, true))
 		    			imgPath = home_setting.getString(WALLPAPERPATH, "");
 					shareMsg(verse.trim(), verse.trim()+getResources().getString(R.string.share_word), imgPath);
-					dlg.cancel();			  
+								  
 				}
 			 });
 			// 截屏并保存					
@@ -815,8 +816,21 @@ public class HomeActivity extends Activity implements OnClickListener,
 	// 分享
     public void shareMsg(String msgTitle, String msgText,String imgPath) {  
         Intent intent = new Intent(Intent.ACTION_SEND);  
-        if (imgPath == null || imgPath.equals("")) {  
-            intent.setType("text/plain"); // 纯文本   
+        if (imgPath == null || imgPath.equals("")) {
+        	//intent.setType("text/plain"); // 纯文本
+            File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock/"+ "default.png");  
+            if (f != null && f.exists() && f.isFile()) {  
+                intent.setType("image/jpg");  
+                Uri u = Uri.fromFile(f);  
+                intent.putExtra(Intent.EXTRA_STREAM, u);  
+            }
+            else{
+              	Bitmap bitmap=BitmapFactory.decodeResource(this.getResources(), R.drawable.wallpaper01);
+            	ImageTools.savePhotoToSDCard(bitmap, Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock", "default");
+                intent.setType("image/jpg");  
+                Uri u = Uri.fromFile(f);  
+                intent.putExtra(Intent.EXTRA_STREAM, u); 
+            }            
         } else {  
             File f = new File(imgPath);  
             if (f != null && f.exists() && f.isFile()) {  

@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -182,8 +183,8 @@ public class RecentActivity extends Activity {
 						dlg.cancel();
 				  }
 				 });
-				if(recentCursor.getInt(3)==1)
-					share.setVisibility(View.GONE);
+/*				if(recentCursor.getInt(3)==1)
+					share.setVisibility(View.GONE);*/
 				// 删除
 				Button delete = (Button) window.findViewById(R.id.recent_action_delete);
 				delete.setOnClickListener(new View.OnClickListener() {					
@@ -392,13 +393,13 @@ public class RecentActivity extends Activity {
     		    		
     		String imgPath="";
     		if(recentCursor.getInt(3)==0){
-        		imgPath=recentCursor.getString(5); 
-        		shareMsg(deleteVerse.trim(),deleteVerse.trim()+getResources().getString(R.string.share_word),imgPath);
+        		imgPath=recentCursor.getString(5);        		
     		}
-    		else{
+    		shareMsg(deleteVerse.trim(),deleteVerse.trim()+getResources().getString(R.string.share_word),imgPath);
+/*    		else{
     			Toast.makeText(getApplicationContext(), "无图无真相", Toast.LENGTH_SHORT).show();
     			//String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock";
-    		}
+    		}*/
     			
     	}
     	if(cmd=="copy"){
@@ -448,7 +449,20 @@ public class RecentActivity extends Activity {
     public void shareMsg(String msgTitle, String msgText,String imgPath) {  
         Intent intent = new Intent(Intent.ACTION_SEND);  
         if (imgPath == null || imgPath.equals("")) {  
-            intent.setType("text/plain"); // 纯文本   
+            //intent.setType("text/plain"); // 纯文本   
+            File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock/"+ "default.png");  
+            if (f != null && f.exists() && f.isFile()) {  
+                intent.setType("image/jpg");  
+                Uri u = Uri.fromFile(f);  
+                intent.putExtra(Intent.EXTRA_STREAM, u); 
+            }
+            else{
+              	Bitmap bitmap=BitmapFactory.decodeResource(this.getResources(), R.drawable.wallpaper01);
+            	ImageTools.savePhotoToSDCard(bitmap, Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock", "default");
+                intent.setType("image/jpg");  
+                Uri u = Uri.fromFile(f);  
+                intent.putExtra(Intent.EXTRA_STREAM, u); 
+            }
         } else {  
             File f = new File(imgPath);  
             if (f != null && f.exists() && f.isFile()) {  

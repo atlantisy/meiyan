@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
-            android:text="个性设置"
+            android:text="通用设置"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white" />
 

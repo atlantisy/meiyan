@@ -157,12 +157,22 @@ public class SetPatternActivity extends Activity {
 		switch (requestCode) {
 		// 如果是直接从相册获取
 		case 1:
-			startPhotoZoom(data.getData());
+			try {
+				startPhotoZoom(data.getData());
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}			
 			break;
 		// 如果是调用相机拍照时
 		case 2:
 			File temp = new File(dir + "/"+ "puzzle.jpg");
-			startPhotoZoom(Uri.fromFile(temp));
+			try {
+				startPhotoZoom(Uri.fromFile(temp));
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}			
 			break;
 		// 取得裁剪后的图片
 		case 3:
@@ -214,7 +224,8 @@ public class SetPatternActivity extends Activity {
 	            }  
 	        }
 	        StringUtil.showToast(this, "拼图完成",  Toast.LENGTH_SHORT);
-	        startActivity(new Intent(SetPatternActivity.this, SetPasswordActivity.class));
+	        
+	        finish();
 			/**
 			 * 下面注释的方法是将裁剪之后的图片以Base64Coder的字符方式上
 			 * 传到服务器，QQ头像上传采用的方法跟这个类似

@@ -6,6 +6,7 @@ import java.security.Policy;
 import cn.minelock.android.R;
 import cn.minelock.util.PhoneUtil;
 import cn.minelock.util.StringUtil;
+import cn.minelock.widget.ImageTools;
 import cn.minelock.widget.dbHelper;
 import android.app.Activity;
 import android.app.KeyguardManager;
@@ -19,9 +20,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.view.Gravity;
 import android.view.Menu;
@@ -144,6 +148,9 @@ public class InitialGuideActivity extends Activity {
 			igDivide.setVisibility(View.GONE);
 			return_btn.setVisibility(View.GONE);
 			finish_btn.setVisibility(View.VISIBLE);
+			
+        	Bitmap bitmap=BitmapFactory.decodeResource(this.getResources(), R.drawable.wallpaper01);
+        	ImageTools.savePhotoToSDCard(bitmap, Environment.getExternalStorageDirectory().getAbsolutePath() + "/Minelock", "default");
 						
 			// ³õÊ¼»¯ËøÆÁ¼ÇÂ¼
 /*			dbRecent = new dbHelper(this);

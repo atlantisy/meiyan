@@ -181,8 +181,13 @@ public class PatternPassWordView extends View {
 							opts.inTargetDensity = getResources().getDisplayMetrics().densityDpi;						
 							pattern_round_original = BitmapFactory.decodeFile(url, opts);
 						}
-						else
-							pattern_round_original = BitmapFactory.decodeResource(this.getResources(), R.drawable.pattern_round_click1);
+						else{
+							int[]lena = {R.drawable.lena_01,R.drawable.lena_02,R.drawable.lena_03,
+									R.drawable.lena_04,R.drawable.lena_05,R.drawable.lena_06,
+									R.drawable.lena_07,R.drawable.lena_08,R.drawable.lena_09};
+							pattern_round_original = BitmapFactory.decodeResource(this.getResources(), lena[index]);
+						}
+							
 					}																
 					canvas.drawBitmap(pattern_round_original, p.x - r, p.y - r, mPaint);//»­Ô²
 					//textPaint.setColor(Color.rgb(255, 255, 255));
